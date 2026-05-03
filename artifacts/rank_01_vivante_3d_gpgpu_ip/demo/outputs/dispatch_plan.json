@@ -1,0 +1,325 @@
+{
+  "dispatches": [
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "a",
+          "buffer_id": "buf_vector_a",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80000000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            16
+          ],
+          "type": "int32*"
+        },
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 1,
+          "arg_name": "b",
+          "buffer_id": "buf_vector_b",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80001000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            16
+          ],
+          "type": "int32*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 2,
+          "arg_name": "out",
+          "buffer_id": "buf_vector_out",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80002000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            16
+          ],
+          "type": "int32*"
+        }
+      ],
+      "dispatch_name": "vadd",
+      "global_size": [
+        16
+      ],
+      "kernel": "vector_add",
+      "local_size": [
+        4
+      ],
+      "precision_modes": [
+        "fp32",
+        "fp16_proxy"
+      ],
+      "queue_id": "queue0",
+      "sequence": 0
+    },
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "a",
+          "buffer_id": "buf_gemm_a",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80003000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            4,
+            4
+          ],
+          "type": "int32*"
+        },
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 1,
+          "arg_name": "b",
+          "buffer_id": "buf_gemm_b",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80004000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            4,
+            4
+          ],
+          "type": "int32*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 2,
+          "arg_name": "c",
+          "buffer_id": "buf_gemm_c",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80005000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            4,
+            4
+          ],
+          "type": "int32*"
+        }
+      ],
+      "dispatch_name": "gemm",
+      "global_size": [
+        4,
+        4
+      ],
+      "kernel": "gemm_proxy",
+      "local_size": [
+        2,
+        2
+      ],
+      "precision_modes": [
+        "fp32",
+        "fp16_proxy"
+      ],
+      "queue_id": "queue0",
+      "sequence": 1
+    },
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "src",
+          "buffer_id": "buf_conv_src",
+          "buffer_size_bytes": 196,
+          "device_address": "0x80006000",
+          "element_type": "fp32",
+          "host_visible": true,
+          "shape": [
+            7,
+            7
+          ],
+          "type": "float*"
+        },
+        {
+          "access": "read",
+          "address_space": "constant",
+          "arg_index": 1,
+          "arg_name": "filter",
+          "buffer_id": "buf_conv_filter",
+          "buffer_size_bytes": 36,
+          "device_address": "0x80007000",
+          "element_type": "fp32",
+          "host_visible": true,
+          "shape": [
+            3,
+            3
+          ],
+          "type": "float*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 2,
+          "arg_name": "dst",
+          "buffer_id": "buf_conv_dst",
+          "buffer_size_bytes": 100,
+          "device_address": "0x80008000",
+          "element_type": "fp32",
+          "host_visible": true,
+          "shape": [
+            5,
+            5
+          ],
+          "type": "float*"
+        }
+      ],
+      "dispatch_name": "conv",
+      "global_size": [
+        5,
+        5
+      ],
+      "kernel": "convolution_proxy",
+      "local_size": [
+        5,
+        5
+      ],
+      "precision_modes": [
+        "fp32",
+        "fp16_proxy"
+      ],
+      "queue_id": "queue0",
+      "sequence": 2
+    },
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "src_image",
+          "buffer_id": "buf_image_src",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80009000",
+          "element_type": "uint8",
+          "host_visible": true,
+          "shape": [
+            8,
+            8
+          ],
+          "type": "uint8*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 1,
+          "arg_name": "dst_image",
+          "buffer_id": "buf_image_dst",
+          "buffer_size_bytes": 64,
+          "device_address": "0x8000a000",
+          "element_type": "uint8",
+          "host_visible": true,
+          "shape": [
+            8,
+            8
+          ],
+          "type": "uint8*"
+        },
+        {
+          "access": "read",
+          "address_space": "private",
+          "arg_index": 2,
+          "arg_name": "width",
+          "buffer_id": null,
+          "buffer_size_bytes": null,
+          "device_address": null,
+          "element_type": null,
+          "host_visible": null,
+          "shape": null,
+          "type": "uint32"
+        }
+      ],
+      "dispatch_name": "image_filter",
+      "global_size": [
+        8,
+        8
+      ],
+      "kernel": "image_filter",
+      "local_size": [
+        4,
+        4
+      ],
+      "precision_modes": [
+        "fp16_proxy"
+      ],
+      "queue_id": "queue0",
+      "sequence": 3
+    },
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "src",
+          "buffer_id": "buf_copy_src",
+          "buffer_size_bytes": 64,
+          "device_address": "0x8000b000",
+          "element_type": "uint8",
+          "host_visible": true,
+          "shape": [
+            64
+          ],
+          "type": "uint8*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 1,
+          "arg_name": "dst",
+          "buffer_id": "buf_copy_dst",
+          "buffer_size_bytes": 64,
+          "device_address": "0x8000c000",
+          "element_type": "uint8",
+          "host_visible": true,
+          "shape": [
+            64
+          ],
+          "type": "uint8*"
+        }
+      ],
+      "dispatch_name": "memcpy",
+      "global_size": [
+        64
+      ],
+      "kernel": "memory_copy",
+      "local_size": [
+        8
+      ],
+      "precision_modes": [
+        "byte"
+      ],
+      "queue_id": "queue1",
+      "sequence": 4
+    }
+  ],
+  "scope": "clean-room OpenCL-like runtime proxy; non-conformant and not compatible with proprietary Vivante command streams, firmware, SDKs, drivers, or certification suites",
+  "selected_device": {
+    "address_bits": 32,
+    "device_id": "celviz-micro-proxy",
+    "fp16_ops_per_cycle": 128,
+    "fp32_ops_per_cycle": 64,
+    "public_reference_tier": "CC8000",
+    "queue_count": 2,
+    "runtime_tier": "micro",
+    "shader_units_vec1": 32
+  }
+}

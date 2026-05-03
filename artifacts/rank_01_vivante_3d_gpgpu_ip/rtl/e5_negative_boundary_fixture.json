@@ -1,0 +1,406 @@
+{
+  "schema": "celviz.gpgpu.e5_negative_boundary_fixture.v1",
+  "generated_at": "2026-05-02T18:12:00+08:00",
+  "ip_name": "Celviz GPGPU IP",
+  "clean_room_scope": "Clean-room command/control-plane proxy fixture only; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, conformance, RTL timing, or silicon signoff claim.",
+  "stage": "E5-A",
+  "purpose": "Negative and boundary fixture for invalid descriptors, DMA bounds and alignment, reset while commands are pending or active, and command-submission error records.",
+  "source_contracts": [
+    "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_config.json",
+    "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/register_map.md"
+  ],
+  "tier": "gpgpu_nano_ultra31",
+  "descriptor_contract": {
+    "magic_u32": "0x31555643",
+    "abi_version": "0x0001",
+    "header_bytes": 64,
+    "packet_alignment_bytes": 64,
+    "reserved_policy": "software writes zero; non-zero reserved bits are rejected before issue",
+    "supported_queue_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "supported_opcodes": [
+      "nop",
+      "kernel_dispatch",
+      "dma_copy",
+      "dma_fill",
+      "barrier",
+      "set_scheduler_config",
+      "set_shader_mode",
+      "counter_snapshot",
+      "reset"
+    ]
+  },
+  "queues": [
+    {
+      "queue_id": 0,
+      "base": "0x10000000",
+      "size_bytes": 4096,
+      "priority": 2
+    },
+    {
+      "queue_id": 1,
+      "base": "0x10001000",
+      "size_bytes": 4096,
+      "priority": 1
+    },
+    {
+      "queue_id": 2,
+      "base": "0x10002000",
+      "size_bytes": 4096,
+      "priority": 0
+    },
+    {
+      "queue_id": 3,
+      "base": "0x10003000",
+      "size_bytes": 4096,
+      "priority": 0
+    }
+  ],
+  "memory_regions": [
+    {
+      "name": "global_a",
+      "base": "0x80000000",
+      "size": 65536,
+      "readable": true,
+      "writable": true
+    },
+    {
+      "name": "completion_records",
+      "base": "0x90000000",
+      "size": 4096,
+      "readable": true,
+      "writable": true
+    }
+  ],
+  "expected_error_record_fields": [
+    "sequence",
+    "submit_tag",
+    "queue_id",
+    "opcode",
+    "descriptor_offset",
+    "error",
+    "error_code",
+    "detail",
+    "sticky_error",
+    "interrupt_bits",
+    "queue_error_count_after",
+    "axi_issued",
+    "apb_submission_writes"
+  ],
+  "scenarios": [
+    {
+      "id": "e5_invalid_descriptor_bad_magic",
+      "category": "invalid_descriptors",
+      "sequence": 501,
+      "submit_tag": "bad-magic-rejected-before-issue",
+      "queue_id": 0,
+      "opcode": "dma_copy",
+      "descriptor_mutation": {
+        "field": "magic",
+        "offset": "0x00",
+        "actual": "0x00000000",
+        "expected": "0x31555643"
+      },
+      "expect_error": "ERR_BAD_MAGIC",
+      "expect_error_code": "0x0001",
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_invalid_descriptor_bad_version",
+      "category": "invalid_descriptors",
+      "sequence": 502,
+      "submit_tag": "bad-version-rejected-before-issue",
+      "queue_id": 0,
+      "opcode": "kernel_dispatch",
+      "descriptor_mutation": {
+        "field": "abi_version",
+        "offset": "0x04",
+        "actual": "0xffff",
+        "expected": "0x0001"
+      },
+      "expect_error": "ERR_BAD_VERSION",
+      "expect_error_code": "0x0002",
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_invalid_descriptor_bad_length",
+      "category": "invalid_descriptors",
+      "sequence": 503,
+      "submit_tag": "bad-packet-length-rejected-before-issue",
+      "queue_id": 1,
+      "opcode": "dma_fill",
+      "descriptor_mutation": {
+        "field": "packet_bytes",
+        "offset": "0x08",
+        "actual": 72,
+        "expected_multiple_of": 64,
+        "expected_minimum": 96
+      },
+      "expect_error": "ERR_BAD_LENGTH",
+      "expect_error_code": "0x0003",
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_invalid_descriptor_unsupported_opcode",
+      "category": "invalid_descriptors",
+      "sequence": 504,
+      "submit_tag": "unsupported-opcode-recorded",
+      "queue_id": 1,
+      "opcode": "vendor_private_3d_packet",
+      "descriptor_mutation": {
+        "field": "opcode",
+        "offset": "0x0c",
+        "actual": "0x7f01",
+        "policy": "not in Celviz GPGPU opcode registry"
+      },
+      "expect_error": "ERR_UNSUPPORTED_OPCODE",
+      "expect_error_code": "0x0005",
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_invalid_descriptor_bad_queue",
+      "category": "invalid_descriptors",
+      "sequence": 505,
+      "submit_tag": "bad-queue-recorded",
+      "queue_id": 4,
+      "opcode": "dma_copy",
+      "descriptor_mutation": {
+        "field": "queue_id",
+        "offset": "0x0f",
+        "actual": 4,
+        "valid_range": "0..3"
+      },
+      "expect_error": "ERR_BAD_QUEUE",
+      "expect_error_code": "0x0006",
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_dma_bounds_source_before_region",
+      "category": "dma_bounds_alignment",
+      "sequence": 506,
+      "submit_tag": "dma-src-underflow-recorded",
+      "queue_id": 0,
+      "opcode": "dma_copy",
+      "src_addr": "0x7fffffe0",
+      "dst_addr": "0x80001000",
+      "byte_count": 64,
+      "boundary_checked_region": "global_a",
+      "expect_error": "ERR_BAD_DMA",
+      "expect_error_code": "0x0008",
+      "expect_dma_status_bits": [
+        "range_error"
+      ],
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_dma_bounds_destination_crosses_region_end",
+      "category": "dma_bounds_alignment",
+      "sequence": 507,
+      "submit_tag": "dma-dst-overrun-recorded",
+      "queue_id": 0,
+      "opcode": "dma_copy",
+      "src_addr": "0x80000000",
+      "dst_addr": "0x8000fff0",
+      "byte_count": 64,
+      "boundary_checked_region": "global_a",
+      "expect_error": "ERR_BAD_DMA",
+      "expect_error_code": "0x0008",
+      "expect_dma_status_bits": [
+        "range_error"
+      ],
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_dma_alignment_src_unaligned",
+      "category": "dma_bounds_alignment",
+      "sequence": 508,
+      "submit_tag": "dma-src-align-recorded",
+      "queue_id": 1,
+      "opcode": "dma_copy",
+      "src_addr": "0x80000002",
+      "dst_addr": "0x80002000",
+      "byte_count": 128,
+      "alignment_requirement_bytes": 16,
+      "expect_error": "ERR_BAD_DMA",
+      "expect_error_code": "0x0008",
+      "expect_dma_status_bits": [
+        "alignment_error"
+      ],
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_dma_alignment_dst_unaligned",
+      "category": "dma_bounds_alignment",
+      "sequence": 509,
+      "submit_tag": "dma-dst-align-recorded",
+      "queue_id": 1,
+      "opcode": "dma_copy",
+      "src_addr": "0x80000000",
+      "dst_addr": "0x80002004",
+      "byte_count": 128,
+      "alignment_requirement_bytes": 16,
+      "expect_error": "ERR_BAD_DMA",
+      "expect_error_code": "0x0008",
+      "expect_dma_status_bits": [
+        "alignment_error"
+      ],
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_dma_alignment_size_not_beat_multiple",
+      "category": "dma_bounds_alignment",
+      "sequence": 510,
+      "submit_tag": "dma-size-align-recorded",
+      "queue_id": 2,
+      "opcode": "dma_fill",
+      "dst_addr": "0x80003000",
+      "byte_count": 66,
+      "alignment_requirement_bytes": 4,
+      "expect_error": "ERR_BAD_DMA",
+      "expect_error_code": "0x0008",
+      "expect_dma_status_bits": [
+        "alignment_error"
+      ],
+      "expect_interrupt_bits": [
+        "queue_error"
+      ],
+      "expect_axi_issued": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_reset_during_pending_dma",
+      "category": "reset_pending_active",
+      "sequence": 511,
+      "submit_tag": "reset-flushes-pending-dma",
+      "queue_id": 2,
+      "opcode": "reset",
+      "precondition": {
+        "pending_command": {
+          "opcode": "dma_copy",
+          "sequence": 5110,
+          "queue_id": 2,
+          "src_addr": "0x80000000",
+          "dst_addr": "0x80004000",
+          "byte_count": 4096,
+          "issue_state": "pending_not_started"
+        }
+      },
+      "expect_reset_record": {
+        "error": "OK",
+        "reset_behavior": "soft_control_plane_reset",
+        "queue_head_after": 0,
+        "queue_tail_after": 0,
+        "pending_count_after": 0,
+        "sticky_error_after": null,
+        "interrupts_after": []
+      },
+      "expect_axi_for_pending_command": false,
+      "expect_command_submission_record": true
+    },
+    {
+      "id": "e5_reset_during_active_dispatch",
+      "category": "reset_pending_active",
+      "sequence": 512,
+      "submit_tag": "reset-flushes-active-dispatch",
+      "queue_id": 3,
+      "opcode": "reset",
+      "precondition": {
+        "active_command": {
+          "opcode": "kernel_dispatch",
+          "sequence": 5120,
+          "queue_id": 3,
+          "kernel": "long_running_boundary_probe",
+          "grid": [
+            64,
+            1,
+            1
+          ],
+          "local": [
+            64,
+            1,
+            1
+          ],
+          "issue_state": "active_scheduler_slot_allocated"
+        }
+      },
+      "expect_reset_record": {
+        "error": "OK",
+        "reset_behavior": "soft_control_plane_reset",
+        "scheduler_active_after": false,
+        "queue_head_after": 0,
+        "queue_tail_after": 0,
+        "pending_count_after": 0,
+        "sticky_error_after": null,
+        "interrupts_after": []
+      },
+      "expect_partial_completion_record_for_active_command": false,
+      "expect_command_submission_record": true
+    }
+  ],
+  "coverage_goals": {
+    "invalid_descriptors": [
+      "ERR_BAD_MAGIC",
+      "ERR_BAD_VERSION",
+      "ERR_BAD_LENGTH",
+      "ERR_UNSUPPORTED_OPCODE",
+      "ERR_BAD_QUEUE"
+    ],
+    "dma_bounds_alignment": [
+      "source before region",
+      "destination crosses region end",
+      "source address unaligned",
+      "destination address unaligned",
+      "byte count not aligned"
+    ],
+    "reset_pending_active": [
+      "pending DMA is flushed without issuing AXI",
+      "active dispatch is flushed without partial completion"
+    ],
+    "command_submission_error_records": [
+      "one command-submission record per rejected descriptor",
+      "queue_error interrupt bit is recorded for rejected descriptors",
+      "sticky error is set before explicit clear or reset",
+      "AXI traffic is suppressed for descriptors rejected before issue"
+    ]
+  }
+}

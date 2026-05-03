@@ -1,0 +1,50 @@
+{
+  "claim_boundary": "negative subset tests only; not Khronos CTS or official OpenCL conformance",
+  "schema": "celviz.gpgpu.phase8.opencl_negative_tests.v1",
+  "status": "pass",
+  "test_count": 7,
+  "tests": [
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_image_object",
+      "observed_error": "unsupported OpenCL feature token: image2d_t",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_atomic_builtin",
+      "observed_error": "unsupported OpenCL feature token: atomic_",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_double_precision",
+      "observed_error": "unsupported OpenCL feature token: double",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_unsupported_subgroup_builtin",
+      "observed_error": "unsupported OpenCL feature token: sub_group",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "must declare an address space",
+      "name": "reject_private_pointer",
+      "observed_error": "pointer argument p must declare an address space",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "global_size must be divisible by local_size",
+      "name": "reject_non_divisible_launch",
+      "observed_error": "bad: global_size must be divisible by local_size",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "local workgroup size exceeds",
+      "name": "reject_large_workgroup",
+      "observed_error": "bad: local workgroup size exceeds first-stage limit 256",
+      "status": "pass"
+    }
+  ]
+}

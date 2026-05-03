@@ -1,0 +1,1435 @@
+{
+  "checks": [
+    {
+      "name": "global_memory_h2d_visible_to_kernel",
+      "pass": true
+    },
+    {
+      "name": "dma_fill_pattern_visible",
+      "pass": true
+    },
+    {
+      "name": "kernel_global_store_visible_to_d2h",
+      "pass": true
+    },
+    {
+      "name": "coalescing_reduces_transactions",
+      "pass": true
+    },
+    {
+      "name": "local_scratchpad_roundtrip",
+      "pass": true
+    },
+    {
+      "name": "constant_reads_are_read_only_and_cacheable_proxy",
+      "pass": true
+    },
+    {
+      "name": "bounds_alignment_negative_cases",
+      "pass": true
+    },
+    {
+      "name": "unified_dma_kernel_event_model",
+      "pass": true
+    }
+  ],
+  "claim_boundary": "clean-room functional memory proxy; no proprietary Vivante cache, LSU, DMA engine, command stream, firmware, driver, SDK, compiler, timing, PPA, or API conformance claim",
+  "clean_room_scope": "clean-room functional memory proxy; no proprietary Vivante cache, LSU, DMA engine, command stream, firmware, driver, SDK, compiler, timing, PPA, or API conformance claim",
+  "events": [
+    {
+      "absolute_address": "0x80000000",
+      "address_space": "global",
+      "bytes_sha256": "7d14470b0c76293a1604eaf2d8f0b9c5fabd93a67f7e63ce734989278f4270aa",
+      "category": "dma",
+      "detail": "host[0:64] -> global[0:64]",
+      "dst_address_space": "global",
+      "dst_offset": 0,
+      "event_id": 0,
+      "offset": 0,
+      "operation": "copy",
+      "payload_head": [
+        116,
+        153,
+        190,
+        227,
+        8,
+        45,
+        82,
+        119,
+        156,
+        193,
+        230,
+        11,
+        48,
+        85,
+        122,
+        159
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 64,
+      "source": "h2d_copy",
+      "src_address_space": "host",
+      "src_offset": 0,
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x80000060",
+      "address_space": "global",
+      "bytes_sha256": "fc8b64001c5fdd0f2f40fb67dae4a865a2c5bd17836676d6d5b58b7917e33717",
+      "category": "dma",
+      "detail": "fill global[96:128] pattern=0xa5",
+      "event_id": 1,
+      "offset": 96,
+      "operation": "fill",
+      "pattern": "0xa5",
+      "payload_head": [
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 32,
+      "source": "dma_fill",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x80000000",
+      "address_space": "global",
+      "bytes_sha256": "d468caeab62016c4d3998b2a9ffb9e766a7915385d63a3527bacad359efc928e",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": false,
+        "hits": 0,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 1
+      },
+      "category": "kernel",
+      "detail": "kernel load from global",
+      "event_id": 2,
+      "lane_id": 0,
+      "offset": 0,
+      "operation": "load",
+      "payload_head": [
+        116,
+        153,
+        190,
+        227
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "coalesced_global_load",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x80000004",
+      "address_space": "global",
+      "bytes_sha256": "78d0b510c223467892947f536ad0e36e89375de16e3f855290c2a240e08792bc",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": true,
+        "hits": 1,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 0
+      },
+      "category": "kernel",
+      "detail": "kernel load from global",
+      "event_id": 3,
+      "lane_id": 1,
+      "offset": 4,
+      "operation": "load",
+      "payload_head": [
+        8,
+        45,
+        82,
+        119
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "coalesced_global_load",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x80000008",
+      "address_space": "global",
+      "bytes_sha256": "9c786be55533c3c5c24e33052083831ef63b5350a0d9296764a8d46568d688ea",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": true,
+        "hits": 1,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 0
+      },
+      "category": "kernel",
+      "detail": "kernel load from global",
+      "event_id": 4,
+      "lane_id": 2,
+      "offset": 8,
+      "operation": "load",
+      "payload_head": [
+        156,
+        193,
+        230,
+        11
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "coalesced_global_load",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x8000000c",
+      "address_space": "global",
+      "bytes_sha256": "e045830ffe394756a4356f3cd89621fde1252cf3fc6fd30216259b0563392044",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": true,
+        "hits": 1,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 0
+      },
+      "category": "kernel",
+      "detail": "kernel load from global",
+      "event_id": 5,
+      "lane_id": 3,
+      "offset": 12,
+      "operation": "load",
+      "payload_head": [
+        48,
+        85,
+        122,
+        159
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "coalesced_global_load",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x80000010",
+      "address_space": "global",
+      "bytes_sha256": "943b1a3c8563fa6ee2583264bdf9d6a1b94ee3026fc29e96686a276073bb2f70",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": true,
+        "hits": 1,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 0
+      },
+      "category": "kernel",
+      "detail": "kernel load from global",
+      "event_id": 6,
+      "lane_id": 4,
+      "offset": 16,
+      "operation": "load",
+      "payload_head": [
+        196,
+        233,
+        14,
+        51
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "coalesced_global_load",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x80000014",
+      "address_space": "global",
+      "bytes_sha256": "8c4c16b5c5492c831b7e56cc0be67b34f074151cdc43c54a77ac2b642494216b",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": true,
+        "hits": 1,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 0
+      },
+      "category": "kernel",
+      "detail": "kernel load from global",
+      "event_id": 7,
+      "lane_id": 5,
+      "offset": 20,
+      "operation": "load",
+      "payload_head": [
+        88,
+        125,
+        162,
+        199
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "coalesced_global_load",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x80000018",
+      "address_space": "global",
+      "bytes_sha256": "549129092bf3180339872fd0a8ef276752c9550ec0cfdd6308150eceea8351f4",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": true,
+        "hits": 1,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 0
+      },
+      "category": "kernel",
+      "detail": "kernel load from global",
+      "event_id": 8,
+      "lane_id": 6,
+      "offset": 24,
+      "operation": "load",
+      "payload_head": [
+        236,
+        17,
+        54,
+        91
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "coalesced_global_load",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x8000001c",
+      "address_space": "global",
+      "bytes_sha256": "8a7366fe0ac392054a4b69468bef96c78aa2f271610c8f0aa86756a0860357bb",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": true,
+        "hits": 1,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 0
+      },
+      "category": "kernel",
+      "detail": "kernel load from global",
+      "event_id": 9,
+      "lane_id": 7,
+      "offset": 28,
+      "operation": "load",
+      "payload_head": [
+        128,
+        165,
+        202,
+        239
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "coalesced_global_load",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x80000080",
+      "address_space": "global",
+      "bytes_sha256": "9f05a1ba6f98b5168248d57b87ef5ad783926e77f3fc990865a404cfdb5aa162",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": false,
+        "hits": 0,
+        "line_bytes": 32,
+        "line_indices": [
+          4
+        ],
+        "misses": 1
+      },
+      "category": "kernel",
+      "detail": "kernel store to global",
+      "event_id": 10,
+      "lane_id": null,
+      "offset": 128,
+      "operation": "store",
+      "payload_head": [
+        46,
+        195,
+        228,
+        185,
+        82,
+        119,
+        8,
+        45,
+        198,
+        155,
+        188,
+        81,
+        106,
+        15,
+        32,
+        197
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 16,
+      "source": "kernel_global_store",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x0",
+      "address_space": "local",
+      "bytes_sha256": "0488cd1104793edb7467998202babda2bef3061a13d7a940b6cb50f70c5d5070",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel store to local",
+      "event_id": 11,
+      "lane_id": 0,
+      "offset": 0,
+      "operation": "store",
+      "payload_head": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x0",
+      "address_space": "local",
+      "bytes_sha256": "0488cd1104793edb7467998202babda2bef3061a13d7a940b6cb50f70c5d5070",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel load from local",
+      "event_id": 12,
+      "lane_id": 0,
+      "offset": 0,
+      "operation": "load",
+      "payload_head": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x4",
+      "address_space": "local",
+      "bytes_sha256": "d0d7b3d71be31dcc65d10a500b03c2494533d7017c92e37f5a85f67b39152621",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel store to local",
+      "event_id": 13,
+      "lane_id": 1,
+      "offset": 4,
+      "operation": "store",
+      "payload_head": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x4",
+      "address_space": "local",
+      "bytes_sha256": "d0d7b3d71be31dcc65d10a500b03c2494533d7017c92e37f5a85f67b39152621",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel load from local",
+      "event_id": 14,
+      "lane_id": 1,
+      "offset": 4,
+      "operation": "load",
+      "payload_head": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x8",
+      "address_space": "local",
+      "bytes_sha256": "e1e853684a206f162ee800a54b695c9cc1a8d1d554a47fcb13fe51229c17773f",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel store to local",
+      "event_id": 15,
+      "lane_id": 2,
+      "offset": 8,
+      "operation": "store",
+      "payload_head": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x8",
+      "address_space": "local",
+      "bytes_sha256": "e1e853684a206f162ee800a54b695c9cc1a8d1d554a47fcb13fe51229c17773f",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel load from local",
+      "event_id": 16,
+      "lane_id": 2,
+      "offset": 8,
+      "operation": "load",
+      "payload_head": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0xc",
+      "address_space": "local",
+      "bytes_sha256": "71b92110bf135c85581c8a128f6a19c0f6aca752b0c6c91e3571899cf09b145d",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel store to local",
+      "event_id": 17,
+      "lane_id": 3,
+      "offset": 12,
+      "operation": "store",
+      "payload_head": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0xc",
+      "address_space": "local",
+      "bytes_sha256": "71b92110bf135c85581c8a128f6a19c0f6aca752b0c6c91e3571899cf09b145d",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel load from local",
+      "event_id": 18,
+      "lane_id": 3,
+      "offset": 12,
+      "operation": "load",
+      "payload_head": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x10",
+      "address_space": "local",
+      "bytes_sha256": "99b2591bffe173f249814185d500cbc913cd1293a9eb640412a36ecca2a4ce75",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel store to local",
+      "event_id": 19,
+      "lane_id": 4,
+      "offset": 16,
+      "operation": "store",
+      "payload_head": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x10",
+      "address_space": "local",
+      "bytes_sha256": "99b2591bffe173f249814185d500cbc913cd1293a9eb640412a36ecca2a4ce75",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel load from local",
+      "event_id": 20,
+      "lane_id": 4,
+      "offset": 16,
+      "operation": "load",
+      "payload_head": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x14",
+      "address_space": "local",
+      "bytes_sha256": "69694cc0dd6646b54f6934e4d2778f79e94e54a2d9ca44ed87799cc5db400b6a",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel store to local",
+      "event_id": 21,
+      "lane_id": 5,
+      "offset": 20,
+      "operation": "store",
+      "payload_head": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x14",
+      "address_space": "local",
+      "bytes_sha256": "69694cc0dd6646b54f6934e4d2778f79e94e54a2d9ca44ed87799cc5db400b6a",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel load from local",
+      "event_id": 22,
+      "lane_id": 5,
+      "offset": 20,
+      "operation": "load",
+      "payload_head": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x18",
+      "address_space": "local",
+      "bytes_sha256": "7d08ce29581c187e9f714dc72130f434127dd0125ff1c96c564208f95542f315",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel store to local",
+      "event_id": 23,
+      "lane_id": 6,
+      "offset": 24,
+      "operation": "store",
+      "payload_head": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x18",
+      "address_space": "local",
+      "bytes_sha256": "7d08ce29581c187e9f714dc72130f434127dd0125ff1c96c564208f95542f315",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel load from local",
+      "event_id": 24,
+      "lane_id": 6,
+      "offset": 24,
+      "operation": "load",
+      "payload_head": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x1c",
+      "address_space": "local",
+      "bytes_sha256": "5721b0fa81588120a002c28914c1fef3f18ae8513ec12e08078f492bb769cf98",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel store to local",
+      "event_id": 25,
+      "lane_id": 7,
+      "offset": 28,
+      "operation": "store",
+      "payload_head": [
+        24,
+        25,
+        26,
+        27
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x1c",
+      "address_space": "local",
+      "bytes_sha256": "5721b0fa81588120a002c28914c1fef3f18ae8513ec12e08078f492bb769cf98",
+      "cache": null,
+      "category": "kernel",
+      "detail": "kernel load from local",
+      "event_id": 26,
+      "lane_id": 7,
+      "offset": 28,
+      "operation": "load",
+      "payload_head": [
+        24,
+        25,
+        26,
+        27
+      ],
+      "read_only": false,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "scratchpad_local_roundtrip",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x90000000",
+      "address_space": "constant",
+      "bytes_sha256": "cf6d0d2c84d1b519ed8de95a1708a4812aa98dbff34ce74c41f1646c273a3002",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": false,
+        "hits": 0,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 1
+      },
+      "category": "kernel",
+      "detail": "kernel load from constant",
+      "event_id": 27,
+      "lane_id": null,
+      "offset": 0,
+      "operation": "load",
+      "payload_head": [
+        72,
+        109,
+        146,
+        183,
+        220,
+        1,
+        38,
+        75,
+        112,
+        149,
+        186,
+        223,
+        4,
+        41,
+        78,
+        115
+      ],
+      "read_only": true,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 16,
+      "source": "constant_read_first",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x90000000",
+      "address_space": "constant",
+      "bytes_sha256": "cf6d0d2c84d1b519ed8de95a1708a4812aa98dbff34ce74c41f1646c273a3002",
+      "cache": {
+        "cache_model": "direct functional line-presence proxy",
+        "hit": true,
+        "hits": 1,
+        "line_bytes": 32,
+        "line_indices": [
+          0
+        ],
+        "misses": 0
+      },
+      "category": "kernel",
+      "detail": "kernel load from constant",
+      "event_id": 28,
+      "lane_id": null,
+      "offset": 0,
+      "operation": "load",
+      "payload_head": [
+        72,
+        109,
+        146,
+        183,
+        220,
+        1,
+        38,
+        75,
+        112,
+        149,
+        186,
+        223,
+        4,
+        41,
+        78,
+        115
+      ],
+      "read_only": true,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 16,
+      "source": "constant_read_cached",
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x10000080",
+      "address_space": "host",
+      "bytes_sha256": "9f05a1ba6f98b5168248d57b87ef5ad783926e77f3fc990865a404cfdb5aa162",
+      "category": "dma",
+      "detail": "global[128:144] -> host[128:144]",
+      "dst_address_space": "host",
+      "dst_offset": 128,
+      "event_id": 29,
+      "offset": 128,
+      "operation": "copy",
+      "payload_head": [
+        46,
+        195,
+        228,
+        185,
+        82,
+        119,
+        8,
+        45,
+        198,
+        155,
+        188,
+        81,
+        106,
+        15,
+        32,
+        197
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 16,
+      "source": "d2h_copy",
+      "src_address_space": "global",
+      "src_offset": 128,
+      "status": "ok"
+    },
+    {
+      "absolute_address": "0x800000fe",
+      "address_space": "global",
+      "category": "negative",
+      "detail": "global bounds violation offset=254 size=4",
+      "event_id": 30,
+      "expected_error": "bounds",
+      "offset": 254,
+      "operation": "load",
+      "pass": true,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "negative_global_bounds",
+      "status": "expected_error"
+    },
+    {
+      "absolute_address": "0x80000002",
+      "address_space": "global",
+      "category": "negative",
+      "detail": "global alignment violation offset=2 alignment=4",
+      "event_id": 31,
+      "expected_error": "alignment",
+      "offset": 2,
+      "operation": "load",
+      "pass": true,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "negative_global_alignment",
+      "status": "expected_error"
+    },
+    {
+      "absolute_address": "0x90000000",
+      "address_space": "constant",
+      "category": "negative",
+      "detail": "constant is read-only",
+      "event_id": 32,
+      "expected_error": "read-only",
+      "offset": 0,
+      "operation": "store",
+      "pass": true,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "negative_constant_store",
+      "status": "expected_error"
+    },
+    {
+      "absolute_address": "0x80000003",
+      "address_space": "global",
+      "category": "negative",
+      "detail": "global alignment violation offset=3 alignment=4",
+      "event_id": 33,
+      "expected_error": "alignment",
+      "offset": 3,
+      "operation": "copy",
+      "pass": true,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 8,
+      "source": "negative_dma_alignment",
+      "status": "expected_error"
+    },
+    {
+      "absolute_address": "0x5f",
+      "address_space": "local",
+      "category": "negative",
+      "detail": "local bounds violation offset=95 size=4",
+      "event_id": 34,
+      "expected_error": "bounds",
+      "offset": 95,
+      "operation": "store",
+      "pass": true,
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 4,
+      "source": "negative_local_bounds",
+      "status": "expected_error"
+    }
+  ],
+  "generated_at_utc": "2026-05-03T03:22:50+00:00",
+  "ip_name": "Celviz GPGPU IP",
+  "parameters": {
+    "alignment_bytes": 4,
+    "cache_line_bytes": 32,
+    "coalescing_segment_bytes": 32,
+    "constant_size_bytes": 64,
+    "dma_alignment_bytes": 4,
+    "global_size_bytes": 256,
+    "local_group_bytes": 48,
+    "local_size_bytes": 96
+  },
+  "rank": 1,
+  "scenario": {
+    "coalescing_group": {
+      "coalesced_transactions": 1,
+      "group_count": 1,
+      "groups": [
+        {
+          "address_space": "global",
+          "byte_span": [
+            0,
+            32
+          ],
+          "lane_count": 8,
+          "lane_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "proxy_transactions": 1,
+          "segment_base_offset": 0,
+          "segment_index": 0
+        }
+      ],
+      "lane_count": 8,
+      "naive_transactions": 8,
+      "segment_bytes": 32
+    },
+    "constant_read": {
+      "first_sha256": "cf6d0d2c84d1b519ed8de95a1708a4812aa98dbff34ce74c41f1646c273a3002",
+      "payload_head": [
+        72,
+        109,
+        146,
+        183,
+        220,
+        1,
+        38,
+        75,
+        112,
+        149,
+        186,
+        223,
+        4,
+        41,
+        78,
+        115
+      ],
+      "second_sha256": "cf6d0d2c84d1b519ed8de95a1708a4812aa98dbff34ce74c41f1646c273a3002"
+    },
+    "d2h_copy": {
+      "absolute_address": "0x10000080",
+      "address_space": "host",
+      "bytes_sha256": "9f05a1ba6f98b5168248d57b87ef5ad783926e77f3fc990865a404cfdb5aa162",
+      "category": "dma",
+      "detail": "global[128:144] -> host[128:144]",
+      "dst_address_space": "host",
+      "dst_offset": 128,
+      "event_id": 29,
+      "offset": 128,
+      "operation": "copy",
+      "payload_head": [
+        46,
+        195,
+        228,
+        185,
+        82,
+        119,
+        8,
+        45,
+        198,
+        155,
+        188,
+        81,
+        106,
+        15,
+        32,
+        197
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 16,
+      "source": "d2h_copy",
+      "src_address_space": "global",
+      "src_offset": 128,
+      "status": "ok"
+    },
+    "dma_fill": {
+      "absolute_address": "0x80000060",
+      "address_space": "global",
+      "bytes_sha256": "fc8b64001c5fdd0f2f40fb67dae4a865a2c5bd17836676d6d5b58b7917e33717",
+      "category": "dma",
+      "detail": "fill global[96:128] pattern=0xa5",
+      "event_id": 1,
+      "offset": 96,
+      "operation": "fill",
+      "pattern": "0xa5",
+      "payload_head": [
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 32,
+      "source": "dma_fill",
+      "status": "ok"
+    },
+    "global_load_words_head": [
+      [
+        116,
+        153,
+        190,
+        227
+      ],
+      [
+        8,
+        45,
+        82,
+        119
+      ],
+      [
+        156,
+        193,
+        230,
+        11
+      ],
+      [
+        48,
+        85,
+        122,
+        159
+      ]
+    ],
+    "h2d_copy": {
+      "absolute_address": "0x80000000",
+      "address_space": "global",
+      "bytes_sha256": "7d14470b0c76293a1604eaf2d8f0b9c5fabd93a67f7e63ce734989278f4270aa",
+      "category": "dma",
+      "detail": "host[0:64] -> global[0:64]",
+      "dst_address_space": "global",
+      "dst_offset": 0,
+      "event_id": 0,
+      "offset": 0,
+      "operation": "copy",
+      "payload_head": [
+        116,
+        153,
+        190,
+        227,
+        8,
+        45,
+        82,
+        119,
+        156,
+        193,
+        230,
+        11,
+        48,
+        85,
+        122,
+        159
+      ],
+      "schema": "celviz.gpgpu.memory_event.v1",
+      "size_bytes": 64,
+      "source": "h2d_copy",
+      "src_address_space": "host",
+      "src_offset": 0,
+      "status": "ok"
+    },
+    "kernel_store_payload_head": [
+      46,
+      195,
+      228,
+      185,
+      82,
+      119,
+      8,
+      45,
+      198,
+      155,
+      188,
+      81,
+      106,
+      15,
+      32,
+      197
+    ],
+    "negative_cases": [
+      {
+        "absolute_address": "0x800000fe",
+        "address_space": "global",
+        "category": "negative",
+        "detail": "global bounds violation offset=254 size=4",
+        "event_id": 30,
+        "expected_error": "bounds",
+        "offset": 254,
+        "operation": "load",
+        "pass": true,
+        "schema": "celviz.gpgpu.memory_event.v1",
+        "size_bytes": 4,
+        "source": "negative_global_bounds",
+        "status": "expected_error"
+      },
+      {
+        "absolute_address": "0x80000002",
+        "address_space": "global",
+        "category": "negative",
+        "detail": "global alignment violation offset=2 alignment=4",
+        "event_id": 31,
+        "expected_error": "alignment",
+        "offset": 2,
+        "operation": "load",
+        "pass": true,
+        "schema": "celviz.gpgpu.memory_event.v1",
+        "size_bytes": 4,
+        "source": "negative_global_alignment",
+        "status": "expected_error"
+      },
+      {
+        "absolute_address": "0x90000000",
+        "address_space": "constant",
+        "category": "negative",
+        "detail": "constant is read-only",
+        "event_id": 32,
+        "expected_error": "read-only",
+        "offset": 0,
+        "operation": "store",
+        "pass": true,
+        "schema": "celviz.gpgpu.memory_event.v1",
+        "size_bytes": 4,
+        "source": "negative_constant_store",
+        "status": "expected_error"
+      },
+      {
+        "absolute_address": "0x80000003",
+        "address_space": "global",
+        "category": "negative",
+        "detail": "global alignment violation offset=3 alignment=4",
+        "event_id": 33,
+        "expected_error": "alignment",
+        "offset": 3,
+        "operation": "copy",
+        "pass": true,
+        "schema": "celviz.gpgpu.memory_event.v1",
+        "size_bytes": 8,
+        "source": "negative_dma_alignment",
+        "status": "expected_error"
+      },
+      {
+        "absolute_address": "0x5f",
+        "address_space": "local",
+        "category": "negative",
+        "detail": "local bounds violation offset=95 size=4",
+        "event_id": 34,
+        "expected_error": "bounds",
+        "offset": 95,
+        "operation": "store",
+        "pass": true,
+        "schema": "celviz.gpgpu.memory_event.v1",
+        "size_bytes": 4,
+        "source": "negative_local_bounds",
+        "status": "expected_error"
+      }
+    ],
+    "scratchpad_local": {
+      "address_space": "local",
+      "group_base_offset": 0,
+      "group_id": 0,
+      "group_size_bytes": 48,
+      "lane_roundtrips": [
+        {
+          "lane_id": 0,
+          "offset": 0,
+          "pass": true,
+          "payload": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "readback": [
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "lane_id": 1,
+          "offset": 4,
+          "pass": true,
+          "payload": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "readback": [
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "lane_id": 2,
+          "offset": 8,
+          "pass": true,
+          "payload": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "readback": [
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "lane_id": 3,
+          "offset": 12,
+          "pass": true,
+          "payload": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "readback": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "lane_id": 4,
+          "offset": 16,
+          "pass": true,
+          "payload": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "readback": [
+            15,
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "lane_id": 5,
+          "offset": 20,
+          "pass": true,
+          "payload": [
+            18,
+            19,
+            20,
+            21
+          ],
+          "readback": [
+            18,
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "lane_id": 6,
+          "offset": 24,
+          "pass": true,
+          "payload": [
+            21,
+            22,
+            23,
+            24
+          ],
+          "readback": [
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "lane_id": 7,
+          "offset": 28,
+          "pass": true,
+          "payload": [
+            24,
+            25,
+            26,
+            27
+          ],
+          "readback": [
+            24,
+            25,
+            26,
+            27
+          ]
+        }
+      ],
+      "pass": true,
+      "scratchpad_model": "per-workgroup local byte-addressed scratchpad proxy"
+    }
+  },
+  "schema": "celviz.gpgpu.memory_model.phase1.v1",
+  "semantics": {
+    "cache": "functional line-presence proxy with hit/miss evidence only",
+    "coalescing": "lane accesses sharing an address-space segment collapse into one proxy transaction group",
+    "constant": "read-only device memory visible to kernel loads and cacheable in the proxy",
+    "dma_kernel_event_model": "DMA copy/fill and kernel load/store share one ordered event schema",
+    "global": "mutable device memory visible to DMA and kernel load/store events",
+    "local": "mutable per-workgroup scratchpad proxy; not host DMA visible in this phase"
+  },
+  "stage": "memory_system_phase1",
+  "summary": {
+    "categories": {
+      "dma": 3,
+      "kernel": 27,
+      "negative": 5
+    },
+    "event_count": 35,
+    "event_trace_sha256": "f64c60fc7d7ef6d11684ab2232a1e389000fe0304d1fa70cd469bcf755b3023b",
+    "global_final_sha256": "f65254191a101dd4d5a8192157a801475922efa318816cb5668fed74be6a6746",
+    "global_initial_sha256": "f9f144638942ff7f59e14a18d85a775e8f47cba25cf1b6316f2bff2362517679",
+    "host_final_sha256": "dfd580c6578c61deffad8035f59e76a1d2c144397c4c22612e83e102be9c73d8",
+    "operations": {
+      "copy": 3,
+      "fill": 1,
+      "load": 20,
+      "store": 11
+    },
+    "status": "pass"
+  }
+}

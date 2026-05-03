@@ -1,0 +1,440 @@
+{
+  "clean_room_scope": "clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim",
+  "commands": [
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "reset",
+      "queue_id": 0,
+      "sequence": 1,
+      "submit_tag": "boot-reset"
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x90000000",
+      "dst_addr": "0x80000000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "FENCE_AFTER",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x3c003f80",
+      "queue_id": 0,
+      "sequence": 2,
+      "submit_tag": "fill-input"
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x90000020",
+      "dst_addr": "0x80001000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "FENCE_BEFORE",
+        "FENCE_AFTER",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 3,
+      "src_addr": "0x80000000",
+      "submit_tag": "copy-input"
+    },
+    {
+      "fence": "copy_ready",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 4,
+      "submit_tag": "signal-copy-ready",
+      "value": 1
+    },
+    {
+      "fence": "copy_ready",
+      "flags": [
+        "FENCE_BEFORE"
+      ],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 5,
+      "submit_tag": "wait-copy-ready",
+      "timeout_cycles": 1024,
+      "value": 1
+    },
+    {
+      "arg_buffer": "0x80003000",
+      "arg_bytes": 96,
+      "completion_addr": "0x90000040",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "KERNEL_USES_FP32",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "kernel_entry": "0x80002000",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 1,
+      "required_fp_mode": "fp32",
+      "sequence": 6,
+      "sgpr_count": 16,
+      "shared_bytes": 1024,
+      "submit_tag": "vector-add-fp32",
+      "vgpr_count": 32
+    },
+    {
+      "arg_buffer": "0x80003100",
+      "arg_bytes": 128,
+      "completion_addr": "0x90000060",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "KERNEL_USES_FP16",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        8,
+        8,
+        1
+      ],
+      "kernel": "image_filter",
+      "kernel_entry": "0x80002400",
+      "local": [
+        8,
+        8,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 12,
+      "queue_id": 1,
+      "required_fp_mode": "fp16",
+      "sequence": 7,
+      "sgpr_count": 12,
+      "shared_bytes": 2048,
+      "submit_tag": "image-filter-fp16",
+      "vgpr_count": 24
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x90000080",
+      "dst_addr": "0x80004000",
+      "expect_status_polls": [
+        "queued",
+        "complete"
+      ],
+      "fill_byte": 90,
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "host_to_device",
+      "queue_id": 0,
+      "sequence": 8,
+      "submit_tag": "h2d-staging"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x900000a0",
+      "dst_addr": "0x80005000",
+      "expect_status_polls": [
+        "queued",
+        "complete"
+      ],
+      "flags": [
+        "INT_ON_COMPLETE",
+        "FENCE_AFTER",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0xa5a55a5a",
+      "queue_id": 2,
+      "sequence": 9,
+      "submit_tag": "fill-queue2-scratch"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x900000c0",
+      "dst_addr": "0x80005100",
+      "expect_status_polls": [
+        "queued",
+        "complete"
+      ],
+      "flags": [
+        "INT_ON_COMPLETE",
+        "FENCE_BEFORE",
+        "FENCE_AFTER",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 10,
+      "src_addr": "0x80004000",
+      "submit_tag": "copy-staging-queue2"
+    },
+    {
+      "fence": "staging_copy_ready",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 2,
+      "sequence": 11,
+      "submit_tag": "signal-staging-ready",
+      "value": 2
+    },
+    {
+      "expect_status_polls": [
+        "queued",
+        "complete"
+      ],
+      "fence": "staging_copy_ready",
+      "flags": [
+        "FENCE_BEFORE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 12,
+      "submit_tag": "wait-staging-ready",
+      "timeout_cycles": 2048,
+      "value": 2
+    },
+    {
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "counter_snapshot",
+      "queue_id": 1,
+      "sequence": 13,
+      "submit_tag": "poll-status-after-staging"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x900000e0",
+      "expect_status_polls": [
+        "queued",
+        "complete"
+      ],
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "device_to_host",
+      "queue_id": 1,
+      "sequence": 14,
+      "src_addr": "0x80005100",
+      "submit_tag": "d2h-readback"
+    },
+    {
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "issue_policy": 1,
+      "max_warps_per_shader_unit": 12,
+      "max_workgroups_per_shader_unit": 6,
+      "opcode": "set_scheduler_config",
+      "queue_id": 1,
+      "sequence": 15,
+      "submit_tag": "scheduler-policy-update",
+      "watchdog_cycles": 4096
+    },
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "fp_mode": "mixed",
+      "opcode": "set_shader_mode",
+      "queue_id": 1,
+      "sequence": 16,
+      "submit_tag": "shader-mode-mixed"
+    },
+    {
+      "arg_buffer": "0x80003000",
+      "arg_bytes": 96,
+      "completion_addr": "0x90000100",
+      "expect_error": "ERR_SCHEDULER_FAULT",
+      "expect_status_polls": [
+        "queued",
+        "error",
+        "sticky_error"
+      ],
+      "flags": [
+        "INT_ON_COMPLETE",
+        "INJECT_DISPATCH_ERROR",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        1,
+        1,
+        1
+      ],
+      "kernel": "expected_scheduler_fault",
+      "kernel_entry": "0x80002800",
+      "local": [
+        32,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 8,
+      "queue_id": 1,
+      "required_fp_mode": "fp32",
+      "sequence": 17,
+      "sgpr_count": 8,
+      "shared_bytes": 256,
+      "submit_tag": "expected-scheduler-error",
+      "vgpr_count": 16
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80002000",
+      "expect_error": "ERR_MMU_FAULT",
+      "expect_status_polls": [
+        "queued",
+        "error",
+        "sticky_error"
+      ],
+      "flags": [
+        "INT_ON_COMPLETE",
+        "INJECT_MMU_FAULT"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 18,
+      "src_addr": "0xdead0000",
+      "submit_tag": "expected-mmu-error"
+    },
+    {
+      "expect_error": "ERR_FENCE_WAIT",
+      "expect_status_polls": [
+        "queued",
+        "timeout",
+        "sticky_error"
+      ],
+      "fence": "never_signaled",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_wait",
+      "queue_id": 0,
+      "sequence": 19,
+      "submit_tag": "expected-fence-error",
+      "timeout_cycles": 8,
+      "value": 1
+    }
+  ],
+  "e1_runtime_abi_expectations": {
+    "command_categories": [
+      "host_to_device",
+      "device_to_host",
+      "dma_fill",
+      "dma_copy",
+      "kernel_dispatch",
+      "named_fence_signal",
+      "named_fence_wait",
+      "counter_snapshot",
+      "scheduler_mode_update",
+      "expected_error_injection"
+    ],
+    "error_injection": [
+      {
+        "expected_error": "ERR_SCHEDULER_FAULT",
+        "sequence": 17,
+        "submit_tag": "expected-scheduler-error"
+      },
+      {
+        "expected_error": "ERR_MMU_FAULT",
+        "sequence": 18,
+        "submit_tag": "expected-mmu-error"
+      },
+      {
+        "expected_error": "ERR_FENCE_WAIT",
+        "sequence": 19,
+        "submit_tag": "expected-fence-error"
+      }
+    ],
+    "queue_lifecycle": {
+      "queues_exercised": [
+        0,
+        1,
+        2
+      ],
+      "required_observations": [
+        "submitted increments",
+        "retired increments",
+        "head follows retired packet bytes",
+        "tail follows submitted packet bytes",
+        "queue error count increments only for expected negative commands"
+      ]
+    },
+    "status_polling": {
+      "completion_statuses": [
+        "complete",
+        "error"
+      ],
+      "poll_sources": [
+        "completion_records",
+        "status_registers",
+        "counter_snapshot",
+        "interrupt_events"
+      ],
+      "sticky_error_expected_after_sequences": [
+        17,
+        18,
+        19
+      ]
+    }
+  },
+  "ip_name": "Celviz GPGPU IP",
+  "memory_regions": [
+    {
+      "base": "0x80000000",
+      "name": "global_a",
+      "readable": true,
+      "size": 65536,
+      "writable": true
+    },
+    {
+      "base": "0x90000000",
+      "name": "completion_records",
+      "readable": true,
+      "size": 4096,
+      "writable": true
+    }
+  ],
+  "queues": [
+    {
+      "base": "0x10000000",
+      "priority": 2,
+      "queue_id": 0,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10001000",
+      "priority": 1,
+      "queue_id": 1,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10002000",
+      "priority": 0,
+      "queue_id": 2,
+      "size_bytes": 4096
+    }
+  ],
+  "schema": "celviz.gpgpu.control_plane_demo.v1",
+  "tier": "gpgpu_nano_ultra31"
+}

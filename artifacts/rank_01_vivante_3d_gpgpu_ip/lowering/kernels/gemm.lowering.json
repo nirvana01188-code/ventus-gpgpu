@@ -1,0 +1,177 @@
+{
+  "kernel": "gemm",
+  "kernel_entry": "0x2000",
+  "metadata_link": {
+    "kernel_id": 2,
+    "num_buffer": 3,
+    "sgprUsage": 24,
+    "startaddr": 8192,
+    "vgprUsage": 32
+  },
+  "runtime_command_schema": "celviz.gpgpu.runtime_commands.v1",
+  "runtime_sequence": 2,
+  "schema": "celviz.gpgpu.kernel_lowering.kernel.v1",
+  "sha256": "b35244d791816d9404d88c9b5f259edaee4bfd28974b54c5de73148f28c342d8",
+  "simt_workload": "gemm_proxy",
+  "source_abi_schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+  "uop_categories": [
+    "uop_address_calc",
+    "uop_alu_mad",
+    "uop_barrier",
+    "uop_global_load",
+    "uop_global_store",
+    "uop_kernel_prologue",
+    "uop_loop_begin",
+    "uop_loop_end",
+    "uop_predicate_bounds",
+    "uop_read_scalar_arg",
+    "uop_read_workitem_id",
+    "uop_write_completion"
+  ],
+  "uop_count": 18,
+  "uops": [
+    {
+      "kernel": "gemm",
+      "opcode": "uop_kernel_prologue",
+      "pc": 0,
+      "simt_workload": "gemm_proxy",
+      "wf_size": 32
+    },
+    {
+      "dims": 3,
+      "global_size": [
+        64,
+        64,
+        1
+      ],
+      "local_size": [
+        16,
+        16,
+        1
+      ],
+      "opcode": "uop_read_workitem_id",
+      "pc": 1
+    },
+    {
+      "opcode": "uop_predicate_bounds",
+      "pc": 2,
+      "predicate": "global_id < kernel_size",
+      "work_items": 4096
+    },
+    {
+      "abi_offset": 24,
+      "arg": "m",
+      "arg_type": "uint",
+      "opcode": "uop_read_scalar_arg",
+      "pc": 3
+    },
+    {
+      "abi_offset": 28,
+      "arg": "n",
+      "arg_type": "uint",
+      "opcode": "uop_read_scalar_arg",
+      "pc": 4
+    },
+    {
+      "abi_offset": 32,
+      "arg": "k",
+      "arg_type": "uint",
+      "opcode": "uop_read_scalar_arg",
+      "pc": 5
+    },
+    {
+      "access": "read_only",
+      "address_space": "global",
+      "arg": "a",
+      "buffer_index": 0,
+      "coalescing_hint": "lane_contiguous",
+      "opcode": "uop_address_calc",
+      "pc": 6
+    },
+    {
+      "arg": "a",
+      "element_type": "float",
+      "memory_semantic": "global",
+      "opcode": "uop_global_load",
+      "pc": 7,
+      "vector_width": 1
+    },
+    {
+      "access": "read_only",
+      "address_space": "global",
+      "arg": "b",
+      "buffer_index": 1,
+      "coalescing_hint": "lane_strided_or_reused",
+      "opcode": "uop_address_calc",
+      "pc": 8
+    },
+    {
+      "arg": "b",
+      "element_type": "float",
+      "memory_semantic": "global",
+      "opcode": "uop_global_load",
+      "pc": 9,
+      "vector_width": 1
+    },
+    {
+      "access": "read_write",
+      "address_space": "global",
+      "arg": "c",
+      "buffer_index": 2,
+      "coalescing_hint": "lane_strided_or_reused",
+      "opcode": "uop_address_calc",
+      "pc": 10
+    },
+    {
+      "arg": "c",
+      "element_type": "float",
+      "memory_semantic": "global",
+      "opcode": "uop_global_load",
+      "pc": 11,
+      "vector_width": 1
+    },
+    {
+      "loop": "k",
+      "opcode": "uop_loop_begin",
+      "pc": 12,
+      "trip_count_arg": "k"
+    },
+    {
+      "fp_mode": "fp32",
+      "inputs": [
+        "a",
+        "b",
+        "acc"
+      ],
+      "opcode": "uop_alu_mad",
+      "output": "acc",
+      "pc": 13
+    },
+    {
+      "loop": "k",
+      "opcode": "uop_loop_end",
+      "pc": 14
+    },
+    {
+      "opcode": "uop_barrier",
+      "pc": 15,
+      "reason": "tile_or_filter_accumulation_boundary",
+      "scope": "workgroup"
+    },
+    {
+      "arg": "c",
+      "element_type": "float",
+      "memory_semantic": "global",
+      "opcode": "uop_global_store",
+      "pc": 16,
+      "vector_width": 1
+    },
+    {
+      "completion_addr": "0x90000000",
+      "opcode": "uop_write_completion",
+      "pc": 17
+    }
+  ],
+  "wavefront_size": 32,
+  "work_items": 4096
+}

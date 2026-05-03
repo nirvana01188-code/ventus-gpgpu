@@ -1,0 +1,50 @@
+{
+  "binary_artifacts": {
+    "image_filter.pgm": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+    "memory_copy.bin": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e"
+  },
+  "kernel_hashes": {
+    "convolution_proxy": {
+      "expected_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+      "filter_sha256": "afc5f1052424634c57555b85273f4ed05c22befc3d7f65085477e396380aead9",
+      "readback_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+      "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+      "source_sha256": "6012139c42fdf55d354a14e1731d38b7056d0c3b33672185204842504f1664ff"
+    },
+    "gemm_proxy": {
+      "expected_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+      "input_a_sha256": "d1a931efa33277c0b42dfb7f49a806f3e4701c66d17915e78474f7c8b1efcb55",
+      "input_b_sha256": "bce41ffbe2759e13ca2a2a378972bcb72c5569d54701bc88b917d5f8dab0deaf",
+      "readback_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+      "result_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f"
+    },
+    "image_filter": {
+      "expected_sha256": "45db9277e3ad2faed1c6af27d89071e6e6227417c54db792b9bbfb7769a2f0f0",
+      "pgm_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+      "readback_sha256": "45db9277e3ad2faed1c6af27d89071e6e6227417c54db792b9bbfb7769a2f0f0",
+      "result_sha256": "45db9277e3ad2faed1c6af27d89071e6e6227417c54db792b9bbfb7769a2f0f0",
+      "source_sha256": "106dfb02dc9c7ca5c3e70d768c412e6ebd5151e5569b942ad81b88400c3aad8e"
+    },
+    "memory_copy": {
+      "expected_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+      "readback_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+      "result_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+      "source_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e"
+    },
+    "vector_add": {
+      "expected_sha256": "f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022",
+      "input_a_sha256": "c4e123f9729ff5899ab837276e7e5b46d8cdf45c8affad706133d12b2acda493",
+      "input_b_sha256": "f77f048a8aa0ffa7ccc6d92b55c2384ef6d80dbb1f8f552c746b73a0fb54bfc8",
+      "readback_sha256": "f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022",
+      "result_sha256": "f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022"
+    }
+  },
+  "kernel_result_hashes": {
+    "convolution_proxy": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+    "gemm_proxy": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+    "image_filter": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+    "memory_copy": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+    "vector_add": "f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022"
+  },
+  "scope": "clean-room OpenCL-like runtime proxy; non-conformant and not compatible with proprietary Vivante command streams, firmware, SDKs, drivers, or certification suites"
+}

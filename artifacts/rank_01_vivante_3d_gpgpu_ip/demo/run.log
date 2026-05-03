@@ -1,0 +1,42 @@
+Celviz GPGPU IP S4 OpenCL-like runtime CLI
+model=standard-library runtime shim
+timestamp_utc=2026-05-03T03:22:46.540003+00:00
+kernel_demo=/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json
+output_dir=/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs
+schema=celviz.gpgpu.kernel_demo.v1
+clean_room_scope=clean-room OpenCL-like runtime proxy; non-conformant and not compatible with proprietary Vivante command streams, firmware, SDKs, drivers, or certification suites
+tier=micro
+proxy_device=celviz-micro-proxy
+runtime_dispatches=vadd,gemm,conv,image_filter,memcpy
+precision_modes=fp32,fp16_proxy,byte
+validation=tier,kernel_list,language,global_size,local_size,args,queues,buffers
+opencl_like_conformance=false
+vivante_command_stream_compatible=false
+queue_count=2
+kernel_count=5
+queue=queue0 device=celviz-micro-proxy properties=in_order,profiling mode=software_proxy
+queue=queue1 device=celviz-micro-proxy properties=in_order,profiling mode=software_proxy
+kernel[0]=vector_add dispatch=vadd queue=queue0 tier=nano global=16 local=4 precision=fp32,fp16_proxy
+kernel[1]=gemm_proxy dispatch=gemm queue=queue0 tier=micro global=4x4 local=2x2 precision=fp32,fp16_proxy
+kernel[2]=convolution_proxy dispatch=conv queue=queue0 tier=micro global=5x5 local=5x5 precision=fp32,fp16_proxy
+kernel[3]=image_filter dispatch=image_filter queue=queue0 tier=micro global=8x8 local=4x4 precision=fp16_proxy
+kernel[4]=memory_copy dispatch=memcpy queue=queue1 tier=nano global=64 local=8 precision=byte
+compute_model_status=called
+compute_model_path=/Users/nirvana/Documents/New project 2/ventus-gpgpu/tools/celviz_gpgpu_ip/compute_model.py
+demo_status=pass
+completion_status=complete
+phase_model=submit,wait,readback
+convolution_proxy_sha256=d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a
+gemm_proxy_sha256=9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f
+image_filter_sha256=eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101
+memory_copy_sha256=94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e
+vector_add_sha256=f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022
+golden_comparison=pass
+dispatch_plan=dispatch_plan.json
+tier_scaling=tier_scaling.json
+throughput_tier_linkage=throughput_tier_linkage.json
+throughput_scaling_by_tier=True
+monotonic_proxy_scaling=True
+claim_scope=proxy_model_only
+hashes=hashes.json
+status=pass

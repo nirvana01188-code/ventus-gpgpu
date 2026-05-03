@@ -1,0 +1,173 @@
+{
+  "schema": "celviz.gpgpu.e3_native_runtime_evidence.v1",
+  "generated_at": "2026-05-02T16:40:00+08:00",
+  "lane": "E3 artifacts/evidence docs",
+  "scope": "clean-room native runtime proxy evidence only; not Vivante command-stream compatibility, driver ABI, firmware, SDK, OpenCL conformance, RTL timing signoff, or silicon signoff",
+  "source_fixture": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json",
+  "build": {
+    "command": "bash scripts/build_celviz_gpgpu_runtime.sh --auto",
+    "mode_observed": "fast-relink when an existing Verilated core is present under /tmp/ventus-gpgpu-celviz-build",
+    "result": "pass",
+    "runtime_library": "/tmp/ventus-gpgpu-celviz-build/sim-verilator/build/libVentusRTL/debug/libVentusRTL.so",
+    "runtime_library_bytes": 149020352,
+    "runtime_library_timestamp": "2026-05-02 16:40 Asia/Shanghai",
+    "notes": [
+      "The build command completed with exit code 0.",
+      "The linker reported duplicate spdlog/fmt libraries as a warning only."
+    ]
+  },
+  "require_runtime_bind": {
+    "command": "python3 tools/celviz_gpgpu_ip/runtime_cli.py --commands artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json --runtime-lib /tmp/ventus-gpgpu-celviz-build/sim-verilator/build/libVentusRTL/debug/libVentusRTL.so --require-runtime --output-dir /tmp/ventus-gpgpu-celviz-e3 --run-log /tmp/ventus-gpgpu-celviz-e3/runtime_run.log --print-status",
+    "result": "pass",
+    "runtime_bridge_mode": "ctypes_bound",
+    "rtlsim_library_bound": true,
+    "dry_run": false,
+    "temporary_outputs": {
+      "runtime_log": "/tmp/ventus-gpgpu-celviz-e3/runtime_run.log",
+      "runtime_metrics": "/tmp/ventus-gpgpu-celviz-e3/runtime_metrics.json",
+      "runtime_status": "/tmp/ventus-gpgpu-celviz-e3/runtime_status.json"
+    }
+  },
+  "runtime_summary": {
+    "commands_submitted": 19,
+    "commands_completed": 19,
+    "expected_negative_commands": 3,
+    "completion_count": 19,
+    "queue_count": 3,
+    "pending_count": 0,
+    "last_event_source": "ctypes_runtime_proxy"
+  },
+  "native_runtime_acceptance": {
+    "result": "pass",
+    "required_categories": [
+      "dma_copy",
+      "dma_fill",
+      "fence"
+    ],
+    "missing_categories": [],
+    "failed_categories": [],
+    "feature_categories": {
+      "queue_lifecycle": {
+        "available": true,
+        "observed": 3,
+        "pending_count": 0,
+        "result": "pass"
+      },
+      "status_polling": {
+        "available": true,
+        "observed": 7,
+        "result": "pass"
+      },
+      "last_event": {
+        "available": true,
+        "observed": 16,
+        "result": "pass"
+      },
+      "error_injection": {
+        "available": true,
+        "observed": 2,
+        "result": "pass"
+      }
+    }
+  },
+  "queue_snapshots": {
+    "native_runtime_totals": {
+      "queue_count": 3,
+      "submitted": 9,
+      "retired": 9,
+      "pending_count": 0,
+      "errors": 1,
+      "ring_size_bytes": 12288
+    },
+    "native_runtime_queues": [
+      {
+        "queue_id": 0,
+        "submitted": 5,
+        "retired": 5,
+        "pending_count": 0,
+        "errors": 1,
+        "head": 5,
+        "tail": 5,
+        "doorbell": 5,
+        "ring_base": "0x10000000",
+        "ring_size_bytes": 4096,
+        "lifecycle": "expected_negative_path_recorded"
+      },
+      {
+        "queue_id": 1,
+        "submitted": 1,
+        "retired": 1,
+        "pending_count": 0,
+        "errors": 0,
+        "head": 1,
+        "tail": 1,
+        "doorbell": 1,
+        "ring_base": "0x10001000",
+        "ring_size_bytes": 4096,
+        "lifecycle": "idle"
+      },
+      {
+        "queue_id": 2,
+        "submitted": 3,
+        "retired": 3,
+        "pending_count": 0,
+        "errors": 0,
+        "head": 3,
+        "tail": 3,
+        "doorbell": 3,
+        "ring_base": "0x10002000",
+        "ring_size_bytes": 4096,
+        "lifecycle": "idle"
+      }
+    ],
+    "control_plane_totals": {
+      "queue_count": 3,
+      "submitted": 19,
+      "retired": 19,
+      "pending_count": 0,
+      "expected_negative_commands": 3
+    }
+  },
+  "metric_snapshots": {
+    "native_runtime_metrics": {
+      "commands_submitted": 9,
+      "commands_completed": 8,
+      "commands_failed_expected": 1,
+      "dma_copies": 7,
+      "dma_fills": 2,
+      "fence_signals": 2,
+      "fence_waits": 3,
+      "bytes_read": 512,
+      "bytes_written": 896,
+      "bytes_moved": 1408,
+      "completion_interrupts": 8,
+      "error_interrupts_expected": 2,
+      "mmu_faults_expected": 1,
+      "queue_errors_expected": 1,
+      "resets": 1,
+      "rtlsim_time": 60
+    },
+    "control_plane_counters": {
+      "commands_submitted": 19,
+      "commands_completed": 19,
+      "commands_failed_expected": 3,
+      "bytes_read": 736,
+      "bytes_written": 2272,
+      "completion_interrupts": 13,
+      "error_interrupts_expected": 3
+    }
+  },
+  "clean_room_hygiene": {
+    "proxy_only": true,
+    "temporary_full_outputs_retained_outside_artifact_tree": true,
+    "runtime_implementation_edited_by_this_lane": false,
+    "excluded_claims": [
+      "official Vivante compatibility",
+      "proprietary driver ABI",
+      "firmware behavior",
+      "OpenCL conformance",
+      "RTL timing signoff",
+      "silicon signoff"
+    ]
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "clean_room_scope": "supplemental clean-room Verilator structural-coverage uplift fixtures; fast gate uses the control-plane simulator and does not claim RTL line, toggle, branch, silicon signoff, timing closure, proprietary Vivante command-stream compatibility, driver ABI compatibility, or conformance",
+  "commands": [
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "reset",
+      "queue_id": 0,
+      "sequence": 1,
+      "submit_tag": "directed-reset"
+    },
+    {
+      "completion_addr": "0x90000000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "issue_policy": 1,
+      "max_warps_per_shader_unit": 12,
+      "max_workgroups_per_shader_unit": 6,
+      "opcode": "set_scheduler_config",
+      "queue_id": 0,
+      "sequence": 2,
+      "submit_tag": "directed-scheduler-config",
+      "watchdog_cycles": 2048
+    },
+    {
+      "completion_addr": "0x90000020",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "fp_mode": "fp16",
+      "opcode": "set_shader_mode",
+      "queue_id": 0,
+      "sequence": 3,
+      "submit_tag": "directed-fp16-mode"
+    },
+    {
+      "byte_count": 512,
+      "completion_addr": "0x90000040",
+      "dst_addr": "0x80000000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x3c003f80",
+      "queue_id": 1,
+      "sequence": 4,
+      "submit_tag": "directed-fill-a"
+    },
+    {
+      "byte_count": 384,
+      "completion_addr": "0x90000060",
+      "dst_addr": "0x80002000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "host_to_device",
+      "queue_id": 1,
+      "sequence": 5,
+      "submit_tag": "directed-h2d"
+    },
+    {
+      "byte_count": 512,
+      "completion_addr": "0x90000080",
+      "dst_addr": "0x80004000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "FENCE_AFTER",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 6,
+      "src_addr": "0x80000000",
+      "submit_tag": "directed-copy"
+    },
+    {
+      "fence": "copy_done",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 1,
+      "sequence": 7,
+      "submit_tag": "directed-signal",
+      "value": 1
+    },
+    {
+      "completion_addr": "0x900000a0",
+      "fence": "copy_done",
+      "flags": [
+        "FENCE_BEFORE",
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_wait",
+      "queue_id": 2,
+      "sequence": 8,
+      "submit_tag": "directed-wait",
+      "timeout_cycles": 1024,
+      "value": 1
+    },
+    {
+      "arg_buffer": "0x80002000",
+      "arg_bytes": 128,
+      "completion_addr": "0x900000c0",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "KERNEL_USES_FP16",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        8,
+        8,
+        1
+      ],
+      "kernel": "image_filter",
+      "kernel_entry": "0x80008000",
+      "local": [
+        8,
+        8,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 12,
+      "queue_id": 2,
+      "required_fp_mode": "fp16",
+      "sequence": 9,
+      "sgpr_count": 12,
+      "shared_bytes": 2048,
+      "submit_tag": "directed-kernel-fp16",
+      "vgpr_count": 24
+    },
+    {
+      "completion_addr": "0x900000e0",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "fp_mode": "fp32",
+      "opcode": "set_shader_mode",
+      "queue_id": 2,
+      "sequence": 10,
+      "submit_tag": "directed-fp32-mode"
+    },
+    {
+      "arg_buffer": "0x80002200",
+      "arg_bytes": 96,
+      "completion_addr": "0x90000100",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "KERNEL_USES_FP32",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "kernel_entry": "0x80008400",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 3,
+      "required_fp_mode": "fp32",
+      "sequence": 11,
+      "sgpr_count": 16,
+      "shared_bytes": 1024,
+      "submit_tag": "directed-kernel-fp32",
+      "vgpr_count": 32
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x90000120",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "device_to_host",
+      "queue_id": 3,
+      "sequence": 12,
+      "src_addr": "0x80004000",
+      "submit_tag": "directed-d2h"
+    },
+    {
+      "completion_addr": "0x90000140",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "counter_snapshot",
+      "queue_id": 3,
+      "sequence": 13,
+      "submit_tag": "directed-counter-snapshot"
+    }
+  ],
+  "ip_name": "Celviz GPGPU IP",
+  "memory_regions": [
+    {
+      "base": "0x80000000",
+      "name": "global_a",
+      "readable": true,
+      "size": 262144,
+      "writable": true
+    },
+    {
+      "base": "0x81000000",
+      "name": "global_ro",
+      "readable": true,
+      "size": 65536,
+      "writable": false
+    },
+    {
+      "base": "0x90000000",
+      "name": "completion_records",
+      "readable": true,
+      "size": 65536,
+      "writable": true
+    }
+  ],
+  "phase1_fixture": "directed",
+  "queues": [
+    {
+      "base": "0x10000000",
+      "priority": 3,
+      "queue_id": 0,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10001000",
+      "priority": 2,
+      "queue_id": 1,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10002000",
+      "priority": 1,
+      "queue_id": 2,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10003000",
+      "priority": 0,
+      "queue_id": 3,
+      "size_bytes": 4096
+    }
+  ],
+  "schema": "celviz.gpgpu.control_plane_demo.v1",
+  "tier": "gpgpu_nano_ultra31"
+}

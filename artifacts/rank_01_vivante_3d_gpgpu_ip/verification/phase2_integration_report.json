@@ -1,0 +1,383 @@
+{
+  "artifacts": {
+    "linux_runtime": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+      "size_bytes": 19898
+    },
+    "memory": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+      "size_bytes": 34640
+    },
+    "opencl": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json",
+      "size_bytes": 5817
+    },
+    "ppa": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json",
+      "size_bytes": 53593
+    },
+    "rtl_supplemental": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/phase1_supplemental_evidence.json",
+      "size_bytes": 15651
+    },
+    "simt": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/simt_execution.json",
+      "size_bytes": 705083
+    }
+  },
+  "checks": [
+    {
+      "evidence": {
+        "totals": {
+          "alu_ops": 1206,
+          "barrier_events": 19,
+          "barrier_wait_cycles": 0,
+          "lsu_loads": 1238,
+          "lsu_stores": 141,
+          "register_reads": 2208,
+          "register_writes": 2208,
+          "scheduler_issues": 390,
+          "scoreboard_hazard_cycles": 1710,
+          "scoreboard_hazard_events": 380
+        },
+        "workloads": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "name": "simt_compute_core_path",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "kernel_count": 4,
+        "runtime_summary": {
+          "commands_completed": 4,
+          "commands_failed": 0,
+          "commands_submitted": 4,
+          "completion_count": 4,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "name": "opencl_subset_runtime_abi",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "categories": {
+          "dma": 3,
+          "kernel": 27,
+          "negative": 5
+        },
+        "event_count": 35,
+        "event_trace_sha256": "f64c60fc7d7ef6d11684ab2232a1e389000fe0304d1fa70cd469bcf755b3023b",
+        "global_final_sha256": "f65254191a101dd4d5a8192157a801475922efa318816cb5668fed74be6a6746",
+        "global_initial_sha256": "f9f144638942ff7f59e14a18d85a775e8f47cba25cf1b6316f2bff2362517679",
+        "host_final_sha256": "dfd580c6578c61deffad8035f59e76a1d2c144397c4c22612e83e102be9c73d8",
+        "operations": {
+          "copy": 3,
+          "fill": 1,
+          "load": 20,
+          "store": 11
+        },
+        "status": "pass"
+      },
+      "name": "memory_system_phase1",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "bo_allocs": 3,
+        "bo_gpu_maps": 3,
+        "bo_maps": 3,
+        "completion_events": 2,
+        "context_creates": 1,
+        "device_opens": 1,
+        "error_events": 2,
+        "events_generated": 4,
+        "events_polled": 4,
+        "fence_creates": 2,
+        "fence_signals": 1,
+        "fence_timeouts": 0,
+        "fence_waits": 2,
+        "queue_creates": 1,
+        "submit_errors": 1,
+        "submit_success": 1,
+        "submits": 2
+      },
+      "name": "linux_userspace_runtime_proxy",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "observed_metrics": {
+          "structural_target_hit_count": 24,
+          "structural_target_percent": 100.0,
+          "structural_target_total": 24,
+          "total_commands": 295,
+          "total_completion_interrupts": 85,
+          "total_dma_alignment_errors": 1,
+          "total_dma_copies": 102,
+          "total_dma_fills": 103,
+          "total_error_interrupts": 7,
+          "total_kernel_dispatches": 10,
+          "total_mmu_faults": 2,
+          "total_scheduler_faults": 1
+        },
+        "structural_targets": {
+          "bad_queue_reject": {
+            "hit": true,
+            "structural_coverage_intent": "cover bad queue command-submission reject branch"
+          },
+          "completion_interrupt_clear": {
+            "hit": true,
+            "structural_coverage_intent": "toggle completion interrupt generation and clear path"
+          },
+          "counter_snapshot": {
+            "hit": true,
+            "structural_coverage_intent": "cover counter snapshot readback path"
+          },
+          "device_to_host_path": {
+            "hit": true,
+            "structural_coverage_intent": "cover runtime D2H copy command category"
+          },
+          "dma_alignment_reject": {
+            "hit": true,
+            "structural_coverage_intent": "cover unaligned DMA reject branch"
+          },
+          "dma_copy_read_write_path": {
+            "hit": true,
+            "structural_coverage_intent": "cover DMA read/write beat accounting"
+          },
+          "dma_fill_write_path": {
+            "hit": true,
+            "structural_coverage_intent": "cover DMA fill writable-range and AXI write path"
+          },
+          "dma_mmu_fault": {
+            "hit": true,
+            "structural_coverage_intent": "cover DMA MMU range fault branch"
+          },
+          "doorbell_apb_status_poll": {
+            "hit": true,
+            "structural_coverage_intent": "toggle APB submit/status paths for command issue"
+          },
+          "error_interrupt_clear": {
+            "hit": true,
+            "structural_coverage_intent": "toggle error interrupt generation and clear path"
+          },
+          "fence_signal_wait_success": {
+            "hit": true,
+            "structural_coverage_intent": "cover fence signal and successful wait dependency"
+          },
+          "fence_wait_timeout": {
+            "hit": true,
+            "structural_coverage_intent": "cover timeout/error branch of fence wait"
+          },
+          "host_to_device_path": {
+            "hit": true,
+            "structural_coverage_intent": "cover runtime H2D copy command category"
+          },
+          "kernel_arg_mmu_fault": {
+            "hit": true,
+            "structural_coverage_intent": "cover kernel arg-buffer MMU fault branch"
+          },
+          "kernel_dispatch_fp16": {
+            "hit": true,
+            "structural_coverage_intent": "cover FP16 kernel dispatch metadata branch"
+          },
+          "kernel_dispatch_fp32": {
+            "hit": true,
+            "structural_coverage_intent": "cover FP32 kernel dispatch metadata branch"
+          },
+          "long_run_idle_retire": {
+            "hit": true,
+            "structural_coverage_intent": "stress long-run retirement and idle completion"
+          },
+          "multi_queue_tail_wrap_proxy": {
+            "hit": true,
+            "structural_coverage_intent": "stress queue head/tail modulo movement"
+          },
+          "queue_arbitration": {
+            "hit": true,
+            "structural_coverage_intent": "exercise multiple queue IDs and priority-retire bookkeeping"
+          },
+          "reset_recovery": {
+            "hit": true,
+            "structural_coverage_intent": "cover reset cleanup and post-reset recovery path"
+          },
+          "scheduler_config_write": {
+            "hit": true,
+            "structural_coverage_intent": "cover scheduler config register update path"
+          },
+          "scheduler_fault_reject": {
+            "hit": true,
+            "structural_coverage_intent": "cover scheduler fault reject branch"
+          },
+          "shader_mode_fp16_fp32": {
+            "hit": true,
+            "structural_coverage_intent": "cover FP mode switch control path"
+          },
+          "unsupported_opcode_reject": {
+            "hit": true,
+            "structural_coverage_intent": "cover unsupported opcode reject branch"
+          }
+        }
+      },
+      "name": "rtl_verilator_supplemental_phase1",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "proxy_metrics": {
+          "activity_proxy_index": 0.022334,
+          "area_proxy_units": 39820,
+          "claim_boundary": "dimensionless proxy metrics; not synthesized area/frequency/power",
+          "control_complexity_index": 516,
+          "frequency_proxy_index": 41.091,
+          "power_proxy_index": 0.044668,
+          "proxy_formula_version": "source-count-v1"
+        },
+        "source_summary": {
+          "bytes": 1136669,
+          "file_count": 108,
+          "lines": 26373,
+          "marker_hit_count": 500,
+          "marker_hits": {
+            "CelvizGPGPUDebug": 2,
+            "celviz_debug": 344,
+            "celviz_gpgpu_runtime_proxy": 120,
+            "commandDoorbellReg": 12,
+            "completionCountReg": 4,
+            "errorStatusReg": 15,
+            "irqPendingReg": 3
+          },
+          "nonblank_lines": 23820
+        }
+      },
+      "name": "ppa_proxy_phase1",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-2 hardening evidence for the Ventus-based Celviz GPGPU IP; not Vivante compatibility, not OpenCL conformance, not a Linux kernel driver, not RTL structural coverage closure, not synthesis/PPA signoff, and not silicon/tapeout readiness",
+  "focused_results": [
+    {
+      "command": [
+        "python3",
+        "tools/celviz_gpgpu_ip/simt_execution_model.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": [
+        "  \"status\": \"pass\",",
+        "  \"totals\": {",
+        "    \"alu_ops\": 1206,",
+        "    \"barrier_events\": 19,",
+        "    \"barrier_wait_cycles\": 0,",
+        "    \"lsu_loads\": 1238,",
+        "    \"lsu_stores\": 141,",
+        "    \"register_reads\": 2208,",
+        "    \"register_writes\": 2208,",
+        "    \"scheduler_issues\": 390,",
+        "    \"scoreboard_hazard_cycles\": 1710,",
+        "    \"scoreboard_hazard_events\": 380",
+        "  },",
+        "  \"workloads\": [",
+        "    \"vector_add\",",
+        "    \"gemm_proxy\",",
+        "    \"convolution_proxy\",",
+        "    \"image_filter\"",
+        "  ]",
+        "}"
+      ],
+      "pass": true
+    },
+    {
+      "command": [
+        "python3",
+        "tools/celviz_gpgpu_ip/opencl_subset.py",
+        "--output-dir",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset",
+        "verify"
+      ],
+      "exit_code": 0,
+      "output_tail": [
+        "{\"evidence\": \"artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset\", \"schema\": \"celviz.gpgpu.opencl_subset.evidence.v1\", \"status\": \"pass\"}"
+      ],
+      "pass": true
+    },
+    {
+      "command": [
+        "python3",
+        "tools/celviz_gpgpu_ip/memory_model.py",
+        "--verify"
+      ],
+      "exit_code": 0,
+      "output_tail": [
+        "wrote artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+        "wrote artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json",
+        "status=pass"
+      ],
+      "pass": true
+    },
+    {
+      "command": [
+        "python3",
+        "tools/celviz_gpgpu_ip/verify_linux_runtime_proxy.py",
+        "--reuse-existing"
+      ],
+      "exit_code": 0,
+      "output_tail": [
+        "celviz_gpgpu_linux_runtime_proxy_verify: pass",
+        "evidence=/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+        "log=/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_check.log"
+      ],
+      "pass": true
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/tools/artifacts/run_celviz_gpgpu_verilator_supplemental_phase1.sh"
+      ],
+      "exit_code": 0,
+      "output_tail": [
+        "celviz_gpgpu_verilator_supplemental_phase1: pass",
+        "evidence=/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/phase1_supplemental_evidence.json",
+        "structural_targets=24/24 (100.000%)"
+      ],
+      "pass": true
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/verify_celviz_gpgpu_ppa_proxy.sh"
+      ],
+      "exit_code": 0,
+      "output_tail": [
+        "celviz_gpgpu_ppa_proxy: pass files=108 markers=500 output=artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json",
+        "celviz_gpgpu_ppa_proxy_verify: pass files=108 markers=500 area_proxy=39820 freq_index=41.091"
+      ],
+      "pass": true
+    }
+  ],
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "schema": "celviz.gpgpu.phase2_integration.v1",
+  "status": "pass"
+}

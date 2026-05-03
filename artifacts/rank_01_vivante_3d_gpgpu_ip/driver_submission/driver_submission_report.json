@@ -1,0 +1,97 @@
+{
+  "checks": [
+    {
+      "name": "runtime_dispatches_present",
+      "pass": true
+    },
+    {
+      "name": "linux_runtime_proxy_pass",
+      "pass": true
+    },
+    {
+      "name": "queue_lifecycle_no_pending",
+      "pass": true
+    },
+    {
+      "name": "completion_and_error_paths_present",
+      "pass": true
+    },
+    {
+      "name": "events_polled",
+      "pass": true
+    },
+    {
+      "name": "fence_wait_signal_path",
+      "pass": true
+    },
+    {
+      "name": "kernel_dispatch_set_modeled",
+      "pass": true
+    },
+    {
+      "name": "clean_room_non_driver_boundary",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room Linux userspace/DRM-like submission model only; not a Linux kernel driver, not DRM/KMS compatibility, not ioctl ABI compatibility, and not a proprietary Vivante driver or firmware claim",
+  "dispatch_lifecycle": [
+    {
+      "completion_addr": "0x90000000",
+      "event_model": "eventfd_poll_style_readable_event",
+      "fence_model": "out_fence_then_wait",
+      "kernel": "vector_add",
+      "queue_id": 0,
+      "sequence": 1,
+      "status": "modeled",
+      "submit_tag": "opencl-subset-vector_add"
+    },
+    {
+      "completion_addr": "0x90000000",
+      "event_model": "eventfd_poll_style_readable_event",
+      "fence_model": "out_fence_then_wait",
+      "kernel": "gemm",
+      "queue_id": 0,
+      "sequence": 2,
+      "status": "modeled",
+      "submit_tag": "opencl-subset-gemm"
+    },
+    {
+      "completion_addr": "0x90000000",
+      "event_model": "eventfd_poll_style_readable_event",
+      "fence_model": "out_fence_then_wait",
+      "kernel": "conv2d",
+      "queue_id": 0,
+      "sequence": 3,
+      "status": "modeled",
+      "submit_tag": "opencl-subset-conv2d"
+    },
+    {
+      "completion_addr": "0x90000000",
+      "event_model": "eventfd_poll_style_readable_event",
+      "fence_model": "out_fence_then_wait",
+      "kernel": "image_filter",
+      "queue_id": 0,
+      "sequence": 4,
+      "status": "modeled",
+      "submit_tag": "opencl-subset-image_filter"
+    }
+  ],
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "linux_runtime_boundary": {
+    "device_node_model": "/dev/dri/renderD128",
+    "ioctl_claim": "mock descriptor only",
+    "kernel_driver_claim": false,
+    "mode": "userspace_proxy"
+  },
+  "schema": "celviz.gpgpu.driver_submission_model.v1",
+  "status": "pass",
+  "summary": {
+    "events_polled": 4,
+    "fence_signals": 1,
+    "fence_waits": 2,
+    "linux_submits": 2,
+    "runtime_dispatches": 4,
+    "submit_errors": 1,
+    "submit_success": 1
+  }
+}

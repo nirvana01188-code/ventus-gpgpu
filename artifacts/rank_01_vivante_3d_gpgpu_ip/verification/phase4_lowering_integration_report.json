@@ -1,0 +1,138 @@
+{
+  "artifacts": {
+    "lowering": "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernel_lowering_report.json",
+    "memory": "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+    "phase3": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase3_cross_layer_report.json",
+    "runtime": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json",
+    "simt": "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/simt_execution.json"
+  },
+  "checks": [
+    {
+      "name": "lowering_report_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "lowered": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "runtime": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "name": "lowering_matches_runtime_dispatch_set",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "lowering_simt": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ],
+        "simt": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "name": "lowering_matches_simt_workloads",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "memory_ops": {
+          "copy": 3,
+          "fill": 1,
+          "load": 20,
+          "store": 11
+        },
+        "uop_categories": [
+          "uop_address_calc",
+          "uop_alu_add",
+          "uop_alu_mad",
+          "uop_alu_mul_clamp",
+          "uop_barrier",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_loop_begin",
+          "uop_loop_end",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_vector_pack",
+          "uop_vector_unpack",
+          "uop_write_completion"
+        ]
+      },
+      "name": "lowering_covers_memory_ops",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "uop_categories": [
+          "uop_address_calc",
+          "uop_alu_add",
+          "uop_alu_mad",
+          "uop_alu_mul_clamp",
+          "uop_barrier",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_loop_begin",
+          "uop_loop_end",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_vector_pack",
+          "uop_vector_unpack",
+          "uop_write_completion"
+        ]
+      },
+      "name": "lowering_covers_control_ops",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "phase3_status": "pass"
+      },
+      "name": "phase3_dependency_pass",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-4 kernel lowering integration evidence; not a production compiler backend, not an ISA compatibility claim, not SPIR-V/LLVM, not Vivante command stream compatibility, and not timing/PPA signoff",
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "lowering_summary": {
+    "kernel_count": 4,
+    "total_uops": 63,
+    "uop_categories": [
+      "uop_address_calc",
+      "uop_alu_add",
+      "uop_alu_mad",
+      "uop_alu_mul_clamp",
+      "uop_barrier",
+      "uop_global_load",
+      "uop_global_store",
+      "uop_kernel_prologue",
+      "uop_loop_begin",
+      "uop_loop_end",
+      "uop_predicate_bounds",
+      "uop_read_scalar_arg",
+      "uop_read_workitem_id",
+      "uop_vector_pack",
+      "uop_vector_unpack",
+      "uop_write_completion"
+    ]
+  },
+  "schema": "celviz.gpgpu.phase4_lowering_integration.v1",
+  "status": "pass"
+}

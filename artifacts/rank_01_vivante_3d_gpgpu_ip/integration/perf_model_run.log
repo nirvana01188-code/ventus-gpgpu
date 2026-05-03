@@ -1,0 +1,35 @@
+Celviz GPGPU IP proxy performance model run
+schema=celviz.gpgpu.proxy_perf_model.v1
+generated_at_utc=2026-05-02T09:14:50+00:00
+orientation=GPGPU compute workloads, not 3D graphics workloads
+source_model_metrics=artifacts/rank_01_vivante_3d_gpgpu_ip/model/metrics.json
+workload_source=artifacts/rank_01_vivante_3d_gpgpu_ip/model/metrics.json
+tier_source=model_metrics_public_shader_unit_scaling
+workload_count=5
+tier_count=9
+estimate_count=45
+tier_validation_status=pass
+tier_validation_selected_tiers=CC8000L,CC8000,CC8400
+fastest_tier_by_proxy_cycles=CC8400 cycles=476
+slowest_tier_by_proxy_cycles=CC8000L cycles=509
+assumption_claim_boundary=clean-room proxy model only; not measured RTL, not silicon PPA, not Vivante-equivalent performance, and not API conformance
+assumption_compute_utilization=0.6
+assumption_memory_bus_bytes_per_cycle=32
+assumption_memory_efficiency=0.7
+tier_summary tier=CC8000L shader_units_vec1=16 cycles=509 ops_per_cycle=1.418468 compute_ops_per_cycle=2.550098 bandwidth_bytes_per_cycle=3.24558 axi_pressure_bytes_per_cycle=3.756385 power_index=3.746699 memory_bound_workloads=3 compute_bound_workloads=2
+tier_summary tier=CC8000 shader_units_vec1=32 cycles=485 ops_per_cycle=1.48866 compute_ops_per_cycle=2.676289 bandwidth_bytes_per_cycle=3.406186 axi_pressure_bytes_per_cycle=3.942268 power_index=3.930619 memory_bound_workloads=4 compute_bound_workloads=1
+tier_summary tier=CC8200 shader_units_vec1=128 cycles=478 ops_per_cycle=1.51046 compute_ops_per_cycle=2.715481 bandwidth_bytes_per_cycle=3.456067 axi_pressure_bytes_per_cycle=4.0 power_index=3.987741 memory_bound_workloads=4 compute_bound_workloads=1
+tier_summary tier=CC8400 shader_units_vec1=256 cycles=476 ops_per_cycle=1.516807 compute_ops_per_cycle=2.726891 bandwidth_bytes_per_cycle=3.470588 axi_pressure_bytes_per_cycle=4.016807 power_index=4.00437 memory_bound_workloads=5 compute_bound_workloads=0
+tier_summary tier=CC8400-MP2 shader_units_vec1=512 cycles=476 ops_per_cycle=1.516807 compute_ops_per_cycle=2.726891 bandwidth_bytes_per_cycle=3.470588 axi_pressure_bytes_per_cycle=4.016807 power_index=4.00437 memory_bound_workloads=5 compute_bound_workloads=0
+tier_summary tier=CC8400-MP4 shader_units_vec1=1024 cycles=476 ops_per_cycle=1.516807 compute_ops_per_cycle=2.726891 bandwidth_bytes_per_cycle=3.470588 axi_pressure_bytes_per_cycle=4.016807 power_index=4.00437 memory_bound_workloads=5 compute_bound_workloads=0
+tier_summary tier=CC8800 shader_units_vec1=512 cycles=476 ops_per_cycle=1.516807 compute_ops_per_cycle=2.726891 bandwidth_bytes_per_cycle=3.470588 axi_pressure_bytes_per_cycle=4.016807 power_index=4.00437 memory_bound_workloads=5 compute_bound_workloads=0
+tier_summary tier=CC8800-MP2 shader_units_vec1=1024 cycles=476 ops_per_cycle=1.516807 compute_ops_per_cycle=2.726891 bandwidth_bytes_per_cycle=3.470588 axi_pressure_bytes_per_cycle=4.016807 power_index=4.00437 memory_bound_workloads=5 compute_bound_workloads=0
+tier_summary tier=CC8800-MP4 shader_units_vec1=2048 cycles=476 ops_per_cycle=1.516807 compute_ops_per_cycle=2.726891 bandwidth_bytes_per_cycle=3.470588 axi_pressure_bytes_per_cycle=4.016807 power_index=4.00437 memory_bound_workloads=5 compute_bound_workloads=0
+tier_validation_check name=minimum_three_tiers_selected pass=true
+tier_validation_check name=tier_throughput_monotonic pass=true metric=aggregate_compute_ops_per_cycle_proxy direction=strictly_increasing
+tier_validation_check name=axi_byte_pressure_fields_present pass=true
+tier_validation_check name=axi_byte_pressure_monotonic pass=true metric=aggregate_axi_pressure_bytes_per_cycle_proxy direction=strictly_increasing
+tier_validation_check name=latency_proxy_monotonic pass=true metric=latency_proxy_cycles direction=strictly_decreasing
+tier_validation_check name=power_proxy_monotonic pass=true metric=aggregate_power_index_proxy direction=strictly_increasing
+metrics=artifacts/rank_01_vivante_3d_gpgpu_ip/integration/perf_model_metrics.json
+status=pass

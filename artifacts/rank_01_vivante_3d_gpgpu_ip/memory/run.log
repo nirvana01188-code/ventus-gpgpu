@@ -1,0 +1,11 @@
+Celviz GPGPU IP memory system phase-1 model run
+schema=celviz.gpgpu.memory_model.phase1.v1
+artifact_root=artifacts/rank_01_vivante_3d_gpgpu_ip/memory
+event_count=35
+categories=dma:3,kernel:27,negative:5
+operations=copy:3,fill:1,load:20,store:11
+checks=global_memory_h2d_visible_to_kernel=true,dma_fill_pattern_visible=true,kernel_global_store_visible_to_d2h=true,coalescing_reduces_transactions=true,local_scratchpad_roundtrip=true,constant_reads_are_read_only_and_cacheable_proxy=true,bounds_alignment_negative_cases=true,unified_dma_kernel_event_model=true
+event_trace_sha256=f64c60fc7d7ef6d11684ab2232a1e389000fe0304d1fa70cd469bcf755b3023b
+evidence=artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json
+trace=artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json
+status=pass

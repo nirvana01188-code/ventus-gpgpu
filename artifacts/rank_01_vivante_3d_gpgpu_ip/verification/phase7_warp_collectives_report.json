@@ -1,0 +1,204 @@
+{
+  "checks": [
+    {
+      "name": "input_reports_pass",
+      "pass": true
+    },
+    {
+      "name": "all_required_kernels_projected",
+      "pass": true
+    },
+    {
+      "name": "software_sequence_vs_hardware_projection",
+      "pass": true
+    },
+    {
+      "name": "collective_vocabulary_projected",
+      "pass": true
+    },
+    {
+      "name": "active_mask_or_sync_evidence_present",
+      "pass": true
+    },
+    {
+      "name": "gemm_conv_image_collectives_present",
+      "pass": true
+    },
+    {
+      "name": "register_bank_effect_projected",
+      "pass": true
+    },
+    {
+      "name": "claim_boundary_declared",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-7 warp/subgroup collectives projection derived from Celviz SIMT traces, compiler IR, control-flow manager, and register occupancy evidence only; not CUDA or OpenCL subgroup conformance, not a vendor ISA claim, not a physical collective unit implementation, and not silicon signoff",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "kernels": [
+    {
+      "active_mask_events": 24,
+      "active_mask_transitions": 0,
+      "bank_conflict_proxy_after_collectives": 0.229167,
+      "bank_conflict_proxy_before": 0.3125,
+      "collective_count": 3,
+      "collective_needs": {
+        "ballot": true,
+        "reduce": false,
+        "shuffle": false,
+        "subgroup_sync": true,
+        "vote": true
+      },
+      "collective_uop_vocabulary_projection": [
+        "uop_warp_ballot",
+        "uop_warp_vote",
+        "uop_warp_shuffle",
+        "uop_warp_reduce",
+        "uop_subgroup_sync"
+      ],
+      "hardware_projection_uops": 12,
+      "kernel": "vector_add",
+      "model": "deterministic projection from SIMT active masks/barriers, compiler predicates, control reconvergence, and register occupancy",
+      "predicate_registers": 1,
+      "reconvergence_points": 1,
+      "register_read_reduction_proxy": 38,
+      "software_sequence_uops": 60,
+      "software_vs_hardware_projection_reduction": 48,
+      "software_vs_hardware_projection_reduction_percent": 80.0,
+      "unique_active_masks": [
+        "11111111"
+      ],
+      "warps": 4,
+      "wavefront_size": 8,
+      "workload": "vector_add"
+    },
+    {
+      "active_mask_events": 66,
+      "active_mask_transitions": 43,
+      "bank_conflict_proxy_after_collectives": 0.158405,
+      "bank_conflict_proxy_before": 0.21875,
+      "collective_count": 5,
+      "collective_needs": {
+        "ballot": true,
+        "reduce": true,
+        "shuffle": true,
+        "subgroup_sync": true,
+        "vote": true
+      },
+      "collective_uop_vocabulary_projection": [
+        "uop_warp_ballot",
+        "uop_warp_vote",
+        "uop_warp_shuffle",
+        "uop_warp_reduce",
+        "uop_subgroup_sync"
+      ],
+      "hardware_projection_uops": 15,
+      "kernel": "gemm",
+      "model": "deterministic projection from SIMT active masks/barriers, compiler predicates, control reconvergence, and register occupancy",
+      "predicate_registers": 2,
+      "reconvergence_points": 3,
+      "register_read_reduction_proxy": 157,
+      "software_sequence_uops": 87,
+      "software_vs_hardware_projection_reduction": 72,
+      "software_vs_hardware_projection_reduction_percent": 82.759,
+      "unique_active_masks": [
+        "11110000",
+        "11111111"
+      ],
+      "warps": 3,
+      "wavefront_size": 8,
+      "workload": "gemm_proxy"
+    },
+    {
+      "active_mask_events": 124,
+      "active_mask_transitions": 61,
+      "bank_conflict_proxy_after_collectives": 0.169271,
+      "bank_conflict_proxy_before": 0.234375,
+      "collective_count": 5,
+      "collective_needs": {
+        "ballot": true,
+        "reduce": true,
+        "shuffle": true,
+        "subgroup_sync": true,
+        "vote": true
+      },
+      "collective_uop_vocabulary_projection": [
+        "uop_warp_ballot",
+        "uop_warp_vote",
+        "uop_warp_shuffle",
+        "uop_warp_reduce",
+        "uop_subgroup_sync"
+      ],
+      "hardware_projection_uops": 20,
+      "kernel": "conv2d",
+      "model": "deterministic projection from SIMT active masks/barriers, compiler predicates, control reconvergence, and register occupancy",
+      "predicate_registers": 2,
+      "reconvergence_points": 3,
+      "register_read_reduction_proxy": 292,
+      "software_sequence_uops": 120,
+      "software_vs_hardware_projection_reduction": 100,
+      "software_vs_hardware_projection_reduction_percent": 83.333,
+      "unique_active_masks": [
+        "10000000",
+        "11111111"
+      ],
+      "warps": 4,
+      "wavefront_size": 8,
+      "workload": "convolution_proxy"
+    },
+    {
+      "active_mask_events": 176,
+      "active_mask_transitions": 28,
+      "bank_conflict_proxy_after_collectives": 0.30193,
+      "bank_conflict_proxy_before": 0.421875,
+      "collective_count": 5,
+      "collective_needs": {
+        "ballot": true,
+        "reduce": true,
+        "shuffle": true,
+        "subgroup_sync": true,
+        "vote": true
+      },
+      "collective_uop_vocabulary_projection": [
+        "uop_warp_ballot",
+        "uop_warp_vote",
+        "uop_warp_shuffle",
+        "uop_warp_reduce",
+        "uop_subgroup_sync"
+      ],
+      "hardware_projection_uops": 40,
+      "kernel": "image_filter",
+      "model": "deterministic projection from SIMT active masks/barriers, compiler predicates, control reconvergence, and register occupancy",
+      "predicate_registers": 1,
+      "reconvergence_points": 1,
+      "register_read_reduction_proxy": 440,
+      "software_sequence_uops": 272,
+      "software_vs_hardware_projection_reduction": 232,
+      "software_vs_hardware_projection_reduction_percent": 85.294,
+      "unique_active_masks": [
+        "00000000",
+        "01111111",
+        "11111110",
+        "11111111"
+      ],
+      "warps": 8,
+      "wavefront_size": 8,
+      "workload": "image_filter"
+    }
+  ],
+  "schema": "celviz.gpgpu.phase7_warp_collectives.v1",
+  "status": "pass",
+  "summary": {
+    "kernel_count": 4,
+    "kernels_with_shuffle_or_reduce": [
+      "gemm",
+      "conv2d",
+      "image_filter"
+    ],
+    "max_register_read_reduction_proxy": 440,
+    "total_collective_uop_reduction": 452,
+    "total_collective_uop_reduction_percent": 83.859,
+    "total_hardware_projection_uops": 87,
+    "total_software_sequence_uops": 539
+  }
+}

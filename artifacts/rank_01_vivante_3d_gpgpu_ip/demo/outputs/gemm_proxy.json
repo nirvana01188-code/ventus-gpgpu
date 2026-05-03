@@ -1,0 +1,220 @@
+{
+  "a": [
+    [
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      2,
+      0,
+      1,
+      3
+    ],
+    [
+      3,
+      1,
+      2,
+      0
+    ],
+    [
+      4,
+      3,
+      0,
+      1
+    ]
+  ],
+  "b": [
+    [
+      2,
+      1,
+      0,
+      3
+    ],
+    [
+      1,
+      3,
+      2,
+      0
+    ],
+    [
+      0,
+      2,
+      4,
+      1
+    ],
+    [
+      3,
+      0,
+      1,
+      2
+    ]
+  ],
+  "dispatch_name": "gemm",
+  "expected": [
+    [
+      16,
+      13,
+      20,
+      14
+    ],
+    [
+      13,
+      4,
+      7,
+      13
+    ],
+    [
+      7,
+      10,
+      10,
+      11
+    ],
+    [
+      14,
+      13,
+      7,
+      14
+    ]
+  ],
+  "golden_comparison": {
+    "max_abs_error": 0,
+    "mismatch_count": 0,
+    "status": "pass"
+  },
+  "hashes": {
+    "expected_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+    "input_a_sha256": "d1a931efa33277c0b42dfb7f49a806f3e4701c66d17915e78474f7c8b1efcb55",
+    "input_b_sha256": "bce41ffbe2759e13ca2a2a378972bcb72c5569d54701bc88b917d5f8dab0deaf",
+    "readback_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+    "result_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f"
+  },
+  "kernel": "gemm_proxy",
+  "operation": "4x4 matrix multiply",
+  "pass": true,
+  "precision": {
+    "fp16_proxy": {
+      "expected": [
+        [
+          16.0,
+          13.0,
+          20.0,
+          14.0
+        ],
+        [
+          13.0,
+          4.0,
+          7.0,
+          13.0
+        ],
+        [
+          7.0,
+          10.0,
+          10.0,
+          11.0
+        ],
+        [
+          14.0,
+          13.0,
+          7.0,
+          14.0
+        ]
+      ],
+      "matrix_c": [
+        [
+          16.0,
+          13.0,
+          20.0,
+          14.0
+        ],
+        [
+          13.0,
+          4.0,
+          7.0,
+          13.0
+        ],
+        [
+          7.0,
+          10.0,
+          10.0,
+          11.0
+        ],
+        [
+          14.0,
+          13.0,
+          7.0,
+          14.0
+        ]
+      ],
+      "method": "multiplications and accumulation steps round-trip through standard-library binary16 storage",
+      "ops": 128,
+      "pass": true,
+      "result_sha256": "7b5dc7d0b85a03b896716b3393b0dd033cc13a8ad4474c7a908503d082cde2cc",
+      "status": "executed_proxy"
+    },
+    "fp32": {
+      "ops": 128,
+      "status": "executed_proxy"
+    }
+  },
+  "queue_id": "queue0",
+  "readback": [
+    [
+      16,
+      13,
+      20,
+      14
+    ],
+    [
+      13,
+      4,
+      7,
+      13
+    ],
+    [
+      7,
+      10,
+      10,
+      11
+    ],
+    [
+      14,
+      13,
+      7,
+      14
+    ]
+  ],
+  "result": [
+    [
+      16,
+      13,
+      20,
+      14
+    ],
+    [
+      13,
+      4,
+      7,
+      13
+    ],
+    [
+      7,
+      10,
+      10,
+      11
+    ],
+    [
+      14,
+      13,
+      7,
+      14
+    ]
+  ],
+  "result_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+  "shape": {
+    "k": 4,
+    "m": 4,
+    "n": 4
+  }
+}

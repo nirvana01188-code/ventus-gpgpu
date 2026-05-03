@@ -1,0 +1,134 @@
+{
+  "device_node": "/dev/dri/renderD128",
+  "operations": [
+    {
+      "fd": 128,
+      "node": "/dev/dri/renderD128",
+      "op": "device_open"
+    },
+    {
+      "context_id": 7,
+      "op": "context_create"
+    },
+    {
+      "op": "queue_create",
+      "priority": 1,
+      "queue_id": 0
+    },
+    {
+      "fill": 17,
+      "flags": [
+        "read",
+        "write"
+      ],
+      "handle": 1,
+      "label": "input",
+      "op": "bo_alloc",
+      "size": 4096
+    },
+    {
+      "fill": 0,
+      "flags": [
+        "read",
+        "write"
+      ],
+      "handle": 2,
+      "label": "output",
+      "op": "bo_alloc",
+      "size": 4096
+    },
+    {
+      "fill": 85,
+      "flags": [
+        "read"
+      ],
+      "handle": 3,
+      "label": "read_only_fault",
+      "op": "bo_alloc",
+      "size": 1024
+    },
+    {
+      "handle": 1,
+      "op": "bo_map"
+    },
+    {
+      "handle": 2,
+      "op": "bo_map"
+    },
+    {
+      "handle": 3,
+      "op": "bo_map"
+    },
+    {
+      "gpu_va": "0x80000000",
+      "handle": 1,
+      "op": "bo_gpu_map"
+    },
+    {
+      "gpu_va": "0x80001000",
+      "handle": 2,
+      "op": "bo_gpu_map"
+    },
+    {
+      "gpu_va": "0x80002000",
+      "handle": 3,
+      "op": "bo_gpu_map"
+    },
+    {
+      "handle": 1,
+      "name": "submit_ok",
+      "op": "fence_create"
+    },
+    {
+      "bo_refs": [
+        {
+          "access": "read",
+          "handle": 1
+        },
+        {
+          "access": "write",
+          "handle": 2
+        }
+      ],
+      "op": "submit",
+      "opcode": "kernel_dispatch",
+      "out_fence": 1,
+      "queue_id": 0,
+      "sequence": 1
+    },
+    {
+      "handle": 1,
+      "op": "fence_wait",
+      "timeout_ms": 1000
+    },
+    {
+      "handle": 2,
+      "name": "submit_error",
+      "op": "fence_create"
+    },
+    {
+      "bo_refs": [
+        {
+          "access": "write",
+          "handle": 3
+        }
+      ],
+      "op": "submit",
+      "opcode": "dma_fill",
+      "out_fence": 2,
+      "queue_id": 0,
+      "sequence": 2
+    },
+    {
+      "handle": 2,
+      "op": "fence_wait",
+      "timeout_ms": 1000
+    },
+    {
+      "max_events": 8,
+      "op": "event_poll"
+    }
+  ],
+  "schema": "celviz.gpgpu.linux_userspace_runtime.v1",
+  "scope": "clean-room Linux userspace runtime plus DRM-like submission proxy; models OS queue/fence/event semantics only and does not implement or claim a kernel DRM driver, ioctl ABI, GEM object ABI, firmware ABI, or proprietary Vivante compatibility"
+}

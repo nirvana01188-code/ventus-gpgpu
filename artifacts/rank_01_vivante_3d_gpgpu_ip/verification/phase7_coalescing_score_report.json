@@ -1,0 +1,94 @@
+{
+  "checks": [
+    {
+      "name": "microop_execution_pass",
+      "pass": true
+    },
+    {
+      "name": "all_required_kernels_scored",
+      "pass": true
+    },
+    {
+      "name": "transactions_reduce_for_all_kernels",
+      "pass": true
+    },
+    {
+      "name": "efficiency_in_range",
+      "pass": true
+    },
+    {
+      "name": "aggregate_reduction_positive",
+      "pass": true
+    },
+    {
+      "name": "segment_size_recorded",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-7 memory coalescing score evidence; derived from Celviz micro-op memory traces only; not a proprietary cache, LSU, bus, timing, bandwidth, or silicon performance claim",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "kernels": [
+    {
+      "coalesced_transactions": 12,
+      "coalescing_efficiency": 0.875,
+      "kernel": "vector_add",
+      "load_segments": 8,
+      "loads": 64,
+      "model": "deterministic proxy derived from current micro-op access pattern",
+      "naive_transactions": 96,
+      "segment_bytes": 32,
+      "store_segments": 4,
+      "stores": 32,
+      "transaction_reduction": 84
+    },
+    {
+      "coalesced_transactions": 38,
+      "coalescing_efficiency": 0.853846,
+      "kernel": "gemm",
+      "load_segments": 35,
+      "loads": 240,
+      "model": "deterministic proxy derived from current micro-op access pattern",
+      "naive_transactions": 260,
+      "segment_bytes": 32,
+      "store_segments": 3,
+      "stores": 20,
+      "transaction_reduction": 222
+    },
+    {
+      "coalesced_transactions": 36,
+      "coalescing_efficiency": 0.924211,
+      "kernel": "conv2d",
+      "load_segments": 32,
+      "loads": 450,
+      "model": "deterministic proxy derived from current micro-op access pattern",
+      "naive_transactions": 475,
+      "segment_bytes": 32,
+      "store_segments": 4,
+      "stores": 25,
+      "transaction_reduction": 439
+    },
+    {
+      "coalesced_transactions": 18,
+      "coalescing_efficiency": 0.967153,
+      "kernel": "image_filter",
+      "load_segments": 16,
+      "loads": 484,
+      "model": "deterministic proxy derived from current micro-op access pattern",
+      "naive_transactions": 548,
+      "segment_bytes": 32,
+      "store_segments": 2,
+      "stores": 64,
+      "transaction_reduction": 530
+    }
+  ],
+  "schema": "celviz.gpgpu.phase7_coalescing_score.v1",
+  "status": "pass",
+  "summary": {
+    "aggregate_coalescing_efficiency": 0.924583,
+    "kernel_count": 4,
+    "segment_bytes": 32,
+    "total_coalesced_transactions": 104,
+    "total_naive_transactions": 1379,
+    "total_transaction_reduction": 1275
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "bytes": 64,
+  "dispatch_name": "memcpy",
+  "expected_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+  "golden_comparison": {
+    "max_abs_error": 0,
+    "mismatch_count": 0,
+    "status": "pass"
+  },
+  "hashes": {
+    "expected_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+    "readback_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+    "result_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+    "source_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e"
+  },
+  "kernel": "memory_copy",
+  "operation": "byte-for-byte buffer copy",
+  "pass": true,
+  "precision": {
+    "byte": {
+      "bytes": 64,
+      "status": "executed_proxy"
+    }
+  },
+  "queue_id": "queue1",
+  "readback_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+  "result_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+  "source_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+  "xor": 192
+}

@@ -1,0 +1,340 @@
+{
+  "checks": [
+    {
+      "evidence": {},
+      "name": "all_lanes_status_pass",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "six_known_non_complete_lanes_present",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "work_packages_present",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "clean_room_scope_has_all_boundaries",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "Phase-8 claim-closure evidence for the Ventus-based Celviz GPGPU IP proxy; records current readiness, blockers, and next executable work only. It is not proprietary Vivante compatibility, not official OpenCL conformance, not a production Linux DRM driver, not RTL structural coverage closure, not synthesis/STA/power/DFT/physical/silicon signoff, and not silicon performance evidence.",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "lanes": [
+    {
+      "blockers": [
+        "No licensed Vivante command-stream, firmware, SDK, driver, or ISA collateral is present.",
+        "Clean-room boundary forbids using proprietary compatibility language as active acceptance evidence."
+      ],
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "opencl_gap_boundary_present",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "claim_status_not_completed",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "external_blockers_recorded",
+          "pass": true
+        }
+      ],
+      "claim_status": "not_completed",
+      "current_state": "clean-room Ventus/Celviz proxy only",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json"
+      ],
+      "id": "vivante_proprietary_compatibility",
+      "next_executable_steps": [
+        "Keep public clean-room compatibility adapters separated from proprietary ABI claims.",
+        "Add a public command-ABI compatibility matrix only for behaviors reproduced by local evidence.",
+        "Require legal/licensed-collateral gate before any proprietary compatibility target is opened."
+      ],
+      "status": "pass",
+      "target_state": "only after licensed collateral, legal approval, and proprietary ABI/firmware/driver evidence",
+      "title": "Vivante proprietary compatibility"
+    },
+    {
+      "blockers": [
+        "Khronos CTS or licensed official conformance suite is not present.",
+        "Full OpenCL C/profile/device-info/precision semantics are not implemented.",
+        "Official ICD/runtime/compiler certification package is not present."
+      ],
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "gap_map_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "current_subset_kernel_count_ge_4",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "official_gap_declared",
+          "pass": true
+        }
+      ],
+      "claim_status": "not_completed",
+      "current_state": "OpenCL-like subset evidence with four kernels",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json"
+      ],
+      "id": "official_opencl_conformance",
+      "next_executable_steps": [
+        "Expand the OpenCL C subset by kernel family before attempting CTS scope.",
+        "Add conformance-style negative tests for builtins, memory model, atomics, images, and device info.",
+        "Create an ICD/runtime ABI shim only after subset semantics are stable."
+      ],
+      "status": "pass",
+      "target_state": "Khronos CTS or licensed official conformance suite pass with official runtime/compiler stack",
+      "title": "Official OpenCL conformance"
+    },
+    {
+      "blockers": [
+        "No kernel module, ioctl ABI, GEM object ABI, syncobj ABI, or upstream DRM integration is present.",
+        "Current evidence models userspace and DRM-like semantics only."
+      ],
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "driver_submission_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "linux_runtime_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "kernel_driver_blocker_declared",
+          "pass": true
+        }
+      ],
+      "claim_status": "not_completed",
+      "current_state": "Linux userspace runtime plus DRM-like submission proxy",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json"
+      ],
+      "id": "production_linux_kernel_drm_driver",
+      "next_executable_steps": [
+        "Draft a minimal DRM-like UAPI contract for queue, BO, fence, and event semantics.",
+        "Add ioctl-level negative tests in the proxy before kernel implementation.",
+        "Only then split a real kernel-driver branch with KUnit/selftest style gates."
+      ],
+      "status": "pass",
+      "target_state": "kernel driver with reviewed UAPI, ioctl/GEM/syncobj semantics, CI, and upstream-style integration",
+      "title": "Production Linux kernel/DRM driver"
+    },
+    {
+      "blockers": [
+        "Functional acceptance coverage is not structural RTL coverage.",
+        "LCOV/source/toggle/line metrics are observational and not currently a 100% closure claim."
+      ],
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "e8_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "functional_coverage_percent": 100.0
+          },
+          "name": "functional_coverage_100_recorded",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "line_metrics_status": "available",
+            "source_metrics_status": "unavailable",
+            "toggle_metrics_status": "unavailable"
+          },
+          "name": "structural_metrics_reported_separately",
+          "pass": true
+        }
+      ],
+      "claim_status": "not_completed",
+      "current_state": "Verilator functional coverage 100%; structural metrics reported separately",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json"
+      ],
+      "id": "rtl_structural_coverage_100",
+      "next_executable_steps": [
+        "Add directed RTL tests for reset, IRQ, AXI/APB counters, scoreboard hazards, LSU paths, and warp scheduler branch flushes.",
+        "Add random command-stream and fault-injection runs against structural metrics.",
+        "Create a structural coverage waiver file before any 100% structural claim."
+      ],
+      "status": "pass",
+      "target_state": "line/toggle/branch/source structural closure reaches 100% on a defined RTL target",
+      "title": "RTL structural coverage 100%"
+    },
+    {
+      "blockers": [
+        "No target technology library, constraints, STA, power activity, DFT insertion, floorplan, P&R, or silicon data is present.",
+        "Yosys probe records tool behavior/blockers but is not target-library signoff."
+      ],
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "synthesis_readiness_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "classification": "synthesis_probe_blocked_by_generated_verilog",
+            "status": "pass"
+          },
+          "name": "yosys_probe_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "ppa_proxy_status_pass",
+          "pass": true
+        }
+      ],
+      "claim_status": "not_completed",
+      "current_state": "synthesis readiness, Yosys probe, and PPA proxy evidence only",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/yosys_synthesis_probe_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json"
+      ],
+      "id": "signoff_synthesis_sta_power_dft_physical_silicon",
+      "next_executable_steps": [
+        "Add a synthesis target definition and constraints stub when a technology/library target exists.",
+        "Add STA/power/DFT/physical checklist gates with required input artifacts.",
+        "Keep PPA proxy separate from signed-off PPA numbers."
+      ],
+      "status": "pass",
+      "target_state": "target-library synthesis, STA, power, DFT, physical implementation, and silicon signoff complete",
+      "title": "Synthesis/STA/power/DFT/physical/silicon signoff"
+    },
+    {
+      "blockers": [
+        "Phase7 reports are proxy evidence, not measured silicon performance.",
+        "No signed-off physical implementation or post-silicon measurement platform exists."
+      ],
+      "checks": [
+        {
+          "evidence": {
+            "coalescing": "pass",
+            "config_sweep": "pass",
+            "control_flow_manager": "pass",
+            "memory_streaming": "pass",
+            "register_occupancy": "pass",
+            "warp_collectives": "pass"
+          },
+          "name": "all_phase7_reports_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "ppa_proxy_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "silicon_performance_not_claimed",
+          "pass": true
+        }
+      ],
+      "claim_status": "not_completed",
+      "current_state": "deterministic proxy evidence for coalescing, control flow, streaming, config, occupancy, and collectives",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_coalescing_score_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_control_flow_manager_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_memory_streaming_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_config_sweep_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_register_occupancy_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_warp_collectives_report.json"
+      ],
+      "id": "phase7_proxy_not_silicon_performance",
+      "next_executable_steps": [
+        "Keep Phase7 metrics dimensionless/proxy-labeled in all reports.",
+        "Add cycle-accurate counters only after RTL execution paths and structural coverage improve.",
+        "Bind future performance claims to synthesis/timing or silicon measurement evidence."
+      ],
+      "status": "pass",
+      "target_state": "post-silicon or cycle-accurate measured performance on a signed-off implementation",
+      "title": "Phase7 performance data boundary"
+    }
+  ],
+  "phase": "phase8_claim_closure",
+  "schema": "celviz.gpgpu.phase8_claim_closure.v1",
+  "status": "pass",
+  "summary": {
+    "completion_claim": "not_completed_for_external_or_signoff_items",
+    "engineering_progress_claim": "readiness and next executable work packages are now gated",
+    "lanes": 6,
+    "lanes_passed": 6,
+    "work_packages": 6
+  },
+  "work_packages": [
+    {
+      "acceptance": "A JSON report records pass/fail for each negative case and keeps official conformance claim disabled.",
+      "id": "P8-WP1",
+      "lane": "official_opencl_conformance",
+      "task": "Add conformance-style OpenCL subset negative tests for unsupported builtins, address spaces, and launch geometry."
+    },
+    {
+      "acceptance": "The contract maps each UAPI concept to existing userspace proxy evidence and names missing kernel-only behavior.",
+      "id": "P8-WP2",
+      "lane": "production_linux_kernel_drm_driver",
+      "task": "Draft a minimal DRM-like UAPI contract for BO, queue, fence, event, and error semantics."
+    },
+    {
+      "acceptance": "Structural line/toggle/branch metrics are regenerated and compared to the previous report.",
+      "id": "P8-WP3",
+      "lane": "rtl_structural_coverage_100",
+      "task": "Add directed Verilator structural tests for reset, IRQ, AXI/APB counters, scoreboard hazards, LSU, and warp branch flushes."
+    },
+    {
+      "acceptance": "The readiness report names every required external input before signoff gates can become completion gates.",
+      "id": "P8-WP4",
+      "lane": "signoff_synthesis_sta_power_dft_physical_silicon",
+      "task": "Create target-library synthesis/STA/power/DFT/physical artifact requirements without claiming signoff."
+    },
+    {
+      "acceptance": "A boundary checker rejects Phase7 silicon-performance overclaim language in active reports.",
+      "id": "P8-WP5",
+      "lane": "phase7_proxy_not_silicon_performance",
+      "task": "Bind every Phase7 proxy metric to its source evidence and forbid silicon-performance wording."
+    },
+    {
+      "acceptance": "The checklist requires licensed collateral, legal approval, and separated evidence roots.",
+      "id": "P8-WP6",
+      "lane": "vivante_proprietary_compatibility",
+      "task": "Keep a clean-room compatibility boundary checklist before any vendor-specific feature request is accepted."
+    }
+  ]
+}

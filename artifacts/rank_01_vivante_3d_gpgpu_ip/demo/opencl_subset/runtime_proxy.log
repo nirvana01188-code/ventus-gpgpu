@@ -1,0 +1,19 @@
+celviz_gpgpu_runtime_proxy: start
+schema=celviz.gpgpu.runtime_commands.v1
+control_schema=celviz.gpgpu.control_plane_demo.v1
+scope=clean-room runtime command proxy aligned to the public Ventus rtlsim C API; not OpenCL conformance, not Vivante command-stream compatibility, and not a proprietary driver/firmware ABI
+tier=gpgpu_nano_ultra31
+runtime_bridge=dry_run_forced
+c_api=ventus_rtlsim_add_kernel,ventus_rtlsim_pmemcpy_h2d,ventus_rtlsim_pmemcpy_d2h,ventus_rtlsim_step
+schema=celviz.gpgpu.control_plane_demo.v1
+scope=clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim
+tier=gpgpu_nano_ultra31
+queues=[0] shader_units=4
+sequence=1 queue=0 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch vector_add retired 1024 workgroups
+sequence=2 queue=0 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch gemm retired 4096 workgroups
+sequence=3 queue=0 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch conv2d retired 16384 workgroups
+sequence=4 queue=0 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch image_filter retired 32768 workgroups
+celviz_gpgpu_control_plane: pass
+summary commands=4 completed=4 failed=0 bytes_read=144 bytes_written=868480 completion_interrupts=4 error_interrupts=0
+runtime_summary commands=4 completed=4 failed=0 dry_run=True
+celviz_gpgpu_runtime_proxy: pass

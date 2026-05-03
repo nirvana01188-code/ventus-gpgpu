@@ -1,0 +1,45 @@
+{
+  "buffer_binds": "buffer_binds.json",
+  "completion_status": "complete",
+  "dispatch_aliases": {
+    "convolution_proxy": "conv",
+    "gemm_proxy": "gemm",
+    "image_filter": "image_filter",
+    "memory_copy": "memcpy",
+    "vector_add": "vadd"
+  },
+  "dispatch_plan": "dispatch_plan.json",
+  "golden_comparison": "pass",
+  "hashes": "hashes.json",
+  "kernel_count": 5,
+  "kernel_metrics": "kernel_metrics.json",
+  "kernels": {
+    "convolution_proxy": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+    "gemm_proxy": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+    "image_filter": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+    "memory_copy": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+    "vector_add": "f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022"
+  },
+  "monotonic_proxy_scaling": true,
+  "precision_modes": [
+    "fp32",
+    "fp16_proxy",
+    "byte"
+  ],
+  "queue_count": 2,
+  "queue_trace": "queue_trace.json",
+  "selected_device": {
+    "address_bits": 32,
+    "device_id": "celviz-micro-proxy",
+    "fp16_ops_per_cycle": 128,
+    "fp32_ops_per_cycle": 64,
+    "public_reference_tier": "CC8000",
+    "queue_count": 2,
+    "runtime_tier": "micro",
+    "shader_units_vec1": 32
+  },
+  "status": "pass",
+  "throughput_scaling_by_tier": true,
+  "throughput_tier_linkage": "throughput_tier_linkage.json",
+  "tier_scaling": "tier_scaling.json"
+}

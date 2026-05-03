@@ -1,0 +1,95 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "yosys": "/opt/homebrew/bin/yosys"
+      },
+      "name": "yosys_available",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "dut": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+        "size_bytes": 22598129
+      },
+      "name": "dut_verilog_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "error": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v:89: ERROR: syntax error, unexpected TOK_CONSTVAL",
+        "status": "fail"
+      },
+      "name": "raw_probe_executed",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "coverage_prefixes_removed": 97500,
+        "input": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+        "line_count": 253182,
+        "output": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v"
+      },
+      "name": "coverage_prefix_sanitizer_executed",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "error": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v:1042: ERROR: Invalid nesting of always blocks and/or initializations.",
+        "status": "fail"
+      },
+      "name": "sanitized_probe_executed",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "blocker_recorded": true,
+        "stat_metrics": {}
+      },
+      "name": "blocker_or_stat_recorded",
+      "pass": true
+    },
+    {
+      "name": "no_signoff_overclaim",
+      "pass": true
+    }
+  ],
+  "classification": "synthesis_probe_blocked_by_generated_verilog",
+  "clean_room_scope": "bounded clean-room Yosys synthesis probe evidence; records parse/synthesis tool behavior on available generated Verilog, but is not target-library logic synthesis, not STA, not power signoff, not DFT, not physical implementation, and not silicon readiness",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "inputs": {
+    "raw_dut": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+    "sanitized_dut": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v"
+  },
+  "raw_probe": {
+    "elapsed_s": 0.23,
+    "error_summary": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v:89: ERROR: syntax error, unexpected TOK_CONSTVAL",
+    "output_tail": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v:89: ERROR: syntax error, unexpected TOK_CONSTVAL\n",
+    "returncode": 1,
+    "status": "fail",
+    "timed_out": false
+  },
+  "sanitize": {
+    "coverage_prefixes_removed": 97500,
+    "input": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+    "line_count": 253182,
+    "output": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v"
+  },
+  "sanitized_probe": {
+    "elapsed_s": 0.722,
+    "error_summary": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v:1042: ERROR: Invalid nesting of always blocks and/or initializations.",
+    "output_tail": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v:1042: ERROR: Invalid nesting of always blocks and/or initializations.\n",
+    "returncode": 1,
+    "status": "fail",
+    "timed_out": false
+  },
+  "schema": "celviz.gpgpu.yosys_synthesis_probe.v1",
+  "stat_metrics": {},
+  "status": "pass",
+  "timeout_s": 60,
+  "tool": {
+    "version": "Yosys 0.64 (git sha1 d8dab5b32666564eca8e18f412973853ce006e61, clang++ 21.0.0 -fPIC -O3)",
+    "yosys": "/opt/homebrew/bin/yosys"
+  },
+  "top": "GPGPU_SimTop"
+}

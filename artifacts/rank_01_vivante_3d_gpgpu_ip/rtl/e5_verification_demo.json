@@ -1,0 +1,215 @@
+{
+  "clean_room_scope": "clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim",
+  "commands": [
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "reset",
+      "queue_id": 0,
+      "sequence": 1,
+      "submit_tag": "e5-boot-reset"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x90000000",
+      "dst_addr": "0x80000000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x01020304",
+      "queue_id": 0,
+      "sequence": 2,
+      "submit_tag": "e5-known-good-fill"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x90000020",
+      "dst_addr": "0x80001000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 3,
+      "src_addr": "0x80000000",
+      "submit_tag": "e5-known-good-copy"
+    },
+    {
+      "byte_count": 66,
+      "dst_addr": "0x80002000",
+      "expect_error": "ERR_BAD_DMA",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x0",
+      "queue_id": 0,
+      "sequence": 4,
+      "submit_tag": "e5-dma-fill-bad-alignment"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80003000",
+      "expect_error": "ERR_BAD_DMA",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 5,
+      "src_addr": "0x80000002",
+      "submit_tag": "e5-dma-copy-bad-address-alignment"
+    },
+    {
+      "byte_count": 512,
+      "dst_addr": "0x80004000",
+      "expect_error": "ERR_MMU_FAULT",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 6,
+      "src_addr": "0x8000ff00",
+      "submit_tag": "e5-dma-copy-bounds"
+    },
+    {
+      "byte_count": 32,
+      "dst_addr": "0x80005000",
+      "expect_error": "ERR_BAD_QUEUE",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0xffffffff",
+      "queue_id": 7,
+      "sequence": 7,
+      "submit_tag": "e5-invalid-queue-descriptor"
+    },
+    {
+      "expect_error": "ERR_UNSUPPORTED_OPCODE",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "vendor_private_packet",
+      "queue_id": 0,
+      "sequence": 8,
+      "submit_tag": "e5-unsupported-clean-room-descriptor"
+    },
+    {
+      "arg_buffer": "0x80000000",
+      "arg_bytes": 64,
+      "expect_error": "ERR_SCHEDULER_FAULT",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        1,
+        1,
+        1
+      ],
+      "kernel": "e5-oversized-local",
+      "kernel_entry": "0x80002000",
+      "local": [
+        1024,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 8,
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 9,
+      "sgpr_count": 8,
+      "shared_bytes": 256,
+      "submit_tag": "e5-invalid-dispatch-descriptor",
+      "vgpr_count": 16
+    },
+    {
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "reset",
+      "queue_id": 0,
+      "sequence": 10,
+      "submit_tag": "e5-post-fault-reset"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x90000040",
+      "dst_addr": "0x80006000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0xa5a55a5a",
+      "queue_id": 0,
+      "sequence": 11,
+      "submit_tag": "e5-post-reset-smoke-fill"
+    },
+    {
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "counter_snapshot",
+      "queue_id": 0,
+      "sequence": 12,
+      "submit_tag": "e5-final-counter-snapshot"
+    }
+  ],
+  "e5_verification_expectations": {
+    "axi_traffic": "good DMA commands create AXI read/write byte counters",
+    "command_submission": "all commands update queue tail/doorbell proxy counters before completion",
+    "dma_alignment_errors": [
+      4,
+      5
+    ],
+    "dma_bounds_errors": [
+      6
+    ],
+    "interrupts": "completion, recoverable fault, and interrupt clear events are observable",
+    "invalid_descriptors": [
+      4,
+      5,
+      7,
+      8,
+      9
+    ],
+    "reset_recovery": "sequence 10 clears sticky fault/interrupt state and sequence 11 proves post-reset work submission",
+    "throughput_tier_link": "tier gpgpu_nano_ultra31 maps to four proxy shader units"
+  },
+  "ip_name": "Celviz GPGPU IP",
+  "memory_regions": [
+    {
+      "base": "0x80000000",
+      "name": "global_a",
+      "readable": true,
+      "size": 65536,
+      "writable": true
+    },
+    {
+      "base": "0x90000000",
+      "name": "completion_records",
+      "readable": true,
+      "size": 4096,
+      "writable": true
+    }
+  ],
+  "queues": [
+    {
+      "base": "0x10000000",
+      "priority": 1,
+      "queue_id": 0,
+      "size_bytes": 4096
+    }
+  ],
+  "schema": "celviz.gpgpu.control_plane_demo.v1",
+  "tier": "gpgpu_nano_ultra31"
+}

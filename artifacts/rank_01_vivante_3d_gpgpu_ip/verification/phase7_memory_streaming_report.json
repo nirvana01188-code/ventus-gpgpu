@@ -1,0 +1,188 @@
+{
+  "checks": [
+    {
+      "name": "input_reports_pass",
+      "pass": true
+    },
+    {
+      "name": "all_required_kernels_projected",
+      "pass": true
+    },
+    {
+      "name": "stream_windows_present",
+      "pass": true
+    },
+    {
+      "name": "outstanding_slots_present",
+      "pass": true
+    },
+    {
+      "name": "alu_overlap_positive",
+      "pass": true
+    },
+    {
+      "name": "projected_scoreboard_wait_reduction_positive",
+      "pass": true
+    },
+    {
+      "name": "stream_uop_vocabulary_projected",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-7 decoupled memory streaming evidence derived from Celviz lowering and micro-op execution reports only; not a proprietary LSU/cache/bus implementation, not a timing or bandwidth signoff, and not a silicon performance claim",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "kernels": [
+    {
+      "address_uops": 3,
+      "alu_overlap_cycles": 32,
+      "alu_overlap_factor": 0.5,
+      "alu_uops": 1,
+      "baseline_scoreboard_wait_cycles": 35,
+      "basic_blocks": 13,
+      "cfg_edges": 12,
+      "kernel": "vector_add",
+      "load_uops": 3,
+      "loads": 64,
+      "memory_events": 96,
+      "model": "deterministic proxy from current lowering opcodes, micro-op memory counts, and compiler IR shape",
+      "outstanding_stream_slots": 2,
+      "prefetch_distance": 1,
+      "projected_scoreboard_wait_cycles": 30,
+      "projected_scoreboard_wait_reduction": 5,
+      "projected_scoreboard_wait_reduction_percent": 14.286,
+      "rationale": "two contiguous input streams can be issued one wave ahead of the add",
+      "source_execution_sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+      "source_lowering_sha256": "16ab59d5075e2bf5b0e25133df429244541e9b5ad4e1237a6a86f76b29296dc0",
+      "store_uops": 1,
+      "stores": 32,
+      "stream_load_coverage": 0.333333,
+      "stream_uop_vocabulary_projection": [
+        "uop_stream_open",
+        "uop_stream_load",
+        "uop_stream_wait",
+        "uop_stream_close"
+      ],
+      "stream_windows": 2,
+      "wavefront_size": 32,
+      "wavefronts": 32,
+      "work_items": 1024
+    },
+    {
+      "address_uops": 3,
+      "alu_overlap_cycles": 281,
+      "alu_overlap_factor": 0.78,
+      "alu_uops": 1,
+      "baseline_scoreboard_wait_cycles": 205,
+      "basic_blocks": 18,
+      "cfg_edges": 18,
+      "kernel": "gemm",
+      "load_uops": 3,
+      "loads": 240,
+      "memory_events": 260,
+      "model": "deterministic proxy from current lowering opcodes, micro-op memory counts, and compiler IR shape",
+      "outstanding_stream_slots": 4,
+      "prefetch_distance": 4,
+      "projected_scoreboard_wait_cycles": 77,
+      "projected_scoreboard_wait_reduction": 128,
+      "projected_scoreboard_wait_reduction_percent": 62.439,
+      "rationale": "A/B tile streams have reuse across inner-product MAD windows",
+      "source_execution_sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+      "source_lowering_sha256": "b35244d791816d9404d88c9b5f259edaee4bfd28974b54c5de73148f28c342d8",
+      "store_uops": 1,
+      "stores": 20,
+      "stream_load_coverage": 1.0,
+      "stream_uop_vocabulary_projection": [
+        "uop_stream_open",
+        "uop_stream_load",
+        "uop_stream_wait",
+        "uop_stream_close"
+      ],
+      "stream_windows": 5,
+      "wavefront_size": 32,
+      "wavefronts": 128,
+      "work_items": 4096
+    },
+    {
+      "address_uops": 3,
+      "alu_overlap_cycles": 664,
+      "alu_overlap_factor": 0.82,
+      "alu_uops": 1,
+      "baseline_scoreboard_wait_cycles": 546,
+      "basic_blocks": 17,
+      "cfg_edges": 17,
+      "kernel": "conv2d",
+      "load_uops": 3,
+      "loads": 450,
+      "memory_events": 475,
+      "model": "deterministic proxy from current lowering opcodes, micro-op memory counts, and compiler IR shape",
+      "outstanding_stream_slots": 4,
+      "prefetch_distance": 5,
+      "projected_scoreboard_wait_cycles": 143,
+      "projected_scoreboard_wait_reduction": 403,
+      "projected_scoreboard_wait_reduction_percent": 73.81,
+      "rationale": "overlapping 3x3 filter windows expose load lookahead around MAD work",
+      "source_execution_sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+      "source_lowering_sha256": "465b1f9195adfb87518c6af1ec138c05220978b591747f5b5d1fead5bde31654",
+      "store_uops": 1,
+      "stores": 25,
+      "stream_load_coverage": 1.0,
+      "stream_uop_vocabulary_projection": [
+        "uop_stream_open",
+        "uop_stream_load",
+        "uop_stream_wait",
+        "uop_stream_close"
+      ],
+      "stream_windows": 6,
+      "wavefront_size": 32,
+      "wavefronts": 512,
+      "work_items": 16384
+    },
+    {
+      "address_uops": 2,
+      "alu_overlap_cycles": 360,
+      "alu_overlap_factor": 0.62,
+      "alu_uops": 1,
+      "baseline_scoreboard_wait_cycles": 727,
+      "basic_blocks": 15,
+      "cfg_edges": 14,
+      "kernel": "image_filter",
+      "load_uops": 2,
+      "loads": 484,
+      "memory_events": 548,
+      "model": "deterministic proxy from current lowering opcodes, micro-op memory counts, and compiler IR shape",
+      "outstanding_stream_slots": 3,
+      "prefetch_distance": 2,
+      "projected_scoreboard_wait_cycles": 502,
+      "projected_scoreboard_wait_reduction": 225,
+      "projected_scoreboard_wait_reduction_percent": 30.949,
+      "rationale": "packed image lanes allow load/unpack overlap before clamp and store",
+      "source_execution_sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+      "source_lowering_sha256": "6da6af4209636f9617a5ab4d6cfb5ca6f095da61615edfcb7be70d19b3db82d6",
+      "store_uops": 1,
+      "stores": 64,
+      "stream_load_coverage": 1.0,
+      "stream_uop_vocabulary_projection": [
+        "uop_stream_open",
+        "uop_stream_load",
+        "uop_stream_wait",
+        "uop_stream_close"
+      ],
+      "stream_windows": 4,
+      "wavefront_size": 32,
+      "wavefronts": 1024,
+      "work_items": 32768
+    }
+  ],
+  "schema": "celviz.gpgpu.phase7_memory_streaming.v1",
+  "status": "pass",
+  "summary": {
+    "baseline_scoreboard_wait_cycles": 1513,
+    "kernel_count": 4,
+    "projected_scoreboard_wait_cycles": 752,
+    "projected_scoreboard_wait_reduction": 761,
+    "projected_scoreboard_wait_reduction_percent": 50.297,
+    "total_alu_overlap_cycles": 1337,
+    "total_outstanding_stream_slots": 13,
+    "total_stream_windows": 17
+  }
+}

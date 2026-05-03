@@ -1,0 +1,1833 @@
+{
+  "checks": [
+    {
+      "name": "rtl_sources_present",
+      "pass": true
+    },
+    {
+      "name": "celviz_markers_present",
+      "pass": true
+    },
+    {
+      "name": "public_baseline_tiers_present",
+      "pass": true
+    },
+    {
+      "name": "proxy_metrics_generated",
+      "pass": true
+    },
+    {
+      "name": "limitations_declared",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room synthesis/PPA proxy evidence for the Ventus-based Celviz GPGPU IP only; not a physical synthesis report, STA/timing closure, power signoff, licensed Vivante collateral review, or silicon/tapeout readiness claim",
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "limitations": [
+    "No claim of completed logic synthesis, physical implementation, STA, CDC, DFT, or power signoff.",
+    "Public CC8000L/CC8000 tier rows are used only as clean-room proxy comparison points.",
+    "Proxy indices are deterministic engineering evidence, not MHz, mm^2, mW, or TOPS measurements."
+  ],
+  "proxy_metrics": {
+    "activity_proxy_index": 0.022334,
+    "area_proxy_units": 39820,
+    "claim_boundary": "dimensionless proxy metrics; not synthesized area/frequency/power",
+    "control_complexity_index": 516,
+    "frequency_proxy_index": 41.091,
+    "power_proxy_index": 0.044668,
+    "proxy_formula_version": "source-count-v1"
+  },
+  "public_baseline_tiers": [
+    {
+      "comparison_scope": "public tier proxy only; not measured local RTL PPA",
+      "fp16_ops_per_cycle_public_proxy": 64,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp32_ops_per_cycle_public_proxy": 32,
+      "fp32_ops_per_shader_unit": 2.0,
+      "shader_units_vec1": 16,
+      "tier": "CC8000L"
+    },
+    {
+      "comparison_scope": "public tier proxy only; not measured local RTL PPA",
+      "fp16_ops_per_cycle_public_proxy": 128,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp32_ops_per_cycle_public_proxy": 64,
+      "fp32_ops_per_shader_unit": 2.0,
+      "shader_units_vec1": 32,
+      "tier": "CC8000"
+    }
+  ],
+  "schema": "celviz.gpgpu.ppa_proxy.v1",
+  "source_files": [
+    {
+      "bytes": 16974,
+      "lines": 485,
+      "marker_hit_count": 58,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 58,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 423,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/celviz_gpgpu_runtime_proxy.h"
+    },
+    {
+      "bytes": 10346,
+      "lines": 261,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 245,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/cmdarg.cpp"
+    },
+    {
+      "bytes": 5673,
+      "lines": 119,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 108,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/cta_sche_wrapper.cpp"
+    },
+    {
+      "bytes": 893,
+      "lines": 33,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 25,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/cta_sche_wrapper.hpp"
+    },
+    {
+      "bytes": 35194,
+      "lines": 761,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 716,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvm.cpp"
+    },
+    {
+      "bytes": 1720,
+      "lines": 60,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 50,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvm.hpp"
+    },
+    {
+      "bytes": 4429,
+      "lines": 104,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 95,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvm_care_insns.cpp"
+    },
+    {
+      "bytes": 5145,
+      "lines": 138,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 127,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvm_dpic.cpp"
+    },
+    {
+      "bytes": 2077,
+      "lines": 59,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 56,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvm_dpic.hpp"
+    },
+    {
+      "bytes": 446,
+      "lines": 14,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 13,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvm_global_var.cpp"
+    },
+    {
+      "bytes": 2056,
+      "lines": 80,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 75,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvm_global_var.hpp"
+    },
+    {
+      "bytes": 12,
+      "lines": 1,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 1,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvm_macro.h"
+    },
+    {
+      "bytes": 2502,
+      "lines": 93,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 81,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvm_structs.hpp"
+    },
+    {
+      "bytes": 4397,
+      "lines": 103,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 88,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/gvmref_interface.h"
+    },
+    {
+      "bytes": 7694,
+      "lines": 252,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 220,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/kernel.cpp"
+    },
+    {
+      "bytes": 3787,
+      "lines": 98,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 81,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/kernel.hpp"
+    },
+    {
+      "bytes": 3906,
+      "lines": 107,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 101,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/physical_mem.cpp"
+    },
+    {
+      "bytes": 949,
+      "lines": 32,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 26,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/physical_mem.hpp"
+    },
+    {
+      "bytes": 5229,
+      "lines": 144,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 129,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/sim_main.cpp"
+    },
+    {
+      "bytes": 46007,
+      "lines": 1189,
+      "marker_hit_count": 61,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 61,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 1084,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/ventus_rtlsim.cpp"
+    },
+    {
+      "bytes": 8119,
+      "lines": 187,
+      "marker_hit_count": 1,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 1,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 159,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/ventus_rtlsim.h"
+    },
+    {
+      "bytes": 20816,
+      "lines": 589,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 531,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/ventus_rtlsim_impl.cpp"
+    },
+    {
+      "bytes": 1538,
+      "lines": 53,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 45,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/sim-verilator/ventus_rtlsim_impl.hpp"
+    },
+    {
+      "bytes": 11008,
+      "lines": 341,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 326,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/GvmDutApi.scala"
+    },
+    {
+      "bytes": 7920,
+      "lines": 229,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 205,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/AtomicUnit/AtomicUnit.scala"
+    },
+    {
+      "bytes": 49079,
+      "lines": 946,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 852,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/DCache/DCache.scala"
+    },
+    {
+      "bytes": 2702,
+      "lines": 68,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 61,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/DCache/DCacheParameters.scala"
+    },
+    {
+      "bytes": 1920,
+      "lines": 51,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 45,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/DCache/DCacheWSHR.scala"
+    },
+    {
+      "bytes": 13570,
+      "lines": 277,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 243,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/ICache/ICache.scala"
+    },
+    {
+      "bytes": 10501,
+      "lines": 229,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 198,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/ICache/ICacheMSHR.scala"
+    },
+    {
+      "bytes": 1643,
+      "lines": 43,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 36,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/ICache/ICacheParameters.scala"
+    },
+    {
+      "bytes": 2306,
+      "lines": 49,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 44,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/L1Cache2L2Arbiter.scala"
+    },
+    {
+      "bytes": 2867,
+      "lines": 72,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 58,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/L1CacheParameters.scala"
+    },
+    {
+      "bytes": 3772,
+      "lines": 106,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 90,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/L1CacheTest.scala"
+    },
+    {
+      "bytes": 4143,
+      "lines": 112,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 101,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/L1Interfaces.scala"
+    },
+    {
+      "bytes": 17632,
+      "lines": 367,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 338,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/L1MSHR.scala"
+    },
+    {
+      "bytes": 27222,
+      "lines": 522,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 471,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/L1TagAccess.scala"
+    },
+    {
+      "bytes": 1920,
+      "lines": 59,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 49,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/RVGParameter.scala"
+    },
+    {
+      "bytes": 8326,
+      "lines": 194,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 177,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/ShareMem/BankConflictArbiter.scala"
+    },
+    {
+      "bytes": 9494,
+      "lines": 195,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 178,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/ShareMem/ShareMem.scala"
+    },
+    {
+      "bytes": 2241,
+      "lines": 54,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 45,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L1Cache/ShareMem/ShareMemParameters.scala"
+    },
+    {
+      "bytes": 5403,
+      "lines": 118,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 96,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/BankedStore.scala"
+    },
+    {
+      "bytes": 1954,
+      "lines": 40,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 35,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/Configs.scala"
+    },
+    {
+      "bytes": 13152,
+      "lines": 312,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 246,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/Directory_test.scala"
+    },
+    {
+      "bytes": 1002,
+      "lines": 23,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 20,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/Hold.scala"
+    },
+    {
+      "bytes": 5256,
+      "lines": 122,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 105,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/ListBuffer.scala"
+    },
+    {
+      "bytes": 4960,
+      "lines": 150,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 123,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/MSHR.scala"
+    },
+    {
+      "bytes": 16476,
+      "lines": 432,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 377,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/Parameters.scala"
+    },
+    {
+      "bytes": 2282,
+      "lines": 65,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 56,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/QueuedRequest.scala"
+    },
+    {
+      "bytes": 6470,
+      "lines": 167,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 140,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/SRAMTemplate.scala"
+    },
+    {
+      "bytes": 13584,
+      "lines": 290,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 198,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/Scheduler.scala"
+    },
+    {
+      "bytes": 4666,
+      "lines": 111,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 95,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/SinkA.scala"
+    },
+    {
+      "bytes": 3378,
+      "lines": 79,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 68,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/SinkD.scala"
+    },
+    {
+      "bytes": 1937,
+      "lines": 55,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 44,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/SourceA.scala"
+    },
+    {
+      "bytes": 11269,
+      "lines": 281,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 245,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/L2cache/SourceD.scala"
+    },
+    {
+      "bytes": 1000,
+      "lines": 24,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 20,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/SRAMTemplate/Hold.scala"
+    },
+    {
+      "bytes": 1012,
+      "lines": 27,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 24,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/SRAMTemplate/LFSR64.scala"
+    },
+    {
+      "bytes": 6430,
+      "lines": 166,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 139,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/SRAMTemplate/SRAMTemplate.scala"
+    },
+    {
+      "bytes": 8264,
+      "lines": 178,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 155,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/axi/AXI4Adapter.scala"
+    },
+    {
+      "bytes": 3302,
+      "lines": 129,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 115,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/axi/AXI4Lite.scala"
+    },
+    {
+      "bytes": 19141,
+      "lines": 500,
+      "marker_hit_count": 34,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 12,
+        "completionCountReg": 4,
+        "errorStatusReg": 15,
+        "irqPendingReg": 3
+      },
+      "nonblank_lines": 459,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/axi/AXI4Lite2CTA.scala"
+    },
+    {
+      "bytes": 7808,
+      "lines": 212,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 184,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/config/config.scala"
+    },
+    {
+      "bytes": 18831,
+      "lines": 383,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 339,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/cta/allocator.scala"
+    },
+    {
+      "bytes": 14275,
+      "lines": 283,
+      "marker_hit_count": 42,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 42,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 261,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/cta/cta_scheduler.scala"
+    },
+    {
+      "bytes": 12010,
+      "lines": 237,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 211,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/cta/cu_interface.scala"
+    },
+    {
+      "bytes": 45184,
+      "lines": 877,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 816,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/cta/resource_table.scala"
+    },
+    {
+      "bytes": 7934,
+      "lines": 220,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 195,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/cta/utils.scala"
+    },
+    {
+      "bytes": 9565,
+      "lines": 177,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 149,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/cta/wg_buffer.scala"
+    },
+    {
+      "bytes": 1663,
+      "lines": 43,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 38,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/mmu/AsidLookup.scala"
+    },
+    {
+      "bytes": 6025,
+      "lines": 208,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 187,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/mmu/L1TLB.scala"
+    },
+    {
+      "bytes": 24977,
+      "lines": 620,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 572,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/mmu/L2TLB.scala"
+    },
+    {
+      "bytes": 9902,
+      "lines": 283,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 255,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/mmu/PTW.scala"
+    },
+    {
+      "bytes": 4021,
+      "lines": 118,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 106,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/ALU.scala"
+    },
+    {
+      "bytes": 14405,
+      "lines": 372,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 337,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/CSR.scala"
+    },
+    {
+      "bytes": 4415,
+      "lines": 79,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 73,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/CTA2warp.scala"
+    },
+    {
+      "bytes": 2338,
+      "lines": 64,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 54,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/Classify.scala"
+    },
+    {
+      "bytes": 44319,
+      "lines": 630,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 589,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/DecodeUnit.scala"
+    },
+    {
+      "bytes": 13162,
+      "lines": 355,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 317,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/FloatDivSqrt.scala"
+    },
+    {
+      "bytes": 45350,
+      "lines": 638,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 635,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/Instructions.scala"
+    },
+    {
+      "bytes": 5138,
+      "lines": 136,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 126,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/IntDivMod.scala"
+    },
+    {
+      "bytes": 36615,
+      "lines": 843,
+      "marker_hit_count": 89,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 89,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 799,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/LSU.scala"
+    },
+    {
+      "bytes": 5061,
+      "lines": 109,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 102,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/MSHR.scala"
+    },
+    {
+      "bytes": 7170,
+      "lines": 211,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 181,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/Multiplier.scala"
+    },
+    {
+      "bytes": 2231,
+      "lines": 61,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 58,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/PCcontrol.scala"
+    },
+    {
+      "bytes": 21178,
+      "lines": 539,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 493,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/SIMT_STACK.scala"
+    },
+    {
+      "bytes": 11247,
+      "lines": 266,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 242,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/branch_join.scala"
+    },
+    {
+      "bytes": 37127,
+      "lines": 945,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 875,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/execution.scala"
+    },
+    {
+      "bytes": 9786,
+      "lines": 312,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 290,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/fpu_utils.scala"
+    },
+    {
+      "bytes": 8836,
+      "lines": 227,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 211,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/ibuffer.scala"
+    },
+    {
+      "bytes": 21608,
+      "lines": 564,
+      "marker_hit_count": 48,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 48,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 532,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/issue.scala"
+    },
+    {
+      "bytes": 4199,
+      "lines": 120,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 104,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/mul_utils.scala"
+    },
+    {
+      "bytes": 28380,
+      "lines": 673,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 624,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/operandCollector.scala"
+    },
+    {
+      "bytes": 22828,
+      "lines": 488,
+      "marker_hit_count": 27,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 27,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 444,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/pipe.scala"
+    },
+    {
+      "bytes": 4743,
+      "lines": 116,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 106,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/regfile.scala"
+    },
+    {
+      "bytes": 11040,
+      "lines": 260,
+      "marker_hit_count": 46,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 46,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 254,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/scoreboard.scala"
+    },
+    {
+      "bytes": 19469,
+      "lines": 377,
+      "marker_hit_count": 45,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 45,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 343,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/warp_schedule.scala"
+    },
+    {
+      "bytes": 5271,
+      "lines": 108,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 105,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/pipeline/writeback.scala"
+    },
+    {
+      "bytes": 2208,
+      "lines": 41,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 36,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/ExtMem_gen.scala"
+    },
+    {
+      "bytes": 4666,
+      "lines": 115,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 101,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/ExternalMemModel.scala"
+    },
+    {
+      "bytes": 6971,
+      "lines": 166,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 160,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/FakeCache.scala"
+    },
+    {
+      "bytes": 1827,
+      "lines": 42,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 38,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/GPGPU_ExtMemWrapper.scala"
+    },
+    {
+      "bytes": 3772,
+      "lines": 115,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 101,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/GPGPU_SimWrapper.scala"
+    },
+    {
+      "bytes": 40689,
+      "lines": 774,
+      "marker_hit_count": 49,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 2,
+        "celviz_debug": 47,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 723,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/GPGPU_top.scala"
+    },
+    {
+      "bytes": 5055,
+      "lines": 118,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 103,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/GPGPU_top_nocache.scala"
+    },
+    {
+      "bytes": 8651,
+      "lines": 232,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 215,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/MemBox.scala"
+    },
+    {
+      "bytes": 4161,
+      "lines": 121,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 103,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/Mem_SimWrapper.scala"
+    },
+    {
+      "bytes": 11240,
+      "lines": 339,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 268,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/parameters.scala"
+    },
+    {
+      "bytes": 205,
+      "lines": 11,
+      "marker_hit_count": 0,
+      "marker_hits": {
+        "CelvizGPGPUDebug": 0,
+        "celviz_debug": 0,
+        "celviz_gpgpu_runtime_proxy": 0,
+        "commandDoorbellReg": 0,
+        "completionCountReg": 0,
+        "errorStatusReg": 0,
+        "irqPendingReg": 0
+      },
+      "nonblank_lines": 9,
+      "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/ventus/src/top/utils.scala"
+    }
+  ],
+  "source_summary": {
+    "bytes": 1136669,
+    "file_count": 108,
+    "lines": 26373,
+    "marker_hit_count": 500,
+    "marker_hits": {
+      "CelvizGPGPUDebug": 2,
+      "celviz_debug": 344,
+      "celviz_gpgpu_runtime_proxy": 120,
+      "commandDoorbellReg": 12,
+      "completionCountReg": 4,
+      "errorStatusReg": 15,
+      "irqPendingReg": 3
+    },
+    "nonblank_lines": 23820
+  },
+  "status": "pass",
+  "tool_availability": {
+    "sbt": {
+      "available": false,
+      "path": null,
+      "tool": "sbt"
+    },
+    "verilator": {
+      "available": true,
+      "exit_code": 0,
+      "path": "/opt/homebrew/bin/verilator",
+      "tool": "verilator",
+      "version_output": [
+        "Verilator 5.048 2026-04-26 rev vUNKNOWN-built20260426"
+      ]
+    },
+    "yosys": {
+      "available": true,
+      "exit_code": 0,
+      "path": "/opt/homebrew/bin/yosys",
+      "tool": "yosys",
+      "version_output": [
+        "Yosys 0.64 (git sha1 d8dab5b32666564eca8e18f412973853ce006e61, clang++ 21.0.0 -fPIC -O3)"
+      ]
+    }
+  }
+}

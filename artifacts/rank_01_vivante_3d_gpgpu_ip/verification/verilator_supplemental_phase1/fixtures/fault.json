@@ -1,0 +1,200 @@
+{
+  "clean_room_scope": "supplemental clean-room Verilator structural-coverage uplift fixtures; fast gate uses the control-plane simulator and does not claim RTL line, toggle, branch, silicon signoff, timing closure, proprietary Vivante command-stream compatibility, driver ABI compatibility, or conformance",
+  "commands": [
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "reset",
+      "queue_id": 0,
+      "sequence": 1,
+      "submit_tag": "fault-reset"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80001000",
+      "expect_error": "ERR_BAD_DMA",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 2,
+      "src_addr": "0x80000002",
+      "submit_tag": "fault-dma-align"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80001000",
+      "expect_error": "ERR_MMU_FAULT",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "INJECT_MMU_FAULT"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 3,
+      "src_addr": "0xdead0000",
+      "submit_tag": "fault-dma-mmu"
+    },
+    {
+      "arg_buffer": "0x80002000",
+      "arg_bytes": 64,
+      "expect_error": "ERR_SCHEDULER_FAULT",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "grid": [
+        1,
+        1,
+        1
+      ],
+      "kernel": "oversized_local",
+      "kernel_entry": "0x80020000",
+      "local": [
+        1024,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "queue_id": 1,
+      "required_fp_mode": "fp32",
+      "sequence": 4,
+      "submit_tag": "fault-scheduler"
+    },
+    {
+      "arg_buffer": "0x81200000",
+      "arg_bytes": 128,
+      "expect_error": "ERR_MMU_FAULT",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "grid": [
+        1,
+        1,
+        1
+      ],
+      "kernel": "bad_arg",
+      "kernel_entry": "0x80020040",
+      "local": [
+        32,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "queue_id": 1,
+      "required_fp_mode": "fp32",
+      "sequence": 5,
+      "submit_tag": "fault-kernel-arg-mmu"
+    },
+    {
+      "expect_error": "ERR_FENCE_WAIT",
+      "fence": "never",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_wait",
+      "queue_id": 2,
+      "sequence": 6,
+      "submit_tag": "fault-fence-timeout",
+      "timeout_cycles": 2,
+      "value": 1
+    },
+    {
+      "expect_error": "ERR_UNSUPPORTED_OPCODE",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "undefined_opcode",
+      "queue_id": 2,
+      "sequence": 7,
+      "submit_tag": "fault-unsupported"
+    },
+    {
+      "expect_error": "ERR_BAD_QUEUE",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "nop",
+      "queue_id": 7,
+      "sequence": 8,
+      "submit_tag": "fault-bad-queue"
+    },
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "reset",
+      "queue_id": 0,
+      "sequence": 9,
+      "submit_tag": "fault-recovery-reset"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x90002000",
+      "dst_addr": "0x80000000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x00000000",
+      "queue_id": 0,
+      "sequence": 10,
+      "submit_tag": "fault-post-reset-smoke"
+    }
+  ],
+  "ip_name": "Celviz GPGPU IP",
+  "memory_regions": [
+    {
+      "base": "0x80000000",
+      "name": "global_a",
+      "readable": true,
+      "size": 262144,
+      "writable": true
+    },
+    {
+      "base": "0x81000000",
+      "name": "global_ro",
+      "readable": true,
+      "size": 65536,
+      "writable": false
+    },
+    {
+      "base": "0x90000000",
+      "name": "completion_records",
+      "readable": true,
+      "size": 65536,
+      "writable": true
+    }
+  ],
+  "phase1_fixture": "fault_injection",
+  "queues": [
+    {
+      "base": "0x10000000",
+      "priority": 3,
+      "queue_id": 0,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10001000",
+      "priority": 2,
+      "queue_id": 1,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10002000",
+      "priority": 1,
+      "queue_id": 2,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10003000",
+      "priority": 0,
+      "queue_id": 3,
+      "size_bytes": 4096
+    }
+  ],
+  "schema": "celviz.gpgpu.control_plane_demo.v1",
+  "tier": "gpgpu_nano_ultra31"
+}

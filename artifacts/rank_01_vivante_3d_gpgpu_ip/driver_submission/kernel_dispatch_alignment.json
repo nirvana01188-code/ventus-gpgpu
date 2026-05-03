@@ -1,0 +1,159 @@
+{
+  "aligned": true,
+  "driver_submission_count": 4,
+  "driver_submissions": [
+    {
+      "grid": [
+        1024,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 1,
+      "submit_tag": "opencl-subset-vector_add"
+    },
+    {
+      "grid": [
+        64,
+        64,
+        1
+      ],
+      "kernel": "gemm",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 2,
+      "submit_tag": "opencl-subset-gemm"
+    },
+    {
+      "grid": [
+        128,
+        128,
+        1
+      ],
+      "kernel": "conv2d",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 3,
+      "submit_tag": "opencl-subset-conv2d"
+    },
+    {
+      "grid": [
+        256,
+        128,
+        1
+      ],
+      "kernel": "image_filter",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 4,
+      "submit_tag": "opencl-subset-image_filter"
+    }
+  ],
+  "extra_in_driver": [],
+  "missing_in_driver": [],
+  "runtime_dispatch_count": 4,
+  "runtime_dispatches": [
+    {
+      "arg_buffer": "0x80010000",
+      "arg_bytes": 32,
+      "grid": [
+        1024,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "metadata_name": "vector_add",
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 1,
+      "submit_tag": "opencl-subset-vector_add"
+    },
+    {
+      "arg_buffer": "0x80020000",
+      "arg_bytes": 48,
+      "grid": [
+        64,
+        64,
+        1
+      ],
+      "kernel": "gemm",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "metadata_name": "gemm",
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 2,
+      "submit_tag": "opencl-subset-gemm"
+    },
+    {
+      "arg_buffer": "0x80030000",
+      "arg_bytes": 32,
+      "grid": [
+        128,
+        128,
+        1
+      ],
+      "kernel": "conv2d",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "metadata_name": "conv2d",
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 3,
+      "submit_tag": "opencl-subset-conv2d"
+    },
+    {
+      "arg_buffer": "0x80040000",
+      "arg_bytes": 32,
+      "grid": [
+        256,
+        128,
+        1
+      ],
+      "kernel": "image_filter",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "metadata_name": "image_filter",
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 4,
+      "submit_tag": "opencl-subset-image_filter"
+    }
+  ]
+}

@@ -1,0 +1,619 @@
+{
+  "clean_room_scope": "supplemental clean-room Verilator structural-coverage uplift fixtures; fast gate uses the control-plane simulator and does not claim RTL line, toggle, branch, silicon signoff, timing closure, proprietary Vivante command-stream compatibility, driver ABI compatibility, or conformance",
+  "commands": [
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "reset",
+      "queue_id": 0,
+      "sequence": 1,
+      "submit_tag": "random-reset"
+    },
+    {
+      "fence": "rfence_2",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 3,
+      "sequence": 2,
+      "submit_tag": "random-fence_signal-2",
+      "value": 1
+    },
+    {
+      "fence": "rfence_3",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 3,
+      "submit_tag": "random-fence_signal-3",
+      "value": 1
+    },
+    {
+      "fence": "rfence_3",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_wait",
+      "queue_id": 2,
+      "sequence": 4,
+      "submit_tag": "random-fence_wait-4",
+      "timeout_cycles": 256,
+      "value": 1
+    },
+    {
+      "fence": "rfence_2",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 5,
+      "submit_tag": "random-fence_wait-5",
+      "timeout_cycles": 256,
+      "value": 1
+    },
+    {
+      "byte_count": 512,
+      "completion_addr": "0x900010c0",
+      "dst_addr": "0x80009600",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 6,
+      "src_addr": "0x80005600",
+      "submit_tag": "random-dma_copy-6"
+    },
+    {
+      "byte_count": 512,
+      "dst_addr": "0x80007600",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x8117e04f",
+      "queue_id": 1,
+      "sequence": 7,
+      "submit_tag": "random-dma_fill-7"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x90001100",
+      "dst_addr": "0x80009c00",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "host_to_device",
+      "queue_id": 0,
+      "sequence": 8,
+      "submit_tag": "random-host_to_device-8"
+    },
+    {
+      "byte_count": 128,
+      "flags": [],
+      "opcode": "device_to_host",
+      "queue_id": 1,
+      "sequence": 9,
+      "src_addr": "0x8000ba80",
+      "submit_tag": "random-device_to_host-9"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x90001140",
+      "flags": [
+        "CAPTURE_COUNTERS",
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "device_to_host",
+      "queue_id": 3,
+      "sequence": 10,
+      "src_addr": "0x8000aa00",
+      "submit_tag": "random-device_to_host-10"
+    },
+    {
+      "flags": [],
+      "opcode": "counter_snapshot",
+      "queue_id": 2,
+      "sequence": 11,
+      "submit_tag": "random-counter_snapshot-11"
+    },
+    {
+      "byte_count": 512,
+      "completion_addr": "0x90001180",
+      "dst_addr": "0x8000a000",
+      "flags": [
+        "CAPTURE_COUNTERS",
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 12,
+      "src_addr": "0x80006000",
+      "submit_tag": "random-dma_copy-12"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x900011a0",
+      "flags": [
+        "CAPTURE_COUNTERS",
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "device_to_host",
+      "queue_id": 3,
+      "sequence": 13,
+      "src_addr": "0x8000b100",
+      "submit_tag": "random-device_to_host-13"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x900011c0",
+      "dst_addr": "0x80009200",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "host_to_device",
+      "queue_id": 3,
+      "sequence": 14,
+      "submit_tag": "random-host_to_device-14"
+    },
+    {
+      "fence": "rfence_15",
+      "flags": [],
+      "opcode": "fence_signal",
+      "queue_id": 3,
+      "sequence": 15,
+      "submit_tag": "random-fence_signal-15",
+      "value": 1
+    },
+    {
+      "byte_count": 512,
+      "dst_addr": "0x80008a00",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 16,
+      "src_addr": "0x80004a00",
+      "submit_tag": "random-dma_copy-16"
+    },
+    {
+      "fence": "rfence_2",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_wait",
+      "queue_id": 0,
+      "sequence": 17,
+      "submit_tag": "random-fence_wait-17",
+      "timeout_cycles": 64,
+      "value": 1
+    },
+    {
+      "fence": "rfence_18",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 3,
+      "sequence": 18,
+      "submit_tag": "random-fence_signal-18",
+      "value": 1
+    },
+    {
+      "byte_count": 32,
+      "completion_addr": "0x90001260",
+      "flags": [
+        "CAPTURE_COUNTERS",
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "device_to_host",
+      "queue_id": 2,
+      "sequence": 19,
+      "src_addr": "0x8000b980",
+      "submit_tag": "random-device_to_host-19"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80008100",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 20,
+      "src_addr": "0x80004100",
+      "submit_tag": "random-dma_copy-20"
+    },
+    {
+      "byte_count": 128,
+      "flags": [],
+      "opcode": "device_to_host",
+      "queue_id": 2,
+      "sequence": 21,
+      "src_addr": "0x80009e00",
+      "submit_tag": "random-device_to_host-21"
+    },
+    {
+      "flags": [],
+      "opcode": "counter_snapshot",
+      "queue_id": 1,
+      "sequence": 22,
+      "submit_tag": "random-counter_snapshot-22"
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x900012e0",
+      "dst_addr": "0x8000b680",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "host_to_device",
+      "queue_id": 3,
+      "sequence": 23,
+      "submit_tag": "random-host_to_device-23"
+    },
+    {
+      "arg_buffer": "0x80002180",
+      "arg_bytes": 96,
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "grid": [
+        2,
+        1,
+        1
+      ],
+      "kernel": "image_filter",
+      "kernel_entry": "0x80010600",
+      "local": [
+        8,
+        8,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 12,
+      "queue_id": 0,
+      "required_fp_mode": "fp16",
+      "sequence": 24,
+      "shared_bytes": 2048,
+      "submit_tag": "random-kernel_dispatch-24"
+    },
+    {
+      "fence": "rfence_25",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 2,
+      "sequence": 25,
+      "submit_tag": "random-fence_signal-25",
+      "value": 1
+    },
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "nop",
+      "queue_id": 3,
+      "sequence": 26,
+      "submit_tag": "random-nop-26"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80004500",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0xf3d7a2b9",
+      "queue_id": 3,
+      "sequence": 27,
+      "submit_tag": "random-dma_fill-27"
+    },
+    {
+      "byte_count": 32,
+      "dst_addr": "0x80009d80",
+      "flags": [],
+      "opcode": "host_to_device",
+      "queue_id": 0,
+      "sequence": 28,
+      "submit_tag": "random-host_to_device-28"
+    },
+    {
+      "fence": "rfence_29",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 2,
+      "sequence": 29,
+      "submit_tag": "random-fence_signal-29",
+      "value": 1
+    },
+    {
+      "flags": [],
+      "opcode": "barrier",
+      "queue_id": 3,
+      "sequence": 30,
+      "submit_tag": "random-barrier-30"
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x900013e0",
+      "dst_addr": "0x8000ac00",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "host_to_device",
+      "queue_id": 1,
+      "sequence": 31,
+      "submit_tag": "random-host_to_device-31"
+    },
+    {
+      "arg_buffer": "0x80003d00",
+      "arg_bytes": 96,
+      "completion_addr": "0x90001400",
+      "flags": [
+        "CAPTURE_COUNTERS",
+        "INT_ON_COMPLETE"
+      ],
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "kernel_entry": "0x80010800",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 2,
+      "required_fp_mode": "fp32",
+      "sequence": 32,
+      "shared_bytes": 512,
+      "submit_tag": "random-kernel_dispatch-32"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x90001420",
+      "dst_addr": "0x80007600",
+      "flags": [
+        "CAPTURE_COUNTERS",
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x65202288",
+      "queue_id": 2,
+      "sequence": 33,
+      "submit_tag": "random-dma_fill-33"
+    },
+    {
+      "fence": "rfence_34",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 2,
+      "sequence": 34,
+      "submit_tag": "random-fence_signal-34",
+      "value": 1
+    },
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "nop",
+      "queue_id": 3,
+      "sequence": 35,
+      "submit_tag": "random-nop-35"
+    },
+    {
+      "fence": "rfence_36",
+      "flags": [],
+      "opcode": "fence_signal",
+      "queue_id": 3,
+      "sequence": 36,
+      "submit_tag": "random-fence_signal-36",
+      "value": 1
+    },
+    {
+      "fence": "rfence_25",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 37,
+      "submit_tag": "random-fence_wait-37",
+      "timeout_cycles": 16,
+      "value": 1
+    },
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "nop",
+      "queue_id": 0,
+      "sequence": 38,
+      "submit_tag": "random-nop-38"
+    },
+    {
+      "fence": "rfence_29",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 39,
+      "submit_tag": "random-fence_wait-39",
+      "timeout_cycles": 16,
+      "value": 1
+    },
+    {
+      "completion_addr": "0x90001500",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "counter_snapshot",
+      "queue_id": 2,
+      "sequence": 40,
+      "submit_tag": "random-counter_snapshot-40"
+    },
+    {
+      "fence": "rfence_41",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 1,
+      "sequence": 41,
+      "submit_tag": "random-fence_signal-41",
+      "value": 1
+    },
+    {
+      "byte_count": 512,
+      "completion_addr": "0x90001540",
+      "dst_addr": "0x80005d00",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 42,
+      "src_addr": "0x80001d00",
+      "submit_tag": "random-dma_copy-42"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80007100",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x48dee17d",
+      "queue_id": 1,
+      "sequence": 43,
+      "submit_tag": "random-dma_fill-43"
+    },
+    {
+      "fence": "rfence_44",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 1,
+      "sequence": 44,
+      "submit_tag": "random-fence_signal-44",
+      "value": 1
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x900015a0",
+      "dst_addr": "0x80002600",
+      "flags": [
+        "CAPTURE_COUNTERS",
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x4122e1c9",
+      "queue_id": 3,
+      "sequence": 45,
+      "submit_tag": "random-dma_fill-45"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x900015c0",
+      "dst_addr": "0x80009100",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "host_to_device",
+      "queue_id": 1,
+      "sequence": 46,
+      "submit_tag": "random-host_to_device-46"
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x900015e0",
+      "flags": [
+        "CAPTURE_COUNTERS",
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "device_to_host",
+      "queue_id": 2,
+      "sequence": 47,
+      "src_addr": "0x8000a200",
+      "submit_tag": "random-device_to_host-47"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x90001600",
+      "dst_addr": "0x80008500",
+      "flags": [
+        "CAPTURE_COUNTERS",
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "host_to_device",
+      "queue_id": 1,
+      "sequence": 48,
+      "submit_tag": "random-host_to_device-48"
+    }
+  ],
+  "ip_name": "Celviz GPGPU IP",
+  "memory_regions": [
+    {
+      "base": "0x80000000",
+      "name": "global_a",
+      "readable": true,
+      "size": 262144,
+      "writable": true
+    },
+    {
+      "base": "0x81000000",
+      "name": "global_ro",
+      "readable": true,
+      "size": 65536,
+      "writable": false
+    },
+    {
+      "base": "0x90000000",
+      "name": "completion_records",
+      "readable": true,
+      "size": 65536,
+      "writable": true
+    }
+  ],
+  "phase1_fixture": "random_seed_20260502",
+  "queues": [
+    {
+      "base": "0x10000000",
+      "priority": 3,
+      "queue_id": 0,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10001000",
+      "priority": 2,
+      "queue_id": 1,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10002000",
+      "priority": 1,
+      "queue_id": 2,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10003000",
+      "priority": 0,
+      "queue_id": 3,
+      "size_bytes": 4096
+    }
+  ],
+  "schema": "celviz.gpgpu.control_plane_demo.v1",
+  "tier": "gpgpu_nano_ultra31"
+}

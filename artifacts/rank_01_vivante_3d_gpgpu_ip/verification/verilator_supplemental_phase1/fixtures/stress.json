@@ -1,0 +1,2499 @@
+{
+  "clean_room_scope": "supplemental clean-room Verilator structural-coverage uplift fixtures; fast gate uses the control-plane simulator and does not claim RTL line, toggle, branch, silicon signoff, timing closure, proprietary Vivante command-stream compatibility, driver ABI compatibility, or conformance",
+  "commands": [
+    {
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "reset",
+      "queue_id": 0,
+      "sequence": 1,
+      "submit_tag": "stress-reset"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80000000",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bdf",
+      "queue_id": 0,
+      "sequence": 2,
+      "submit_tag": "stress-fill-0"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x90003000",
+      "dst_addr": "0x80010000",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 3,
+      "src_addr": "0x80000000",
+      "submit_tag": "stress-copy-0"
+    },
+    {
+      "fence": "stress_fence_0",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 4,
+      "submit_tag": "stress-signal-0",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_0",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 5,
+      "submit_tag": "stress-wait-0",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "arg_buffer": "0x80002000",
+      "arg_bytes": 96,
+      "completion_addr": "0x90005000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "image_filter",
+      "kernel_entry": "0x80030000",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 2,
+      "required_fp_mode": "fp16",
+      "sequence": 6,
+      "shared_bytes": 1024,
+      "submit_tag": "stress-kernel-0"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80000100",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be0",
+      "queue_id": 1,
+      "sequence": 7,
+      "submit_tag": "stress-fill-1"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80010100",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 8,
+      "src_addr": "0x80000100",
+      "submit_tag": "stress-copy-1"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80000200",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be1",
+      "queue_id": 2,
+      "sequence": 9,
+      "submit_tag": "stress-fill-2"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80010200",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 10,
+      "src_addr": "0x80000200",
+      "submit_tag": "stress-copy-2"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80000300",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be2",
+      "queue_id": 3,
+      "sequence": 11,
+      "submit_tag": "stress-fill-3"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80010300",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 12,
+      "src_addr": "0x80000300",
+      "submit_tag": "stress-copy-3"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80000400",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be3",
+      "queue_id": 0,
+      "sequence": 13,
+      "submit_tag": "stress-fill-4"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80010400",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 14,
+      "src_addr": "0x80000400",
+      "submit_tag": "stress-copy-4"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80000500",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be4",
+      "queue_id": 1,
+      "sequence": 15,
+      "submit_tag": "stress-fill-5"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80010500",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 16,
+      "src_addr": "0x80000500",
+      "submit_tag": "stress-copy-5"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80000600",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be5",
+      "queue_id": 2,
+      "sequence": 17,
+      "submit_tag": "stress-fill-6"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80010600",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 18,
+      "src_addr": "0x80000600",
+      "submit_tag": "stress-copy-6"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80000700",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be6",
+      "queue_id": 3,
+      "sequence": 19,
+      "submit_tag": "stress-fill-7"
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x900030e0",
+      "dst_addr": "0x80010700",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 20,
+      "src_addr": "0x80000700",
+      "submit_tag": "stress-copy-7"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80000800",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be7",
+      "queue_id": 0,
+      "sequence": 21,
+      "submit_tag": "stress-fill-8"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80010800",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 22,
+      "src_addr": "0x80000800",
+      "submit_tag": "stress-copy-8"
+    },
+    {
+      "fence": "stress_fence_8",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 23,
+      "submit_tag": "stress-signal-8",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_8",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 24,
+      "submit_tag": "stress-wait-8",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80000900",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be8",
+      "queue_id": 1,
+      "sequence": 25,
+      "submit_tag": "stress-fill-9"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80010900",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 26,
+      "src_addr": "0x80000900",
+      "submit_tag": "stress-copy-9"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80000a00",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579be9",
+      "queue_id": 2,
+      "sequence": 27,
+      "submit_tag": "stress-fill-10"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80010a00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 28,
+      "src_addr": "0x80000a00",
+      "submit_tag": "stress-copy-10"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80000b00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bea",
+      "queue_id": 3,
+      "sequence": 29,
+      "submit_tag": "stress-fill-11"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80010b00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 30,
+      "src_addr": "0x80000b00",
+      "submit_tag": "stress-copy-11"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80000c00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579beb",
+      "queue_id": 0,
+      "sequence": 31,
+      "submit_tag": "stress-fill-12"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80010c00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 32,
+      "src_addr": "0x80000c00",
+      "submit_tag": "stress-copy-12"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80000d00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bec",
+      "queue_id": 1,
+      "sequence": 33,
+      "submit_tag": "stress-fill-13"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80010d00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 34,
+      "src_addr": "0x80000d00",
+      "submit_tag": "stress-copy-13"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80000e00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bed",
+      "queue_id": 2,
+      "sequence": 35,
+      "submit_tag": "stress-fill-14"
+    },
+    {
+      "byte_count": 192,
+      "completion_addr": "0x900031c0",
+      "dst_addr": "0x80010e00",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 36,
+      "src_addr": "0x80000e00",
+      "submit_tag": "stress-copy-14"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80000f00",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bee",
+      "queue_id": 3,
+      "sequence": 37,
+      "submit_tag": "stress-fill-15"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80010f00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 38,
+      "src_addr": "0x80000f00",
+      "submit_tag": "stress-copy-15"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80001000",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bef",
+      "queue_id": 0,
+      "sequence": 39,
+      "submit_tag": "stress-fill-16"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80011000",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 40,
+      "src_addr": "0x80001000",
+      "submit_tag": "stress-copy-16"
+    },
+    {
+      "fence": "stress_fence_16",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 41,
+      "submit_tag": "stress-signal-16",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_16",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 42,
+      "submit_tag": "stress-wait-16",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "arg_buffer": "0x80002800",
+      "arg_bytes": 96,
+      "completion_addr": "0x90005200",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "kernel_entry": "0x80030400",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 2,
+      "required_fp_mode": "fp32",
+      "sequence": 43,
+      "shared_bytes": 1024,
+      "submit_tag": "stress-kernel-16"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80001100",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf0",
+      "queue_id": 1,
+      "sequence": 44,
+      "submit_tag": "stress-fill-17"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80011100",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 45,
+      "src_addr": "0x80001100",
+      "submit_tag": "stress-copy-17"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80001200",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf1",
+      "queue_id": 2,
+      "sequence": 46,
+      "submit_tag": "stress-fill-18"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80011200",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 47,
+      "src_addr": "0x80001200",
+      "submit_tag": "stress-copy-18"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80001300",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf2",
+      "queue_id": 3,
+      "sequence": 48,
+      "submit_tag": "stress-fill-19"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80011300",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 49,
+      "src_addr": "0x80001300",
+      "submit_tag": "stress-copy-19"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80001400",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf3",
+      "queue_id": 0,
+      "sequence": 50,
+      "submit_tag": "stress-fill-20"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80011400",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 51,
+      "src_addr": "0x80001400",
+      "submit_tag": "stress-copy-20"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80001500",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf4",
+      "queue_id": 1,
+      "sequence": 52,
+      "submit_tag": "stress-fill-21"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x900032a0",
+      "dst_addr": "0x80011500",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 53,
+      "src_addr": "0x80001500",
+      "submit_tag": "stress-copy-21"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80001600",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf5",
+      "queue_id": 2,
+      "sequence": 54,
+      "submit_tag": "stress-fill-22"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80011600",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 55,
+      "src_addr": "0x80001600",
+      "submit_tag": "stress-copy-22"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80001700",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf6",
+      "queue_id": 3,
+      "sequence": 56,
+      "submit_tag": "stress-fill-23"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80011700",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 57,
+      "src_addr": "0x80001700",
+      "submit_tag": "stress-copy-23"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80001800",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf7",
+      "queue_id": 0,
+      "sequence": 58,
+      "submit_tag": "stress-fill-24"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80011800",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 59,
+      "src_addr": "0x80001800",
+      "submit_tag": "stress-copy-24"
+    },
+    {
+      "fence": "stress_fence_24",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 60,
+      "submit_tag": "stress-signal-24",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_24",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 61,
+      "submit_tag": "stress-wait-24",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80001900",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf8",
+      "queue_id": 1,
+      "sequence": 62,
+      "submit_tag": "stress-fill-25"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80011900",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 63,
+      "src_addr": "0x80001900",
+      "submit_tag": "stress-copy-25"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80001a00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bf9",
+      "queue_id": 2,
+      "sequence": 64,
+      "submit_tag": "stress-fill-26"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80011a00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 65,
+      "src_addr": "0x80001a00",
+      "submit_tag": "stress-copy-26"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80001b00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bfa",
+      "queue_id": 3,
+      "sequence": 66,
+      "submit_tag": "stress-fill-27"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80011b00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 67,
+      "src_addr": "0x80001b00",
+      "submit_tag": "stress-copy-27"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80001c00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bfb",
+      "queue_id": 0,
+      "sequence": 68,
+      "submit_tag": "stress-fill-28"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x90003380",
+      "dst_addr": "0x80011c00",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 69,
+      "src_addr": "0x80001c00",
+      "submit_tag": "stress-copy-28"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80001d00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bfc",
+      "queue_id": 1,
+      "sequence": 70,
+      "submit_tag": "stress-fill-29"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80011d00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 71,
+      "src_addr": "0x80001d00",
+      "submit_tag": "stress-copy-29"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80001e00",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bfd",
+      "queue_id": 2,
+      "sequence": 72,
+      "submit_tag": "stress-fill-30"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80011e00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 73,
+      "src_addr": "0x80001e00",
+      "submit_tag": "stress-copy-30"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80001f00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bfe",
+      "queue_id": 3,
+      "sequence": 74,
+      "submit_tag": "stress-fill-31"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80011f00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 75,
+      "src_addr": "0x80001f00",
+      "submit_tag": "stress-copy-31"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80002000",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579bff",
+      "queue_id": 0,
+      "sequence": 76,
+      "submit_tag": "stress-fill-32"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80012000",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 77,
+      "src_addr": "0x80002000",
+      "submit_tag": "stress-copy-32"
+    },
+    {
+      "fence": "stress_fence_32",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 78,
+      "submit_tag": "stress-signal-32",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_32",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 79,
+      "submit_tag": "stress-wait-32",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "arg_buffer": "0x80003000",
+      "arg_bytes": 96,
+      "completion_addr": "0x90005400",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "image_filter",
+      "kernel_entry": "0x80030800",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 2,
+      "required_fp_mode": "fp16",
+      "sequence": 80,
+      "shared_bytes": 1024,
+      "submit_tag": "stress-kernel-32"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80002100",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c00",
+      "queue_id": 1,
+      "sequence": 81,
+      "submit_tag": "stress-fill-33"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80012100",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 82,
+      "src_addr": "0x80002100",
+      "submit_tag": "stress-copy-33"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80002200",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c01",
+      "queue_id": 2,
+      "sequence": 83,
+      "submit_tag": "stress-fill-34"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80012200",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 84,
+      "src_addr": "0x80002200",
+      "submit_tag": "stress-copy-34"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80002300",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c02",
+      "queue_id": 3,
+      "sequence": 85,
+      "submit_tag": "stress-fill-35"
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x90003460",
+      "dst_addr": "0x80012300",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 86,
+      "src_addr": "0x80002300",
+      "submit_tag": "stress-copy-35"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80002400",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c03",
+      "queue_id": 0,
+      "sequence": 87,
+      "submit_tag": "stress-fill-36"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80012400",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 88,
+      "src_addr": "0x80002400",
+      "submit_tag": "stress-copy-36"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80002500",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c04",
+      "queue_id": 1,
+      "sequence": 89,
+      "submit_tag": "stress-fill-37"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80012500",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 90,
+      "src_addr": "0x80002500",
+      "submit_tag": "stress-copy-37"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80002600",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c05",
+      "queue_id": 2,
+      "sequence": 91,
+      "submit_tag": "stress-fill-38"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80012600",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 92,
+      "src_addr": "0x80002600",
+      "submit_tag": "stress-copy-38"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80002700",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c06",
+      "queue_id": 3,
+      "sequence": 93,
+      "submit_tag": "stress-fill-39"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80012700",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 94,
+      "src_addr": "0x80002700",
+      "submit_tag": "stress-copy-39"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80002800",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c07",
+      "queue_id": 0,
+      "sequence": 95,
+      "submit_tag": "stress-fill-40"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80012800",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 96,
+      "src_addr": "0x80002800",
+      "submit_tag": "stress-copy-40"
+    },
+    {
+      "fence": "stress_fence_40",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 97,
+      "submit_tag": "stress-signal-40",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_40",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 98,
+      "submit_tag": "stress-wait-40",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80002900",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c08",
+      "queue_id": 1,
+      "sequence": 99,
+      "submit_tag": "stress-fill-41"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80012900",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 100,
+      "src_addr": "0x80002900",
+      "submit_tag": "stress-copy-41"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80002a00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c09",
+      "queue_id": 2,
+      "sequence": 101,
+      "submit_tag": "stress-fill-42"
+    },
+    {
+      "byte_count": 192,
+      "completion_addr": "0x90003540",
+      "dst_addr": "0x80012a00",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 102,
+      "src_addr": "0x80002a00",
+      "submit_tag": "stress-copy-42"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80002b00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c0a",
+      "queue_id": 3,
+      "sequence": 103,
+      "submit_tag": "stress-fill-43"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80012b00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 104,
+      "src_addr": "0x80002b00",
+      "submit_tag": "stress-copy-43"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80002c00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c0b",
+      "queue_id": 0,
+      "sequence": 105,
+      "submit_tag": "stress-fill-44"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80012c00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 106,
+      "src_addr": "0x80002c00",
+      "submit_tag": "stress-copy-44"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80002d00",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c0c",
+      "queue_id": 1,
+      "sequence": 107,
+      "submit_tag": "stress-fill-45"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80012d00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 108,
+      "src_addr": "0x80002d00",
+      "submit_tag": "stress-copy-45"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80002e00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c0d",
+      "queue_id": 2,
+      "sequence": 109,
+      "submit_tag": "stress-fill-46"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80012e00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 110,
+      "src_addr": "0x80002e00",
+      "submit_tag": "stress-copy-46"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80002f00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c0e",
+      "queue_id": 3,
+      "sequence": 111,
+      "submit_tag": "stress-fill-47"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80012f00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 112,
+      "src_addr": "0x80002f00",
+      "submit_tag": "stress-copy-47"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80003000",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c0f",
+      "queue_id": 0,
+      "sequence": 113,
+      "submit_tag": "stress-fill-48"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80013000",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 114,
+      "src_addr": "0x80003000",
+      "submit_tag": "stress-copy-48"
+    },
+    {
+      "fence": "stress_fence_48",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 115,
+      "submit_tag": "stress-signal-48",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_48",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 116,
+      "submit_tag": "stress-wait-48",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "arg_buffer": "0x80003800",
+      "arg_bytes": 96,
+      "completion_addr": "0x90005600",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "kernel_entry": "0x80030c00",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 2,
+      "required_fp_mode": "fp32",
+      "sequence": 117,
+      "shared_bytes": 1024,
+      "submit_tag": "stress-kernel-48"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80003100",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c10",
+      "queue_id": 1,
+      "sequence": 118,
+      "submit_tag": "stress-fill-49"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x90003620",
+      "dst_addr": "0x80013100",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 119,
+      "src_addr": "0x80003100",
+      "submit_tag": "stress-copy-49"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80003200",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c11",
+      "queue_id": 2,
+      "sequence": 120,
+      "submit_tag": "stress-fill-50"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80013200",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 121,
+      "src_addr": "0x80003200",
+      "submit_tag": "stress-copy-50"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80003300",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c12",
+      "queue_id": 3,
+      "sequence": 122,
+      "submit_tag": "stress-fill-51"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80013300",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 123,
+      "src_addr": "0x80003300",
+      "submit_tag": "stress-copy-51"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80003400",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c13",
+      "queue_id": 0,
+      "sequence": 124,
+      "submit_tag": "stress-fill-52"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80013400",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 125,
+      "src_addr": "0x80003400",
+      "submit_tag": "stress-copy-52"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80003500",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c14",
+      "queue_id": 1,
+      "sequence": 126,
+      "submit_tag": "stress-fill-53"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80013500",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 127,
+      "src_addr": "0x80003500",
+      "submit_tag": "stress-copy-53"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80003600",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c15",
+      "queue_id": 2,
+      "sequence": 128,
+      "submit_tag": "stress-fill-54"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80013600",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 129,
+      "src_addr": "0x80003600",
+      "submit_tag": "stress-copy-54"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80003700",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c16",
+      "queue_id": 3,
+      "sequence": 130,
+      "submit_tag": "stress-fill-55"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80013700",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 131,
+      "src_addr": "0x80003700",
+      "submit_tag": "stress-copy-55"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80003800",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c17",
+      "queue_id": 0,
+      "sequence": 132,
+      "submit_tag": "stress-fill-56"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x90003700",
+      "dst_addr": "0x80013800",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 133,
+      "src_addr": "0x80003800",
+      "submit_tag": "stress-copy-56"
+    },
+    {
+      "fence": "stress_fence_56",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 134,
+      "submit_tag": "stress-signal-56",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_56",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 135,
+      "submit_tag": "stress-wait-56",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80003900",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c18",
+      "queue_id": 1,
+      "sequence": 136,
+      "submit_tag": "stress-fill-57"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80013900",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 137,
+      "src_addr": "0x80003900",
+      "submit_tag": "stress-copy-57"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80003a00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c19",
+      "queue_id": 2,
+      "sequence": 138,
+      "submit_tag": "stress-fill-58"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80013a00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 139,
+      "src_addr": "0x80003a00",
+      "submit_tag": "stress-copy-58"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80003b00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c1a",
+      "queue_id": 3,
+      "sequence": 140,
+      "submit_tag": "stress-fill-59"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80013b00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 141,
+      "src_addr": "0x80003b00",
+      "submit_tag": "stress-copy-59"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80003c00",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c1b",
+      "queue_id": 0,
+      "sequence": 142,
+      "submit_tag": "stress-fill-60"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80013c00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 143,
+      "src_addr": "0x80003c00",
+      "submit_tag": "stress-copy-60"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80003d00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c1c",
+      "queue_id": 1,
+      "sequence": 144,
+      "submit_tag": "stress-fill-61"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80013d00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 145,
+      "src_addr": "0x80003d00",
+      "submit_tag": "stress-copy-61"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80003e00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c1d",
+      "queue_id": 2,
+      "sequence": 146,
+      "submit_tag": "stress-fill-62"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80013e00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 147,
+      "src_addr": "0x80003e00",
+      "submit_tag": "stress-copy-62"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80003f00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c1e",
+      "queue_id": 3,
+      "sequence": 148,
+      "submit_tag": "stress-fill-63"
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x900037e0",
+      "dst_addr": "0x80013f00",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 149,
+      "src_addr": "0x80003f00",
+      "submit_tag": "stress-copy-63"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80004000",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c1f",
+      "queue_id": 0,
+      "sequence": 150,
+      "submit_tag": "stress-fill-64"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80014000",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 151,
+      "src_addr": "0x80004000",
+      "submit_tag": "stress-copy-64"
+    },
+    {
+      "fence": "stress_fence_64",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 152,
+      "submit_tag": "stress-signal-64",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_64",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 153,
+      "submit_tag": "stress-wait-64",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "arg_buffer": "0x80002000",
+      "arg_bytes": 96,
+      "completion_addr": "0x90005800",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "image_filter",
+      "kernel_entry": "0x80031000",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 2,
+      "required_fp_mode": "fp16",
+      "sequence": 154,
+      "shared_bytes": 1024,
+      "submit_tag": "stress-kernel-64"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80004100",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c20",
+      "queue_id": 1,
+      "sequence": 155,
+      "submit_tag": "stress-fill-65"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80014100",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 156,
+      "src_addr": "0x80004100",
+      "submit_tag": "stress-copy-65"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80004200",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c21",
+      "queue_id": 2,
+      "sequence": 157,
+      "submit_tag": "stress-fill-66"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80014200",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 158,
+      "src_addr": "0x80004200",
+      "submit_tag": "stress-copy-66"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80004300",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c22",
+      "queue_id": 3,
+      "sequence": 159,
+      "submit_tag": "stress-fill-67"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80014300",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 160,
+      "src_addr": "0x80004300",
+      "submit_tag": "stress-copy-67"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80004400",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c23",
+      "queue_id": 0,
+      "sequence": 161,
+      "submit_tag": "stress-fill-68"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80014400",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 162,
+      "src_addr": "0x80004400",
+      "submit_tag": "stress-copy-68"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80004500",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c24",
+      "queue_id": 1,
+      "sequence": 163,
+      "submit_tag": "stress-fill-69"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80014500",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 164,
+      "src_addr": "0x80004500",
+      "submit_tag": "stress-copy-69"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80004600",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c25",
+      "queue_id": 2,
+      "sequence": 165,
+      "submit_tag": "stress-fill-70"
+    },
+    {
+      "byte_count": 192,
+      "completion_addr": "0x900038c0",
+      "dst_addr": "0x80014600",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 166,
+      "src_addr": "0x80004600",
+      "submit_tag": "stress-copy-70"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80004700",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c26",
+      "queue_id": 3,
+      "sequence": 167,
+      "submit_tag": "stress-fill-71"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80014700",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 168,
+      "src_addr": "0x80004700",
+      "submit_tag": "stress-copy-71"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80004800",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c27",
+      "queue_id": 0,
+      "sequence": 169,
+      "submit_tag": "stress-fill-72"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80014800",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 170,
+      "src_addr": "0x80004800",
+      "submit_tag": "stress-copy-72"
+    },
+    {
+      "fence": "stress_fence_72",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 171,
+      "submit_tag": "stress-signal-72",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_72",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 172,
+      "submit_tag": "stress-wait-72",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80004900",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c28",
+      "queue_id": 1,
+      "sequence": 173,
+      "submit_tag": "stress-fill-73"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80014900",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 174,
+      "src_addr": "0x80004900",
+      "submit_tag": "stress-copy-73"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80004a00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c29",
+      "queue_id": 2,
+      "sequence": 175,
+      "submit_tag": "stress-fill-74"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80014a00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 176,
+      "src_addr": "0x80004a00",
+      "submit_tag": "stress-copy-74"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80004b00",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c2a",
+      "queue_id": 3,
+      "sequence": 177,
+      "submit_tag": "stress-fill-75"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80014b00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 178,
+      "src_addr": "0x80004b00",
+      "submit_tag": "stress-copy-75"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80004c00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c2b",
+      "queue_id": 0,
+      "sequence": 179,
+      "submit_tag": "stress-fill-76"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80014c00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 180,
+      "src_addr": "0x80004c00",
+      "submit_tag": "stress-copy-76"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80004d00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c2c",
+      "queue_id": 1,
+      "sequence": 181,
+      "submit_tag": "stress-fill-77"
+    },
+    {
+      "byte_count": 128,
+      "completion_addr": "0x900039a0",
+      "dst_addr": "0x80014d00",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 182,
+      "src_addr": "0x80004d00",
+      "submit_tag": "stress-copy-77"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80004e00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c2d",
+      "queue_id": 2,
+      "sequence": 183,
+      "submit_tag": "stress-fill-78"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80014e00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 184,
+      "src_addr": "0x80004e00",
+      "submit_tag": "stress-copy-78"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80004f00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c2e",
+      "queue_id": 3,
+      "sequence": 185,
+      "submit_tag": "stress-fill-79"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80014f00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 186,
+      "src_addr": "0x80004f00",
+      "submit_tag": "stress-copy-79"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80005000",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c2f",
+      "queue_id": 0,
+      "sequence": 187,
+      "submit_tag": "stress-fill-80"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80015000",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 188,
+      "src_addr": "0x80005000",
+      "submit_tag": "stress-copy-80"
+    },
+    {
+      "fence": "stress_fence_80",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 189,
+      "submit_tag": "stress-signal-80",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_80",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 190,
+      "submit_tag": "stress-wait-80",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "arg_buffer": "0x80002800",
+      "arg_bytes": 96,
+      "completion_addr": "0x90005a00",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "kernel_entry": "0x80031400",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 2,
+      "required_fp_mode": "fp32",
+      "sequence": 191,
+      "shared_bytes": 1024,
+      "submit_tag": "stress-kernel-80"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80005100",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c30",
+      "queue_id": 1,
+      "sequence": 192,
+      "submit_tag": "stress-fill-81"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80015100",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 193,
+      "src_addr": "0x80005100",
+      "submit_tag": "stress-copy-81"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80005200",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c31",
+      "queue_id": 2,
+      "sequence": 194,
+      "submit_tag": "stress-fill-82"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80015200",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 195,
+      "src_addr": "0x80005200",
+      "submit_tag": "stress-copy-82"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80005300",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c32",
+      "queue_id": 3,
+      "sequence": 196,
+      "submit_tag": "stress-fill-83"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80015300",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 197,
+      "src_addr": "0x80005300",
+      "submit_tag": "stress-copy-83"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80005400",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c33",
+      "queue_id": 0,
+      "sequence": 198,
+      "submit_tag": "stress-fill-84"
+    },
+    {
+      "byte_count": 64,
+      "completion_addr": "0x90003a80",
+      "dst_addr": "0x80015400",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 199,
+      "src_addr": "0x80005400",
+      "submit_tag": "stress-copy-84"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80005500",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c34",
+      "queue_id": 1,
+      "sequence": 200,
+      "submit_tag": "stress-fill-85"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80015500",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 201,
+      "src_addr": "0x80005500",
+      "submit_tag": "stress-copy-85"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80005600",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c35",
+      "queue_id": 2,
+      "sequence": 202,
+      "submit_tag": "stress-fill-86"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80015600",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 203,
+      "src_addr": "0x80005600",
+      "submit_tag": "stress-copy-86"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80005700",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c36",
+      "queue_id": 3,
+      "sequence": 204,
+      "submit_tag": "stress-fill-87"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80015700",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 205,
+      "src_addr": "0x80005700",
+      "submit_tag": "stress-copy-87"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80005800",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c37",
+      "queue_id": 0,
+      "sequence": 206,
+      "submit_tag": "stress-fill-88"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80015800",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 207,
+      "src_addr": "0x80005800",
+      "submit_tag": "stress-copy-88"
+    },
+    {
+      "fence": "stress_fence_88",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "fence_signal",
+      "queue_id": 0,
+      "sequence": 208,
+      "submit_tag": "stress-signal-88",
+      "value": 1
+    },
+    {
+      "fence": "stress_fence_88",
+      "flags": [],
+      "opcode": "fence_wait",
+      "queue_id": 1,
+      "sequence": 209,
+      "submit_tag": "stress-wait-88",
+      "timeout_cycles": 128,
+      "value": 1
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80005900",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c38",
+      "queue_id": 1,
+      "sequence": 210,
+      "submit_tag": "stress-fill-89"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80015900",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 211,
+      "src_addr": "0x80005900",
+      "submit_tag": "stress-copy-89"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80005a00",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c39",
+      "queue_id": 2,
+      "sequence": 212,
+      "submit_tag": "stress-fill-90"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80015a00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 213,
+      "src_addr": "0x80005a00",
+      "submit_tag": "stress-copy-90"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80005b00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c3a",
+      "queue_id": 3,
+      "sequence": 214,
+      "submit_tag": "stress-fill-91"
+    },
+    {
+      "byte_count": 256,
+      "completion_addr": "0x90003b60",
+      "dst_addr": "0x80015b00",
+      "flags": [
+        "CAPTURE_COUNTERS"
+      ],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 215,
+      "src_addr": "0x80005b00",
+      "submit_tag": "stress-copy-91"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80005c00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c3b",
+      "queue_id": 0,
+      "sequence": 216,
+      "submit_tag": "stress-fill-92"
+    },
+    {
+      "byte_count": 64,
+      "dst_addr": "0x80015c00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 0,
+      "sequence": 217,
+      "src_addr": "0x80005c00",
+      "submit_tag": "stress-copy-92"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80005d00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c3c",
+      "queue_id": 1,
+      "sequence": 218,
+      "submit_tag": "stress-fill-93"
+    },
+    {
+      "byte_count": 128,
+      "dst_addr": "0x80015d00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 1,
+      "sequence": 219,
+      "src_addr": "0x80005d00",
+      "submit_tag": "stress-copy-93"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80005e00",
+      "flags": [],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c3d",
+      "queue_id": 2,
+      "sequence": 220,
+      "submit_tag": "stress-fill-94"
+    },
+    {
+      "byte_count": 192,
+      "dst_addr": "0x80015e00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 2,
+      "sequence": 221,
+      "src_addr": "0x80005e00",
+      "submit_tag": "stress-copy-94"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80005f00",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "dma_fill",
+      "pattern_u32": "0x13579c3e",
+      "queue_id": 3,
+      "sequence": 222,
+      "submit_tag": "stress-fill-95"
+    },
+    {
+      "byte_count": 256,
+      "dst_addr": "0x80015f00",
+      "flags": [],
+      "opcode": "dma_copy",
+      "queue_id": 3,
+      "sequence": 223,
+      "src_addr": "0x80005f00",
+      "submit_tag": "stress-copy-95"
+    },
+    {
+      "completion_addr": "0x90006000",
+      "flags": [
+        "INT_ON_COMPLETE"
+      ],
+      "opcode": "counter_snapshot",
+      "queue_id": 0,
+      "sequence": 224,
+      "submit_tag": "stress-final-counters"
+    }
+  ],
+  "ip_name": "Celviz GPGPU IP",
+  "memory_regions": [
+    {
+      "base": "0x80000000",
+      "name": "global_a",
+      "readable": true,
+      "size": 262144,
+      "writable": true
+    },
+    {
+      "base": "0x81000000",
+      "name": "global_ro",
+      "readable": true,
+      "size": 65536,
+      "writable": false
+    },
+    {
+      "base": "0x90000000",
+      "name": "completion_records",
+      "readable": true,
+      "size": 65536,
+      "writable": true
+    }
+  ],
+  "phase1_fixture": "stress_96_iterations",
+  "queues": [
+    {
+      "base": "0x10000000",
+      "priority": 3,
+      "queue_id": 0,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10001000",
+      "priority": 2,
+      "queue_id": 1,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10002000",
+      "priority": 1,
+      "queue_id": 2,
+      "size_bytes": 4096
+    },
+    {
+      "base": "0x10003000",
+      "priority": 0,
+      "queue_id": 3,
+      "size_bytes": 4096
+    }
+  ],
+  "schema": "celviz.gpgpu.control_plane_demo.v1",
+  "tier": "gpgpu_nano_ultra31"
+}

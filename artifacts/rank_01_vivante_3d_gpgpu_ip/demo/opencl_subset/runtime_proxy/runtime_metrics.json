@@ -1,0 +1,1042 @@
+{
+  "abi": {
+    "error_values": {
+      "ERR_BAD_DISPATCH": 7,
+      "ERR_BAD_DMA": 8,
+      "ERR_BAD_QUEUE": 6,
+      "ERR_FENCE_WAIT": 256,
+      "ERR_INJECTED": 257,
+      "ERR_MMU_FAULT": 9,
+      "ERR_RTLSIM_FATAL": 512,
+      "ERR_RTLSIM_TIME_EXCEEDED": 513,
+      "ERR_SCHEDULER_FAULT": 514,
+      "ERR_UNSUPPORTED_OPCODE": 5,
+      "OK": 0
+    },
+    "header": "sim-verilator/celviz_gpgpu_runtime_proxy.h",
+    "magic": "0x31555643",
+    "opcode_values": {
+      "barrier": 4,
+      "counter_snapshot": 7,
+      "device_to_host": 4098,
+      "dma_copy": 2,
+      "dma_fill": 3,
+      "fence_signal": 4113,
+      "fence_wait": 4112,
+      "host_to_device": 4097,
+      "kernel_dispatch": 1,
+      "nop": 0,
+      "reset": 4114,
+      "set_scheduler_config": 5,
+      "set_shader_mode": 6
+    },
+    "status_values": {
+      "cancelled": 6,
+      "complete": 4,
+      "error": 5,
+      "new": 0,
+      "queued": 1,
+      "running": 3,
+      "submitted": 2,
+      "timeout": 7
+    },
+    "tier_id": 3,
+    "version": 1
+  },
+  "artifact_manifest": {
+    "run_log": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy.log",
+    "runtime_metrics": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy/runtime_metrics.json",
+    "runtime_status": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy/runtime_status.json"
+  },
+  "command_status_records": [
+    {
+      "abi_version": 1,
+      "context_id": 0,
+      "detail": "kernel_dispatch vector_add retired 1024 workgroups",
+      "end_time": 2,
+      "error": "OK",
+      "error_value": 0,
+      "flags": 0,
+      "opcode": "kernel_dispatch",
+      "opcode_value": 1,
+      "queue_head": 128,
+      "queue_id": 0,
+      "queue_tail": 128,
+      "sequence": 1,
+      "start_time": 1,
+      "status": "complete",
+      "status_value": 4,
+      "submit_tag": "opencl-subset-vector_add",
+      "submit_time": 1
+    },
+    {
+      "abi_version": 1,
+      "context_id": 0,
+      "detail": "kernel_dispatch gemm retired 4096 workgroups",
+      "end_time": 3,
+      "error": "OK",
+      "error_value": 0,
+      "flags": 0,
+      "opcode": "kernel_dispatch",
+      "opcode_value": 1,
+      "queue_head": 256,
+      "queue_id": 0,
+      "queue_tail": 256,
+      "sequence": 2,
+      "start_time": 2,
+      "status": "complete",
+      "status_value": 4,
+      "submit_tag": "opencl-subset-gemm",
+      "submit_time": 2
+    },
+    {
+      "abi_version": 1,
+      "context_id": 0,
+      "detail": "kernel_dispatch conv2d retired 16384 workgroups",
+      "end_time": 4,
+      "error": "OK",
+      "error_value": 0,
+      "flags": 0,
+      "opcode": "kernel_dispatch",
+      "opcode_value": 1,
+      "queue_head": 384,
+      "queue_id": 0,
+      "queue_tail": 384,
+      "sequence": 3,
+      "start_time": 3,
+      "status": "complete",
+      "status_value": 4,
+      "submit_tag": "opencl-subset-conv2d",
+      "submit_time": 3
+    },
+    {
+      "abi_version": 1,
+      "context_id": 0,
+      "detail": "kernel_dispatch image_filter retired 32768 workgroups",
+      "end_time": 5,
+      "error": "OK",
+      "error_value": 0,
+      "flags": 0,
+      "opcode": "kernel_dispatch",
+      "opcode_value": 1,
+      "queue_head": 512,
+      "queue_id": 0,
+      "queue_tail": 512,
+      "sequence": 4,
+      "start_time": 4,
+      "status": "complete",
+      "status_value": 4,
+      "submit_tag": "opencl-subset-image_filter",
+      "submit_time": 4
+    }
+  ],
+  "command_status_summary": {
+    "by_error": {
+      "OK": 4
+    },
+    "by_opcode": {
+      "kernel_dispatch": 4
+    },
+    "by_status": {
+      "complete": 4
+    },
+    "last_command": {
+      "abi_version": 1,
+      "context_id": 0,
+      "detail": "kernel_dispatch image_filter retired 32768 workgroups",
+      "end_time": 5,
+      "error": "OK",
+      "error_value": 0,
+      "flags": 0,
+      "opcode": "kernel_dispatch",
+      "opcode_value": 1,
+      "queue_head": 512,
+      "queue_id": 0,
+      "queue_tail": 512,
+      "sequence": 4,
+      "start_time": 4,
+      "status": "complete",
+      "status_value": 4,
+      "submit_tag": "opencl-subset-image_filter",
+      "submit_time": 4
+    },
+    "native_polled_status_records": 0,
+    "total": 4
+  },
+  "control_plane_metrics": {
+    "clean_room_scope": "clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim",
+    "command_count": 4,
+    "completion_records": [
+      {
+        "completion_writeback": {
+          "addr": "0x90000000",
+          "bytes": 32
+        },
+        "counter_snapshot": {
+          "axi_read_beats": 2,
+          "axi_write_beats": 1024,
+          "bytes_read": 32,
+          "bytes_written": 16384,
+          "dma_copies": 0,
+          "dma_fills": 0,
+          "kernel_dispatches": 1
+        },
+        "detail": "kernel_dispatch vector_add retired 1024 workgroups",
+        "error": "OK",
+        "error_code": 0,
+        "fp16_path": false,
+        "fp32_path": true,
+        "grid": [
+          1024,
+          1,
+          1
+        ],
+        "kernel": "vector_add",
+        "local": [
+          64,
+          1,
+          1
+        ],
+        "opcode": "kernel_dispatch",
+        "queue_head": 128,
+        "queue_id": 0,
+        "queue_tail": 128,
+        "required_fp_mode": "fp32",
+        "scheduler": {
+          "estimated_warps": 2048,
+          "private_bytes_per_thread": 0,
+          "shared_bytes": 0,
+          "warp_size": 32
+        },
+        "sequence": 1,
+        "shader_units": 4,
+        "status": "complete",
+        "submit_tag": "opencl-subset-vector_add",
+        "work_items": 65536,
+        "workgroups": 1024
+      },
+      {
+        "completion_writeback": {
+          "addr": "0x90000000",
+          "bytes": 32
+        },
+        "counter_snapshot": {
+          "axi_read_beats": 5,
+          "axi_write_beats": 5122,
+          "bytes_read": 80,
+          "bytes_written": 81952,
+          "dma_copies": 0,
+          "dma_fills": 0,
+          "kernel_dispatches": 2
+        },
+        "detail": "kernel_dispatch gemm retired 4096 workgroups",
+        "error": "OK",
+        "error_code": 0,
+        "fp16_path": false,
+        "fp32_path": true,
+        "grid": [
+          64,
+          64,
+          1
+        ],
+        "kernel": "gemm",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "opcode": "kernel_dispatch",
+        "queue_head": 256,
+        "queue_id": 0,
+        "queue_tail": 256,
+        "required_fp_mode": "fp32",
+        "scheduler": {
+          "estimated_warps": 32768,
+          "private_bytes_per_thread": 16,
+          "shared_bytes": 0,
+          "warp_size": 32
+        },
+        "sequence": 2,
+        "shader_units": 4,
+        "status": "complete",
+        "submit_tag": "opencl-subset-gemm",
+        "work_items": 1048576,
+        "workgroups": 4096
+      },
+      {
+        "completion_writeback": {
+          "addr": "0x90000000",
+          "bytes": 32
+        },
+        "counter_snapshot": {
+          "axi_read_beats": 7,
+          "axi_write_beats": 21508,
+          "bytes_read": 112,
+          "bytes_written": 344128,
+          "dma_copies": 0,
+          "dma_fills": 0,
+          "kernel_dispatches": 3
+        },
+        "detail": "kernel_dispatch conv2d retired 16384 workgroups",
+        "error": "OK",
+        "error_code": 0,
+        "fp16_path": false,
+        "fp32_path": true,
+        "grid": [
+          128,
+          128,
+          1
+        ],
+        "kernel": "conv2d",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "opcode": "kernel_dispatch",
+        "queue_head": 384,
+        "queue_id": 0,
+        "queue_tail": 384,
+        "required_fp_mode": "fp32",
+        "scheduler": {
+          "estimated_warps": 131072,
+          "private_bytes_per_thread": 24,
+          "shared_bytes": 0,
+          "warp_size": 32
+        },
+        "sequence": 3,
+        "shader_units": 4,
+        "status": "complete",
+        "submit_tag": "opencl-subset-conv2d",
+        "work_items": 4194304,
+        "workgroups": 16384
+      },
+      {
+        "completion_writeback": {
+          "addr": "0x90000000",
+          "bytes": 32
+        },
+        "counter_snapshot": {
+          "axi_read_beats": 9,
+          "axi_write_beats": 54278,
+          "bytes_read": 144,
+          "bytes_written": 868448,
+          "dma_copies": 0,
+          "dma_fills": 0,
+          "kernel_dispatches": 4
+        },
+        "detail": "kernel_dispatch image_filter retired 32768 workgroups",
+        "error": "OK",
+        "error_code": 0,
+        "fp16_path": false,
+        "fp32_path": true,
+        "grid": [
+          256,
+          128,
+          1
+        ],
+        "kernel": "image_filter",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "opcode": "kernel_dispatch",
+        "queue_head": 512,
+        "queue_id": 0,
+        "queue_tail": 512,
+        "required_fp_mode": "fp32",
+        "scheduler": {
+          "estimated_warps": 262144,
+          "private_bytes_per_thread": 8,
+          "shared_bytes": 0,
+          "warp_size": 32
+        },
+        "sequence": 4,
+        "shader_units": 4,
+        "status": "complete",
+        "submit_tag": "opencl-subset-image_filter",
+        "work_items": 8388608,
+        "workgroups": 32768
+      }
+    ],
+    "counters": {
+      "apb_reads": 4,
+      "apb_writes": 8,
+      "axi_read_beats": 9,
+      "axi_read_transactions": 4,
+      "axi_write_beats": 54280,
+      "axi_write_transactions": 8,
+      "bytes_moved": 868624,
+      "bytes_read": 144,
+      "bytes_written": 868480,
+      "command_submission_errors": 0,
+      "commands_completed": 4,
+      "commands_failed": 0,
+      "commands_submitted": 4,
+      "completion_interrupts": 4,
+      "dma_alignment_errors": 0,
+      "dma_bounds_errors": 0,
+      "dma_copies": 0,
+      "dma_fills": 0,
+      "error_interrupts": 0,
+      "fence_signals": 0,
+      "fence_waits": 0,
+      "interrupt_clears": 4,
+      "invalid_descriptors": 0,
+      "kernel_dispatches": 4,
+      "mmu_faults": 0,
+      "queue_errors": 0,
+      "reset_recoveries": 0,
+      "resets": 0,
+      "scheduler_faults": 0
+    },
+    "e5_verification_coverage": {
+      "apb_traffic": true,
+      "axi_traffic": true,
+      "command_submission": true,
+      "completion_interrupts": true,
+      "dma_alignment": false,
+      "dma_bounds": false,
+      "fault_interrupts": false,
+      "interrupt_clear": true,
+      "invalid_descriptors": false,
+      "reset_behavior": false,
+      "throughput_tier_link": true
+    },
+    "evidence_tokens": {
+      "apb_transactions": true,
+      "axi_traffic": true,
+      "command_submission": true,
+      "completion_interrupt_events": true,
+      "dma_bounds_alignment_negative_paths": false,
+      "dma_copy": false,
+      "dma_fill": false,
+      "error_interrupt_events": false,
+      "fence_signal": false,
+      "fence_wait": false,
+      "fp16_path": false,
+      "fp32_path": true,
+      "interrupt_clear_events": true,
+      "invalid_descriptor_negative_paths": false,
+      "kernel_dispatch": true,
+      "reset_behavior": false,
+      "reset_recovery": false,
+      "throughput_tier_linkage": true
+    },
+    "expected_command_failures": 0,
+    "expected_command_passes": 4,
+    "fences": {},
+    "generated_at": "2026-05-02T13:28:07+00:00",
+    "interrupt_events": [
+      {
+        "kind": "completion",
+        "message": "kernel_dispatch vector_add retired 1024 workgroups",
+        "queue_id": 0,
+        "sequence": 1
+      },
+      {
+        "kind": "clear",
+        "message": "interrupt status acknowledged after completion record",
+        "queue_id": 0,
+        "sequence": 1
+      },
+      {
+        "kind": "completion",
+        "message": "kernel_dispatch gemm retired 4096 workgroups",
+        "queue_id": 0,
+        "sequence": 2
+      },
+      {
+        "kind": "clear",
+        "message": "interrupt status acknowledged after completion record",
+        "queue_id": 0,
+        "sequence": 2
+      },
+      {
+        "kind": "completion",
+        "message": "kernel_dispatch conv2d retired 16384 workgroups",
+        "queue_id": 0,
+        "sequence": 3
+      },
+      {
+        "kind": "clear",
+        "message": "interrupt status acknowledged after completion record",
+        "queue_id": 0,
+        "sequence": 3
+      },
+      {
+        "kind": "completion",
+        "message": "kernel_dispatch image_filter retired 32768 workgroups",
+        "queue_id": 0,
+        "sequence": 4
+      },
+      {
+        "kind": "clear",
+        "message": "interrupt status acknowledged after completion record",
+        "queue_id": 0,
+        "sequence": 4
+      }
+    ],
+    "ip_name": "Celviz GPGPU IP",
+    "queue_state": {
+      "0": {
+        "base": "0x10000000",
+        "errors": 0,
+        "head": 512,
+        "priority": 3,
+        "retired": 4,
+        "size_bytes": 4096,
+        "submitted": 4,
+        "tail": 512
+      }
+    },
+    "runtime_control_evidence": {
+      "axi_apb_traffic": {
+        "apb_reads": 4,
+        "apb_traffic_observed": true,
+        "apb_writes": 8,
+        "axi_read_beats": 9,
+        "axi_read_transactions": 4,
+        "axi_traffic_observed": true,
+        "axi_write_beats": 54280,
+        "axi_write_transactions": 8,
+        "bytes_moved": 868624,
+        "bytes_read": 144,
+        "bytes_written": 868480
+      },
+      "command_submission": {
+        "apb_doorbell_writes": 8,
+        "command_count": 4,
+        "completed": 4,
+        "failed": 0,
+        "observed": true,
+        "sequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "submission_errors": 0,
+        "submitted": 4
+      },
+      "dma_bounds_alignment": {
+        "alignment_bytes": 4,
+        "alignment_checked": false,
+        "alignment_errors": 0,
+        "bounds_checked": false,
+        "bounds_errors": 0,
+        "dma_sequences": [],
+        "error_sequences": [],
+        "observed": false
+      },
+      "interrupt_counters_clear": {
+        "clear_observed": true,
+        "clear_sequences": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "completion_interrupts": 4,
+        "error_interrupts": 0,
+        "events": [
+          {
+            "kind": "completion",
+            "message": "kernel_dispatch vector_add retired 1024 workgroups",
+            "queue_id": 0,
+            "sequence": 1
+          },
+          {
+            "kind": "clear",
+            "message": "interrupt status acknowledged after completion record",
+            "queue_id": 0,
+            "sequence": 1
+          },
+          {
+            "kind": "completion",
+            "message": "kernel_dispatch gemm retired 4096 workgroups",
+            "queue_id": 0,
+            "sequence": 2
+          },
+          {
+            "kind": "clear",
+            "message": "interrupt status acknowledged after completion record",
+            "queue_id": 0,
+            "sequence": 2
+          },
+          {
+            "kind": "completion",
+            "message": "kernel_dispatch conv2d retired 16384 workgroups",
+            "queue_id": 0,
+            "sequence": 3
+          },
+          {
+            "kind": "clear",
+            "message": "interrupt status acknowledged after completion record",
+            "queue_id": 0,
+            "sequence": 3
+          },
+          {
+            "kind": "completion",
+            "message": "kernel_dispatch image_filter retired 32768 workgroups",
+            "queue_id": 0,
+            "sequence": 4
+          },
+          {
+            "kind": "clear",
+            "message": "interrupt status acknowledged after completion record",
+            "queue_id": 0,
+            "sequence": 4
+          }
+        ],
+        "interrupt_clears": 4
+      },
+      "invalid_descriptor": {
+        "errors": [],
+        "invalid_descriptor_counter": 0,
+        "observed": false,
+        "rejected_count": 0,
+        "sequences": [],
+        "submission_error_counter": 0
+      },
+      "reset_recovery": {
+        "fault_status_after_reset": "not_observed",
+        "interrupt_status_after_reset": "not_observed",
+        "post_reset_smoke_status": "not_observed",
+        "queue_idle_after_reset": true,
+        "reset_asserted": false,
+        "reset_recoveries": 0,
+        "reset_sequences": []
+      },
+      "throughput_tier_linkage": {
+        "claim_scope": "proxy_model_only",
+        "fp_modes": [
+          "fp16",
+          "fp32",
+          "mixed"
+        ],
+        "max_local_size": 512,
+        "queue_count": 4,
+        "shader_units": 4,
+        "throughput_scaling_by_tier": true,
+        "tier": "gpgpu_nano_ultra31"
+      }
+    },
+    "schema": "celviz.gpgpu.control_plane_metrics.v1",
+    "shader_units": 4,
+    "status": "pass",
+    "status_registers": {
+      "last_sequence": 4,
+      "last_tag": "opencl-subset-image_filter",
+      "status": "idle",
+      "sticky_error": null
+    },
+    "tier": "gpgpu_nano_ultra31"
+  },
+  "generated_at": "2026-05-02T13:28:07+00:00",
+  "last_event": {
+    "event": {
+      "completion_writeback": {
+        "addr": "0x90000000",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 9,
+        "axi_write_beats": 54278,
+        "bytes_read": 144,
+        "bytes_written": 868448,
+        "dma_copies": 0,
+        "dma_fills": 0,
+        "kernel_dispatches": 4
+      },
+      "detail": "kernel_dispatch image_filter retired 32768 workgroups",
+      "error": "OK",
+      "error_code": 0,
+      "fp16_path": false,
+      "fp32_path": true,
+      "grid": [
+        256,
+        128,
+        1
+      ],
+      "kernel": "image_filter",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "queue_head": 512,
+      "queue_id": 0,
+      "queue_tail": 512,
+      "required_fp_mode": "fp32",
+      "scheduler": {
+        "estimated_warps": 262144,
+        "private_bytes_per_thread": 8,
+        "shared_bytes": 0,
+        "warp_size": 32
+      },
+      "sequence": 4,
+      "shader_units": 4,
+      "status": "complete",
+      "submit_tag": "opencl-subset-image_filter",
+      "work_items": 8388608,
+      "workgroups": 32768
+    },
+    "source": "control_plane"
+  },
+  "metrics": {
+    "control_plane_counters": {
+      "apb_reads": 4,
+      "apb_writes": 8,
+      "axi_read_beats": 9,
+      "axi_read_transactions": 4,
+      "axi_write_beats": 54280,
+      "axi_write_transactions": 8,
+      "bytes_moved": 868624,
+      "bytes_read": 144,
+      "bytes_written": 868480,
+      "command_submission_errors": 0,
+      "commands_completed": 4,
+      "commands_failed": 0,
+      "commands_submitted": 4,
+      "completion_interrupts": 4,
+      "dma_alignment_errors": 0,
+      "dma_bounds_errors": 0,
+      "dma_copies": 0,
+      "dma_fills": 0,
+      "error_interrupts": 0,
+      "fence_signals": 0,
+      "fence_waits": 0,
+      "interrupt_clears": 4,
+      "invalid_descriptors": 0,
+      "kernel_dispatches": 4,
+      "mmu_faults": 0,
+      "queue_errors": 0,
+      "reset_recoveries": 0,
+      "resets": 0,
+      "scheduler_faults": 0
+    },
+    "native_runtime_metrics": {}
+  },
+  "native_command_results": [],
+  "native_proxy_snapshot": {},
+  "pending_count": 0,
+  "queue_lifecycle": {
+    "queue_count": 1,
+    "queues": [
+      {
+        "base": "0x10000000",
+        "errors": 0,
+        "head": 512,
+        "lifecycle": "idle",
+        "pending_count": 0,
+        "priority": 3,
+        "queue_id": 0,
+        "retired": 4,
+        "size_bytes": 4096,
+        "submitted": 4,
+        "tail": 512
+      }
+    ],
+    "source": "control_plane",
+    "totals": {
+      "errors": 0,
+      "pending_count": 0,
+      "queue_count": 1,
+      "retired": 4,
+      "ring_size_bytes": 0,
+      "submitted": 4
+    }
+  },
+  "runtime_bridge": {
+    "mode": "dry_run_forced",
+    "reason": "no runtime library path provided"
+  },
+  "runtime_evidence": {
+    "abi_symbol_coverage": {},
+    "artifact_manifest": {
+      "run_log": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy.log",
+      "runtime_metrics": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy/runtime_metrics.json",
+      "runtime_status": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy/runtime_status.json"
+    },
+    "axi_apb_traffic": {
+      "apb_reads": 4,
+      "apb_traffic_observed": true,
+      "apb_writes": 8,
+      "axi_read_beats": 9,
+      "axi_read_transactions": 4,
+      "axi_traffic_observed": true,
+      "axi_write_beats": 54280,
+      "axi_write_transactions": 8,
+      "bytes_moved": 868624,
+      "bytes_read": 144,
+      "bytes_written": 868480
+    },
+    "command_count": 4,
+    "command_submission": {
+      "apb_doorbell_writes": 8,
+      "command_count": 4,
+      "completed": 4,
+      "failed": 0,
+      "observed": true,
+      "sequences": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "submission_errors": 0,
+      "submitted": 4
+    },
+    "dma_bounds_alignment": {
+      "alignment_bytes": 4,
+      "alignment_checked": false,
+      "alignment_errors": 0,
+      "bounds_checked": false,
+      "bounds_errors": 0,
+      "dma_sequences": [],
+      "error_sequences": [],
+      "observed": false
+    },
+    "interrupt_counters_clear": {
+      "clear_observed": true,
+      "clear_sequences": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "completion_interrupts": 4,
+      "error_interrupts": 0,
+      "events": [
+        {
+          "kind": "completion",
+          "message": "kernel_dispatch vector_add retired 1024 workgroups",
+          "queue_id": 0,
+          "sequence": 1
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 1
+        },
+        {
+          "kind": "completion",
+          "message": "kernel_dispatch gemm retired 4096 workgroups",
+          "queue_id": 0,
+          "sequence": 2
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 2
+        },
+        {
+          "kind": "completion",
+          "message": "kernel_dispatch conv2d retired 16384 workgroups",
+          "queue_id": 0,
+          "sequence": 3
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 3
+        },
+        {
+          "kind": "completion",
+          "message": "kernel_dispatch image_filter retired 32768 workgroups",
+          "queue_id": 0,
+          "sequence": 4
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 4
+        }
+      ],
+      "interrupt_clears": 4
+    },
+    "invalid_descriptor": {
+      "errors": [],
+      "invalid_descriptor_counter": 0,
+      "observed": false,
+      "rejected_count": 0,
+      "sequences": [],
+      "submission_error_counter": 0
+    },
+    "last_event": {
+      "event": {
+        "completion_writeback": {
+          "addr": "0x90000000",
+          "bytes": 32
+        },
+        "counter_snapshot": {
+          "axi_read_beats": 9,
+          "axi_write_beats": 54278,
+          "bytes_read": 144,
+          "bytes_written": 868448,
+          "dma_copies": 0,
+          "dma_fills": 0,
+          "kernel_dispatches": 4
+        },
+        "detail": "kernel_dispatch image_filter retired 32768 workgroups",
+        "error": "OK",
+        "error_code": 0,
+        "fp16_path": false,
+        "fp32_path": true,
+        "grid": [
+          256,
+          128,
+          1
+        ],
+        "kernel": "image_filter",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "opcode": "kernel_dispatch",
+        "queue_head": 512,
+        "queue_id": 0,
+        "queue_tail": 512,
+        "required_fp_mode": "fp32",
+        "scheduler": {
+          "estimated_warps": 262144,
+          "private_bytes_per_thread": 8,
+          "shared_bytes": 0,
+          "warp_size": 32
+        },
+        "sequence": 4,
+        "shader_units": 4,
+        "status": "complete",
+        "submit_tag": "opencl-subset-image_filter",
+        "work_items": 8388608,
+        "workgroups": 32768
+      },
+      "source": "control_plane"
+    },
+    "metrics": {
+      "control_plane_counters": {
+        "apb_reads": 4,
+        "apb_writes": 8,
+        "axi_read_beats": 9,
+        "axi_read_transactions": 4,
+        "axi_write_beats": 54280,
+        "axi_write_transactions": 8,
+        "bytes_moved": 868624,
+        "bytes_read": 144,
+        "bytes_written": 868480,
+        "command_submission_errors": 0,
+        "commands_completed": 4,
+        "commands_failed": 0,
+        "commands_submitted": 4,
+        "completion_interrupts": 4,
+        "dma_alignment_errors": 0,
+        "dma_bounds_errors": 0,
+        "dma_copies": 0,
+        "dma_fills": 0,
+        "error_interrupts": 0,
+        "fence_signals": 0,
+        "fence_waits": 0,
+        "interrupt_clears": 4,
+        "invalid_descriptors": 0,
+        "kernel_dispatches": 4,
+        "mmu_faults": 0,
+        "queue_errors": 0,
+        "reset_recoveries": 0,
+        "resets": 0,
+        "scheduler_faults": 0
+      },
+      "native_runtime_metrics": {}
+    },
+    "native_command_results": [],
+    "native_command_summary": {},
+    "pending_count": {
+      "control_plane": 0,
+      "native_runtime": 0
+    },
+    "queue_snapshots": {
+      "control_plane": [
+        {
+          "base": "0x10000000",
+          "errors": 0,
+          "head": 512,
+          "lifecycle": "idle",
+          "pending_count": 0,
+          "priority": 3,
+          "queue_id": 0,
+          "retired": 4,
+          "size_bytes": 4096,
+          "submitted": 4,
+          "tail": 512
+        }
+      ],
+      "native_runtime": []
+    },
+    "queue_totals": {
+      "control_plane": {
+        "errors": 0,
+        "pending_count": 0,
+        "queue_count": 1,
+        "retired": 4,
+        "ring_size_bytes": 0,
+        "submitted": 4
+      },
+      "native_runtime": {}
+    },
+    "reset_recovery": {
+      "fault_status_after_reset": "not_observed",
+      "interrupt_status_after_reset": "not_observed",
+      "post_reset_smoke_status": "not_observed",
+      "queue_idle_after_reset": true,
+      "reset_asserted": false,
+      "reset_recoveries": 0,
+      "reset_sequences": []
+    },
+    "runtime_bridge_mode": "dry_run_forced",
+    "runtime_library_bound": false,
+    "throughput_tier_linkage": {
+      "claim_scope": "proxy_model_only",
+      "fp_modes": [
+        "fp16",
+        "fp32",
+        "mixed"
+      ],
+      "max_local_size": 512,
+      "queue_count": 4,
+      "shader_units": 4,
+      "throughput_scaling_by_tier": true,
+      "tier": "gpgpu_nano_ultra31"
+    },
+    "validation": {
+      "command_status_records": 4,
+      "last_event_source": "control_plane",
+      "native_abi_complete": null,
+      "native_command_results_observed": 0,
+      "native_device_ok": null,
+      "native_metrics_ok": null,
+      "native_pending_matches_snapshot": null,
+      "native_queue_snapshot_count": 0,
+      "native_queue_totals_match_snapshots": null
+    }
+  },
+  "schema": "celviz.gpgpu.runtime_metrics.v1",
+  "status": "pass",
+  "summary": {
+    "commands_completed": 4,
+    "commands_failed": 0,
+    "commands_submitted": 4,
+    "completion_count": 4,
+    "dry_run": true,
+    "last_event_source": "control_plane",
+    "pending_count": 0,
+    "queue_count": 1,
+    "rtlsim_library_bound": false
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "claim_boundary": "public tier metadata only; not measured local RTL performance",
+  "source": {
+    "fields": [
+      "Shader Units (vec1 equivalent shader)",
+      "FP32/16 Operations/Cycle"
+    ],
+    "label": "VeriSilicon Vivante 3D GPGPU IP public product table",
+    "url": "https://www.verisilicon.com/cn/IPPortfolio/Vivante3DGPGPUIP"
+  },
+  "tiers": [
+    {
+      "fp16_ops_per_cycle": 64,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp16_speedup_vs_cc8000l": 1.0,
+      "fp16_to_fp32_ops_ratio": 2.0,
+      "fp32_ops_per_cycle": 32,
+      "fp32_ops_per_shader_unit": 2.0,
+      "fp32_speedup_vs_cc8000l": 1.0,
+      "shader_units_vec1": 16,
+      "tier": "CC8000L"
+    },
+    {
+      "fp16_ops_per_cycle": 128,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp16_speedup_vs_cc8000l": 2.0,
+      "fp16_to_fp32_ops_ratio": 2.0,
+      "fp32_ops_per_cycle": 64,
+      "fp32_ops_per_shader_unit": 2.0,
+      "fp32_speedup_vs_cc8000l": 2.0,
+      "shader_units_vec1": 32,
+      "tier": "CC8000"
+    },
+    {
+      "fp16_ops_per_cycle": 256,
+      "fp16_ops_per_shader_unit": 2.0,
+      "fp16_speedup_vs_cc8000l": 4.0,
+      "fp16_to_fp32_ops_ratio": 2.0,
+      "fp32_ops_per_cycle": 128,
+      "fp32_ops_per_shader_unit": 1.0,
+      "fp32_speedup_vs_cc8000l": 4.0,
+      "shader_units_vec1": 128,
+      "tier": "CC8200"
+    },
+    {
+      "fp16_ops_per_cycle": 1024,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp16_speedup_vs_cc8000l": 16.0,
+      "fp16_to_fp32_ops_ratio": 2.0,
+      "fp32_ops_per_cycle": 512,
+      "fp32_ops_per_shader_unit": 2.0,
+      "fp32_speedup_vs_cc8000l": 16.0,
+      "shader_units_vec1": 256,
+      "tier": "CC8400"
+    },
+    {
+      "fp16_ops_per_cycle": 2048,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp16_speedup_vs_cc8000l": 32.0,
+      "fp16_to_fp32_ops_ratio": 2.0,
+      "fp32_ops_per_cycle": 1024,
+      "fp32_ops_per_shader_unit": 2.0,
+      "fp32_speedup_vs_cc8000l": 32.0,
+      "shader_units_vec1": 512,
+      "tier": "CC8400-MP2"
+    },
+    {
+      "fp16_ops_per_cycle": 4096,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp16_speedup_vs_cc8000l": 64.0,
+      "fp16_to_fp32_ops_ratio": 2.0,
+      "fp32_ops_per_cycle": 2048,
+      "fp32_ops_per_shader_unit": 2.0,
+      "fp32_speedup_vs_cc8000l": 64.0,
+      "shader_units_vec1": 1024,
+      "tier": "CC8400-MP4"
+    },
+    {
+      "fp16_ops_per_cycle": 2048,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp16_speedup_vs_cc8000l": 32.0,
+      "fp16_to_fp32_ops_ratio": 2.0,
+      "fp32_ops_per_cycle": 1024,
+      "fp32_ops_per_shader_unit": 2.0,
+      "fp32_speedup_vs_cc8000l": 32.0,
+      "shader_units_vec1": 512,
+      "tier": "CC8800"
+    },
+    {
+      "fp16_ops_per_cycle": 4096,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp16_speedup_vs_cc8000l": 64.0,
+      "fp16_to_fp32_ops_ratio": 2.0,
+      "fp32_ops_per_cycle": 2048,
+      "fp32_ops_per_shader_unit": 2.0,
+      "fp32_speedup_vs_cc8000l": 64.0,
+      "shader_units_vec1": 1024,
+      "tier": "CC8800-MP2"
+    },
+    {
+      "fp16_ops_per_cycle": 8192,
+      "fp16_ops_per_shader_unit": 4.0,
+      "fp16_speedup_vs_cc8000l": 128.0,
+      "fp16_to_fp32_ops_ratio": 2.0,
+      "fp32_ops_per_cycle": 4096,
+      "fp32_ops_per_shader_unit": 2.0,
+      "fp32_speedup_vs_cc8000l": 128.0,
+      "shader_units_vec1": 2048,
+      "tier": "CC8800-MP4"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "comparisons": {
+    "convolution_proxy": {
+      "max_abs_error": 0.0,
+      "mismatch_count": 0,
+      "status": "pass"
+    },
+    "gemm_proxy": {
+      "max_abs_error": 0,
+      "mismatch_count": 0,
+      "status": "pass"
+    },
+    "image_filter": {
+      "max_abs_error": 0,
+      "mismatch_count": 0,
+      "status": "pass"
+    },
+    "memory_copy": {
+      "max_abs_error": 0,
+      "mismatch_count": 0,
+      "status": "pass"
+    },
+    "vector_add": {
+      "max_abs_error": 0,
+      "mismatch_count": 0,
+      "status": "pass"
+    }
+  },
+  "pass_by_kernel": {
+    "convolution_proxy": true,
+    "gemm_proxy": true,
+    "image_filter": true,
+    "memory_copy": true,
+    "vector_add": true
+  },
+  "scope": "clean-room OpenCL-like runtime proxy; non-conformant and not compatible with proprietary Vivante command streams, firmware, SDKs, drivers, or certification suites",
+  "status": "pass"
+}

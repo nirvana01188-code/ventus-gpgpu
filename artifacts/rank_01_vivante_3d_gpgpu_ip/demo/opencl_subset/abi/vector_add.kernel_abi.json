@@ -1,0 +1,195 @@
+{
+  "address_spaces": [
+    "global",
+    "private"
+  ],
+  "arg_size_bytes": 32,
+  "args": [
+    {
+      "abi_offset": 0,
+      "access": "read_only",
+      "address_space": "global",
+      "base_type": "float",
+      "name": "a",
+      "opencl_address_space": "__global",
+      "pointer": true,
+      "size_bytes": 8,
+      "type": "float",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 8,
+      "access": "read_only",
+      "address_space": "global",
+      "base_type": "float",
+      "name": "b",
+      "opencl_address_space": "__global",
+      "pointer": true,
+      "size_bytes": 8,
+      "type": "float",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 16,
+      "access": "read_write",
+      "address_space": "global",
+      "base_type": "float",
+      "name": "c",
+      "opencl_address_space": "__global",
+      "pointer": true,
+      "size_bytes": 8,
+      "type": "float",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 24,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "n",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "vector_width": 1
+    }
+  ],
+  "buffers": [
+    {
+      "access": "read_only",
+      "address_space": "global",
+      "alloc_size_bytes": 4096,
+      "arg": "a",
+      "device_address": "0x81000000",
+      "id": "vadd_a",
+      "size_bytes": 4096
+    },
+    {
+      "access": "read_only",
+      "address_space": "global",
+      "alloc_size_bytes": 4096,
+      "arg": "b",
+      "device_address": "0x81001000",
+      "id": "vadd_b",
+      "size_bytes": 4096
+    },
+    {
+      "access": "write_only",
+      "address_space": "global",
+      "alloc_size_bytes": 4096,
+      "arg": "c",
+      "device_address": "0x81002000",
+      "id": "vadd_c",
+      "size_bytes": 4096
+    }
+  ],
+  "description": "1D FP32 vector add using global buffers and scalar element count.",
+  "generated_at": "2026-05-02T13:28:07+00:00",
+  "global_size": [
+    1024,
+    1,
+    1
+  ],
+  "kernel_id": 1,
+  "local_size": [
+    64,
+    1,
+    1
+  ],
+  "metadata": {
+    "buffer_allocsize": [
+      4096,
+      4096,
+      4096
+    ],
+    "buffer_base": [
+      2164260864,
+      2164264960,
+      2164269056
+    ],
+    "buffer_size": [
+      4096,
+      4096,
+      4096
+    ],
+    "kernel_id": 1,
+    "kernel_size": [
+      1024,
+      1,
+      1
+    ],
+    "ldsSize": 0,
+    "metaDataBaseAddr": 2147549184,
+    "name": "vector_add",
+    "num_buffer": 3,
+    "pdsBaseAddr": 0,
+    "pdsSize": 0,
+    "sgprUsage": 16,
+    "startaddr": 4096,
+    "vgprUsage": 24,
+    "wf_size": 32,
+    "wg_size": 2
+  },
+  "name": "vector_add",
+  "precision": "fp32",
+  "required_fp_mode": "fp32",
+  "scalar_args": [
+    {
+      "abi_offset": 24,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "n",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "value": 1024,
+      "vector_width": 1
+    }
+  ],
+  "schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+  "scope": "clean-room OpenCL C subset only; non-conformant and not OpenCL 3.0, SPIR-V, Vivante compiler, proprietary command stream, SDK, firmware, or driver ABI",
+  "source_path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/src/vector_add.cl",
+  "source_schema": "celviz.gpgpu.opencl_subset.v1",
+  "source_sha256": "4919ba7bd0791b57603e89c0195b4adfb33a0a0b8d23dcf0b6ea720276feb57d",
+  "subset": {
+    "conformant_opencl": false,
+    "language": "OpenCL C clean-room subset",
+    "supported_builtins": [
+      "barrier",
+      "get_global_id",
+      "get_global_size",
+      "get_group_id",
+      "get_local_id",
+      "get_local_size"
+    ],
+    "unsupported_non_goals": [
+      "image2d_t",
+      "image3d_t",
+      "sampler_t",
+      "pipe",
+      "queue_t",
+      "clk_event_t",
+      "event_t",
+      "async_work_group_copy",
+      "read_image",
+      "write_image",
+      "atom_",
+      "atomic_",
+      "sub_group",
+      "work_group_reduce",
+      "printf",
+      "double"
+    ],
+    "used_builtins": [
+      "get_global_id"
+    ]
+  },
+  "work_items": 1024,
+  "workgroup_count": [
+    16,
+    1,
+    1
+  ]
+}

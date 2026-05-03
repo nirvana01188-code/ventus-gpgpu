@@ -1,0 +1,14 @@
+celviz_gpgpu_e6_integration: pass
+schema=celviz.gpgpu.e6_integration_evidence.v1
+scope=clean-room proxy integration evidence only; no proprietary Vivante collateral, driver ABI, firmware, SDK, compiler, API conformance, RTL timing closure, PPA, safety certification, or silicon signoff claim
+check bandwidth_axi_proxy_counters pass=true
+check latency_proxy_tier_validation pass=true
+check proxy_power_activity_index pass=true
+check reset_clock_interrupt_assumptions pass=true
+check security_safety_functional_proxy_notes pass=true
+check explicit_non_goals_and_no_signoff_claim pass=true
+bandwidth_bytes_read=736 bandwidth_bytes_written=2272
+latency_selected_tiers=CC8000L,CC8000,CC8400
+clock_model=single_proxy_clock
+security_claim_scope=functional_proxy_only
+non_goals=no_licensed_vendor_collateral,no_silicon_signoff,no_official_conformance

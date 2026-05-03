@@ -1,0 +1,153 @@
+{
+  "checks": [
+    {
+      "name": "bandwidth_axi_proxy_counters",
+      "pass": true
+    },
+    {
+      "name": "latency_proxy_tier_validation",
+      "pass": true
+    },
+    {
+      "name": "proxy_power_activity_index",
+      "pass": true
+    },
+    {
+      "name": "reset_clock_interrupt_assumptions",
+      "pass": true
+    },
+    {
+      "name": "security_safety_functional_proxy_notes",
+      "pass": true
+    },
+    {
+      "name": "explicit_non_goals_and_no_signoff_claim",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room proxy integration evidence only; no proprietary Vivante collateral, driver ABI, firmware, SDK, compiler, API conformance, RTL timing closure, PPA, safety certification, or silicon signoff claim",
+  "e6_status": "pass_proxy",
+  "evidence": {
+    "bandwidth": {
+      "axi_read_beats": 46,
+      "axi_read_transactions": 5,
+      "axi_write_beats": 142,
+      "axi_write_transactions": 16,
+      "bytes_moved": 3008,
+      "bytes_read": 736,
+      "bytes_written": 2272,
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/perf_model_metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/bandwidth_latency_power.md"
+      ],
+      "proxy_bandwidth_fields_present": true,
+      "status": "pass_proxy"
+    },
+    "latency": {
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/perf_model_metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/perf_model_run.log",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/reset_clock_interrupt.md"
+      ],
+      "latency_check_present": true,
+      "latency_proxy_cycles": [
+        509,
+        485,
+        476
+      ],
+      "selected_tiers": [
+        "CC8000L",
+        "CC8000",
+        "CC8400"
+      ],
+      "status": "pass_proxy",
+      "tier_validation_status": "pass"
+    },
+    "non_goals": {
+      "claim_boundary_present": true,
+      "forbidden_claims": [
+        "licensed vendor collateral",
+        "proprietary Vivante RTL",
+        "proprietary Vivante firmware",
+        "proprietary Vivante driver",
+        "official OpenCL conformance",
+        "official OpenCV conformance",
+        "silicon signoff",
+        "tapeout readiness",
+        "production PPA",
+        "STA closure",
+        "CDC/RDC closure",
+        "DFT/scan signoff",
+        "safety certification",
+        "product security certification"
+      ],
+      "licensed_vendor_collateral_excluded": true,
+      "status": "pass"
+    },
+    "proxy_power": {
+      "activity_weights_present": true,
+      "aggregate_power_index_proxy": [
+        3.746699,
+        3.930619,
+        4.00437
+      ],
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/perf_model_metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/bandwidth_latency_power.md"
+      ],
+      "power_check_present": true,
+      "status": "pass_proxy"
+    },
+    "reset_clock": {
+      "clock_claim_scope": "proxy_cycle_model_only",
+      "clock_model": "single_proxy_clock",
+      "completion_interrupts": 13,
+      "error_interrupts": 3,
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/reset_clock_interrupt.md"
+      ],
+      "interrupt_clears": 16,
+      "reset_doc_has_clock_model": true,
+      "reset_pending_active_scenarios": 2,
+      "reset_recoveries": 1,
+      "resets": 1,
+      "status": "pass_proxy"
+    },
+    "security_safety": {
+      "claim_scope": "functional_proxy_only",
+      "dma_bounds_alignment_scenarios": 5,
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/security_safety_notes.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log"
+      ],
+      "expected_error_records": 10,
+      "invalid_descriptor_scenarios": 5,
+      "non_goal_tokens_present": true,
+      "status": "pass_proxy"
+    }
+  },
+  "generated_at_utc": "2026-05-03T03:22:46+00:00",
+  "ip_name": "Celviz GPGPU IP",
+  "limitations": [
+    "Proxy bandwidth, latency, and power evidence are not RTL timing or silicon PPA.",
+    "Reset/clock evidence is a clean-room control-plane and cycle-model assumption, not CDC/RDC signoff.",
+    "Security/safety notes are functional robustness boundaries, not certification or product security proof.",
+    "No licensed vendor collateral, proprietary Vivante implementation, official conformance, or silicon signoff is claimed."
+  ],
+  "schema": "celviz.gpgpu.e6_integration_evidence.v1",
+  "source_paths": {
+    "bandwidth_latency_power": "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/bandwidth_latency_power.md",
+    "control_plane_metrics": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+    "negative_boundary_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json",
+    "perf_model_metrics": "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/perf_model_metrics.json",
+    "perf_model_run_log": "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/perf_model_run.log",
+    "reset_clock_interrupt": "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/reset_clock_interrupt.md",
+    "security_safety_notes": "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/security_safety_notes.md",
+    "verification_results": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log"
+  },
+  "status": "pass"
+}

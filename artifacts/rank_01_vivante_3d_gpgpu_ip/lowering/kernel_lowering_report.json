@@ -1,0 +1,148 @@
+{
+  "checks": [
+    {
+      "name": "all_opencl_kernels_lowered",
+      "observed": [
+        "vector_add",
+        "gemm",
+        "conv2d",
+        "image_filter"
+      ],
+      "pass": true
+    },
+    {
+      "name": "required_micro_ops_present",
+      "pass": true
+    },
+    {
+      "name": "loop_kernels_have_loop_ops",
+      "pass": true
+    },
+    {
+      "name": "image_filter_has_vector_ops",
+      "pass": true
+    },
+    {
+      "name": "runtime_sequences_unique",
+      "pass": true
+    },
+    {
+      "name": "metadata_links_present",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room OpenCL-like subset to Celviz micro-op lowering evidence only; not an OpenCL compiler, not SPIR-V/LLVM, not a Vivante ISA or proprietary command stream, and not a performance/timing signoff",
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "kernel_count": 4,
+  "kernel_outputs": {
+    "conv2d": "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernels/conv2d.lowering.json",
+    "gemm": "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernels/gemm.lowering.json",
+    "image_filter": "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernels/image_filter.lowering.json",
+    "vector_add": "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernels/vector_add.lowering.json"
+  },
+  "kernels": [
+    {
+      "kernel": "vector_add",
+      "runtime_sequence": 1,
+      "sha256": "16ab59d5075e2bf5b0e25133df429244541e9b5ad4e1237a6a86f76b29296dc0",
+      "simt_workload": "vector_add",
+      "uop_categories": [
+        "uop_address_calc",
+        "uop_alu_add",
+        "uop_global_load",
+        "uop_global_store",
+        "uop_kernel_prologue",
+        "uop_predicate_bounds",
+        "uop_read_scalar_arg",
+        "uop_read_workitem_id",
+        "uop_write_completion"
+      ],
+      "uop_count": 13
+    },
+    {
+      "kernel": "gemm",
+      "runtime_sequence": 2,
+      "sha256": "b35244d791816d9404d88c9b5f259edaee4bfd28974b54c5de73148f28c342d8",
+      "simt_workload": "gemm_proxy",
+      "uop_categories": [
+        "uop_address_calc",
+        "uop_alu_mad",
+        "uop_barrier",
+        "uop_global_load",
+        "uop_global_store",
+        "uop_kernel_prologue",
+        "uop_loop_begin",
+        "uop_loop_end",
+        "uop_predicate_bounds",
+        "uop_read_scalar_arg",
+        "uop_read_workitem_id",
+        "uop_write_completion"
+      ],
+      "uop_count": 18
+    },
+    {
+      "kernel": "conv2d",
+      "runtime_sequence": 3,
+      "sha256": "465b1f9195adfb87518c6af1ec138c05220978b591747f5b5d1fead5bde31654",
+      "simt_workload": "convolution_proxy",
+      "uop_categories": [
+        "uop_address_calc",
+        "uop_alu_mad",
+        "uop_barrier",
+        "uop_global_load",
+        "uop_global_store",
+        "uop_kernel_prologue",
+        "uop_loop_begin",
+        "uop_loop_end",
+        "uop_predicate_bounds",
+        "uop_read_scalar_arg",
+        "uop_read_workitem_id",
+        "uop_write_completion"
+      ],
+      "uop_count": 17
+    },
+    {
+      "kernel": "image_filter",
+      "runtime_sequence": 4,
+      "sha256": "6da6af4209636f9617a5ab4d6cfb5ca6f095da61615edfcb7be70d19b3db82d6",
+      "simt_workload": "image_filter",
+      "uop_categories": [
+        "uop_address_calc",
+        "uop_alu_mul_clamp",
+        "uop_global_load",
+        "uop_global_store",
+        "uop_kernel_prologue",
+        "uop_predicate_bounds",
+        "uop_read_scalar_arg",
+        "uop_read_workitem_id",
+        "uop_vector_pack",
+        "uop_vector_unpack",
+        "uop_write_completion"
+      ],
+      "uop_count": 15
+    }
+  ],
+  "opencl_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json",
+  "runtime_commands": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json",
+  "schema": "celviz.gpgpu.kernel_lowering.v1",
+  "status": "pass",
+  "total_uops": 63,
+  "uop_categories": [
+    "uop_address_calc",
+    "uop_alu_add",
+    "uop_alu_mad",
+    "uop_alu_mul_clamp",
+    "uop_barrier",
+    "uop_global_load",
+    "uop_global_store",
+    "uop_kernel_prologue",
+    "uop_loop_begin",
+    "uop_loop_end",
+    "uop_predicate_bounds",
+    "uop_read_scalar_arg",
+    "uop_read_workitem_id",
+    "uop_vector_pack",
+    "uop_vector_unpack",
+    "uop_write_completion"
+  ]
+}

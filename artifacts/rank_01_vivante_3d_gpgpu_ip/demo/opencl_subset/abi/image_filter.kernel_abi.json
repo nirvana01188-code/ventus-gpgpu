@@ -1,0 +1,221 @@
+{
+  "address_spaces": [
+    "global",
+    "private"
+  ],
+  "arg_size_bytes": 32,
+  "args": [
+    {
+      "abi_offset": 0,
+      "access": "read_only",
+      "address_space": "global",
+      "base_type": "uchar",
+      "name": "src",
+      "opencl_address_space": "__global",
+      "pointer": true,
+      "size_bytes": 8,
+      "type": "uchar4",
+      "vector_width": 4
+    },
+    {
+      "abi_offset": 8,
+      "access": "read_write",
+      "address_space": "global",
+      "base_type": "uchar",
+      "name": "dst",
+      "opencl_address_space": "__global",
+      "pointer": true,
+      "size_bytes": 8,
+      "type": "uchar4",
+      "vector_width": 4
+    },
+    {
+      "abi_offset": 16,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "width",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 20,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "height",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 24,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "float",
+      "name": "gain",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "float",
+      "vector_width": 1
+    }
+  ],
+  "buffers": [
+    {
+      "access": "read_only",
+      "address_space": "global",
+      "alloc_size_bytes": 131072,
+      "arg": "src",
+      "device_address": "0x81300000",
+      "id": "filter_src_rgba",
+      "size_bytes": 131072
+    },
+    {
+      "access": "write_only",
+      "address_space": "global",
+      "alloc_size_bytes": 131072,
+      "arg": "dst",
+      "device_address": "0x81340000",
+      "id": "filter_dst_rgba",
+      "size_bytes": 131072
+    }
+  ],
+  "description": "Image-filter subset expressed as buffer math, not OpenCL image objects/samplers.",
+  "generated_at": "2026-05-02T13:28:07+00:00",
+  "global_size": [
+    256,
+    128,
+    1
+  ],
+  "kernel_id": 4,
+  "local_size": [
+    16,
+    16,
+    1
+  ],
+  "metadata": {
+    "buffer_allocsize": [
+      131072,
+      131072
+    ],
+    "buffer_base": [
+      2167406592,
+      2167668736
+    ],
+    "buffer_size": [
+      131072,
+      131072
+    ],
+    "kernel_id": 4,
+    "kernel_size": [
+      256,
+      128,
+      1
+    ],
+    "ldsSize": 0,
+    "metaDataBaseAddr": 2147745792,
+    "name": "image_filter",
+    "num_buffer": 2,
+    "pdsBaseAddr": 0,
+    "pdsSize": 8,
+    "sgprUsage": 18,
+    "startaddr": 16384,
+    "vgprUsage": 28,
+    "wf_size": 32,
+    "wg_size": 8
+  },
+  "name": "image_filter",
+  "precision": "fp32",
+  "required_fp_mode": "fp32",
+  "scalar_args": [
+    {
+      "abi_offset": 16,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "width",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "value": 256,
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 20,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "height",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "value": 128,
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 24,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "float",
+      "name": "gain",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "float",
+      "value": 1.25,
+      "vector_width": 1
+    }
+  ],
+  "schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+  "scope": "clean-room OpenCL C subset only; non-conformant and not OpenCL 3.0, SPIR-V, Vivante compiler, proprietary command stream, SDK, firmware, or driver ABI",
+  "source_path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/src/image_filter.cl",
+  "source_schema": "celviz.gpgpu.opencl_subset.v1",
+  "source_sha256": "85325e697f04a9268613256b71faeec2951e3bbd2cfc6c0ce4671634727d9c13",
+  "subset": {
+    "conformant_opencl": false,
+    "language": "OpenCL C clean-room subset",
+    "supported_builtins": [
+      "barrier",
+      "get_global_id",
+      "get_global_size",
+      "get_group_id",
+      "get_local_id",
+      "get_local_size"
+    ],
+    "unsupported_non_goals": [
+      "image2d_t",
+      "image3d_t",
+      "sampler_t",
+      "pipe",
+      "queue_t",
+      "clk_event_t",
+      "event_t",
+      "async_work_group_copy",
+      "read_image",
+      "write_image",
+      "atom_",
+      "atomic_",
+      "sub_group",
+      "work_group_reduce",
+      "printf",
+      "double"
+    ],
+    "used_builtins": [
+      "get_global_id"
+    ]
+  },
+  "work_items": 32768,
+  "workgroup_count": [
+    16,
+    8,
+    1
+  ]
+}

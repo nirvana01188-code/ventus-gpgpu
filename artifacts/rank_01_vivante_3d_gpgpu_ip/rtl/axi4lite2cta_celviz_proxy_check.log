@@ -1,0 +1,28 @@
+AXI4Lite2CTA clean-room Celviz GPGPU proxy CSR check
+Date: 2026-05-02
+
+Changed RTL:
+- ventus/src/axi/AXI4Lite2CTA.scala
+
+Local checks:
+- git diff --check -- ventus/src/axi/AXI4Lite2CTA.scala: pass
+- ./mill -i -j 0 'ventus[6.4.0].compile': blocked before source compile because no Java Runtime is installed in this environment.
+
+Added CSR word offsets:
+- 0x50 COMMAND_DOORBELL
+- 0x54 COMMAND_COUNT
+- 0x58 COMMAND_ID
+- 0x5c KERNEL_ID
+- 0x60 FENCE_ID
+- 0x64 IRQ_STATUS
+- 0x68 IRQ_MASK
+- 0x6c IRQ_CLEAR
+- 0x70 IRQ_PENDING
+- 0x74 ERROR_STATUS
+- 0x78 APB_AXIL_READ_COUNT
+- 0x7c APB_AXIL_WRITE_COUNT
+- 0x80 COMPLETION_COUNT
+- 0x84 COMPLETION_STATUS
+- 0x88 COMPLETION_COMMAND_ID
+- 0x8c COMPLETION_FENCE_ID
+- 0x90 COMPLETION_WG_ID

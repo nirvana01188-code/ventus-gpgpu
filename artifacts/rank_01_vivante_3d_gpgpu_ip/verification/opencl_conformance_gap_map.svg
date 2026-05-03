@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="940" viewBox="0 0 1560 940">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#5a6578"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#142033" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1560" height="940" fill="#f6f8fb"/>
+  <rect x="0" y="0" width="1560" height="130" fill="#172033"/>
+  <text x="54" y="58" font-size="34" font-weight="800" fill="#ffffff">Celviz GPGPU IP: OpenCL Conformance Gap Map</text>
+  <text x="54" y="96" font-size="18" fill="#c9d4e6">Current status: OpenCL-like subset evidence only. This is not an official OpenCL conformance pass.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="54" y="178" width="430" height="344" rx="8" fill="#e8f7ef" stroke="#2f9f64" stroke-width="2"/>
+<text x="78" y="220" font-size="22" font-weight="700" fill="#172033">Implemented Evidence</text>
+<text x="78" y="260" font-size="15" fill="#2b3648">4 subset kernels: vector_add, gemm, conv2d, image_filter</text>
+<text x="78" y="284" font-size="15" fill="#2b3648">Compiler IR: 30 vregs, 6 pregs</text>
+<text x="78" y="308" font-size="15" fill="#2b3648">Lowering/execution: 63 uops</text>
+<text x="78" y="332" font-size="15" fill="#2b3648">Memory events observed: 1379</text>
+<text x="78" y="356" font-size="15" fill="#2b3648">Runtime queue/fence/event proxy: pass</text>
+<text x="78" y="380" font-size="15" fill="#2b3648">Functional acceptance bins: 370/370</text>
+    <rect x="565" y="178" width="430" height="344" rx="8" fill="#fff5dc" stroke="#d59624" stroke-width="2"/>
+<text x="589" y="220" font-size="22" font-weight="700" fill="#172033">Conformance Expansion</text>
+<text x="589" y="260" font-size="15" fill="#2b3648">Grow OpenCL C subset by workload class</text>
+<text x="589" y="284" font-size="15" fill="#2b3648">Add builtins, atomics, math, images, samplers</text>
+<text x="589" y="308" font-size="15" fill="#2b3648">Tighten compiler/runtime ABI contracts</text>
+<text x="589" y="332" font-size="15" fill="#2b3648">Expand negative/error conformance-style tests</text>
+<text x="589" y="356" font-size="15" fill="#2b3648">Model global/local/constant memory details</text>
+<text x="589" y="380" font-size="15" fill="#2b3648">Raise structural RTL coverage separately</text>
+    <rect x="1076" y="178" width="430" height="344" rx="8" fill="#fde8e8" stroke="#d14b4b" stroke-width="2"/>
+<text x="1100" y="220" font-size="22" font-weight="700" fill="#172033">Official Gap</text>
+<text x="1100" y="260" font-size="15" fill="#2b3648">Khronos CTS or licensed official test suite</text>
+<text x="1100" y="284" font-size="15" fill="#2b3648">Official ICD/runtime semantics</text>
+<text x="1100" y="308" font-size="15" fill="#2b3648">Production compiler path such as LLVM/SPIR-V</text>
+<text x="1100" y="332" font-size="15" fill="#2b3648">Device/profile/device-info precision semantics</text>
+<text x="1100" y="356" font-size="15" fill="#2b3648">Production OS driver integration</text>
+<text x="1100" y="380" font-size="15" fill="#2b3648">Certification/legal submission package</text>
+  </g>
+
+  <line x1="494" y1="350" x2="555" y2="350" stroke="#5a6578" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="1005" y1="350" x2="1066" y2="350" stroke="#5a6578" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="54" y="592" font-size="24" font-weight="800" fill="#172033">Evidence Chain</text>
+  <rect x="54" y="625" width="1452" height="115" rx="8" fill="#ffffff" stroke="#c8d1de" stroke-width="2"/>
+  <rect x="82" y="666" width="208" height="34" rx="17" fill="#e8f7ef" stroke="#2f9f64" stroke-width="1.5"/>
+<text x="96" y="689" font-size="14" font-weight="700" fill="#172033">OpenCL-like C subset</text>
+  <line x1="292" y1="683" x2="352" y2="683" stroke="#5a6578" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="372" y="666" width="163" height="34" rx="17" fill="#e8f7ef" stroke="#2f9f64" stroke-width="1.5"/>
+<text x="386" y="689" font-size="14" font-weight="700" fill="#172033">Kernel ABI JSON</text>
+  <line x1="550" y1="683" x2="610" y2="683" stroke="#5a6578" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="630" y="666" width="150" height="34" rx="17" fill="#e8f7ef" stroke="#2f9f64" stroke-width="1.5"/>
+<text x="644" y="689" font-size="14" font-weight="700" fill="#172033">Compiler IR</text>
+  <line x1="792" y1="683" x2="852" y2="683" stroke="#5a6578" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="872" y="666" width="190" height="34" rx="17" fill="#e8f7ef" stroke="#2f9f64" stroke-width="1.5"/>
+<text x="886" y="689" font-size="14" font-weight="700" fill="#172033">Micro-op execution</text>
+  <line x1="1087" y1="683" x2="1147" y2="683" stroke="#5a6578" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="1167" y="666" width="208" height="34" rx="17" fill="#e8f7ef" stroke="#2f9f64" stroke-width="1.5"/>
+<text x="1181" y="689" font-size="14" font-weight="700" fill="#172033">Runtime/driver proxy</text>
+
+  <text x="54" y="802" font-size="24" font-weight="800" fill="#172033">Claim Boundary</text>
+  <rect x="54" y="828" width="1452" height="62" rx="8" fill="#172033" stroke="#172033" stroke-width="2"/>
+  <text x="82" y="867" font-size="18" font-weight="700" fill="#ffffff">Allowed claim:</text>
+  <text x="214" y="867" font-size="18" fill="#e6eefb">clean-room OpenCL-like subset evidence with 348/348 functional acceptance bins.</text>
+  <text x="852" y="867" font-size="18" font-weight="700" fill="#ffffff">Not claimed:</text>
+  <text x="970" y="867" font-size="18" fill="#e6eefb">Khronos/OpenCL conformance, Vivante compatibility, production driver readiness.</text>
+
+  <text x="54" y="918" font-size="13" fill="#6b7687">Generated 2026-05-03T03:22:52+00:00 from repository evidence. Schema: celviz.gpgpu.opencl_conformance_gap_map.v1</text>
+</svg>

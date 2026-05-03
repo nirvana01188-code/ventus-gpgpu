@@ -1,0 +1,56 @@
+{
+  "claim_boundary": {
+    "allowed": "clean-room OpenCL-like subset evidence with functional/acceptance coverage",
+    "not_claimed": [
+      "official OpenCL conformance",
+      "Khronos CTS pass",
+      "proprietary Vivante compatibility",
+      "production driver or silicon signoff"
+    ]
+  },
+  "clean_room_scope": "OpenCL-like subset gap map for the Ventus-based Celviz GPGPU IP proxy; not an official OpenCL conformance claim, not Khronos CTS evidence, and not a proprietary Vivante driver/compiler/firmware compatibility claim",
+  "conformance_expansion_work": [
+    "expand OpenCL C subset coverage beyond four representative kernels",
+    "add builtins, math, atomics, images, samplers, local memory, and event semantics",
+    "connect compiler/runtime ABI to production-grade binary/codegen path",
+    "increase directed, random, negative, and long-run conformance-style workloads",
+    "keep RTL structural coverage separate from functional acceptance coverage"
+  ],
+  "current_evidence": {
+    "claim": "OpenCL-like subset evidence only; non-conformant",
+    "kernels": [
+      "vector_add",
+      "gemm",
+      "conv2d",
+      "image_filter"
+    ],
+    "metrics": {
+      "coverage_percent": 100.0,
+      "hit_bins": 370,
+      "kernel_count": 4,
+      "memory_events": 1379,
+      "predicate_registers": 6,
+      "total_bins": 370,
+      "total_uops": 63,
+      "virtual_registers": 30
+    },
+    "source_reports": {
+      "compiler_ir": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/compiler_ir_report.json",
+      "coverage": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verification_coverage_100.json",
+      "driver_submission": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+      "kernel_lowering": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernel_lowering_report.json",
+      "microop_execution": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/microop_execution_report.json",
+      "opencl_subset": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+    }
+  },
+  "diagram": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.svg",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "official_conformance_gap": [
+    "Khronos CTS or licensed official conformance suite is not present",
+    "official OpenCL ICD/runtime stack is not present",
+    "full OpenCL C/profile/device-info/precision semantics are not present",
+    "production OS kernel driver and certification package are not present"
+  ],
+  "schema": "celviz.gpgpu.opencl_conformance_gap_map.v1",
+  "status": "pass"
+}

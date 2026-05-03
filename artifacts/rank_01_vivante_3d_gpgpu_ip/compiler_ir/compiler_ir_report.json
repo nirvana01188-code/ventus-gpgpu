@@ -1,0 +1,73 @@
+{
+  "checks": [
+    {
+      "name": "all_four_kernels_have_ir",
+      "pass": true
+    },
+    {
+      "name": "all_kernel_ir_pass",
+      "pass": true
+    },
+    {
+      "name": "virtual_and_predicate_registers_present",
+      "pass": true
+    },
+    {
+      "name": "cfg_and_def_use_present",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room compiler IR evidence over Celviz micro-ops only; not SPIR-V, not LLVM, not a production compiler backend, not Vivante ISA, and not a proprietary command-stream compatibility claim",
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "kernel_count": 4,
+  "kernel_outputs": {
+    "conv2d": "artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/kernels/conv2d.compiler_ir.json",
+    "gemm": "artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/kernels/gemm.compiler_ir.json",
+    "image_filter": "artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/kernels/image_filter.compiler_ir.json",
+    "vector_add": "artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/kernels/vector_add.compiler_ir.json"
+  },
+  "kernels": [
+    {
+      "basic_blocks": 17,
+      "cfg_edges": 17,
+      "kernel": "conv2d",
+      "predicate_registers": 2,
+      "sha256": "f6fff006355a315f124b1bd3d3fa1de1f1721e671fedfdb8d9a7d46f7f0b4333",
+      "status": "pass",
+      "virtual_registers": 7
+    },
+    {
+      "basic_blocks": 18,
+      "cfg_edges": 18,
+      "kernel": "gemm",
+      "predicate_registers": 2,
+      "sha256": "b161455013ef0a995ff251d049cef31cd8c28e4767e2557fcc10b752fc51fd68",
+      "status": "pass",
+      "virtual_registers": 8
+    },
+    {
+      "basic_blocks": 15,
+      "cfg_edges": 14,
+      "kernel": "image_filter",
+      "predicate_registers": 1,
+      "sha256": "2ef73b7a9536a2314f54a79b67707cab438fca059eb7b59e9e921c2ad5673c3e",
+      "status": "pass",
+      "virtual_registers": 9
+    },
+    {
+      "basic_blocks": 13,
+      "cfg_edges": 12,
+      "kernel": "vector_add",
+      "predicate_registers": 1,
+      "sha256": "ef83db54d619e05ad5a7a8aeb37b982cfa418613b15dfe05911b5d19d401a2bb",
+      "status": "pass",
+      "virtual_registers": 6
+    }
+  ],
+  "schema": "celviz.gpgpu.compiler_ir.v1",
+  "status": "pass",
+  "total_basic_blocks": 63,
+  "total_cfg_edges": 61,
+  "total_predicate_registers": 6,
+  "total_virtual_registers": 30
+}

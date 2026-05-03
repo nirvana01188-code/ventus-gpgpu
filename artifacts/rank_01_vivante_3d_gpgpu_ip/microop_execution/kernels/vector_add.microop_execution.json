@@ -1,0 +1,419 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "pc_sequence_head": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "uop_count": 13
+      },
+      "name": "pc_sequence_is_dense",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "declared": 13,
+        "executed": 13
+      },
+      "name": "all_uops_executed",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "opcodes": [
+          "uop_address_calc",
+          "uop_alu_add",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_write_completion"
+        ],
+        "unknown": []
+      },
+      "name": "known_opcode_subset",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "load": 64,
+        "store": 32
+      },
+      "name": "global_load_store_trace_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "completion_written": true
+      },
+      "name": "completion_written",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "expected": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
+        "observed": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
+        "oracle_workload": "vector_add"
+      },
+      "name": "oracle_hash_match",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-5 executable micro-op evidence for the Ventus-based Celviz GPGPU IP proxy only; not a production ISA simulator, not a compiler backend, not SPIR-V/LLVM, not Vivante ISA or command-stream compatibility, not official OpenCL conformance, and not timing/PPA signoff",
+  "execution": {
+    "address_args": [
+      "a",
+      "b",
+      "c"
+    ],
+    "alu_ops": {
+      "uop_alu_add": 1
+    },
+    "barrier_count": 0,
+    "completion_written": true,
+    "loop_trips": {},
+    "memory_counts": {
+      "load": 64,
+      "store": 32
+    },
+    "memory_event_count": 96,
+    "memory_trace_head": [
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 0,
+        "bytes_per_element": 4,
+        "index": 0,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 0,
+        "bytes_per_element": 4,
+        "index": 0,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "c",
+        "byte_offset": 0,
+        "bytes_per_element": 4,
+        "index": 0,
+        "kind": "store",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 4,
+        "bytes_per_element": 4,
+        "index": 1,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 4,
+        "bytes_per_element": 4,
+        "index": 1,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "c",
+        "byte_offset": 4,
+        "bytes_per_element": 4,
+        "index": 1,
+        "kind": "store",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 8,
+        "bytes_per_element": 4,
+        "index": 2,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 8,
+        "bytes_per_element": 4,
+        "index": 2,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "c",
+        "byte_offset": 8,
+        "bytes_per_element": 4,
+        "index": 2,
+        "kind": "store",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 12,
+        "bytes_per_element": 4,
+        "index": 3,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 12,
+        "bytes_per_element": 4,
+        "index": 3,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "c",
+        "byte_offset": 12,
+        "bytes_per_element": 4,
+        "index": 3,
+        "kind": "store",
+        "lanes": 1
+      }
+    ],
+    "memory_trace_tail": [
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 112,
+        "bytes_per_element": 4,
+        "index": 28,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 112,
+        "bytes_per_element": 4,
+        "index": 28,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "c",
+        "byte_offset": 112,
+        "bytes_per_element": 4,
+        "index": 28,
+        "kind": "store",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 116,
+        "bytes_per_element": 4,
+        "index": 29,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 116,
+        "bytes_per_element": 4,
+        "index": 29,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "c",
+        "byte_offset": 116,
+        "bytes_per_element": 4,
+        "index": 29,
+        "kind": "store",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 120,
+        "bytes_per_element": 4,
+        "index": 30,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 120,
+        "bytes_per_element": 4,
+        "index": 30,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "c",
+        "byte_offset": 120,
+        "bytes_per_element": 4,
+        "index": 30,
+        "kind": "store",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 124,
+        "bytes_per_element": 4,
+        "index": 31,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 124,
+        "bytes_per_element": 4,
+        "index": 31,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "c",
+        "byte_offset": 124,
+        "bytes_per_element": 4,
+        "index": 31,
+        "kind": "store",
+        "lanes": 1
+      }
+    ],
+    "opcode_counts": {
+      "uop_address_calc": 3,
+      "uop_alu_add": 1,
+      "uop_global_load": 3,
+      "uop_global_store": 1,
+      "uop_kernel_prologue": 1,
+      "uop_predicate_bounds": 1,
+      "uop_read_scalar_arg": 1,
+      "uop_read_workitem_id": 1,
+      "uop_write_completion": 1
+    },
+    "pc_count": 13,
+    "pc_trace_head": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "pc_trace_tail": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "runtime_sequence": 1,
+    "scalar_reads": [
+      "n"
+    ],
+    "wavefront_size": 32,
+    "work_items": 1024
+  },
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "kernel": "vector_add",
+  "oracle_workload": "vector_add",
+  "result": {
+    "elements": 32,
+    "result": [
+      -0.5405699014663696,
+      0.2241082787513733,
+      0.9922908544540405,
+      1.693844199180603,
+      2.2676525115966797,
+      2.6698901653289795,
+      2.8799521923065186,
+      1.1532442569732666,
+      1.0204501152038574,
+      0.783379077911377,
+      0.5079541802406311,
+      0.26528894901275635,
+      0.12206339836120605,
+      0.13149875402450562,
+      -1.423845648765564,
+      -1.036479115486145,
+      -0.4749937951564789,
+      0.21845239400863647,
+      0.983841061592102,
+      1.751416802406311,
+      2.4511280059814453,
+      1.2721086740493774,
+      1.6709152460098267,
+      1.8774077892303467,
+      1.8974745273590088,
+      1.7622359991073608,
+      1.5238323211669922,
+      1.2483668327331543,
+      -0.7430412769317627,
+      -0.8838822841644287,
+      -0.8712576031684875,
+      -0.6730396747589111
+    ],
+    "result_head": [
+      -0.5405699014663696,
+      0.2241082787513733,
+      0.9922908544540405,
+      1.693844199180603,
+      2.2676525115966797,
+      2.6698901653289795,
+      2.8799521923065186,
+      1.1532442569732666
+    ],
+    "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
+    "result_sum": 24.72168731689453,
+    "workload": "vector_add"
+  },
+  "schema": "celviz.gpgpu.microop_interpreter.kernel.v1",
+  "sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+  "source_lowering_sha256": "16ab59d5075e2bf5b0e25133df429244541e9b5ad4e1237a6a86f76b29296dc0",
+  "status": "pass"
+}

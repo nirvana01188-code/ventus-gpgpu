@@ -1,0 +1,5 @@
+opencl_subset status=pass
+kernels=vector_add,gemm,conv2d,image_filter
+runtime_commands=artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json
+runtime_summary={"commands_completed": 4, "commands_failed": 0, "commands_submitted": 4, "completion_count": 4, "dry_run": true, "last_event_source": "control_plane", "pending_count": 0, "queue_count": 1, "rtlsim_library_bound": false}
+scope=clean-room OpenCL C subset only; non-conformant and not OpenCL 3.0, SPIR-V, Vivante compiler, proprietary command stream, SDK, firmware, or driver ABI

@@ -1,0 +1,55 @@
+celviz_gpgpu_control_plane: start
+schema=celviz.gpgpu.control_plane_demo.v1
+scope=clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim
+tier=gpgpu_nano_ultra31
+queues=[0, 1, 2, 3] shader_units=4
+sequence=1 queue=0 opcode=reset status=complete error=OK expected=OK detail=reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records
+sequence=2 queue=3 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_2=1
+sequence=3 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_3=1
+sequence=4 queue=2 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed rfence_3=1
+sequence=5 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed rfence_2=1
+sequence=6 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 512 bytes
+sequence=7 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 512 bytes
+sequence=8 queue=0 opcode=host_to_device status=complete error=OK expected=OK detail=host_to_device staged 128 bytes
+sequence=9 queue=1 opcode=device_to_host status=complete error=OK expected=OK detail=device_to_host read 128 bytes
+sequence=10 queue=3 opcode=device_to_host status=complete error=OK expected=OK detail=device_to_host read 64 bytes
+sequence=11 queue=2 opcode=counter_snapshot status=complete error=OK expected=OK detail=counter snapshot captured
+sequence=12 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 512 bytes
+sequence=13 queue=3 opcode=device_to_host status=complete error=OK expected=OK detail=device_to_host read 64 bytes
+sequence=14 queue=3 opcode=host_to_device status=complete error=OK expected=OK detail=host_to_device staged 128 bytes
+sequence=15 queue=3 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_15=1
+sequence=16 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 512 bytes
+sequence=17 queue=0 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed rfence_2=1
+sequence=18 queue=3 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_18=1
+sequence=19 queue=2 opcode=device_to_host status=complete error=OK expected=OK detail=device_to_host read 32 bytes
+sequence=20 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=21 queue=2 opcode=device_to_host status=complete error=OK expected=OK detail=device_to_host read 128 bytes
+sequence=22 queue=1 opcode=counter_snapshot status=complete error=OK expected=OK detail=counter snapshot captured
+sequence=23 queue=3 opcode=host_to_device status=complete error=OK expected=OK detail=host_to_device staged 256 bytes
+sequence=24 queue=0 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch image_filter retired 2 workgroups
+sequence=25 queue=2 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_25=1
+sequence=26 queue=3 opcode=nop status=complete error=OK expected=OK detail=nop retired
+sequence=27 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=28 queue=0 opcode=host_to_device status=complete error=OK expected=OK detail=host_to_device staged 32 bytes
+sequence=29 queue=2 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_29=1
+sequence=30 queue=3 opcode=barrier status=complete error=OK expected=OK detail=barrier observed prior queue work
+sequence=31 queue=1 opcode=host_to_device status=complete error=OK expected=OK detail=host_to_device staged 256 bytes
+sequence=32 queue=2 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch vector_add retired 4 workgroups
+sequence=33 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=34 queue=2 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_34=1
+sequence=35 queue=3 opcode=nop status=complete error=OK expected=OK detail=nop retired
+sequence=36 queue=3 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_36=1
+sequence=37 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed rfence_25=1
+sequence=38 queue=0 opcode=nop status=complete error=OK expected=OK detail=nop retired
+sequence=39 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed rfence_29=1
+sequence=40 queue=2 opcode=counter_snapshot status=complete error=OK expected=OK detail=counter snapshot captured
+sequence=41 queue=1 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_41=1
+sequence=42 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 512 bytes
+sequence=43 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=44 queue=1 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal rfence_44=1
+sequence=45 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=46 queue=1 opcode=host_to_device status=complete error=OK expected=OK detail=host_to_device staged 128 bytes
+sequence=47 queue=2 opcode=device_to_host status=complete error=OK expected=OK detail=device_to_host read 256 bytes
+sequence=48 queue=1 opcode=host_to_device status=complete error=OK expected=OK detail=host_to_device staged 64 bytes
+celviz_gpgpu_control_plane: pass
+summary commands=48 completed=48 failed=0 bytes_read=3168 bytes_written=5088 completion_interrupts=29 error_interrupts=0

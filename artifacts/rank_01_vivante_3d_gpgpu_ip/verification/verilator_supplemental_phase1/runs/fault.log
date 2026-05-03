@@ -1,0 +1,17 @@
+celviz_gpgpu_control_plane: start
+schema=celviz.gpgpu.control_plane_demo.v1
+scope=clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim
+tier=gpgpu_nano_ultra31
+queues=[0, 1, 2, 3] shader_units=4
+sequence=1 queue=0 opcode=reset status=complete error=OK expected=OK detail=reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records
+sequence=2 queue=0 opcode=dma_copy status=error error=ERR_BAD_DMA expected=ERR_BAD_DMA detail=dma_copy source, destination, and byte_count must be 4-byte aligned
+sequence=3 queue=0 opcode=dma_copy status=error error=ERR_MMU_FAULT expected=ERR_MMU_FAULT detail=dma_copy source or destination failed range check
+sequence=4 queue=1 opcode=kernel_dispatch status=error error=ERR_SCHEDULER_FAULT expected=ERR_SCHEDULER_FAULT detail=local workgroup size exceeds tier scheduler limit
+sequence=5 queue=1 opcode=kernel_dispatch status=error error=ERR_MMU_FAULT expected=ERR_MMU_FAULT detail=kernel arg buffer failed readable range check
+sequence=6 queue=2 opcode=fence_wait status=error error=ERR_FENCE_WAIT expected=ERR_FENCE_WAIT detail=fence_wait timed out after 2 cycles waiting for never>=1
+sequence=7 queue=2 opcode=undefined_opcode status=error error=ERR_UNSUPPORTED_OPCODE expected=ERR_UNSUPPORTED_OPCODE detail=unsupported opcode undefined_opcode
+sequence=8 queue=7 opcode=nop status=error error=ERR_BAD_QUEUE expected=ERR_BAD_QUEUE detail=queue_id not configured for this tier
+sequence=9 queue=0 opcode=reset status=complete error=OK expected=OK detail=reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records
+sequence=10 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+celviz_gpgpu_control_plane: pass
+summary commands=10 completed=10 failed=7 bytes_read=0 bytes_written=96 completion_interrupts=3 error_interrupts=7

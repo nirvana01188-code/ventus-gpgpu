@@ -1,0 +1,55 @@
+{
+  "error_paths": [
+    {
+      "completion_path": "eventfd_poll_style_readable_event",
+      "errno": -13,
+      "errno_name": "EACCES",
+      "fence": {
+        "error": "EACCES",
+        "handle": 2,
+        "name": "submit_error",
+        "signaled": true,
+        "timeline_value": 2
+      },
+      "message": "BO 3 lacks write access",
+      "opcode": "dma_fill",
+      "sequence": 2,
+      "source": "linux_runtime_evidence.submissions",
+      "status": "error"
+    },
+    {
+      "errno": -13,
+      "event_id": 3,
+      "fence_handle": 2,
+      "kind": "error",
+      "poll_mask": 3,
+      "readable": true,
+      "source": "linux_runtime_evidence.events",
+      "status": "error"
+    },
+    {
+      "errno": -13,
+      "event_id": 4,
+      "fence_handle": 2,
+      "kind": "fence_wait",
+      "poll_mask": 3,
+      "readable": true,
+      "source": "linux_runtime_evidence.events",
+      "status": "error"
+    },
+    {
+      "errno": -22,
+      "errno_name": "EINVAL",
+      "event_readable": true,
+      "fence_signaled": true,
+      "kernel_driver_claim": false,
+      "message": "invalid queue rejected before enqueue; queue pending unchanged",
+      "path": "submit_reject_invalid_queue",
+      "pending_after": 0,
+      "queue_id": 9999,
+      "source": "phase6c_driver_submission_model",
+      "status": "error"
+    }
+  ],
+  "scope": "clean-room Linux userspace/DRM-like queue-submit-fence-event model only; not a real Linux kernel driver, not upstream DRM compatibility, not ioctl ABI compatibility, not GEM/syncobj ABI compatibility, not firmware ABI, and not proprietary Vivante compatibility"
+}

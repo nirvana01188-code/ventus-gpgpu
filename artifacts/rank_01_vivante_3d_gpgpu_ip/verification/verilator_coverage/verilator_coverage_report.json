@@ -1,0 +1,221 @@
+{
+  "artifact_failures": [],
+  "clean_room_scope": "clean-room Verilator/runtime coverage evidence for the Celviz GPGPU IP proxy only; no proprietary Vivante compatibility, proprietary command stream/driver/firmware/SDK claim, API conformance claim, silicon signoff, STA/timing closure, PPA, safety certification, or production-readiness claim",
+  "feature_bins": [
+    {
+      "evidence": {
+        "queue_count": 3
+      },
+      "hit": true,
+      "name": "queues"
+    },
+    {
+      "evidence": {
+        "opcode_count": 16
+      },
+      "hit": true,
+      "name": "dma_fill"
+    },
+    {
+      "evidence": {
+        "opcode_count": 44
+      },
+      "hit": true,
+      "name": "dma_copy"
+    },
+    {
+      "evidence": {
+        "opcode_count": 2
+      },
+      "hit": true,
+      "name": "dma_copy_h2d"
+    },
+    {
+      "evidence": {
+        "opcode_count": 2
+      },
+      "hit": true,
+      "name": "dma_copy_d2h"
+    },
+    {
+      "evidence": {
+        "opcode_count": 8
+      },
+      "hit": true,
+      "name": "fence_signal"
+    },
+    {
+      "evidence": {
+        "opcode_count": 10
+      },
+      "hit": true,
+      "name": "fence_wait"
+    },
+    {
+      "evidence": {
+        "opcode_count": 4
+      },
+      "hit": true,
+      "name": "reset"
+    },
+    {
+      "evidence": {
+        "event_or_counter_count": 90
+      },
+      "hit": true,
+      "name": "completion_interrupt"
+    },
+    {
+      "evidence": {
+        "event_or_counter_count": 21
+      },
+      "hit": true,
+      "name": "error_interrupt"
+    },
+    {
+      "evidence": {
+        "fault_count": 16
+      },
+      "hit": true,
+      "name": "mmu_fault"
+    },
+    {
+      "evidence": {
+        "fault_count": 10
+      },
+      "hit": true,
+      "name": "scheduler_fault"
+    },
+    {
+      "evidence": {
+        "tokens": [
+          "abi",
+          "abi_version",
+          "command_abi",
+          "runtime_abi",
+          "celviz_gpgpu_proxy"
+        ]
+      },
+      "hit": true,
+      "name": "abi_symbol_coverage"
+    },
+    {
+      "evidence": {
+        "categories_seen": [
+          "device_to_host",
+          "dma_copy",
+          "dma_fill",
+          "fence_signal",
+          "fence_wait",
+          "host_to_device",
+          "kernel_dispatch",
+          "set_scheduler_config"
+        ]
+      },
+      "hit": true,
+      "name": "native_command_categories"
+    },
+    {
+      "evidence": {},
+      "hit": true,
+      "name": "pending_count_zero"
+    }
+  ],
+  "functional_coverage_percent": 100.0,
+  "generated_at": "2026-05-02T11:29:11+00:00",
+  "lcov_info": {
+    "branch": {
+      "found": 2134626,
+      "hit": 614495,
+      "percent": 28.787,
+      "status": "available"
+    },
+    "files": [
+      {
+        "branch_found": 1067313,
+        "branch_hit": 44166,
+        "line_found": 97500,
+        "line_hit": 77108,
+        "source_file": "dut.v"
+      }
+    ],
+    "line": {
+      "found": 97500,
+      "hit": 77108,
+      "percent": 79.085,
+      "status": "available"
+    },
+    "source": {
+      "found": null,
+      "hit": null,
+      "percent": null,
+      "reason": "LCOV FNF/FNH function counts were not present",
+      "status": "unavailable"
+    },
+    "status": "available",
+    "summary": {
+      "branch_found": 2134626,
+      "branch_hit": 614495,
+      "function_found": 0,
+      "function_hit": 0,
+      "line_found": 97500,
+      "line_hit": 77108,
+      "toggle_found": 0,
+      "toggle_hit": 0
+    },
+    "toggle": {
+      "found": null,
+      "hit": null,
+      "percent": null,
+      "reason": "toggle counts were not present in coverage info",
+      "status": "unavailable"
+    }
+  },
+  "line_metrics": {
+    "found": 97500,
+    "hit": 77108,
+    "percent": 79.085,
+    "status": "available"
+  },
+  "requirements": {
+    "failures": [],
+    "require_functional_100": true
+  },
+  "runtime_metrics": {
+    "exists": true,
+    "load_status": "loaded",
+    "non_empty": true,
+    "path": "/tmp/ventus-gpgpu-celviz-coverage-run/runtime_outputs/runtime_metrics.json",
+    "size_bytes": 153603
+  },
+  "schema": "celviz.gpgpu.verilator_coverage_report.v1",
+  "source_metrics": {
+    "found": null,
+    "hit": null,
+    "percent": null,
+    "reason": "LCOV FNF/FNH function counts were not present",
+    "status": "unavailable"
+  },
+  "status": "pass",
+  "toggle_metrics": {
+    "found": null,
+    "hit": null,
+    "percent": null,
+    "reason": "toggle counts were not present in coverage info",
+    "status": "unavailable"
+  },
+  "verilator_artifacts": {
+    "coverage_dat": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.dat",
+      "size_bytes": 162881227
+    },
+    "coverage_info": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.info",
+      "size_bytes": 20589006
+    }
+  }
+}

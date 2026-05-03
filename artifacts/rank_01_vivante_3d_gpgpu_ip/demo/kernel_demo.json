@@ -1,0 +1,459 @@
+{
+  "schema": "celviz.gpgpu.kernel_demo.v1",
+  "ip_name": "Celviz GPGPU IP",
+  "tier": "micro",
+  "demo_lane": "E4 runtime CLI/kernel demo",
+  "runtime_demo": {
+    "dispatch_sequence": [
+      "vadd",
+      "gemm",
+      "conv",
+      "image_filter",
+      "memcpy"
+    ],
+    "precision_modes": [
+      "fp32",
+      "fp16_proxy",
+      "byte"
+    ],
+    "artifacts": [
+      "dispatch_plan.json",
+      "buffer_binds.json",
+      "queue_trace.json",
+      "golden_comparison.json",
+      "hashes.json",
+      "tier_scaling.json",
+      "kernel_metrics.json",
+      "summary.json"
+    ],
+    "claim_boundary": "clean-room OpenCL-like runtime demo; no proprietary Vivante command-stream, driver, firmware, SDK, or conformance claim"
+  },
+  "e1_runtime_abi_expectations": {
+    "command_stream_fixture": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json",
+    "runtime_cli_modes": [
+      "kernel-demo",
+      "commands-dry-run"
+    ],
+    "queue_lifecycle": {
+      "queues_exercised": [
+        "queue0",
+        "queue1"
+      ],
+      "required_phases": [
+        "submit",
+        "wait",
+        "readback"
+      ],
+      "status_expectation": "all queue_trace events complete with completion_status success"
+    },
+    "memory_paths": [
+      "runtime memory_copy kernel",
+      "control-plane host_to_device",
+      "control-plane dma_fill",
+      "control-plane dma_copy",
+      "control-plane device_to_host"
+    ],
+    "negative_paths": [
+      "expected scheduler fault",
+      "expected MMU fault",
+      "expected named fence timeout"
+    ]
+  },
+  "queues": [
+    {
+      "id": "queue0",
+      "device_id": "celviz-micro-proxy",
+      "properties": [
+        "in_order",
+        "profiling"
+      ],
+      "mode": "software_proxy"
+    },
+    {
+      "id": "queue1",
+      "device_id": "celviz-micro-proxy",
+      "properties": [
+        "in_order",
+        "profiling"
+      ],
+      "mode": "software_proxy"
+    }
+  ],
+  "buffers": [
+    {
+      "id": "buf_vector_a",
+      "size_bytes": 64,
+      "device_address": "0x80000000",
+      "access": "read",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "int32",
+      "shape": [
+        16
+      ],
+      "role": "vadd_input_a"
+    },
+    {
+      "id": "buf_vector_b",
+      "size_bytes": 64,
+      "device_address": "0x80001000",
+      "access": "read",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "int32",
+      "shape": [
+        16
+      ],
+      "role": "vadd_input_b"
+    },
+    {
+      "id": "buf_vector_out",
+      "size_bytes": 64,
+      "device_address": "0x80002000",
+      "access": "write",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "int32",
+      "shape": [
+        16
+      ],
+      "role": "vadd_output_readback"
+    },
+    {
+      "id": "buf_gemm_a",
+      "size_bytes": 64,
+      "device_address": "0x80003000",
+      "access": "read",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "int32",
+      "shape": [
+        4,
+        4
+      ],
+      "role": "gemm_matrix_a"
+    },
+    {
+      "id": "buf_gemm_b",
+      "size_bytes": 64,
+      "device_address": "0x80004000",
+      "access": "read",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "int32",
+      "shape": [
+        4,
+        4
+      ],
+      "role": "gemm_matrix_b"
+    },
+    {
+      "id": "buf_gemm_c",
+      "size_bytes": 64,
+      "device_address": "0x80005000",
+      "access": "write",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "int32",
+      "shape": [
+        4,
+        4
+      ],
+      "role": "gemm_matrix_c_readback"
+    },
+    {
+      "id": "buf_conv_src",
+      "size_bytes": 196,
+      "device_address": "0x80006000",
+      "access": "read",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "fp32",
+      "shape": [
+        7,
+        7
+      ],
+      "role": "conv_source_image"
+    },
+    {
+      "id": "buf_conv_filter",
+      "size_bytes": 36,
+      "device_address": "0x80007000",
+      "access": "read",
+      "host_visible": true,
+      "binding": "constant",
+      "element_type": "fp32",
+      "shape": [
+        3,
+        3
+      ],
+      "role": "conv_filter"
+    },
+    {
+      "id": "buf_conv_dst",
+      "size_bytes": 100,
+      "device_address": "0x80008000",
+      "access": "write",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "fp32",
+      "shape": [
+        5,
+        5
+      ],
+      "role": "conv_output_readback"
+    },
+    {
+      "id": "buf_image_src",
+      "size_bytes": 64,
+      "device_address": "0x80009000",
+      "access": "read",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "uint8",
+      "shape": [
+        8,
+        8
+      ],
+      "role": "image_filter_source"
+    },
+    {
+      "id": "buf_image_dst",
+      "size_bytes": 64,
+      "device_address": "0x8000a000",
+      "access": "write",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "uint8",
+      "shape": [
+        8,
+        8
+      ],
+      "role": "image_filter_readback"
+    },
+    {
+      "id": "buf_copy_src",
+      "size_bytes": 64,
+      "device_address": "0x8000b000",
+      "access": "read",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "uint8",
+      "shape": [
+        64
+      ],
+      "role": "memcpy_source"
+    },
+    {
+      "id": "buf_copy_dst",
+      "size_bytes": 64,
+      "device_address": "0x8000c000",
+      "access": "write",
+      "host_visible": true,
+      "binding": "global",
+      "element_type": "uint8",
+      "shape": [
+        64
+      ],
+      "role": "memcpy_destination_readback"
+    }
+  ],
+  "kernels": [
+    {
+      "name": "vector_add",
+      "dispatch_name": "vadd",
+      "language": "opencl-c-subset",
+      "tier": "nano",
+      "queue_id": "queue0",
+      "precision_modes": [
+        "fp32",
+        "fp16_proxy"
+      ],
+      "global_size": [
+        16
+      ],
+      "local_size": [
+        4
+      ],
+      "args": [
+        {
+          "name": "a",
+          "type": "int32*",
+          "address_space": "global",
+          "buffer_id": "buf_vector_a",
+          "access": "read"
+        },
+        {
+          "name": "b",
+          "type": "int32*",
+          "address_space": "global",
+          "buffer_id": "buf_vector_b",
+          "access": "read"
+        },
+        {
+          "name": "out",
+          "type": "int32*",
+          "address_space": "global",
+          "buffer_id": "buf_vector_out",
+          "access": "write"
+        }
+      ]
+    },
+    {
+      "name": "gemm_proxy",
+      "dispatch_name": "gemm",
+      "language": "opencl-c-subset",
+      "tier": "micro",
+      "queue_id": "queue0",
+      "precision_modes": [
+        "fp32",
+        "fp16_proxy"
+      ],
+      "global_size": [
+        4,
+        4
+      ],
+      "local_size": [
+        2,
+        2
+      ],
+      "args": [
+        {
+          "name": "a",
+          "type": "int32*",
+          "address_space": "global",
+          "buffer_id": "buf_gemm_a",
+          "access": "read"
+        },
+        {
+          "name": "b",
+          "type": "int32*",
+          "address_space": "global",
+          "buffer_id": "buf_gemm_b",
+          "access": "read"
+        },
+        {
+          "name": "c",
+          "type": "int32*",
+          "address_space": "global",
+          "buffer_id": "buf_gemm_c",
+          "access": "write"
+        }
+      ]
+    },
+    {
+      "name": "convolution_proxy",
+      "dispatch_name": "conv",
+      "language": "opencl-c-subset",
+      "tier": "micro",
+      "queue_id": "queue0",
+      "precision_modes": [
+        "fp32",
+        "fp16_proxy"
+      ],
+      "global_size": [
+        5,
+        5
+      ],
+      "local_size": [
+        5,
+        5
+      ],
+      "args": [
+        {
+          "name": "src",
+          "type": "float*",
+          "address_space": "global",
+          "buffer_id": "buf_conv_src",
+          "access": "read"
+        },
+        {
+          "name": "filter",
+          "type": "float*",
+          "address_space": "constant",
+          "buffer_id": "buf_conv_filter",
+          "access": "read"
+        },
+        {
+          "name": "dst",
+          "type": "float*",
+          "address_space": "global",
+          "buffer_id": "buf_conv_dst",
+          "access": "write"
+        }
+      ]
+    },
+    {
+      "name": "image_filter",
+      "dispatch_name": "image_filter",
+      "language": "opencl-c-subset",
+      "tier": "micro",
+      "queue_id": "queue0",
+      "precision_modes": [
+        "fp16_proxy"
+      ],
+      "global_size": [
+        8,
+        8
+      ],
+      "local_size": [
+        4,
+        4
+      ],
+      "args": [
+        {
+          "name": "src_image",
+          "type": "uint8*",
+          "address_space": "global",
+          "buffer_id": "buf_image_src",
+          "access": "read"
+        },
+        {
+          "name": "dst_image",
+          "type": "uint8*",
+          "address_space": "global",
+          "buffer_id": "buf_image_dst",
+          "access": "write"
+        },
+        {
+          "name": "width",
+          "type": "uint32",
+          "address_space": "private",
+          "access": "read"
+        }
+      ]
+    },
+    {
+      "name": "memory_copy",
+      "dispatch_name": "memcpy",
+      "language": "opencl-c-subset",
+      "tier": "nano",
+      "queue_id": "queue1",
+      "precision_modes": [
+        "byte"
+      ],
+      "global_size": [
+        64
+      ],
+      "local_size": [
+        8
+      ],
+      "args": [
+        {
+          "name": "src",
+          "type": "uint8*",
+          "address_space": "global",
+          "buffer_id": "buf_copy_src",
+          "access": "read"
+        },
+        {
+          "name": "dst",
+          "type": "uint8*",
+          "address_space": "global",
+          "buffer_id": "buf_copy_dst",
+          "access": "write"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "bytes_read": 64,
+  "bytes_written": 64,
+  "filter": "3x3_box_u8_edge_truncated",
+  "fp32_ops": 0,
+  "input_shape": {
+    "channels": 1,
+    "height": 8,
+    "width": 8
+  },
+  "integer_ops": 576,
+  "output_hashes": {
+    "pgm_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+    "result_sha256": "45db9277e3ad2faed1c6af27d89071e6e6227417c54db792b9bbfb7769a2f0f0"
+  },
+  "output_shape": {
+    "channels": 1,
+    "height": 8,
+    "width": 8
+  },
+  "pass": true,
+  "precision_path": "u8",
+  "result": [
+    [
+      23,
+      39,
+      69,
+      100,
+      130,
+      161,
+      191,
+      206
+    ],
+    [
+      33,
+      49,
+      81,
+      113,
+      145,
+      177,
+      180,
+      182
+    ],
+    [
+      51,
+      69,
+      104,
+      139,
+      174,
+      180,
+      158,
+      133
+    ],
+    [
+      70,
+      89,
+      127,
+      165,
+      174,
+      155,
+      108,
+      84
+    ],
+    [
+      88,
+      109,
+      150,
+      162,
+      146,
+      102,
+      86,
+      78
+    ],
+    [
+      107,
+      129,
+      173,
+      160,
+      118,
+      77,
+      93,
+      115
+    ],
+    [
+      125,
+      149,
+      167,
+      129,
+      90,
+      81,
+      128,
+      151
+    ],
+    [
+      134,
+      159,
+      164,
+      128,
+      91,
+      97,
+      145,
+      169
+    ]
+  ],
+  "result_head": [
+    23,
+    39,
+    69,
+    100,
+    130,
+    161,
+    191,
+    206
+  ],
+  "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+  "result_sum": 7859,
+  "source_head": [
+    0,
+    29,
+    58,
+    87,
+    116,
+    145,
+    174,
+    203
+  ],
+  "tolerance": {
+    "abs_tolerance": 0.0,
+    "elements_checked": 64,
+    "elements_within_tolerance": 64,
+    "max_abs": 0.0,
+    "pass": true,
+    "reference": "integer u8 deterministic oracle",
+    "rel_tolerance": 0.0,
+    "sum_abs": 0.0,
+    "worst_index": 0
+  },
+  "workload": "image_filter"
+}

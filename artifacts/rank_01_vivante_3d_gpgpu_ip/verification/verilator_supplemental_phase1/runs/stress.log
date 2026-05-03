@@ -1,0 +1,231 @@
+celviz_gpgpu_control_plane: start
+schema=celviz.gpgpu.control_plane_demo.v1
+scope=clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim
+tier=gpgpu_nano_ultra31
+queues=[0, 1, 2, 3] shader_units=4
+sequence=1 queue=0 opcode=reset status=complete error=OK expected=OK detail=reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records
+sequence=2 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=3 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=4 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_0=1
+sequence=5 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_0=1
+sequence=6 queue=2 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch image_filter retired 4 workgroups
+sequence=7 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=8 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=9 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=10 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=11 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=12 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=13 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=14 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=15 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=16 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=17 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=18 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=19 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=20 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=21 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=22 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=23 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_8=1
+sequence=24 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_8=1
+sequence=25 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=26 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=27 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=28 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=29 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=30 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=31 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=32 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=33 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=34 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=35 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=36 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=37 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=38 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=39 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=40 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=41 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_16=1
+sequence=42 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_16=1
+sequence=43 queue=2 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch vector_add retired 4 workgroups
+sequence=44 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=45 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=46 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=47 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=48 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=49 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=50 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=51 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=52 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=53 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=54 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=55 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=56 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=57 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=58 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=59 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=60 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_24=1
+sequence=61 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_24=1
+sequence=62 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=63 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=64 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=65 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=66 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=67 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=68 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=69 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=70 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=71 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=72 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=73 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=74 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=75 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=76 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=77 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=78 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_32=1
+sequence=79 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_32=1
+sequence=80 queue=2 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch image_filter retired 4 workgroups
+sequence=81 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=82 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=83 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=84 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=85 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=86 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=87 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=88 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=89 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=90 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=91 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=92 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=93 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=94 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=95 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=96 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=97 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_40=1
+sequence=98 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_40=1
+sequence=99 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=100 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=101 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=102 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=103 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=104 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=105 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=106 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=107 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=108 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=109 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=110 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=111 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=112 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=113 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=114 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=115 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_48=1
+sequence=116 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_48=1
+sequence=117 queue=2 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch vector_add retired 4 workgroups
+sequence=118 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=119 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=120 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=121 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=122 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=123 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=124 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=125 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=126 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=127 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=128 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=129 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=130 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=131 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=132 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=133 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=134 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_56=1
+sequence=135 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_56=1
+sequence=136 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=137 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=138 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=139 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=140 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=141 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=142 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=143 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=144 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=145 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=146 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=147 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=148 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=149 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=150 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=151 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=152 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_64=1
+sequence=153 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_64=1
+sequence=154 queue=2 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch image_filter retired 4 workgroups
+sequence=155 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=156 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=157 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=158 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=159 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=160 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=161 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=162 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=163 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=164 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=165 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=166 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=167 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=168 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=169 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=170 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=171 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_72=1
+sequence=172 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_72=1
+sequence=173 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=174 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=175 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=176 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=177 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=178 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=179 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=180 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=181 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=182 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=183 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=184 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=185 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=186 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=187 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=188 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=189 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_80=1
+sequence=190 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_80=1
+sequence=191 queue=2 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch vector_add retired 4 workgroups
+sequence=192 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=193 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=194 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=195 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=196 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=197 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=198 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=199 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=200 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=201 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=202 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=203 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=204 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=205 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=206 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=207 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=208 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal stress_fence_88=1
+sequence=209 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed stress_fence_88=1
+sequence=210 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=211 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=212 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=213 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=214 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=215 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=216 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 64 bytes
+sequence=217 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 64 bytes
+sequence=218 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=219 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=220 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 192 bytes
+sequence=221 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 192 bytes
+sequence=222 queue=3 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=223 queue=3 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=224 queue=0 opcode=counter_snapshot status=complete error=OK expected=OK detail=counter snapshot captured
+celviz_gpgpu_control_plane: pass
+summary commands=224 completed=224 failed=0 bytes_read=15936 bytes_written=31776 completion_interrupts=40 error_interrupts=0

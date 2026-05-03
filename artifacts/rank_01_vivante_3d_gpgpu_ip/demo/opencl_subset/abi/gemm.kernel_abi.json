@@ -1,0 +1,245 @@
+{
+  "address_spaces": [
+    "global",
+    "private"
+  ],
+  "arg_size_bytes": 48,
+  "args": [
+    {
+      "abi_offset": 0,
+      "access": "read_only",
+      "address_space": "global",
+      "base_type": "float",
+      "name": "a",
+      "opencl_address_space": "__global",
+      "pointer": true,
+      "size_bytes": 8,
+      "type": "float",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 8,
+      "access": "read_only",
+      "address_space": "global",
+      "base_type": "float",
+      "name": "b",
+      "opencl_address_space": "__global",
+      "pointer": true,
+      "size_bytes": 8,
+      "type": "float",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 16,
+      "access": "read_write",
+      "address_space": "global",
+      "base_type": "float",
+      "name": "c",
+      "opencl_address_space": "__global",
+      "pointer": true,
+      "size_bytes": 8,
+      "type": "float",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 24,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "m",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 28,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "n",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 32,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "k",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "vector_width": 1
+    }
+  ],
+  "buffers": [
+    {
+      "access": "read_only",
+      "address_space": "global",
+      "alloc_size_bytes": 16384,
+      "arg": "a",
+      "device_address": "0x81100000",
+      "id": "gemm_a",
+      "size_bytes": 16384
+    },
+    {
+      "access": "read_only",
+      "address_space": "global",
+      "alloc_size_bytes": 16384,
+      "arg": "b",
+      "device_address": "0x81110000",
+      "id": "gemm_b",
+      "size_bytes": 16384
+    },
+    {
+      "access": "write_only",
+      "address_space": "global",
+      "alloc_size_bytes": 16384,
+      "arg": "c",
+      "device_address": "0x81120000",
+      "id": "gemm_c",
+      "size_bytes": 16384
+    }
+  ],
+  "description": "Tiled FP32 GEMM subset kernel with global matrices and scalar dimensions.",
+  "generated_at": "2026-05-02T13:28:07+00:00",
+  "global_size": [
+    64,
+    64,
+    1
+  ],
+  "kernel_id": 2,
+  "local_size": [
+    16,
+    16,
+    1
+  ],
+  "metadata": {
+    "buffer_allocsize": [
+      16384,
+      16384,
+      16384
+    ],
+    "buffer_base": [
+      2165309440,
+      2165374976,
+      2165440512
+    ],
+    "buffer_size": [
+      16384,
+      16384,
+      16384
+    ],
+    "kernel_id": 2,
+    "kernel_size": [
+      64,
+      64,
+      1
+    ],
+    "ldsSize": 0,
+    "metaDataBaseAddr": 2147614720,
+    "name": "gemm",
+    "num_buffer": 3,
+    "pdsBaseAddr": 0,
+    "pdsSize": 16,
+    "sgprUsage": 24,
+    "startaddr": 8192,
+    "vgprUsage": 32,
+    "wf_size": 32,
+    "wg_size": 8
+  },
+  "name": "gemm",
+  "precision": "fp32",
+  "required_fp_mode": "fp32",
+  "scalar_args": [
+    {
+      "abi_offset": 24,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "m",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "value": 64,
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 28,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "n",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "value": 64,
+      "vector_width": 1
+    },
+    {
+      "abi_offset": 32,
+      "access": "by_value",
+      "address_space": "private",
+      "base_type": "uint",
+      "name": "k",
+      "opencl_address_space": "__private",
+      "pointer": false,
+      "size_bytes": 4,
+      "type": "uint",
+      "value": 64,
+      "vector_width": 1
+    }
+  ],
+  "schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+  "scope": "clean-room OpenCL C subset only; non-conformant and not OpenCL 3.0, SPIR-V, Vivante compiler, proprietary command stream, SDK, firmware, or driver ABI",
+  "source_path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/src/gemm.cl",
+  "source_schema": "celviz.gpgpu.opencl_subset.v1",
+  "source_sha256": "7bc83988abd2ec9e449bd69ab900de0ede610ed0af9e5f23b478fde0fd64c9a5",
+  "subset": {
+    "conformant_opencl": false,
+    "language": "OpenCL C clean-room subset",
+    "supported_builtins": [
+      "barrier",
+      "get_global_id",
+      "get_global_size",
+      "get_group_id",
+      "get_local_id",
+      "get_local_size"
+    ],
+    "unsupported_non_goals": [
+      "image2d_t",
+      "image3d_t",
+      "sampler_t",
+      "pipe",
+      "queue_t",
+      "clk_event_t",
+      "event_t",
+      "async_work_group_copy",
+      "read_image",
+      "write_image",
+      "atom_",
+      "atomic_",
+      "sub_group",
+      "work_group_reduce",
+      "printf",
+      "double"
+    ],
+    "used_builtins": [
+      "get_global_id"
+    ]
+  },
+  "work_items": 4096,
+  "workgroup_count": [
+    4,
+    4,
+    1
+  ]
+}

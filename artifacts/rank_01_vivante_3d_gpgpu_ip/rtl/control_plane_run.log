@@ -1,0 +1,26 @@
+celviz_gpgpu_control_plane: start
+schema=celviz.gpgpu.control_plane_demo.v1
+scope=clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim
+tier=gpgpu_nano_ultra31
+queues=[0, 1, 2] shader_units=4
+sequence=1 queue=0 opcode=reset status=complete error=OK expected=OK detail=reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records
+sequence=2 queue=0 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 256 bytes
+sequence=3 queue=0 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 256 bytes
+sequence=4 queue=0 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal copy_ready=1
+sequence=5 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed copy_ready=1
+sequence=6 queue=1 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch vector_add retired 4 workgroups
+sequence=7 queue=1 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch image_filter retired 64 workgroups
+sequence=8 queue=0 opcode=host_to_device status=complete error=OK expected=OK detail=host_to_device staged 128 bytes
+sequence=9 queue=2 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 128 bytes
+sequence=10 queue=2 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 128 bytes
+sequence=11 queue=2 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal staging_copy_ready=2
+sequence=12 queue=1 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed staging_copy_ready=2
+sequence=13 queue=1 opcode=counter_snapshot status=complete error=OK expected=OK detail=counter snapshot captured
+sequence=14 queue=1 opcode=device_to_host status=complete error=OK expected=OK detail=device_to_host read 128 bytes
+sequence=15 queue=1 opcode=set_scheduler_config status=complete error=OK expected=OK detail=scheduler config updated
+sequence=16 queue=1 opcode=set_shader_mode status=complete error=OK expected=OK detail=shader mode set to mixed
+sequence=17 queue=1 opcode=kernel_dispatch status=error error=ERR_SCHEDULER_FAULT expected=ERR_SCHEDULER_FAULT detail=injected scheduler dispatch error
+sequence=18 queue=0 opcode=dma_copy status=error error=ERR_MMU_FAULT expected=ERR_MMU_FAULT detail=dma_copy source or destination failed range check
+sequence=19 queue=0 opcode=fence_wait status=error error=ERR_FENCE_WAIT expected=ERR_FENCE_WAIT detail=fence_wait timed out after 8 cycles waiting for never_signaled>=1
+celviz_gpgpu_control_plane: pass
+summary commands=19 completed=19 failed=3 bytes_read=736 bytes_written=2272 completion_interrupts=13 error_interrupts=3

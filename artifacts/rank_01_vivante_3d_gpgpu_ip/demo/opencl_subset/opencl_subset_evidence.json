@@ -1,0 +1,242 @@
+{
+  "checks": [
+    {
+      "name": "required_kernels_present",
+      "observed": [
+        "conv2d",
+        "gemm",
+        "image_filter",
+        "vector_add"
+      ],
+      "pass": true
+    },
+    {
+      "arg_count": 4,
+      "name": "vector_add_has_args",
+      "pass": true
+    },
+    {
+      "name": "vector_add_has_global_address_space",
+      "pass": true
+    },
+    {
+      "name": "vector_add_global_local_divisible",
+      "pass": true
+    },
+    {
+      "name": "vector_add_abi_metadata_complete",
+      "pass": true
+    },
+    {
+      "name": "vector_add_precision_declared",
+      "pass": true
+    },
+    {
+      "arg_count": 6,
+      "name": "gemm_has_args",
+      "pass": true
+    },
+    {
+      "name": "gemm_has_global_address_space",
+      "pass": true
+    },
+    {
+      "name": "gemm_global_local_divisible",
+      "pass": true
+    },
+    {
+      "name": "gemm_abi_metadata_complete",
+      "pass": true
+    },
+    {
+      "name": "gemm_precision_declared",
+      "pass": true
+    },
+    {
+      "arg_count": 5,
+      "name": "conv2d_has_args",
+      "pass": true
+    },
+    {
+      "name": "conv2d_has_global_address_space",
+      "pass": true
+    },
+    {
+      "name": "conv2d_global_local_divisible",
+      "pass": true
+    },
+    {
+      "name": "conv2d_abi_metadata_complete",
+      "pass": true
+    },
+    {
+      "name": "conv2d_precision_declared",
+      "pass": true
+    },
+    {
+      "arg_count": 5,
+      "name": "image_filter_has_args",
+      "pass": true
+    },
+    {
+      "name": "image_filter_has_global_address_space",
+      "pass": true
+    },
+    {
+      "name": "image_filter_global_local_divisible",
+      "pass": true
+    },
+    {
+      "name": "image_filter_abi_metadata_complete",
+      "pass": true
+    },
+    {
+      "name": "image_filter_precision_declared",
+      "pass": true
+    },
+    {
+      "dispatch_count": 4,
+      "name": "runtime_dispatch_count_matches_kernel_count",
+      "pass": true
+    },
+    {
+      "name": "runtime_schema_matches_proxy",
+      "pass": true
+    },
+    {
+      "name": "runtime_proxy_completed_all_subset_dispatches",
+      "pass": true,
+      "summary": {
+        "commands_completed": 4,
+        "commands_failed": 0,
+        "commands_submitted": 4,
+        "completion_count": 4,
+        "dry_run": true,
+        "last_event_source": "control_plane",
+        "pending_count": 0,
+        "queue_count": 1,
+        "rtlsim_library_bound": false
+      }
+    },
+    {
+      "name": "runtime_proxy_no_failed_subset_dispatches",
+      "pass": true,
+      "summary": {
+        "commands_completed": 4,
+        "commands_failed": 0,
+        "commands_submitted": 4,
+        "completion_count": 4,
+        "dry_run": true,
+        "last_event_source": "control_plane",
+        "pending_count": 0,
+        "queue_count": 1,
+        "rtlsim_library_bound": false
+      }
+    }
+  ],
+  "generated_at": "2026-05-02T13:28:07+00:00",
+  "kernel_count": 4,
+  "kernels": [
+    {
+      "abi": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/abi/vector_add.kernel_abi.json",
+      "address_spaces": [
+        "global",
+        "private"
+      ],
+      "global_size": [
+        1024,
+        1,
+        1
+      ],
+      "local_size": [
+        64,
+        1,
+        1
+      ],
+      "name": "vector_add",
+      "precision": "fp32",
+      "source_sha256": "4919ba7bd0791b57603e89c0195b4adfb33a0a0b8d23dcf0b6ea720276feb57d"
+    },
+    {
+      "abi": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/abi/gemm.kernel_abi.json",
+      "address_spaces": [
+        "global",
+        "private"
+      ],
+      "global_size": [
+        64,
+        64,
+        1
+      ],
+      "local_size": [
+        16,
+        16,
+        1
+      ],
+      "name": "gemm",
+      "precision": "fp32",
+      "source_sha256": "7bc83988abd2ec9e449bd69ab900de0ede610ed0af9e5f23b478fde0fd64c9a5"
+    },
+    {
+      "abi": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/abi/conv2d.kernel_abi.json",
+      "address_spaces": [
+        "global",
+        "private"
+      ],
+      "global_size": [
+        128,
+        128,
+        1
+      ],
+      "local_size": [
+        16,
+        16,
+        1
+      ],
+      "name": "conv2d",
+      "precision": "fp32",
+      "source_sha256": "42867db7ad1b0aa8277caf5cc481bb67fd753927bebc56f77f4a2255b528aeb3"
+    },
+    {
+      "abi": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/abi/image_filter.kernel_abi.json",
+      "address_spaces": [
+        "global",
+        "private"
+      ],
+      "global_size": [
+        256,
+        128,
+        1
+      ],
+      "local_size": [
+        16,
+        16,
+        1
+      ],
+      "name": "image_filter",
+      "precision": "fp32",
+      "source_sha256": "85325e697f04a9268613256b71faeec2951e3bbd2cfc6c0ce4671634727d9c13"
+    }
+  ],
+  "runtime_commands_path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json",
+  "runtime_proxy": {
+    "log_path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy.log",
+    "metrics_path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy/runtime_metrics.json",
+    "status_path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy/runtime_status.json",
+    "summary": {
+      "commands_completed": 4,
+      "commands_failed": 0,
+      "commands_submitted": 4,
+      "completion_count": 4,
+      "dry_run": true,
+      "last_event_source": "control_plane",
+      "pending_count": 0,
+      "queue_count": 1,
+      "rtlsim_library_bound": false
+    }
+  },
+  "schema": "celviz.gpgpu.opencl_subset.evidence.v1",
+  "scope": "clean-room OpenCL C subset only; non-conformant and not OpenCL 3.0, SPIR-V, Vivante compiler, proprietary command stream, SDK, firmware, or driver ABI",
+  "status": "pass",
+  "tier": "gpgpu_nano_ultra31"
+}

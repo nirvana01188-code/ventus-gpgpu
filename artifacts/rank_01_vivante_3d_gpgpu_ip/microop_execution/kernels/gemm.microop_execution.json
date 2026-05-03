@@ -1,0 +1,468 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "pc_sequence_head": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "uop_count": 18
+      },
+      "name": "pc_sequence_is_dense",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "declared": 18,
+        "executed": 18
+      },
+      "name": "all_uops_executed",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "opcodes": [
+          "uop_address_calc",
+          "uop_alu_mad",
+          "uop_barrier",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_loop_begin",
+          "uop_loop_end",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_write_completion"
+        ],
+        "unknown": []
+      },
+      "name": "known_opcode_subset",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "load": 240,
+        "store": 20
+      },
+      "name": "global_load_store_trace_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "completion_written": true
+      },
+      "name": "completion_written",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "expected": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+        "observed": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+        "oracle_workload": "gemm_proxy"
+      },
+      "name": "oracle_hash_match",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "barrier_count": 1,
+        "loop_trips": {
+          "k": 0
+        }
+      },
+      "name": "loop_and_barrier_executed",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-5 executable micro-op evidence for the Ventus-based Celviz GPGPU IP proxy only; not a production ISA simulator, not a compiler backend, not SPIR-V/LLVM, not Vivante ISA or command-stream compatibility, not official OpenCL conformance, and not timing/PPA signoff",
+  "execution": {
+    "address_args": [
+      "a",
+      "b",
+      "c"
+    ],
+    "alu_ops": {
+      "uop_alu_mad": 1
+    },
+    "barrier_count": 1,
+    "completion_written": true,
+    "loop_trips": {
+      "k": 0
+    },
+    "memory_counts": {
+      "load": 240,
+      "store": 20
+    },
+    "memory_event_count": 260,
+    "memory_trace_head": [
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 0,
+        "bytes_per_element": 4,
+        "index": 0,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 0,
+        "bytes_per_element": 4,
+        "index": 0,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 4,
+        "bytes_per_element": 4,
+        "index": 1,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 20,
+        "bytes_per_element": 4,
+        "index": 5,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 8,
+        "bytes_per_element": 4,
+        "index": 2,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 40,
+        "bytes_per_element": 4,
+        "index": 10,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 12,
+        "bytes_per_element": 4,
+        "index": 3,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 60,
+        "bytes_per_element": 4,
+        "index": 15,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 16,
+        "bytes_per_element": 4,
+        "index": 4,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 80,
+        "bytes_per_element": 4,
+        "index": 20,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 20,
+        "bytes_per_element": 4,
+        "index": 5,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 100,
+        "bytes_per_element": 4,
+        "index": 25,
+        "kind": "load",
+        "lanes": 1
+      }
+    ],
+    "memory_trace_tail": [
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 16,
+        "bytes_per_element": 4,
+        "index": 4,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 76,
+        "bytes_per_element": 4,
+        "index": 19,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 36,
+        "bytes_per_element": 4,
+        "index": 9,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 80,
+        "bytes_per_element": 4,
+        "index": 20,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 56,
+        "bytes_per_element": 4,
+        "index": 14,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 84,
+        "bytes_per_element": 4,
+        "index": 21,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 76,
+        "bytes_per_element": 4,
+        "index": 19,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 88,
+        "bytes_per_element": 4,
+        "index": 22,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 96,
+        "bytes_per_element": 4,
+        "index": 24,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "a",
+        "byte_offset": 92,
+        "bytes_per_element": 4,
+        "index": 23,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "b",
+        "byte_offset": 116,
+        "bytes_per_element": 4,
+        "index": 29,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "c",
+        "byte_offset": 76,
+        "bytes_per_element": 4,
+        "index": 19,
+        "kind": "store",
+        "lanes": 1
+      }
+    ],
+    "opcode_counts": {
+      "uop_address_calc": 3,
+      "uop_alu_mad": 1,
+      "uop_barrier": 1,
+      "uop_global_load": 3,
+      "uop_global_store": 1,
+      "uop_kernel_prologue": 1,
+      "uop_loop_begin": 1,
+      "uop_loop_end": 1,
+      "uop_predicate_bounds": 1,
+      "uop_read_scalar_arg": 3,
+      "uop_read_workitem_id": 1,
+      "uop_write_completion": 1
+    },
+    "pc_count": 18,
+    "pc_trace_head": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "pc_trace_tail": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "runtime_sequence": 2,
+    "scalar_reads": [
+      "m",
+      "n",
+      "k"
+    ],
+    "wavefront_size": 32,
+    "work_items": 4096
+  },
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "kernel": "gemm",
+  "oracle_workload": "gemm_proxy",
+  "result": {
+    "elements": 20,
+    "matrix_c": [
+      [
+        -1.0448335409164429,
+        -0.23851469159126282,
+        0.27847087383270264,
+        0.42185521125793457,
+        0.34993669390678406
+      ],
+      [
+        0.6004754900932312,
+        -0.5284930467605591,
+        -1.3998594284057617,
+        -1.112614393234253,
+        0.15586449205875397
+      ],
+      [
+        -0.9802044630050659,
+        -0.49387967586517334,
+        0.08170858025550842,
+        0.42388632893562317,
+        0.3922964036464691
+      ],
+      [
+        1.4460382461547852,
+        0.7629623413085938,
+        -0.8382495641708374,
+        -1.9027153253555298,
+        -1.348431944847107
+      ]
+    ],
+    "result": [
+      -1.0448335409164429,
+      -0.23851469159126282,
+      0.27847087383270264,
+      0.42185521125793457,
+      0.34993669390678406,
+      0.6004754900932312,
+      -0.5284930467605591,
+      -1.3998594284057617,
+      -1.112614393234253,
+      0.15586449205875397,
+      -0.9802044630050659,
+      -0.49387967586517334,
+      0.08170858025550842,
+      0.42388632893562317,
+      0.3922964036464691,
+      1.4460382461547852,
+      0.7629623413085938,
+      -0.8382495641708374,
+      -1.9027153253555298,
+      -1.348431944847107
+    ],
+    "result_head": [
+      -1.0448335409164429,
+      -0.23851469159126282,
+      0.27847087383270264,
+      0.42185521125793457,
+      0.34993669390678406,
+      0.6004754900932312,
+      -0.5284930467605591,
+      -1.3998594284057617
+    ],
+    "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+    "result_sum": -4.974301338195801,
+    "shape": {
+      "k": 6,
+      "m": 4,
+      "n": 5
+    },
+    "workload": "gemm_proxy"
+  },
+  "schema": "celviz.gpgpu.microop_interpreter.kernel.v1",
+  "sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+  "source_lowering_sha256": "b35244d791816d9404d88c9b5f259edaee4bfd28974b54c5de73148f28c342d8",
+  "status": "pass"
+}

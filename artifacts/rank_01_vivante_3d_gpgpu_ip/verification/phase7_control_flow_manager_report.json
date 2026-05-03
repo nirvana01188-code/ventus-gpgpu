@@ -1,0 +1,188 @@
+{
+  "checks": [
+    {
+      "name": "input_reports_pass",
+      "pass": true
+    },
+    {
+      "name": "all_required_kernels_projected",
+      "pass": true
+    },
+    {
+      "name": "predicate_and_cfg_evidence_present",
+      "pass": true
+    },
+    {
+      "name": "active_mask_evidence_present",
+      "pass": true
+    },
+    {
+      "name": "reconvergence_evidence_present",
+      "pass": true
+    },
+    {
+      "name": "dynamic_uop_reduction_positive_for_loop_kernels",
+      "pass": true
+    },
+    {
+      "name": "control_uop_vocabulary_projected",
+      "pass": true
+    },
+    {
+      "name": "aggregate_control_uop_reduction_positive",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-7 control-flow manager projection derived from Celviz compiler IR and SIMT execution evidence only; not a production compiler pass, not SPIR-V/LLVM, not a proprietary branch-stack implementation, not Vivante ISA compatibility, and not timing or silicon signoff",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "kernels": [
+    {
+      "active_mask_events": 24,
+      "active_mask_transitions": 0,
+      "barrier_blocks": 0,
+      "baseline_control_uops": 10,
+      "basic_blocks": 13,
+      "cfg_edges": 12,
+      "control_uop_vocabulary_projection": [
+        "uop_cf_push",
+        "uop_cf_mask",
+        "uop_cf_join",
+        "uop_predicated_branch"
+      ],
+      "dynamic_pc_count": 13,
+      "dynamic_uop_reduction": 8,
+      "dynamic_uop_reduction_percent": 80.0,
+      "kernel": "vector_add",
+      "loop_backedges": 0,
+      "loop_blocks": 0,
+      "loop_trip_product": 1,
+      "model": "deterministic projection from compiler IR predicates, CFG backedges, SIMT active masks, and micro-op execution counts",
+      "predicate_registers": 1,
+      "predicated_blocks": 10,
+      "projected_control_manager_uops": 2,
+      "reconvergence_points": 1,
+      "scheduler_issues": 24,
+      "skipped_inactive_lanes_proxy": 11,
+      "unique_active_masks": [
+        "11111111"
+      ],
+      "workload": "vector_add"
+    },
+    {
+      "active_mask_events": 66,
+      "active_mask_transitions": 43,
+      "barrier_blocks": 1,
+      "baseline_control_uops": 17,
+      "basic_blocks": 18,
+      "cfg_edges": 18,
+      "control_uop_vocabulary_projection": [
+        "uop_cf_push",
+        "uop_cf_mask",
+        "uop_cf_join",
+        "uop_predicated_branch"
+      ],
+      "dynamic_pc_count": 18,
+      "dynamic_uop_reduction": 11,
+      "dynamic_uop_reduction_percent": 64.706,
+      "kernel": "gemm",
+      "loop_backedges": 1,
+      "loop_blocks": 2,
+      "loop_trip_product": 1,
+      "model": "deterministic projection from compiler IR predicates, CFG backedges, SIMT active masks, and micro-op execution counts",
+      "predicate_registers": 2,
+      "predicated_blocks": 15,
+      "projected_control_manager_uops": 6,
+      "reconvergence_points": 3,
+      "scheduler_issues": 66,
+      "skipped_inactive_lanes_proxy": 48,
+      "unique_active_masks": [
+        "11110000",
+        "11111111"
+      ],
+      "workload": "gemm_proxy"
+    },
+    {
+      "active_mask_events": 124,
+      "active_mask_transitions": 61,
+      "barrier_blocks": 1,
+      "baseline_control_uops": 24,
+      "basic_blocks": 17,
+      "cfg_edges": 17,
+      "control_uop_vocabulary_projection": [
+        "uop_cf_push",
+        "uop_cf_mask",
+        "uop_cf_join",
+        "uop_predicated_branch"
+      ],
+      "dynamic_pc_count": 17,
+      "dynamic_uop_reduction": 18,
+      "dynamic_uop_reduction_percent": 75.0,
+      "kernel": "conv2d",
+      "loop_backedges": 1,
+      "loop_blocks": 2,
+      "loop_trip_product": 9,
+      "model": "deterministic projection from compiler IR predicates, CFG backedges, SIMT active masks, and micro-op execution counts",
+      "predicate_registers": 2,
+      "predicated_blocks": 14,
+      "projected_control_manager_uops": 6,
+      "reconvergence_points": 3,
+      "scheduler_issues": 124,
+      "skipped_inactive_lanes_proxy": 107,
+      "unique_active_masks": [
+        "10000000",
+        "11111111"
+      ],
+      "workload": "convolution_proxy"
+    },
+    {
+      "active_mask_events": 176,
+      "active_mask_transitions": 28,
+      "barrier_blocks": 0,
+      "baseline_control_uops": 12,
+      "basic_blocks": 15,
+      "cfg_edges": 14,
+      "control_uop_vocabulary_projection": [
+        "uop_cf_push",
+        "uop_cf_mask",
+        "uop_cf_join",
+        "uop_predicated_branch"
+      ],
+      "dynamic_pc_count": 15,
+      "dynamic_uop_reduction": 10,
+      "dynamic_uop_reduction_percent": 83.333,
+      "kernel": "image_filter",
+      "loop_backedges": 0,
+      "loop_blocks": 0,
+      "loop_trip_product": 1,
+      "model": "deterministic projection from compiler IR predicates, CFG backedges, SIMT active masks, and micro-op execution counts",
+      "predicate_registers": 1,
+      "predicated_blocks": 12,
+      "projected_control_manager_uops": 2,
+      "reconvergence_points": 1,
+      "scheduler_issues": 176,
+      "skipped_inactive_lanes_proxy": 161,
+      "unique_active_masks": [
+        "00000000",
+        "01111111",
+        "11111110",
+        "11111111"
+      ],
+      "workload": "image_filter"
+    }
+  ],
+  "schema": "celviz.gpgpu.phase7_control_flow_manager.v1",
+  "status": "pass",
+  "summary": {
+    "baseline_control_uops": 63,
+    "dynamic_uop_reduction": 47,
+    "dynamic_uop_reduction_percent": 74.603,
+    "kernel_count": 4,
+    "loop_kernel_reductions": {
+      "conv2d": 18,
+      "gemm": 11
+    },
+    "projected_control_manager_uops": 16,
+    "total_active_mask_events": 390,
+    "total_reconvergence_points": 8
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "alias": "image_filter",
+  "bytes_read": 232,
+  "bytes_written": 100,
+  "fp16_proxy": {
+    "claim_boundary": "deterministic Python binary16 round-trip arithmetic proxy; not Vivante RTL, ISA, compiler, firmware, driver, or conformance behavior",
+    "error_vs_fp32": {
+      "error_head": [
+        0.0004439353942871094,
+        2.2199004888534546e-05,
+        0.0,
+        0.0002663135528564453,
+        2.9802322387695312e-08,
+        0.0002219676971435547,
+        0.0,
+        2.2172927856445312e-05
+      ],
+      "max_abs": 0.0004439353942871094,
+      "reference": "FP32 proxy output from the same clean-room model",
+      "sum_abs": 0.0030129924416542053
+    },
+    "fp16_ops": 450,
+    "input_shape": {
+      "channels": 1,
+      "height": 7,
+      "width": 7
+    },
+    "kernel_shape": {
+      "height": 3,
+      "width": 3
+    },
+    "method": "operands and arithmetic results are rounded through standard-library struct binary16 storage at each modeled FP16 operation",
+    "output": [
+      [
+        -0.7041015625,
+        0.022705078125,
+        0.75,
+        -0.3525390625,
+        0.375
+      ],
+      [
+        0.72705078125,
+        -0.375,
+        0.352294921875,
+        -0.75,
+        -0.022705078125
+      ],
+      [
+        0.32958984375,
+        -0.7724609375,
+        -0.04534912109375,
+        0.681640625,
+        -0.68212890625
+      ],
+      [
+        -0.32958984375,
+        0.6591796875,
+        -0.7041015625,
+        0.022705078125,
+        0.75
+      ],
+      [
+        -0.7275390625,
+        0.0,
+        0.72705078125,
+        -0.375,
+        0.352294921875
+      ]
+    ],
+    "output_shape": {
+      "channels": 1,
+      "height": 5,
+      "width": 5
+    },
+    "precision_path": "FP16 proxy",
+    "result": [
+      -0.7041015625,
+      0.022705078125,
+      0.75,
+      -0.3525390625,
+      0.375,
+      0.72705078125,
+      -0.375,
+      0.352294921875,
+      -0.75,
+      -0.022705078125,
+      0.32958984375,
+      -0.7724609375,
+      -0.04534912109375,
+      0.681640625,
+      -0.68212890625,
+      -0.32958984375,
+      0.6591796875,
+      -0.7041015625,
+      0.022705078125,
+      0.75,
+      -0.7275390625,
+      0.0,
+      0.72705078125,
+      -0.375,
+      0.352294921875
+    ],
+    "result_head": [
+      -0.7041015625,
+      0.022705078125,
+      0.75,
+      -0.3525390625,
+      0.375,
+      0.72705078125,
+      -0.375,
+      0.352294921875
+    ],
+    "result_sha256": "131edd89d206268d3cfb1177400f5b0289f6c609a0d3b898980109176817f2c3",
+    "result_sum": -0.09100341796875,
+    "sample_head": [
+      -0.7041015625,
+      0.022705078125,
+      0.75,
+      -0.3525390625,
+      0.375,
+      0.72705078125,
+      -0.375,
+      0.352294921875
+    ],
+    "status": "executed_proxy",
+    "tolerance": {
+      "abs_tolerance": 0.009999999776482582,
+      "elements_checked": 25,
+      "elements_within_tolerance": 25,
+      "max_abs": 0.0004439353942871094,
+      "pass": true,
+      "reference": "FP32 proxy output from the same clean-room model",
+      "rel_tolerance": 0.019999999552965164,
+      "sum_abs": 0.0030129924416542053,
+      "worst_index": 0
+    },
+    "workload": "convolution_proxy"
+  },
+  "fp32_ops": 450,
+  "input_shape": {
+    "channels": 1,
+    "height": 7,
+    "width": 7
+  },
+  "kernel": [
+    [
+      0.0,
+      -0.125,
+      0.0
+    ],
+    [
+      -0.125,
+      0.75,
+      -0.125
+    ],
+    [
+      0.0,
+      -0.125,
+      0.0
+    ]
+  ],
+  "kernel_shape": {
+    "height": 3,
+    "width": 3
+  },
+  "output": [
+    [
+      -0.7045454978942871,
+      0.022727277129888535,
+      0.75,
+      -0.35227274894714355,
+      0.3749999701976776
+    ],
+    [
+      0.7272727489471436,
+      -0.375,
+      0.35227274894714355,
+      -0.75,
+      -0.022727280855178833
+    ],
+    [
+      0.3295454680919647,
+      -0.7727273106575012,
+      -0.04545454680919647,
+      0.6818181872367859,
+      -0.6818181276321411
+    ],
+    [
+      -0.3295454680919647,
+      0.6590909957885742,
+      -0.7045454978942871,
+      0.022727277129888535,
+      0.75
+    ],
+    [
+      -0.7272727489471436,
+      0.0,
+      0.7272727489471436,
+      -0.375,
+      0.35227274894714355
+    ]
+  ],
+  "output_hashes": {
+    "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a"
+  },
+  "output_shape": {
+    "channels": 1,
+    "height": 5,
+    "width": 5
+  },
+  "precision_path": "FP32",
+  "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+  "result_sum": -0.09090905636548996,
+  "tolerance": {
+    "abs_tolerance": 0.0,
+    "elements_checked": 25,
+    "elements_within_tolerance": 25,
+    "max_abs": 0.0,
+    "pass": true,
+    "reference": "deterministic in-model oracle",
+    "rel_tolerance": 0.0,
+    "sum_abs": 0.0,
+    "worst_index": 0
+  },
+  "workload": "convolution_proxy"
+}

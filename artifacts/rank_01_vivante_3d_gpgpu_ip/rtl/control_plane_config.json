@@ -1,0 +1,716 @@
+{
+  "schema": "celviz.gpgpu_control_plane_config",
+  "schema_version": 1,
+  "source_documents": [
+    "docs/celviz-gpgpu-ip/COMMAND_RUNTIME_ABI.md",
+    "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/register_map.md"
+  ],
+  "status": "S2 GPGPU-only proxy-shell machine-readable draft",
+  "scope": {
+    "rank": "rank_01_vivante_3d_gpgpu_ip",
+    "direction": "Vivante 3D GPGPU IP / Celviz GPGPU IP",
+    "gpgpu_only": true,
+    "excluded_register_classes": [
+      "rasterization",
+      "framebuffer",
+      "viewport",
+      "texture_sampling",
+      "display",
+      "3d_graphics_pipeline"
+    ]
+  },
+  "endianness": "little",
+  "register_width_bits": 32,
+  "alignment": {
+    "command_packet_bytes": 64,
+    "queue_base_bytes": 64,
+    "register_bytes": 4,
+    "minimum_queue_size_bytes": 4096
+  },
+  "abi": {
+    "magic_ascii": "CVU1",
+    "magic_u32": "0x31555643",
+    "version": "0x0001",
+    "header_bytes": 64,
+    "header_words": 16,
+    "queue_ids_supported_initial": [
+      0
+    ],
+    "reserved_policy": {
+      "software_writes": "zero",
+      "hardware_reads": "ignore_until_defined",
+      "register_reserved_reads": "zero"
+    }
+  },
+  "tiers": [
+    {
+      "name": "gpgpu_nano",
+      "numeric_id": "0x01",
+      "shader_units": 1,
+      "queues": 1,
+      "profile": "Minimal GPGPU command processor with one queue, kernel dispatch, DMA copy/fill, FP32 smoke, and basic interrupts.",
+      "required_opcodes": [
+        "nop",
+        "kernel_dispatch",
+        "dma_copy",
+        "dma_fill",
+        "barrier"
+      ],
+      "required_features": [
+        "single_queue",
+        "kernel_dispatch_queue",
+        "linear_dma",
+        "fp32_mode",
+        "completion_interrupt"
+      ]
+    },
+    {
+      "name": "gpgpu_nano_ultra",
+      "numeric_id": "0x02",
+      "shader_units": 2,
+      "queues": 2,
+      "profile": "Adds scheduler programming, two shader units, FP16/FP32 mode control, AXI counters, and MMU fault capture.",
+      "required_opcodes": [
+        "nop",
+        "kernel_dispatch",
+        "dma_copy",
+        "dma_fill",
+        "barrier",
+        "set_scheduler_config",
+        "set_shader_mode",
+        "counter_snapshot"
+      ],
+      "required_features": [
+        "workgroup_scheduler_config",
+        "warp_scheduler_config",
+        "shader_unit_mask",
+        "fp16_mode",
+        "fp32_mode",
+        "axi_traffic_counters",
+        "mmu_fault_capture"
+      ]
+    },
+    {
+      "name": "gpgpu_nano_ultra31",
+      "numeric_id": "0x03",
+      "shader_units": 4,
+      "queues": 4,
+      "profile": "Richer S2/S3 evidence tier with four queues, four shader units, per-unit counters, watchdog, and fault/error injection hooks.",
+      "required_opcodes": [
+        "nop",
+        "kernel_dispatch",
+        "dma_copy",
+        "dma_fill",
+        "barrier",
+        "set_scheduler_config",
+        "set_shader_mode",
+        "counter_snapshot"
+      ],
+      "required_features": [
+        "multi_queue",
+        "shader_unit_tier_scaling",
+        "mixed_fp16_fp32_mode",
+        "watchdog",
+        "scheduler_fault_injection",
+        "dma_fault_injection",
+        "mmu_fault_injection",
+        "per_shader_unit_counters"
+      ]
+    }
+  ],
+  "capability_bits": {
+    "tier_mask": [
+      {
+        "bit": 0,
+        "name": "gpgpu_nano"
+      },
+      {
+        "bit": 1,
+        "name": "gpgpu_nano_ultra"
+      },
+      {
+        "bit": 2,
+        "name": "gpgpu_nano_ultra31"
+      }
+    ],
+    "opcode_mask": [
+      {
+        "bit": 0,
+        "name": "nop"
+      },
+      {
+        "bit": 1,
+        "name": "kernel_dispatch"
+      },
+      {
+        "bit": 2,
+        "name": "dma_copy"
+      },
+      {
+        "bit": 3,
+        "name": "dma_fill"
+      },
+      {
+        "bit": 4,
+        "name": "barrier"
+      },
+      {
+        "bit": 5,
+        "name": "set_scheduler_config"
+      },
+      {
+        "bit": 6,
+        "name": "set_shader_mode"
+      },
+      {
+        "bit": 7,
+        "name": "counter_snapshot"
+      }
+    ],
+    "fp_mode_mask": [
+      {
+        "bit": 0,
+        "name": "fp32"
+      },
+      {
+        "bit": 1,
+        "name": "fp16"
+      },
+      {
+        "bit": 2,
+        "name": "mixed_fp16_fp32"
+      },
+      {
+        "bit": 3,
+        "name": "fp16_rate_x2_metadata"
+      }
+    ],
+    "axi_counter_mask": [
+      {
+        "bit": 0,
+        "name": "read_bytes"
+      },
+      {
+        "bit": 1,
+        "name": "write_bytes"
+      },
+      {
+        "bit": 2,
+        "name": "read_beats"
+      },
+      {
+        "bit": 3,
+        "name": "write_beats"
+      },
+      {
+        "bit": 4,
+        "name": "stall_cycles"
+      }
+    ]
+  },
+  "common_flags": [
+    {
+      "bit": 0,
+      "name": "INT_ON_COMPLETE",
+      "description": "Raise completion interrupt when the command retires."
+    },
+    {
+      "bit": 1,
+      "name": "FENCE_BEFORE",
+      "description": "Wait for prior memory operations before execution."
+    },
+    {
+      "bit": 2,
+      "name": "FENCE_AFTER",
+      "description": "Publish writes before marking completion."
+    },
+    {
+      "bit": 3,
+      "name": "ALLOW_PROXY_FALLBACK",
+      "description": "Permit proxy shell or simulator execution when RTL path is absent."
+    },
+    {
+      "bit": 4,
+      "name": "CAPTURE_COUNTERS",
+      "description": "Latch command, DMA, AXI, and fault counters into the completion record."
+    },
+    {
+      "bit": 8,
+      "name": "INJECT_DISPATCH_ERROR",
+      "description": "Request scheduler or shader dispatch error injection."
+    },
+    {
+      "bit": 9,
+      "name": "INJECT_DMA_ERROR",
+      "description": "Request DMA bounds or alignment error injection."
+    },
+    {
+      "bit": 10,
+      "name": "INJECT_MMU_FAULT",
+      "description": "Request MMU translation or permission fault injection."
+    },
+    {
+      "bit": 11,
+      "name": "KERNEL_USES_FP16",
+      "description": "Dispatch payload requires FP16 mode support."
+    },
+    {
+      "bit": 12,
+      "name": "KERNEL_USES_FP32",
+      "description": "Dispatch payload requires FP32 mode support."
+    },
+    {
+      "bits": "31:13",
+      "name": "RESERVED",
+      "description": "Must be zero."
+    }
+  ],
+  "opcodes": [
+    {
+      "name": "nop",
+      "numeric_id": "0x0000",
+      "minimum_tier": "gpgpu_nano"
+    },
+    {
+      "name": "kernel_dispatch",
+      "numeric_id": "0x0001",
+      "minimum_tier": "gpgpu_nano"
+    },
+    {
+      "name": "dma_copy",
+      "numeric_id": "0x0002",
+      "minimum_tier": "gpgpu_nano"
+    },
+    {
+      "name": "dma_fill",
+      "numeric_id": "0x0003",
+      "minimum_tier": "gpgpu_nano"
+    },
+    {
+      "name": "barrier",
+      "numeric_id": "0x0004",
+      "minimum_tier": "gpgpu_nano"
+    },
+    {
+      "name": "set_scheduler_config",
+      "numeric_id": "0x0005",
+      "minimum_tier": "gpgpu_nano_ultra"
+    },
+    {
+      "name": "set_shader_mode",
+      "numeric_id": "0x0006",
+      "minimum_tier": "gpgpu_nano_ultra"
+    },
+    {
+      "name": "counter_snapshot",
+      "numeric_id": "0x0007",
+      "minimum_tier": "gpgpu_nano_ultra"
+    }
+  ],
+  "packet_header": [
+    {
+      "offset": "0x00",
+      "field": "magic",
+      "size_bytes": 4,
+      "type": "u32",
+      "expected": "0x31555643"
+    },
+    {
+      "offset": "0x04",
+      "field": "abi_version",
+      "size_bytes": 2,
+      "type": "u16",
+      "expected": "0x0001"
+    },
+    {
+      "offset": "0x06",
+      "field": "header_words",
+      "size_bytes": 2,
+      "type": "u16",
+      "expected": 16
+    },
+    {
+      "offset": "0x08",
+      "field": "packet_bytes",
+      "size_bytes": 4,
+      "type": "u32"
+    },
+    {
+      "offset": "0x0c",
+      "field": "opcode",
+      "size_bytes": 2,
+      "type": "u16",
+      "registry": "opcodes"
+    },
+    {
+      "offset": "0x0e",
+      "field": "tier",
+      "size_bytes": 1,
+      "type": "u8",
+      "registry": "tiers"
+    },
+    {
+      "offset": "0x0f",
+      "field": "queue_id",
+      "size_bytes": 1,
+      "type": "u8"
+    },
+    {
+      "offset": "0x10",
+      "field": "sequence",
+      "size_bytes": 8,
+      "type": "u64"
+    },
+    {
+      "offset": "0x18",
+      "field": "flags",
+      "size_bytes": 4,
+      "type": "u32",
+      "registry": "common_flags"
+    },
+    {
+      "offset": "0x1c",
+      "field": "context_id",
+      "size_bytes": 4,
+      "type": "u32"
+    },
+    {
+      "offset": "0x20",
+      "field": "completion_addr_lo",
+      "size_bytes": 4,
+      "type": "u32"
+    },
+    {
+      "offset": "0x24",
+      "field": "completion_addr_hi",
+      "size_bytes": 4,
+      "type": "u32"
+    },
+    {
+      "offset": "0x28",
+      "field": "payload_words",
+      "size_bytes": 2,
+      "type": "u16"
+    },
+    {
+      "offset": "0x2a",
+      "field": "priority",
+      "size_bytes": 1,
+      "type": "u8",
+      "valid_range": "0..7"
+    },
+    {
+      "offset": "0x2b",
+      "field": "reserved0",
+      "size_bytes": 1,
+      "type": "u8",
+      "expected": 0
+    },
+    {
+      "offset": "0x2c",
+      "field": "payload_crc32",
+      "size_bytes": 4,
+      "type": "u32",
+      "zero_disables": true
+    },
+    {
+      "offset": "0x30",
+      "field": "submit_tag",
+      "size_bytes": 4,
+      "type": "u32"
+    },
+    {
+      "offset": "0x34",
+      "field": "reserved1",
+      "size_bytes": 12,
+      "type": "bytes",
+      "expected": "zero"
+    }
+  ],
+  "payloads": {
+    "kernel_dispatch": [
+      "kernel_entry_u64",
+      "arg_buffer_u64",
+      "arg_bytes_u32",
+      "grid_xyz_u32",
+      "local_xyz_u32",
+      "shared_bytes_u32",
+      "private_bytes_per_thread_u32",
+      "sgpr_count_u16",
+      "vgpr_count_u16",
+      "required_fp_mode_u8",
+      "scheduler_hint_u8"
+    ],
+    "dma_copy": [
+      "src_addr_u64",
+      "dst_addr_u64",
+      "byte_count_u64",
+      "src_stride_u32",
+      "dst_stride_u32",
+      "line_bytes_u32",
+      "line_count_u32"
+    ],
+    "dma_fill": [
+      "dst_addr_u64",
+      "byte_count_u64",
+      "pattern_u32"
+    ],
+    "set_scheduler_config": [
+      "max_workgroups_per_shader_unit_u16",
+      "max_warps_per_shader_unit_u16",
+      "warp_size_u16",
+      "issue_policy_u8",
+      "preemption_granularity_u8",
+      "fairness_window_cycles_u32",
+      "watchdog_cycles_u32"
+    ],
+    "set_shader_mode": [
+      "shader_unit_enable_mask_u32",
+      "fp_mode_u8",
+      "denorm_mode_u8",
+      "rounding_mode_u8",
+      "fp16_rate_x2_u8"
+    ],
+    "counter_snapshot": [
+      "counter_select_mask_u32",
+      "snapshot_addr_u64"
+    ]
+  },
+  "queue_model": {
+    "ring_base_alignment_bytes": 64,
+    "ring_size_power_of_two": true,
+    "head_owner": "hardware_after_init",
+    "tail_owner": "software",
+    "doorbell_owner": "software",
+    "completion_record_bytes": 32,
+    "initial_queues": [
+      {
+        "queue_id": 0,
+        "register_block_offset": "0x0100",
+        "register_block_stride": "0x40"
+      }
+    ],
+    "validation": [
+      "packet_alignment",
+      "packet_length",
+      "abi_version",
+      "tier",
+      "opcode",
+      "queue_id",
+      "priority",
+      "reserved_bits",
+      "payload_constraints"
+    ]
+  },
+  "scheduler": {
+    "warp_size": 32,
+    "issue_policies": [
+      "round_robin",
+      "oldest_ready",
+      "priority_age"
+    ],
+    "preemption_granularity": [
+      "none",
+      "workgroup_boundary",
+      "warp_boundary"
+    ],
+    "default_limits": {
+      "max_workgroups_per_shader_unit": 1,
+      "max_warps_per_shader_unit": 32,
+      "max_local_work_items": 2048
+    },
+    "shader_unit_tier_scaling": [
+      {
+        "tier": "gpgpu_nano",
+        "shader_units": 1,
+        "enable_mask_reset": "0x00000001"
+      },
+      {
+        "tier": "gpgpu_nano_ultra",
+        "shader_units": 2,
+        "enable_mask_reset": "0x00000003"
+      },
+      {
+        "tier": "gpgpu_nano_ultra31",
+        "shader_units": 4,
+        "enable_mask_reset": "0x0000000f"
+      }
+    ]
+  },
+  "shader_modes": [
+    {
+      "name": "fp32_only",
+      "numeric_id": 1,
+      "requires_capability": "fp32"
+    },
+    {
+      "name": "fp16_only",
+      "numeric_id": 2,
+      "requires_capability": "fp16"
+    },
+    {
+      "name": "mixed_fp16_fp32",
+      "numeric_id": 3,
+      "requires_capability": "mixed_fp16_fp32"
+    }
+  ],
+  "memory_model": {
+    "address_types": [
+      "physical",
+      "iova"
+    ],
+    "ordering": {
+      "within_queue": "in_order_retirement",
+      "cross_queue": "unordered_without_software_fence",
+      "fence_before": "device_observes_prior_host_visible_writes_before_issue",
+      "fence_after": "device_writes_visible_before_completion"
+    },
+    "mmu_fault_capture": {
+      "sticky_until_clear": true,
+      "captures_first_fault_per_command": true,
+      "fields": [
+        "fault_addr",
+        "access_type",
+        "permission_or_translation",
+        "sequence",
+        "opcode",
+        "queue_id",
+        "shader_unit_or_dma"
+      ]
+    }
+  },
+  "interrupt_bits": [
+    {
+      "bit": 0,
+      "name": "command_complete"
+    },
+    {
+      "bit": 1,
+      "name": "queue_error"
+    },
+    {
+      "bit": 2,
+      "name": "dispatch_done"
+    },
+    {
+      "bit": 3,
+      "name": "dma_done"
+    },
+    {
+      "bit": 4,
+      "name": "mmu_fault"
+    },
+    {
+      "bit": 5,
+      "name": "scheduler_fault"
+    },
+    {
+      "bit": 6,
+      "name": "watchdog"
+    },
+    {
+      "bit": 7,
+      "name": "counter_snapshot_ready"
+    }
+  ],
+  "error_codes": [
+    {
+      "value": "0x0000",
+      "name": "OK"
+    },
+    {
+      "value": "0x0001",
+      "name": "ERR_BAD_MAGIC"
+    },
+    {
+      "value": "0x0002",
+      "name": "ERR_BAD_VERSION"
+    },
+    {
+      "value": "0x0003",
+      "name": "ERR_BAD_LENGTH"
+    },
+    {
+      "value": "0x0004",
+      "name": "ERR_UNSUPPORTED_TIER"
+    },
+    {
+      "value": "0x0005",
+      "name": "ERR_UNSUPPORTED_OPCODE"
+    },
+    {
+      "value": "0x0006",
+      "name": "ERR_BAD_QUEUE"
+    },
+    {
+      "value": "0x0007",
+      "name": "ERR_BAD_DISPATCH"
+    },
+    {
+      "value": "0x0008",
+      "name": "ERR_BAD_DMA"
+    },
+    {
+      "value": "0x0009",
+      "name": "ERR_MMU_FAULT"
+    },
+    {
+      "value": "0x000a",
+      "name": "ERR_SCHEDULER_FAULT"
+    },
+    {
+      "value": "0x000b",
+      "name": "ERR_TIMEOUT"
+    },
+    {
+      "value": "0x000c",
+      "name": "ERR_COUNTER_FAULT"
+    }
+  ],
+  "register_blocks": [
+    {
+      "range": "0x0000-0x00ff",
+      "name": "identity_capability"
+    },
+    {
+      "range": "0x0100-0x01ff",
+      "name": "command_queues"
+    },
+    {
+      "range": "0x0200-0x02ff",
+      "name": "kernel_dispatch"
+    },
+    {
+      "range": "0x0300-0x03ff",
+      "name": "dma_engine"
+    },
+    {
+      "range": "0x0400-0x04ff",
+      "name": "scheduler_shader_mode"
+    },
+    {
+      "range": "0x0500-0x05ff",
+      "name": "interrupt_status_error"
+    },
+    {
+      "range": "0x0600-0x06ff",
+      "name": "mmu_fault"
+    },
+    {
+      "range": "0x0700-0x07ff",
+      "name": "axi_performance_counters"
+    }
+  ],
+  "evidence_tokens": [
+    "kernel_dispatch_queue",
+    "workgroup_scheduler_config",
+    "warp_scheduler_config",
+    "shader_unit_tier_scaling",
+    "fp16_fp32_mode_control",
+    "dma_copy_fill",
+    "axi_traffic_counters",
+    "interrupt_status_error",
+    "mmu_fault_capture",
+    "memory_model_fences"
+  ]
+}

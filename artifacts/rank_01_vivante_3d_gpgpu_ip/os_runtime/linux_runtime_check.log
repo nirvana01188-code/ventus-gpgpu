@@ -1,0 +1,7 @@
+celviz_gpgpu_linux_runtime_proxy: start
+schema=celviz.gpgpu.linux_userspace_runtime.v1
+scope=clean-room Linux userspace runtime plus DRM-like submission proxy; models OS queue/fence/event semantics only and does not implement or claim a kernel DRM driver, ioctl ABI, GEM object ABI, firmware ABI, or proprietary Vivante compatibility
+device=/dev/dri/renderD128 context=7
+summary submits=2 submit_success=1 submit_errors=1 events=4
+checks device_context_open=pass,bo_alloc_map_gpu_va=pass,drm_like_submit_completion=pass,fence_wait_signal=pass,event_poll_readable=pass,completion_error_path=pass,queue_retired_no_pending=pass,clean_room_non_driver_boundary=pass
+celviz_gpgpu_linux_runtime_proxy: pass

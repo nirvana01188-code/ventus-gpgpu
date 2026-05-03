@@ -1,0 +1,383 @@
+{
+  "clean_room_scope": "clean-room OpenCL C subset only; non-conformant and not OpenCL 3.0, SPIR-V, Vivante compiler, proprietary command stream, SDK, firmware, or driver ABI",
+  "commands": [
+    {
+      "arg_buffer": "0x80010000",
+      "arg_bytes": 32,
+      "completion_addr": "0x90000000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        1024,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "kernel_entry": "0x1000",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 0,
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 1,
+      "sgpr_count": 16,
+      "shared_bytes": 0,
+      "submit_tag": "opencl-subset-vector_add",
+      "ventus_metadata": {
+        "buffer_allocsize": [
+          4096,
+          4096,
+          4096
+        ],
+        "buffer_base": [
+          2164260864,
+          2164264960,
+          2164269056
+        ],
+        "buffer_size": [
+          4096,
+          4096,
+          4096
+        ],
+        "kernel_id": 1,
+        "kernel_size": [
+          1024,
+          1,
+          1
+        ],
+        "ldsSize": 0,
+        "metaDataBaseAddr": 2147549184,
+        "name": "vector_add",
+        "num_buffer": 3,
+        "pdsBaseAddr": 0,
+        "pdsSize": 0,
+        "sgprUsage": 16,
+        "startaddr": 4096,
+        "vgprUsage": 24,
+        "wf_size": 32,
+        "wg_size": 2
+      },
+      "vgpr_count": 24
+    },
+    {
+      "arg_buffer": "0x80020000",
+      "arg_bytes": 48,
+      "completion_addr": "0x90000000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        64,
+        64,
+        1
+      ],
+      "kernel": "gemm",
+      "kernel_entry": "0x2000",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 16,
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 2,
+      "sgpr_count": 24,
+      "shared_bytes": 0,
+      "submit_tag": "opencl-subset-gemm",
+      "ventus_metadata": {
+        "buffer_allocsize": [
+          16384,
+          16384,
+          16384
+        ],
+        "buffer_base": [
+          2165309440,
+          2165374976,
+          2165440512
+        ],
+        "buffer_size": [
+          16384,
+          16384,
+          16384
+        ],
+        "kernel_id": 2,
+        "kernel_size": [
+          64,
+          64,
+          1
+        ],
+        "ldsSize": 0,
+        "metaDataBaseAddr": 2147614720,
+        "name": "gemm",
+        "num_buffer": 3,
+        "pdsBaseAddr": 0,
+        "pdsSize": 16,
+        "sgprUsage": 24,
+        "startaddr": 8192,
+        "vgprUsage": 32,
+        "wf_size": 32,
+        "wg_size": 8
+      },
+      "vgpr_count": 32
+    },
+    {
+      "arg_buffer": "0x80030000",
+      "arg_bytes": 32,
+      "completion_addr": "0x90000000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        128,
+        128,
+        1
+      ],
+      "kernel": "conv2d",
+      "kernel_entry": "0x3000",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 24,
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 3,
+      "sgpr_count": 24,
+      "shared_bytes": 0,
+      "submit_tag": "opencl-subset-conv2d",
+      "ventus_metadata": {
+        "buffer_allocsize": [
+          65536,
+          64,
+          65536
+        ],
+        "buffer_base": [
+          2166358016,
+          2166489088,
+          2166554624
+        ],
+        "buffer_size": [
+          65536,
+          36,
+          65536
+        ],
+        "kernel_id": 3,
+        "kernel_size": [
+          128,
+          128,
+          1
+        ],
+        "ldsSize": 0,
+        "metaDataBaseAddr": 2147680256,
+        "name": "conv2d",
+        "num_buffer": 3,
+        "pdsBaseAddr": 0,
+        "pdsSize": 24,
+        "sgprUsage": 24,
+        "startaddr": 12288,
+        "vgprUsage": 36,
+        "wf_size": 32,
+        "wg_size": 8
+      },
+      "vgpr_count": 36
+    },
+    {
+      "arg_buffer": "0x80040000",
+      "arg_bytes": 32,
+      "completion_addr": "0x90000000",
+      "flags": [
+        "INT_ON_COMPLETE",
+        "CAPTURE_COUNTERS"
+      ],
+      "grid": [
+        256,
+        128,
+        1
+      ],
+      "kernel": "image_filter",
+      "kernel_entry": "0x4000",
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "private_bytes_per_thread": 8,
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 4,
+      "sgpr_count": 18,
+      "shared_bytes": 0,
+      "submit_tag": "opencl-subset-image_filter",
+      "ventus_metadata": {
+        "buffer_allocsize": [
+          131072,
+          131072
+        ],
+        "buffer_base": [
+          2167406592,
+          2167668736
+        ],
+        "buffer_size": [
+          131072,
+          131072
+        ],
+        "kernel_id": 4,
+        "kernel_size": [
+          256,
+          128,
+          1
+        ],
+        "ldsSize": 0,
+        "metaDataBaseAddr": 2147745792,
+        "name": "image_filter",
+        "num_buffer": 2,
+        "pdsBaseAddr": 0,
+        "pdsSize": 8,
+        "sgprUsage": 18,
+        "startaddr": 16384,
+        "vgprUsage": 28,
+        "wf_size": 32,
+        "wg_size": 8
+      },
+      "vgpr_count": 28
+    }
+  ],
+  "ip_name": "Celviz GPGPU IP",
+  "memory_regions": [
+    {
+      "base": "0x80010000",
+      "name": "arg_vector_add",
+      "readable": true,
+      "size": 4096,
+      "writable": true
+    },
+    {
+      "base": "0x81000000",
+      "name": "vadd_a",
+      "readable": true,
+      "size": 4096,
+      "writable": false
+    },
+    {
+      "base": "0x81001000",
+      "name": "vadd_b",
+      "readable": true,
+      "size": 4096,
+      "writable": false
+    },
+    {
+      "base": "0x81002000",
+      "name": "vadd_c",
+      "readable": false,
+      "size": 4096,
+      "writable": true
+    },
+    {
+      "base": "0x80020000",
+      "name": "arg_gemm",
+      "readable": true,
+      "size": 4096,
+      "writable": true
+    },
+    {
+      "base": "0x81100000",
+      "name": "gemm_a",
+      "readable": true,
+      "size": 16384,
+      "writable": false
+    },
+    {
+      "base": "0x81110000",
+      "name": "gemm_b",
+      "readable": true,
+      "size": 16384,
+      "writable": false
+    },
+    {
+      "base": "0x81120000",
+      "name": "gemm_c",
+      "readable": false,
+      "size": 16384,
+      "writable": true
+    },
+    {
+      "base": "0x80030000",
+      "name": "arg_conv2d",
+      "readable": true,
+      "size": 4096,
+      "writable": true
+    },
+    {
+      "base": "0x81200000",
+      "name": "conv_input",
+      "readable": true,
+      "size": 65536,
+      "writable": false
+    },
+    {
+      "base": "0x81220000",
+      "name": "conv_filter",
+      "readable": true,
+      "size": 64,
+      "writable": false
+    },
+    {
+      "base": "0x81230000",
+      "name": "conv_output",
+      "readable": false,
+      "size": 65536,
+      "writable": true
+    },
+    {
+      "base": "0x80040000",
+      "name": "arg_image_filter",
+      "readable": true,
+      "size": 4096,
+      "writable": true
+    },
+    {
+      "base": "0x81300000",
+      "name": "filter_src_rgba",
+      "readable": true,
+      "size": 131072,
+      "writable": false
+    },
+    {
+      "base": "0x81340000",
+      "name": "filter_dst_rgba",
+      "readable": false,
+      "size": 131072,
+      "writable": true
+    },
+    {
+      "base": "0x90000000",
+      "name": "runtime_completion",
+      "readable": true,
+      "size": 65536,
+      "writable": true
+    }
+  ],
+  "queues": [
+    {
+      "base": "0x10000000",
+      "priority": 3,
+      "queue_id": 0,
+      "size_bytes": 4096
+    }
+  ],
+  "schema": "celviz.gpgpu.runtime_commands.v1",
+  "tier": "gpgpu_nano_ultra31"
+}

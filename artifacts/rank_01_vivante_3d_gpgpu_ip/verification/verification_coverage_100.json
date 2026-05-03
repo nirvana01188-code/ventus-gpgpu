@@ -1,0 +1,5393 @@
+{
+  "artifacts": {
+    "acceptance_matrix": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json",
+      "size_bytes": 68945
+    },
+    "compiler_ir_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/compiler_ir_report.json",
+      "size_bytes": 2285
+    },
+    "compute_model_metrics": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/compute_model/metrics.json",
+      "size_bytes": 30838
+    },
+    "control_plane_demo": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json",
+      "size_bytes": 9807
+    },
+    "control_plane_metrics": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+      "size_bytes": 27533
+    },
+    "demo_buffer_binds": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/buffer_binds.json",
+      "size_bytes": 9666
+    },
+    "demo_device_tiers": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json",
+      "size_bytes": 2705
+    },
+    "demo_golden_comparison": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/golden_comparison.json",
+      "size_bytes": 906
+    },
+    "demo_queue_trace": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/queue_trace.json",
+      "size_bytes": 19289
+    },
+    "demo_summary": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/summary.json",
+      "size_bytes": 1466
+    },
+    "driver_submission_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+      "size_bytes": 2562
+    },
+    "e3_native_runtime_evidence": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e3_native_runtime_evidence.json",
+      "size_bytes": 5242
+    },
+    "e5_negative_boundary_evidence": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json",
+      "size_bytes": 13506
+    },
+    "e6_integration_evidence": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/e6_integration_evidence.json",
+      "size_bytes": 5741
+    },
+    "e7_one_key_acceptance_log": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/e7_one_key_acceptance.log",
+      "size_bytes": 7514
+    },
+    "e8_coverage_dat": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.dat",
+      "size_bytes": 162881227
+    },
+    "e8_coverage_info": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.info",
+      "size_bytes": 20589006
+    },
+    "e8_report_dut": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+      "size_bytes": 22598129
+    },
+    "e8_report_index": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/index.html",
+      "size_bytes": 394
+    },
+    "e8_run_log": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/run.log",
+      "size_bytes": 156439
+    },
+    "e8_verilator_coverage_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json",
+      "size_bytes": 4905
+    },
+    "eda_methodology_bootstrap_matrix": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/celviz-methodology/bootstrap_acceptance_matrix.json",
+      "size_bytes": 10220
+    },
+    "eda_methodology_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/celviz-methodology/methodology_verification_report.json",
+      "size_bytes": 2585
+    },
+    "kernel_lowering_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernel_lowering_report.json",
+      "size_bytes": 4274
+    },
+    "microop_execution_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/microop_execution_report.json",
+      "size_bytes": 4364
+    },
+    "model_shader_unit_scaling": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/shader_unit_scaling.json",
+      "size_bytes": 3334
+    },
+    "opencl_conformance_gap_map": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
+      "size_bytes": 2998
+    },
+    "phase2_integration_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase2_integration_report.json",
+      "size_bytes": 12841
+    },
+    "phase3_cross_layer_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase3_cross_layer_report.json",
+      "size_bytes": 8069
+    },
+    "phase4_lowering_integration_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase4_lowering_integration_report.json",
+      "size_bytes": 3693
+    },
+    "phase5_microop_integration_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase5_microop_integration_report.json",
+      "size_bytes": 3726
+    },
+    "phase6_memory_trace_integration_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase6_memory_trace_integration_report.json",
+      "size_bytes": 31003
+    },
+    "phase7_coalescing_score_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_coalescing_score_report.json",
+      "size_bytes": 2613
+    },
+    "phase7_config_sweep_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_config_sweep_report.json",
+      "size_bytes": 16791
+    },
+    "phase7_control_flow_manager_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_control_flow_manager_report.json",
+      "size_bytes": 5606
+    },
+    "phase7_memory_streaming_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_memory_streaming_report.json",
+      "size_bytes": 6486
+    },
+    "phase7_register_occupancy_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_register_occupancy_report.json",
+      "size_bytes": 13975
+    },
+    "phase7_warp_collectives_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_warp_collectives_report.json",
+      "size_bytes": 6319
+    },
+    "phase8_claim_closure_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_claim_closure_report.json",
+      "size_bytes": 13678
+    },
+    "phase8_work_package_artifacts_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/phase8_work_package_artifacts_report.json",
+      "size_bytes": 3272
+    },
+    "phase8_work_packages": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_packages.json",
+      "size_bytes": 2130
+    },
+    "synthesis_readiness_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json",
+      "size_bytes": 2123
+    },
+    "test_results_log": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log",
+      "size_bytes": 9396
+    },
+    "yosys_synthesis_probe_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/yosys_synthesis_probe_report.json",
+      "size_bytes": 3634
+    }
+  },
+  "bins": [
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json",
+        "size_bytes": 68945
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "acceptance_matrix"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/e7_one_key_acceptance.log",
+        "size_bytes": 7514
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e7_one_key_acceptance_log"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log",
+        "size_bytes": 9396
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "test_results_log"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json",
+        "size_bytes": 9807
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "control_plane_demo"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+        "size_bytes": 27533
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "control_plane_metrics"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e3_native_runtime_evidence.json",
+        "size_bytes": 5242
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e3_native_runtime_evidence"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json",
+        "size_bytes": 13506
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e5_negative_boundary_evidence"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/summary.json",
+        "size_bytes": 1466
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "demo_summary"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/golden_comparison.json",
+        "size_bytes": 906
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "demo_golden_comparison"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/queue_trace.json",
+        "size_bytes": 19289
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "demo_queue_trace"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/buffer_binds.json",
+        "size_bytes": 9666
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "demo_buffer_binds"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json",
+        "size_bytes": 2705
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "demo_device_tiers"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/compute_model/metrics.json",
+        "size_bytes": 30838
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "compute_model_metrics"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/shader_unit_scaling.json",
+        "size_bytes": 3334
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "model_shader_unit_scaling"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/e6_integration_evidence.json",
+        "size_bytes": 5741
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e6_integration_evidence"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json",
+        "size_bytes": 4905
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e8_verilator_coverage_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.dat",
+        "size_bytes": 162881227
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e8_coverage_dat"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.info",
+        "size_bytes": 20589006
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e8_coverage_info"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/index.html",
+        "size_bytes": 394
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e8_report_index"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+        "size_bytes": 22598129
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e8_report_dut"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/run.log",
+        "size_bytes": 156439
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "e8_run_log"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase2_integration_report.json",
+        "size_bytes": 12841
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase2_integration_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase3_cross_layer_report.json",
+        "size_bytes": 8069
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase3_cross_layer_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernel_lowering_report.json",
+        "size_bytes": 4274
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "kernel_lowering_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase4_lowering_integration_report.json",
+        "size_bytes": 3693
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase4_lowering_integration_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/microop_execution_report.json",
+        "size_bytes": 4364
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "microop_execution_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase5_microop_integration_report.json",
+        "size_bytes": 3726
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase5_microop_integration_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/compiler_ir_report.json",
+        "size_bytes": 2285
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "compiler_ir_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase6_memory_trace_integration_report.json",
+        "size_bytes": 31003
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase6_memory_trace_integration_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+        "size_bytes": 2562
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "driver_submission_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json",
+        "size_bytes": 2123
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "synthesis_readiness_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/yosys_synthesis_probe_report.json",
+        "size_bytes": 3634
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "yosys_synthesis_probe_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_coalescing_score_report.json",
+        "size_bytes": 2613
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase7_coalescing_score_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_config_sweep_report.json",
+        "size_bytes": 16791
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase7_config_sweep_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_control_flow_manager_report.json",
+        "size_bytes": 5606
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase7_control_flow_manager_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_memory_streaming_report.json",
+        "size_bytes": 6486
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase7_memory_streaming_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_register_occupancy_report.json",
+        "size_bytes": 13975
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase7_register_occupancy_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_warp_collectives_report.json",
+        "size_bytes": 6319
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase7_warp_collectives_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
+        "size_bytes": 2998
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_conformance_gap_map"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_claim_closure_report.json",
+        "size_bytes": 13678
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase8_claim_closure_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_packages.json",
+        "size_bytes": 2130
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase8_work_packages"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/phase8_work_package_artifacts_report.json",
+        "size_bytes": 3272
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase8_work_package_artifacts_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/celviz-methodology/methodology_verification_report.json",
+        "size_bytes": 2585
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "eda_methodology_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/celviz-methodology/bootstrap_acceptance_matrix.json",
+        "size_bytes": 10220
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "eda_methodology_bootstrap_matrix"
+    },
+    {
+      "evidence": {
+        "schema": "celviz.gpgpu.acceptance_matrix.v1"
+      },
+      "group": "matrix",
+      "hit": true,
+      "name": "schema"
+    },
+    {
+      "evidence": {
+        "gate_count": 35
+      },
+      "group": "matrix",
+      "hit": true,
+      "name": "gates_present"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "acceptance_matrix_json"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "rank1_boundary_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "rank1_boundary_check"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "source_check"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "e2_rtl_control_plane_source_gate"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "e3_native_runtime_source_gate"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "chisel_make_compile"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "python_py_compile"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "runtime_dry_run"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "runtime_kernel_demo"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "e4_kernel_demo_fixture"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "e4_demo_model_output_check"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "control_plane_demo"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "verification_command_list"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "e6_integration_docs_gate"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "artifact_verification"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "native_runtime_build"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "e3_native_runtime_build_manifest_log"
+    },
+    {
+      "evidence": {
+        "required": false
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "native_runtime_require_runtime"
+    },
+    {
+      "evidence": {
+        "required": false
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "e3_native_runtime_output_check"
+    },
+    {
+      "evidence": {
+        "required": false
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "e8_verilator_coverage_report"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "verification_coverage_100"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase2_hardening_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase3_cross_layer_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase4_kernel_lowering_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase5_microop_execution_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase6_basic_gpgpu_ip_parity_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase7_coalescing_performance_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase7_control_flow_manager_performance_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase7_memory_streaming_performance_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase7_config_sweep_performance_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase7_register_occupancy_performance_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "phase7_warp_collectives_performance_evidence"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "git_diff_check"
+    },
+    {
+      "evidence": {
+        "required": true
+      },
+      "group": "matrix_gates",
+      "hit": true,
+      "name": "e7_one_key_acceptance_log"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/e7_one_key_acceptance.log"
+      },
+      "group": "e7_acceptance_log",
+      "hit": true,
+      "name": "PASS=24 FAIL=0 SKIP=0"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/e7_one_key_acceptance.log"
+      },
+      "group": "e7_acceptance_log",
+      "hit": true,
+      "name": "OVERALL: PASS"
+    },
+    {
+      "evidence": {},
+      "group": "verification_harness",
+      "hit": true,
+      "name": "celviz_gpgpu_ip_verification_pass"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "counter_snapshot",
+          "device_to_host",
+          "dma_copy",
+          "dma_fill",
+          "fence_signal",
+          "fence_wait",
+          "host_to_device",
+          "kernel_dispatch",
+          "reset",
+          "set_scheduler_config",
+          "set_shader_mode"
+        ]
+      },
+      "group": "e1_runtime_command_stream",
+      "hit": true,
+      "name": "dma_fill"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "counter_snapshot",
+          "device_to_host",
+          "dma_copy",
+          "dma_fill",
+          "fence_signal",
+          "fence_wait",
+          "host_to_device",
+          "kernel_dispatch",
+          "reset",
+          "set_scheduler_config",
+          "set_shader_mode"
+        ]
+      },
+      "group": "e1_runtime_command_stream",
+      "hit": true,
+      "name": "dma_copy"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "counter_snapshot",
+          "device_to_host",
+          "dma_copy",
+          "dma_fill",
+          "fence_signal",
+          "fence_wait",
+          "host_to_device",
+          "kernel_dispatch",
+          "reset",
+          "set_scheduler_config",
+          "set_shader_mode"
+        ]
+      },
+      "group": "e1_runtime_command_stream",
+      "hit": true,
+      "name": "host_to_device"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "counter_snapshot",
+          "device_to_host",
+          "dma_copy",
+          "dma_fill",
+          "fence_signal",
+          "fence_wait",
+          "host_to_device",
+          "kernel_dispatch",
+          "reset",
+          "set_scheduler_config",
+          "set_shader_mode"
+        ]
+      },
+      "group": "e1_runtime_command_stream",
+      "hit": true,
+      "name": "device_to_host"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "counter_snapshot",
+          "device_to_host",
+          "dma_copy",
+          "dma_fill",
+          "fence_signal",
+          "fence_wait",
+          "host_to_device",
+          "kernel_dispatch",
+          "reset",
+          "set_scheduler_config",
+          "set_shader_mode"
+        ]
+      },
+      "group": "e1_runtime_command_stream",
+      "hit": true,
+      "name": "fence_signal"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "counter_snapshot",
+          "device_to_host",
+          "dma_copy",
+          "dma_fill",
+          "fence_signal",
+          "fence_wait",
+          "host_to_device",
+          "kernel_dispatch",
+          "reset",
+          "set_scheduler_config",
+          "set_shader_mode"
+        ]
+      },
+      "group": "e1_runtime_command_stream",
+      "hit": true,
+      "name": "fence_wait"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "counter_snapshot",
+          "device_to_host",
+          "dma_copy",
+          "dma_fill",
+          "fence_signal",
+          "fence_wait",
+          "host_to_device",
+          "kernel_dispatch",
+          "reset",
+          "set_scheduler_config",
+          "set_shader_mode"
+        ]
+      },
+      "group": "e1_runtime_command_stream",
+      "hit": true,
+      "name": "kernel_dispatch"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "counter_snapshot",
+          "device_to_host",
+          "dma_copy",
+          "dma_fill",
+          "fence_signal",
+          "fence_wait",
+          "host_to_device",
+          "kernel_dispatch",
+          "reset",
+          "set_scheduler_config",
+          "set_shader_mode"
+        ]
+      },
+      "group": "e1_runtime_command_stream",
+      "hit": true,
+      "name": "reset"
+    },
+    {
+      "evidence": {
+        "expected_errors": [
+          "ERR_FENCE_WAIT",
+          "ERR_MMU_FAULT",
+          "ERR_SCHEDULER_FAULT"
+        ]
+      },
+      "group": "e1_expected_errors",
+      "hit": true,
+      "name": "ERR_MMU_FAULT"
+    },
+    {
+      "evidence": {
+        "expected_errors": [
+          "ERR_FENCE_WAIT",
+          "ERR_MMU_FAULT",
+          "ERR_SCHEDULER_FAULT"
+        ]
+      },
+      "group": "e1_expected_errors",
+      "hit": true,
+      "name": "ERR_FENCE_WAIT"
+    },
+    {
+      "evidence": {
+        "retired": 7,
+        "submitted": 7
+      },
+      "group": "e1_queue_lifecycle",
+      "hit": true,
+      "name": "queue_0_closed"
+    },
+    {
+      "evidence": {
+        "retired": 9,
+        "submitted": 9
+      },
+      "group": "e1_queue_lifecycle",
+      "hit": true,
+      "name": "queue_1_closed"
+    },
+    {
+      "evidence": {
+        "retired": 3,
+        "submitted": 3
+      },
+      "group": "e1_queue_lifecycle",
+      "hit": true,
+      "name": "queue_2_closed"
+    },
+    {
+      "evidence": {},
+      "group": "e3_native_runtime",
+      "hit": true,
+      "name": "build_pass"
+    },
+    {
+      "evidence": {},
+      "group": "e3_native_runtime",
+      "hit": true,
+      "name": "require_runtime_bind_pass"
+    },
+    {
+      "evidence": {},
+      "group": "e3_native_runtime",
+      "hit": true,
+      "name": "pending_count_zero"
+    },
+    {
+      "evidence": {},
+      "group": "e3_native_runtime",
+      "hit": true,
+      "name": "native_acceptance_pass"
+    },
+    {
+      "evidence": {
+        "available": true,
+        "observed": 2,
+        "result": "pass"
+      },
+      "group": "e3_native_runtime_features",
+      "hit": true,
+      "name": "error_injection"
+    },
+    {
+      "evidence": {
+        "available": true,
+        "observed": 16,
+        "result": "pass"
+      },
+      "group": "e3_native_runtime_features",
+      "hit": true,
+      "name": "last_event"
+    },
+    {
+      "evidence": {
+        "available": true,
+        "observed": 3,
+        "pending_count": 0,
+        "result": "pass"
+      },
+      "group": "e3_native_runtime_features",
+      "hit": true,
+      "name": "queue_lifecycle"
+    },
+    {
+      "evidence": {
+        "available": true,
+        "observed": 7,
+        "result": "pass"
+      },
+      "group": "e3_native_runtime_features",
+      "hit": true,
+      "name": "status_polling"
+    },
+    {
+      "evidence": {},
+      "group": "e4_demo",
+      "hit": true,
+      "name": "summary_status_pass"
+    },
+    {
+      "evidence": {},
+      "group": "e4_demo",
+      "hit": true,
+      "name": "golden_status_pass"
+    },
+    {
+      "evidence": {},
+      "group": "e4_kernel_golden",
+      "hit": true,
+      "name": "vector_add"
+    },
+    {
+      "evidence": {},
+      "group": "e4_compute_model",
+      "hit": true,
+      "name": "vector_add"
+    },
+    {
+      "evidence": {},
+      "group": "e4_kernel_golden",
+      "hit": true,
+      "name": "gemm_proxy"
+    },
+    {
+      "evidence": {},
+      "group": "e4_compute_model",
+      "hit": true,
+      "name": "gemm_proxy"
+    },
+    {
+      "evidence": {},
+      "group": "e4_kernel_golden",
+      "hit": true,
+      "name": "convolution_proxy"
+    },
+    {
+      "evidence": {},
+      "group": "e4_compute_model",
+      "hit": true,
+      "name": "convolution_proxy"
+    },
+    {
+      "evidence": {},
+      "group": "e4_kernel_golden",
+      "hit": true,
+      "name": "image_filter"
+    },
+    {
+      "evidence": {},
+      "group": "e4_compute_model",
+      "hit": true,
+      "name": "image_filter"
+    },
+    {
+      "evidence": {},
+      "group": "e4_kernel_golden",
+      "hit": true,
+      "name": "memory_copy"
+    },
+    {
+      "evidence": {},
+      "group": "e4_compute_model",
+      "hit": true,
+      "name": "memory_copy"
+    },
+    {
+      "evidence": {
+        "phases": [
+          "readback",
+          "submit",
+          "wait"
+        ]
+      },
+      "group": "e4_queue_trace",
+      "hit": true,
+      "name": "vector_add_submit_wait_readback"
+    },
+    {
+      "evidence": {
+        "phases": [
+          "readback",
+          "submit",
+          "wait"
+        ]
+      },
+      "group": "e4_queue_trace",
+      "hit": true,
+      "name": "gemm_proxy_submit_wait_readback"
+    },
+    {
+      "evidence": {
+        "phases": [
+          "readback",
+          "submit",
+          "wait"
+        ]
+      },
+      "group": "e4_queue_trace",
+      "hit": true,
+      "name": "convolution_proxy_submit_wait_readback"
+    },
+    {
+      "evidence": {
+        "phases": [
+          "readback",
+          "submit",
+          "wait"
+        ]
+      },
+      "group": "e4_queue_trace",
+      "hit": true,
+      "name": "image_filter_submit_wait_readback"
+    },
+    {
+      "evidence": {
+        "phases": [
+          "readback",
+          "submit",
+          "wait"
+        ]
+      },
+      "group": "e4_queue_trace",
+      "hit": true,
+      "name": "memory_copy_submit_wait_readback"
+    },
+    {
+      "evidence": {
+        "accesses": [
+          "read",
+          "write"
+        ],
+        "binding_count": 3
+      },
+      "group": "e4_buffer_bindings",
+      "hit": true,
+      "name": "vector_add"
+    },
+    {
+      "evidence": {
+        "accesses": [
+          "read",
+          "write"
+        ],
+        "binding_count": 3
+      },
+      "group": "e4_buffer_bindings",
+      "hit": true,
+      "name": "gemm_proxy"
+    },
+    {
+      "evidence": {
+        "accesses": [
+          "read",
+          "write"
+        ],
+        "binding_count": 3
+      },
+      "group": "e4_buffer_bindings",
+      "hit": true,
+      "name": "convolution_proxy"
+    },
+    {
+      "evidence": {
+        "accesses": [
+          "read",
+          "write"
+        ],
+        "binding_count": 3
+      },
+      "group": "e4_buffer_bindings",
+      "hit": true,
+      "name": "image_filter"
+    },
+    {
+      "evidence": {
+        "accesses": [
+          "read",
+          "write"
+        ],
+        "binding_count": 2
+      },
+      "group": "e4_buffer_bindings",
+      "hit": true,
+      "name": "memory_copy"
+    },
+    {
+      "evidence": {
+        "tier_count": 4
+      },
+      "group": "e4_tier_scaling",
+      "hit": true,
+      "name": "runtime_tier_count"
+    },
+    {
+      "evidence": {},
+      "group": "e4_tier_scaling",
+      "hit": true,
+      "name": "runtime_fp32_monotonic"
+    },
+    {
+      "evidence": {},
+      "group": "e4_tier_scaling",
+      "hit": true,
+      "name": "runtime_fp16_monotonic"
+    },
+    {
+      "evidence": {
+        "tier_count": 9
+      },
+      "group": "e4_model_scaling",
+      "hit": true,
+      "name": "model_tier_count"
+    },
+    {
+      "evidence": {},
+      "group": "e4_model_scaling",
+      "hit": true,
+      "name": "model_fp32_monotonic"
+    },
+    {
+      "evidence": {},
+      "group": "e4_model_scaling",
+      "hit": true,
+      "name": "model_fp16_monotonic"
+    },
+    {
+      "evidence": {},
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "metrics_status_pass"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.apb_traffic"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.axi_traffic"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.command_submission"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.completion_interrupts"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.dma_alignment"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.dma_bounds"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.fault_interrupts"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.interrupt_clear"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.invalid_descriptors"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.reset_behavior"
+    },
+    {
+      "evidence": {
+        "value": true
+      },
+      "group": "e5_control_plane",
+      "hit": true,
+      "name": "coverage.throughput_tier_link"
+    },
+    {
+      "evidence": {
+        "covered": true,
+        "observed_errors": [
+          "ERR_BAD_MAGIC",
+          "ERR_BAD_VERSION",
+          "ERR_BAD_LENGTH",
+          "ERR_UNSUPPORTED_OPCODE",
+          "ERR_BAD_QUEUE"
+        ],
+        "scenario_ids": [
+          "e5_invalid_descriptor_bad_magic",
+          "e5_invalid_descriptor_bad_version",
+          "e5_invalid_descriptor_bad_length",
+          "e5_invalid_descriptor_unsupported_opcode",
+          "e5_invalid_descriptor_bad_queue"
+        ]
+      },
+      "group": "e5_negative_boundary",
+      "hit": true,
+      "name": "invalid_descriptors"
+    },
+    {
+      "evidence": {
+        "covered": true,
+        "observed_dma_status_bits": [
+          "range_error",
+          "alignment_error"
+        ],
+        "observed_errors": [
+          "ERR_BAD_DMA"
+        ],
+        "scenario_ids": [
+          "e5_dma_bounds_source_before_region",
+          "e5_dma_bounds_destination_crosses_region_end",
+          "e5_dma_alignment_src_unaligned",
+          "e5_dma_alignment_dst_unaligned",
+          "e5_dma_alignment_size_not_beat_multiple"
+        ]
+      },
+      "group": "e5_negative_boundary",
+      "hit": true,
+      "name": "dma_bounds_alignment"
+    },
+    {
+      "evidence": {
+        "covered": true,
+        "observed_post_reset_state": {
+          "pending_count_after": 0,
+          "queue_heads_after": {
+            "2": 0,
+            "3": 0
+          },
+          "queue_tails_after": {
+            "2": 0,
+            "3": 0
+          },
+          "scheduler_active_after": false,
+          "sticky_error_after": null
+        },
+        "observed_reset_behaviors": [
+          "soft_control_plane_reset"
+        ],
+        "scenario_ids": [
+          "e5_reset_during_pending_dma",
+          "e5_reset_during_active_dispatch"
+        ]
+      },
+      "group": "e5_negative_boundary",
+      "hit": true,
+      "name": "reset_pending_active"
+    },
+    {
+      "evidence": {
+        "covered": true,
+        "rejected_descriptor_records": 10,
+        "required_fields_present": [
+          "sequence",
+          "submit_tag",
+          "queue_id",
+          "opcode",
+          "descriptor_offset",
+          "error",
+          "error_code",
+          "detail",
+          "sticky_error",
+          "interrupt_bits",
+          "queue_error_count_after",
+          "axi_issued",
+          "apb_submission_writes"
+        ],
+        "reset_submission_records": 2
+      },
+      "group": "e5_negative_boundary",
+      "hit": true,
+      "name": "command_submission_error_records"
+    },
+    {
+      "evidence": {
+        "expected": 12,
+        "name": "all_fixture_scenarios_have_output_records",
+        "observed": 12,
+        "result": "pass"
+      },
+      "group": "e5_negative_acceptance_checks",
+      "hit": true,
+      "name": "all_fixture_scenarios_have_output_records"
+    },
+    {
+      "evidence": {
+        "expected": 10,
+        "name": "all_rejected_descriptors_have_error_records",
+        "observed": 10,
+        "result": "pass"
+      },
+      "group": "e5_negative_acceptance_checks",
+      "hit": true,
+      "name": "all_rejected_descriptors_have_error_records"
+    },
+    {
+      "evidence": {
+        "name": "all_rejected_descriptors_suppress_axi",
+        "observed": true,
+        "result": "pass"
+      },
+      "group": "e5_negative_acceptance_checks",
+      "hit": true,
+      "name": "all_rejected_descriptors_suppress_axi"
+    },
+    {
+      "evidence": {
+        "name": "reset_flushes_pending_and_active_state",
+        "observed": true,
+        "result": "pass"
+      },
+      "group": "e5_negative_acceptance_checks",
+      "hit": true,
+      "name": "reset_flushes_pending_and_active_state"
+    },
+    {
+      "evidence": {
+        "name": "dma_range_and_alignment_bits_observed",
+        "observed": [
+          "range_error",
+          "alignment_error"
+        ],
+        "result": "pass"
+      },
+      "group": "e5_negative_acceptance_checks",
+      "hit": true,
+      "name": "dma_range_and_alignment_bits_observed"
+    },
+    {
+      "evidence": {},
+      "group": "e6_integration",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {},
+      "group": "e6_integration",
+      "hit": true,
+      "name": "e6_status_pass_proxy"
+    },
+    {
+      "evidence": {
+        "name": "bandwidth_axi_proxy_counters",
+        "pass": true
+      },
+      "group": "e6_integration_checks",
+      "hit": true,
+      "name": "bandwidth_axi_proxy_counters"
+    },
+    {
+      "evidence": {
+        "name": "latency_proxy_tier_validation",
+        "pass": true
+      },
+      "group": "e6_integration_checks",
+      "hit": true,
+      "name": "latency_proxy_tier_validation"
+    },
+    {
+      "evidence": {
+        "name": "proxy_power_activity_index",
+        "pass": true
+      },
+      "group": "e6_integration_checks",
+      "hit": true,
+      "name": "proxy_power_activity_index"
+    },
+    {
+      "evidence": {
+        "name": "reset_clock_interrupt_assumptions",
+        "pass": true
+      },
+      "group": "e6_integration_checks",
+      "hit": true,
+      "name": "reset_clock_interrupt_assumptions"
+    },
+    {
+      "evidence": {
+        "name": "security_safety_functional_proxy_notes",
+        "pass": true
+      },
+      "group": "e6_integration_checks",
+      "hit": true,
+      "name": "security_safety_functional_proxy_notes"
+    },
+    {
+      "evidence": {
+        "name": "explicit_non_goals_and_no_signoff_claim",
+        "pass": true
+      },
+      "group": "e6_integration_checks",
+      "hit": true,
+      "name": "explicit_non_goals_and_no_signoff_claim"
+    },
+    {
+      "evidence": {},
+      "group": "e8_verilator_functional",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "functional_coverage_percent": 100.0
+      },
+      "group": "e8_verilator_functional",
+      "hit": true,
+      "name": "functional_coverage_100"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "queue_count": 3
+        },
+        "hit": true,
+        "name": "queues"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "queues"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "opcode_count": 16
+        },
+        "hit": true,
+        "name": "dma_fill"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "dma_fill"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "opcode_count": 44
+        },
+        "hit": true,
+        "name": "dma_copy"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "dma_copy"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "opcode_count": 2
+        },
+        "hit": true,
+        "name": "dma_copy_h2d"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "dma_copy_h2d"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "opcode_count": 2
+        },
+        "hit": true,
+        "name": "dma_copy_d2h"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "dma_copy_d2h"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "opcode_count": 8
+        },
+        "hit": true,
+        "name": "fence_signal"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "fence_signal"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "opcode_count": 10
+        },
+        "hit": true,
+        "name": "fence_wait"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "fence_wait"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "opcode_count": 4
+        },
+        "hit": true,
+        "name": "reset"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "reset"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "event_or_counter_count": 90
+        },
+        "hit": true,
+        "name": "completion_interrupt"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "completion_interrupt"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "event_or_counter_count": 21
+        },
+        "hit": true,
+        "name": "error_interrupt"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "error_interrupt"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "fault_count": 16
+        },
+        "hit": true,
+        "name": "mmu_fault"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "mmu_fault"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "fault_count": 10
+        },
+        "hit": true,
+        "name": "scheduler_fault"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "scheduler_fault"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "tokens": [
+            "abi",
+            "abi_version",
+            "command_abi",
+            "runtime_abi",
+            "celviz_gpgpu_proxy"
+          ]
+        },
+        "hit": true,
+        "name": "abi_symbol_coverage"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "abi_symbol_coverage"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "categories_seen": [
+            "device_to_host",
+            "dma_copy",
+            "dma_fill",
+            "fence_signal",
+            "fence_wait",
+            "host_to_device",
+            "kernel_dispatch",
+            "set_scheduler_config"
+          ]
+        },
+        "hit": true,
+        "name": "native_command_categories"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "native_command_categories"
+    },
+    {
+      "evidence": {
+        "evidence": {},
+        "hit": true,
+        "name": "pending_count_zero"
+      },
+      "group": "e8_verilator_functional_bins",
+      "hit": true,
+      "name": "pending_count_zero"
+    },
+    {
+      "evidence": {},
+      "group": "e8_verilator_functional",
+      "hit": true,
+      "name": "requirements_no_failures"
+    },
+    {
+      "evidence": {},
+      "group": "e8_verilator_functional",
+      "hit": true,
+      "name": "artifact_failures_empty"
+    },
+    {
+      "evidence": {},
+      "group": "phase2_integration",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "totals": {
+          "alu_ops": 1206,
+          "barrier_events": 19,
+          "barrier_wait_cycles": 0,
+          "lsu_loads": 1238,
+          "lsu_stores": 141,
+          "register_reads": 2208,
+          "register_writes": 2208,
+          "scheduler_issues": 390,
+          "scoreboard_hazard_cycles": 1710,
+          "scoreboard_hazard_events": 380
+        },
+        "workloads": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "group": "phase2_integration_checks",
+      "hit": true,
+      "name": "simt_compute_core_path"
+    },
+    {
+      "evidence": {
+        "kernel_count": 4,
+        "runtime_summary": {
+          "commands_completed": 4,
+          "commands_failed": 0,
+          "commands_submitted": 4,
+          "completion_count": 4,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "group": "phase2_integration_checks",
+      "hit": true,
+      "name": "opencl_subset_runtime_abi"
+    },
+    {
+      "evidence": {
+        "categories": {
+          "dma": 3,
+          "kernel": 27,
+          "negative": 5
+        },
+        "event_count": 35,
+        "event_trace_sha256": "f64c60fc7d7ef6d11684ab2232a1e389000fe0304d1fa70cd469bcf755b3023b",
+        "global_final_sha256": "f65254191a101dd4d5a8192157a801475922efa318816cb5668fed74be6a6746",
+        "global_initial_sha256": "f9f144638942ff7f59e14a18d85a775e8f47cba25cf1b6316f2bff2362517679",
+        "host_final_sha256": "dfd580c6578c61deffad8035f59e76a1d2c144397c4c22612e83e102be9c73d8",
+        "operations": {
+          "copy": 3,
+          "fill": 1,
+          "load": 20,
+          "store": 11
+        },
+        "status": "pass"
+      },
+      "group": "phase2_integration_checks",
+      "hit": true,
+      "name": "memory_system_phase1"
+    },
+    {
+      "evidence": {
+        "bo_allocs": 3,
+        "bo_gpu_maps": 3,
+        "bo_maps": 3,
+        "completion_events": 2,
+        "context_creates": 1,
+        "device_opens": 1,
+        "error_events": 2,
+        "events_generated": 4,
+        "events_polled": 4,
+        "fence_creates": 2,
+        "fence_signals": 1,
+        "fence_timeouts": 0,
+        "fence_waits": 2,
+        "queue_creates": 1,
+        "submit_errors": 1,
+        "submit_success": 1,
+        "submits": 2
+      },
+      "group": "phase2_integration_checks",
+      "hit": true,
+      "name": "linux_userspace_runtime_proxy"
+    },
+    {
+      "evidence": {
+        "observed_metrics": {
+          "structural_target_hit_count": 24,
+          "structural_target_percent": 100.0,
+          "structural_target_total": 24,
+          "total_commands": 295,
+          "total_completion_interrupts": 85,
+          "total_dma_alignment_errors": 1,
+          "total_dma_copies": 102,
+          "total_dma_fills": 103,
+          "total_error_interrupts": 7,
+          "total_kernel_dispatches": 10,
+          "total_mmu_faults": 2,
+          "total_scheduler_faults": 1
+        },
+        "structural_targets": {
+          "bad_queue_reject": {
+            "hit": true,
+            "structural_coverage_intent": "cover bad queue command-submission reject branch"
+          },
+          "completion_interrupt_clear": {
+            "hit": true,
+            "structural_coverage_intent": "toggle completion interrupt generation and clear path"
+          },
+          "counter_snapshot": {
+            "hit": true,
+            "structural_coverage_intent": "cover counter snapshot readback path"
+          },
+          "device_to_host_path": {
+            "hit": true,
+            "structural_coverage_intent": "cover runtime D2H copy command category"
+          },
+          "dma_alignment_reject": {
+            "hit": true,
+            "structural_coverage_intent": "cover unaligned DMA reject branch"
+          },
+          "dma_copy_read_write_path": {
+            "hit": true,
+            "structural_coverage_intent": "cover DMA read/write beat accounting"
+          },
+          "dma_fill_write_path": {
+            "hit": true,
+            "structural_coverage_intent": "cover DMA fill writable-range and AXI write path"
+          },
+          "dma_mmu_fault": {
+            "hit": true,
+            "structural_coverage_intent": "cover DMA MMU range fault branch"
+          },
+          "doorbell_apb_status_poll": {
+            "hit": true,
+            "structural_coverage_intent": "toggle APB submit/status paths for command issue"
+          },
+          "error_interrupt_clear": {
+            "hit": true,
+            "structural_coverage_intent": "toggle error interrupt generation and clear path"
+          },
+          "fence_signal_wait_success": {
+            "hit": true,
+            "structural_coverage_intent": "cover fence signal and successful wait dependency"
+          },
+          "fence_wait_timeout": {
+            "hit": true,
+            "structural_coverage_intent": "cover timeout/error branch of fence wait"
+          },
+          "host_to_device_path": {
+            "hit": true,
+            "structural_coverage_intent": "cover runtime H2D copy command category"
+          },
+          "kernel_arg_mmu_fault": {
+            "hit": true,
+            "structural_coverage_intent": "cover kernel arg-buffer MMU fault branch"
+          },
+          "kernel_dispatch_fp16": {
+            "hit": true,
+            "structural_coverage_intent": "cover FP16 kernel dispatch metadata branch"
+          },
+          "kernel_dispatch_fp32": {
+            "hit": true,
+            "structural_coverage_intent": "cover FP32 kernel dispatch metadata branch"
+          },
+          "long_run_idle_retire": {
+            "hit": true,
+            "structural_coverage_intent": "stress long-run retirement and idle completion"
+          },
+          "multi_queue_tail_wrap_proxy": {
+            "hit": true,
+            "structural_coverage_intent": "stress queue head/tail modulo movement"
+          },
+          "queue_arbitration": {
+            "hit": true,
+            "structural_coverage_intent": "exercise multiple queue IDs and priority-retire bookkeeping"
+          },
+          "reset_recovery": {
+            "hit": true,
+            "structural_coverage_intent": "cover reset cleanup and post-reset recovery path"
+          },
+          "scheduler_config_write": {
+            "hit": true,
+            "structural_coverage_intent": "cover scheduler config register update path"
+          },
+          "scheduler_fault_reject": {
+            "hit": true,
+            "structural_coverage_intent": "cover scheduler fault reject branch"
+          },
+          "shader_mode_fp16_fp32": {
+            "hit": true,
+            "structural_coverage_intent": "cover FP mode switch control path"
+          },
+          "unsupported_opcode_reject": {
+            "hit": true,
+            "structural_coverage_intent": "cover unsupported opcode reject branch"
+          }
+        }
+      },
+      "group": "phase2_integration_checks",
+      "hit": true,
+      "name": "rtl_verilator_supplemental_phase1"
+    },
+    {
+      "evidence": {
+        "proxy_metrics": {
+          "activity_proxy_index": 0.022334,
+          "area_proxy_units": 39820,
+          "claim_boundary": "dimensionless proxy metrics; not synthesized area/frequency/power",
+          "control_complexity_index": 516,
+          "frequency_proxy_index": 41.091,
+          "power_proxy_index": 0.044668,
+          "proxy_formula_version": "source-count-v1"
+        },
+        "source_summary": {
+          "bytes": 1136669,
+          "file_count": 108,
+          "lines": 26373,
+          "marker_hit_count": 500,
+          "marker_hits": {
+            "CelvizGPGPUDebug": 2,
+            "celviz_debug": 344,
+            "celviz_gpgpu_runtime_proxy": 120,
+            "commandDoorbellReg": 12,
+            "completionCountReg": 4,
+            "errorStatusReg": 15,
+            "irqPendingReg": 3
+          },
+          "nonblank_lines": 23820
+        }
+      },
+      "group": "phase2_integration_checks",
+      "hit": true,
+      "name": "ppa_proxy_phase1"
+    },
+    {
+      "evidence": {},
+      "group": "phase3_cross_layer",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "abi_kernel_names": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "mapped_simt_names": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ],
+        "opencl_kernels": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "runtime_dispatch_kernels": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "simt_names": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "group": "phase3_cross_layer_checks",
+      "hit": true,
+      "name": "kernel_set_opencl_runtime_simt_aligned"
+    },
+    {
+      "evidence": {
+        "abi_count": 4,
+        "global_arg_kernels": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "metadata_complete": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "group": "phase3_cross_layer_checks",
+      "hit": true,
+      "name": "kernel_abi_metadata_to_runtime_command"
+    },
+    {
+      "evidence": {
+        "memory_summary": {
+          "categories": {
+            "dma": 3,
+            "kernel": 27,
+            "negative": 5
+          },
+          "event_count": 35,
+          "event_trace_sha256": "f64c60fc7d7ef6d11684ab2232a1e389000fe0304d1fa70cd469bcf755b3023b",
+          "global_final_sha256": "f65254191a101dd4d5a8192157a801475922efa318816cb5668fed74be6a6746",
+          "global_initial_sha256": "f9f144638942ff7f59e14a18d85a775e8f47cba25cf1b6316f2bff2362517679",
+          "host_final_sha256": "dfd580c6578c61deffad8035f59e76a1d2c144397c4c22612e83e102be9c73d8",
+          "operations": {
+            "copy": 3,
+            "fill": 1,
+            "load": 20,
+            "store": 11
+          },
+          "status": "pass"
+        },
+        "simt_totals": {
+          "alu_ops": 1206,
+          "barrier_events": 19,
+          "barrier_wait_cycles": 0,
+          "lsu_loads": 1238,
+          "lsu_stores": 141,
+          "register_reads": 2208,
+          "register_writes": 2208,
+          "scheduler_issues": 390,
+          "scoreboard_hazard_cycles": 1710,
+          "scoreboard_hazard_events": 380
+        }
+      },
+      "group": "phase3_cross_layer_checks",
+      "hit": true,
+      "name": "simt_memory_semantics_aligned"
+    },
+    {
+      "evidence": {
+        "linux_counters": {
+          "bo_allocs": 3,
+          "bo_gpu_maps": 3,
+          "bo_maps": 3,
+          "completion_events": 2,
+          "context_creates": 1,
+          "device_opens": 1,
+          "error_events": 2,
+          "events_generated": 4,
+          "events_polled": 4,
+          "fence_creates": 2,
+          "fence_signals": 1,
+          "fence_timeouts": 0,
+          "fence_waits": 2,
+          "queue_creates": 1,
+          "submit_errors": 1,
+          "submit_success": 1,
+          "submits": 2
+        },
+        "runtime_proxy": {
+          "commands_completed": 4,
+          "commands_failed": 0,
+          "commands_submitted": 4,
+          "completion_count": 4,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "group": "phase3_cross_layer_checks",
+      "hit": true,
+      "name": "runtime_os_submission_semantics_aligned"
+    },
+    {
+      "evidence": {
+        "phase2_status": "pass",
+        "rtl_observed_metrics": {
+          "structural_target_hit_count": 24,
+          "structural_target_percent": 100.0,
+          "structural_target_total": 24,
+          "total_commands": 295,
+          "total_completion_interrupts": 85,
+          "total_dma_alignment_errors": 1,
+          "total_dma_copies": 102,
+          "total_dma_fills": 103,
+          "total_error_interrupts": 7,
+          "total_kernel_dispatches": 10,
+          "total_mmu_faults": 2,
+          "total_scheduler_faults": 1
+        }
+      },
+      "group": "phase3_cross_layer_checks",
+      "hit": true,
+      "name": "verification_targets_cover_cross_layer_paths"
+    },
+    {
+      "evidence": {
+        "proxy_metrics": {
+          "activity_proxy_index": 0.022334,
+          "area_proxy_units": 39820,
+          "claim_boundary": "dimensionless proxy metrics; not synthesized area/frequency/power",
+          "control_complexity_index": 516,
+          "frequency_proxy_index": 41.091,
+          "power_proxy_index": 0.044668,
+          "proxy_formula_version": "source-count-v1"
+        },
+        "public_baseline_tiers": [
+          {
+            "comparison_scope": "public tier proxy only; not measured local RTL PPA",
+            "fp16_ops_per_cycle_public_proxy": 64,
+            "fp16_ops_per_shader_unit": 4.0,
+            "fp32_ops_per_cycle_public_proxy": 32,
+            "fp32_ops_per_shader_unit": 2.0,
+            "shader_units_vec1": 16,
+            "tier": "CC8000L"
+          },
+          {
+            "comparison_scope": "public tier proxy only; not measured local RTL PPA",
+            "fp16_ops_per_cycle_public_proxy": 128,
+            "fp16_ops_per_shader_unit": 4.0,
+            "fp32_ops_per_cycle_public_proxy": 64,
+            "fp32_ops_per_shader_unit": 2.0,
+            "shader_units_vec1": 32,
+            "tier": "CC8000"
+          }
+        ],
+        "source_summary": {
+          "bytes": 1136669,
+          "file_count": 108,
+          "lines": 26373,
+          "marker_hit_count": 500,
+          "marker_hits": {
+            "CelvizGPGPUDebug": 2,
+            "celviz_debug": 344,
+            "celviz_gpgpu_runtime_proxy": 120,
+            "commandDoorbellReg": 12,
+            "completionCountReg": 4,
+            "errorStatusReg": 15,
+            "irqPendingReg": 3
+          },
+          "nonblank_lines": 23820
+        }
+      },
+      "group": "phase3_cross_layer_checks",
+      "hit": true,
+      "name": "ppa_proxy_links_to_cross_layer_scope"
+    },
+    {
+      "evidence": {},
+      "group": "kernel_lowering",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "all_opencl_kernels_lowered",
+        "observed": [
+          "vector_add",
+          "gemm",
+          "conv2d",
+          "image_filter"
+        ],
+        "pass": true
+      },
+      "group": "kernel_lowering_checks",
+      "hit": true,
+      "name": "all_opencl_kernels_lowered"
+    },
+    {
+      "evidence": {
+        "name": "required_micro_ops_present",
+        "pass": true
+      },
+      "group": "kernel_lowering_checks",
+      "hit": true,
+      "name": "required_micro_ops_present"
+    },
+    {
+      "evidence": {
+        "name": "loop_kernels_have_loop_ops",
+        "pass": true
+      },
+      "group": "kernel_lowering_checks",
+      "hit": true,
+      "name": "loop_kernels_have_loop_ops"
+    },
+    {
+      "evidence": {
+        "name": "image_filter_has_vector_ops",
+        "pass": true
+      },
+      "group": "kernel_lowering_checks",
+      "hit": true,
+      "name": "image_filter_has_vector_ops"
+    },
+    {
+      "evidence": {
+        "name": "runtime_sequences_unique",
+        "pass": true
+      },
+      "group": "kernel_lowering_checks",
+      "hit": true,
+      "name": "runtime_sequences_unique"
+    },
+    {
+      "evidence": {
+        "name": "metadata_links_present",
+        "pass": true
+      },
+      "group": "kernel_lowering_checks",
+      "hit": true,
+      "name": "metadata_links_present"
+    },
+    {
+      "evidence": {},
+      "group": "phase4_lowering_integration",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {},
+      "group": "phase4_lowering_integration_checks",
+      "hit": true,
+      "name": "lowering_report_pass"
+    },
+    {
+      "evidence": {
+        "lowered": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "runtime": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "group": "phase4_lowering_integration_checks",
+      "hit": true,
+      "name": "lowering_matches_runtime_dispatch_set"
+    },
+    {
+      "evidence": {
+        "lowering_simt": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ],
+        "simt": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "group": "phase4_lowering_integration_checks",
+      "hit": true,
+      "name": "lowering_matches_simt_workloads"
+    },
+    {
+      "evidence": {
+        "memory_ops": {
+          "copy": 3,
+          "fill": 1,
+          "load": 20,
+          "store": 11
+        },
+        "uop_categories": [
+          "uop_address_calc",
+          "uop_alu_add",
+          "uop_alu_mad",
+          "uop_alu_mul_clamp",
+          "uop_barrier",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_loop_begin",
+          "uop_loop_end",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_vector_pack",
+          "uop_vector_unpack",
+          "uop_write_completion"
+        ]
+      },
+      "group": "phase4_lowering_integration_checks",
+      "hit": true,
+      "name": "lowering_covers_memory_ops"
+    },
+    {
+      "evidence": {
+        "uop_categories": [
+          "uop_address_calc",
+          "uop_alu_add",
+          "uop_alu_mad",
+          "uop_alu_mul_clamp",
+          "uop_barrier",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_loop_begin",
+          "uop_loop_end",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_vector_pack",
+          "uop_vector_unpack",
+          "uop_write_completion"
+        ]
+      },
+      "group": "phase4_lowering_integration_checks",
+      "hit": true,
+      "name": "lowering_covers_control_ops"
+    },
+    {
+      "evidence": {
+        "phase3_status": "pass"
+      },
+      "group": "phase4_lowering_integration_checks",
+      "hit": true,
+      "name": "phase3_dependency_pass"
+    },
+    {
+      "evidence": {},
+      "group": "microop_execution",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "phase4_lowering_report_pass",
+        "pass": true
+      },
+      "group": "microop_execution_checks",
+      "hit": true,
+      "name": "phase4_lowering_report_pass"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "observed": [
+            "conv2d",
+            "gemm",
+            "image_filter",
+            "vector_add"
+          ],
+          "required": [
+            "conv2d",
+            "gemm",
+            "image_filter",
+            "vector_add"
+          ]
+        },
+        "name": "all_lowered_kernels_executed",
+        "pass": true
+      },
+      "group": "microop_execution_checks",
+      "hit": true,
+      "name": "all_lowered_kernels_executed"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "conv2d": "pass",
+          "gemm": "pass",
+          "image_filter": "pass",
+          "vector_add": "pass"
+        },
+        "name": "all_kernel_reports_pass",
+        "pass": true
+      },
+      "group": "microop_execution_checks",
+      "hit": true,
+      "name": "all_kernel_reports_pass"
+    },
+    {
+      "evidence": {
+        "name": "oracle_hashes_match",
+        "pass": true
+      },
+      "group": "microop_execution_checks",
+      "hit": true,
+      "name": "oracle_hashes_match"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "total_memory_events": 1379
+        },
+        "name": "memory_trace_non_empty",
+        "pass": true
+      },
+      "group": "microop_execution_checks",
+      "hit": true,
+      "name": "memory_trace_non_empty"
+    },
+    {
+      "evidence": {
+        "evidence": {
+          "opcodes": [
+            "uop_address_calc",
+            "uop_alu_add",
+            "uop_alu_mad",
+            "uop_alu_mul_clamp",
+            "uop_barrier",
+            "uop_global_load",
+            "uop_global_store",
+            "uop_kernel_prologue",
+            "uop_loop_begin",
+            "uop_loop_end",
+            "uop_predicate_bounds",
+            "uop_read_scalar_arg",
+            "uop_read_workitem_id",
+            "uop_vector_pack",
+            "uop_vector_unpack",
+            "uop_write_completion"
+          ]
+        },
+        "name": "control_data_memory_uops_covered",
+        "pass": true
+      },
+      "group": "microop_execution_checks",
+      "hit": true,
+      "name": "control_data_memory_uops_covered"
+    },
+    {
+      "evidence": {
+        "kernel": "vector_add",
+        "memory_event_count": 96,
+        "oracle_workload": "vector_add",
+        "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
+        "sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+        "status": "pass",
+        "uops_executed": 13
+      },
+      "group": "microop_execution_kernels",
+      "hit": true,
+      "name": "vector_add"
+    },
+    {
+      "evidence": {
+        "kernel": "gemm",
+        "memory_event_count": 260,
+        "oracle_workload": "gemm_proxy",
+        "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+        "sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+        "status": "pass",
+        "uops_executed": 18
+      },
+      "group": "microop_execution_kernels",
+      "hit": true,
+      "name": "gemm"
+    },
+    {
+      "evidence": {
+        "kernel": "conv2d",
+        "memory_event_count": 475,
+        "oracle_workload": "convolution_proxy",
+        "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+        "sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+        "status": "pass",
+        "uops_executed": 17
+      },
+      "group": "microop_execution_kernels",
+      "hit": true,
+      "name": "conv2d"
+    },
+    {
+      "evidence": {
+        "kernel": "image_filter",
+        "memory_event_count": 548,
+        "oracle_workload": "image_filter",
+        "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+        "sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+        "status": "pass",
+        "uops_executed": 15
+      },
+      "group": "microop_execution_kernels",
+      "hit": true,
+      "name": "image_filter"
+    },
+    {
+      "evidence": {},
+      "group": "phase5_microop_integration",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "schema": "celviz.gpgpu.microop_interpreter.v1",
+        "status": "pass"
+      },
+      "group": "phase5_microop_integration_checks",
+      "hit": true,
+      "name": "microop_execution_report_pass"
+    },
+    {
+      "evidence": {
+        "phase4_status": "pass"
+      },
+      "group": "phase5_microop_integration_checks",
+      "hit": true,
+      "name": "phase4_dependency_pass"
+    },
+    {
+      "evidence": {
+        "executed": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "lowered": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "runtime": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "group": "phase5_microop_integration_checks",
+      "hit": true,
+      "name": "executed_kernel_set_matches_lowering_and_runtime"
+    },
+    {
+      "evidence": {
+        "oracle_workloads": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ],
+        "simt_workloads": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "group": "phase5_microop_integration_checks",
+      "hit": true,
+      "name": "oracle_workloads_match_simt_workloads"
+    },
+    {
+      "evidence": {
+        "memory_model_ops": {
+          "copy": 3,
+          "fill": 1,
+          "load": 20,
+          "store": 11
+        },
+        "microop_memory_events": 1379
+      },
+      "group": "phase5_microop_integration_checks",
+      "hit": true,
+      "name": "microop_memory_trace_links_memory_model"
+    },
+    {
+      "evidence": {
+        "uop_categories_executed": [
+          "uop_address_calc",
+          "uop_alu_add",
+          "uop_alu_mad",
+          "uop_alu_mul_clamp",
+          "uop_barrier",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_loop_begin",
+          "uop_loop_end",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_vector_pack",
+          "uop_vector_unpack",
+          "uop_write_completion"
+        ]
+      },
+      "group": "phase5_microop_integration_checks",
+      "hit": true,
+      "name": "control_data_memory_uops_executed"
+    },
+    {
+      "evidence": {},
+      "group": "phase6_compiler_ir",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "all_four_kernels_have_ir",
+        "pass": true
+      },
+      "group": "phase6_compiler_ir_checks",
+      "hit": true,
+      "name": "all_four_kernels_have_ir"
+    },
+    {
+      "evidence": {
+        "name": "all_kernel_ir_pass",
+        "pass": true
+      },
+      "group": "phase6_compiler_ir_checks",
+      "hit": true,
+      "name": "all_kernel_ir_pass"
+    },
+    {
+      "evidence": {
+        "name": "virtual_and_predicate_registers_present",
+        "pass": true
+      },
+      "group": "phase6_compiler_ir_checks",
+      "hit": true,
+      "name": "virtual_and_predicate_registers_present"
+    },
+    {
+      "evidence": {
+        "name": "cfg_and_def_use_present",
+        "pass": true
+      },
+      "group": "phase6_compiler_ir_checks",
+      "hit": true,
+      "name": "cfg_and_def_use_present"
+    },
+    {
+      "evidence": {},
+      "group": "phase6_memory_trace",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "memory_schema": "celviz.gpgpu.memory_model.phase1.v1",
+        "memory_status": "pass",
+        "memory_summary_status": "pass",
+        "microop_schema": "celviz.gpgpu.microop_interpreter.v1",
+        "microop_status": "pass"
+      },
+      "group": "phase6_memory_trace_checks",
+      "hit": true,
+      "name": "input_reports_pass_and_clean_room_scoped"
+    },
+    {
+      "evidence": {
+        "aggregate_report_kernels": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "per_kernel_status": {
+          "conv2d": "pass",
+          "gemm": "pass",
+          "image_filter": "pass",
+          "vector_add": "pass"
+        },
+        "required": [
+          "vector_add",
+          "gemm",
+          "conv2d",
+          "image_filter"
+        ]
+      },
+      "group": "phase6_memory_trace_checks",
+      "hit": true,
+      "name": "required_per_kernel_microop_reports_present"
+    },
+    {
+      "evidence": {
+        "conv2d": {
+          "memory_count_closes": true,
+          "memory_counts": {
+            "load": 450,
+            "store": 25
+          },
+          "memory_event_count": 475,
+          "sample_kinds": [
+            "load",
+            "store"
+          ]
+        },
+        "gemm": {
+          "memory_count_closes": true,
+          "memory_counts": {
+            "load": 240,
+            "store": 20
+          },
+          "memory_event_count": 260,
+          "sample_kinds": [
+            "load",
+            "store"
+          ]
+        },
+        "image_filter": {
+          "memory_count_closes": true,
+          "memory_counts": {
+            "load": 484,
+            "store": 64
+          },
+          "memory_event_count": 548,
+          "sample_kinds": [
+            "load",
+            "store"
+          ]
+        },
+        "vector_add": {
+          "memory_count_closes": true,
+          "memory_counts": {
+            "load": 64,
+            "store": 32
+          },
+          "memory_event_count": 96,
+          "sample_kinds": [
+            "load",
+            "store"
+          ]
+        }
+      },
+      "group": "phase6_memory_trace_checks",
+      "hit": true,
+      "name": "per_kernel_load_store_traces_close"
+    },
+    {
+      "evidence": {
+        "aggregate_loads": 1238,
+        "aggregate_stores": 141,
+        "microop_report_total_memory_events": 1379,
+        "per_kernel_total_memory_events": 1379
+      },
+      "group": "phase6_memory_trace_checks",
+      "hit": true,
+      "name": "aggregate_microop_memory_counts_match_report"
+    },
+    {
+      "evidence": {
+        "alignment_bytes": 4,
+        "global_size_bytes": 256,
+        "kernel_sample_address_spaces": {
+          "conv2d": [
+            "global"
+          ],
+          "gemm": [
+            "global"
+          ],
+          "image_filter": [
+            "global"
+          ],
+          "vector_add": [
+            "global"
+          ]
+        },
+        "memory_global_semantics": "mutable device memory visible to DMA and kernel load/store events"
+      },
+      "group": "phase6_memory_trace_checks",
+      "hit": true,
+      "name": "global_memory_semantics_close"
+    },
+    {
+      "evidence": {
+        "memory_event_categories": [
+          "dma",
+          "kernel",
+          "negative"
+        ],
+        "memory_event_operations": [
+          "copy",
+          "fill",
+          "load",
+          "store"
+        ],
+        "memory_event_schemas": [
+          "celviz.gpgpu.memory_event.v1"
+        ],
+        "memory_operations": {
+          "copy": 3,
+          "fill": 1,
+          "load": 20,
+          "store": 11
+        },
+        "memory_trace_event_count": 35
+      },
+      "group": "phase6_memory_trace_checks",
+      "hit": true,
+      "name": "memory_model_load_store_copy_fill_event_schema_closes"
+    },
+    {
+      "evidence": {
+        "coalescing_sample_kernels": [
+          "vector_add",
+          "gemm",
+          "conv2d",
+          "image_filter"
+        ],
+        "kernel_sample_coalescing": {
+          "conv2d": {
+            "coalesced_transactions": 7,
+            "coalescing_reduction_observed": true,
+            "groups_head": [
+              {
+                "arg": "filter",
+                "byte_span": [
+                  0,
+                  32
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 11,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "filter",
+                "byte_span": [
+                  32,
+                  36
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 1,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              },
+              {
+                "arg": "input",
+                "byte_span": [
+                  0,
+                  32
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "input",
+                "byte_span": [
+                  32,
+                  40
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 2,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              },
+              {
+                "arg": "input",
+                "byte_span": [
+                  160,
+                  192
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 160,
+                "segment_index": 5
+              },
+              {
+                "arg": "input",
+                "byte_span": [
+                  192,
+                  196
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 1,
+                "segment_base_offset": 192,
+                "segment_index": 6
+              },
+              {
+                "arg": "output",
+                "byte_span": [
+                  96,
+                  100
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 1,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              }
+            ],
+            "naive_transactions": 24,
+            "sample_events": 24,
+            "segment_bytes": 32
+          },
+          "gemm": {
+            "coalesced_transactions": 7,
+            "coalescing_reduction_observed": true,
+            "groups_head": [
+              {
+                "arg": "a",
+                "byte_span": [
+                  0,
+                  24
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 6,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "a",
+                "byte_span": [
+                  76,
+                  96
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 5,
+                "segment_base_offset": 64,
+                "segment_index": 2
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  0,
+                  24
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 3,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  36,
+                  64
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  76,
+                  84
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 2,
+                "segment_base_offset": 64,
+                "segment_index": 2
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  96,
+                  120
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 3,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              },
+              {
+                "arg": "c",
+                "byte_span": [
+                  76,
+                  80
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 1,
+                "segment_base_offset": 64,
+                "segment_index": 2
+              }
+            ],
+            "naive_transactions": 24,
+            "sample_events": 24,
+            "segment_bytes": 32
+          },
+          "image_filter": {
+            "coalesced_transactions": 4,
+            "coalescing_reduction_observed": true,
+            "groups_head": [
+              {
+                "arg": "src",
+                "byte_span": [
+                  0,
+                  11
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 10,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "src",
+                "byte_span": [
+                  53,
+                  64
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 10,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              },
+              {
+                "arg": "dst",
+                "byte_span": [
+                  0,
+                  2
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 2,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "dst",
+                "byte_span": [
+                  62,
+                  64
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 2,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              }
+            ],
+            "naive_transactions": 24,
+            "sample_events": 24,
+            "segment_bytes": 32
+          },
+          "vector_add": {
+            "coalesced_transactions": 6,
+            "coalescing_reduction_observed": true,
+            "groups_head": [
+              {
+                "arg": "a",
+                "byte_span": [
+                  0,
+                  16
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "a",
+                "byte_span": [
+                  112,
+                  128
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  0,
+                  16
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  112,
+                  128
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              },
+              {
+                "arg": "c",
+                "byte_span": [
+                  0,
+                  16
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "c",
+                "byte_span": [
+                  112,
+                  128
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              }
+            ],
+            "naive_transactions": 24,
+            "sample_events": 24,
+            "segment_bytes": 32
+          }
+        },
+        "memory_model_coalescing": {
+          "coalesced_transactions": 1,
+          "group_count": 1,
+          "groups": [
+            {
+              "address_space": "global",
+              "byte_span": [
+                0,
+                32
+              ],
+              "lane_count": 8,
+              "lane_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "proxy_transactions": 1,
+              "segment_base_offset": 0,
+              "segment_index": 0
+            }
+          ],
+          "lane_count": 8,
+          "naive_transactions": 8,
+          "segment_bytes": 32
+        }
+      },
+      "group": "phase6_memory_trace_checks",
+      "hit": true,
+      "name": "coalescing_proxy_model_links_to_microop_samples"
+    },
+    {
+      "evidence": {
+        "conv2d": {
+          "aggregate_report_sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+          "aggregate_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+          "per_kernel_report_sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+          "per_kernel_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a"
+        },
+        "gemm": {
+          "aggregate_report_sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+          "aggregate_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+          "per_kernel_report_sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+          "per_kernel_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0"
+        },
+        "image_filter": {
+          "aggregate_report_sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+          "aggregate_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+          "per_kernel_report_sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+          "per_kernel_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101"
+        },
+        "vector_add": {
+          "aggregate_report_sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+          "aggregate_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
+          "per_kernel_report_sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+          "per_kernel_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f"
+        }
+      },
+      "group": "phase6_memory_trace_checks",
+      "hit": true,
+      "name": "result_and_hash_continuity"
+    },
+    {
+      "evidence": {
+        "memory_checks": [
+          {
+            "name": "global_memory_h2d_visible_to_kernel",
+            "pass": true
+          },
+          {
+            "name": "dma_fill_pattern_visible",
+            "pass": true
+          },
+          {
+            "name": "kernel_global_store_visible_to_d2h",
+            "pass": true
+          },
+          {
+            "name": "coalescing_reduces_transactions",
+            "pass": true
+          },
+          {
+            "name": "local_scratchpad_roundtrip",
+            "pass": true
+          },
+          {
+            "name": "constant_reads_are_read_only_and_cacheable_proxy",
+            "pass": true
+          },
+          {
+            "name": "bounds_alignment_negative_cases",
+            "pass": true
+          },
+          {
+            "name": "unified_dma_kernel_event_model",
+            "pass": true
+          }
+        ]
+      },
+      "group": "phase6_memory_trace_checks",
+      "hit": true,
+      "name": "memory_model_checks_all_pass"
+    },
+    {
+      "evidence": {},
+      "group": "phase6_driver_submission",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "runtime_dispatches_present",
+        "pass": true
+      },
+      "group": "phase6_driver_submission_checks",
+      "hit": true,
+      "name": "runtime_dispatches_present"
+    },
+    {
+      "evidence": {
+        "name": "linux_runtime_proxy_pass",
+        "pass": true
+      },
+      "group": "phase6_driver_submission_checks",
+      "hit": true,
+      "name": "linux_runtime_proxy_pass"
+    },
+    {
+      "evidence": {
+        "name": "queue_lifecycle_no_pending",
+        "pass": true
+      },
+      "group": "phase6_driver_submission_checks",
+      "hit": true,
+      "name": "queue_lifecycle_no_pending"
+    },
+    {
+      "evidence": {
+        "name": "completion_and_error_paths_present",
+        "pass": true
+      },
+      "group": "phase6_driver_submission_checks",
+      "hit": true,
+      "name": "completion_and_error_paths_present"
+    },
+    {
+      "evidence": {
+        "name": "events_polled",
+        "pass": true
+      },
+      "group": "phase6_driver_submission_checks",
+      "hit": true,
+      "name": "events_polled"
+    },
+    {
+      "evidence": {
+        "name": "fence_wait_signal_path",
+        "pass": true
+      },
+      "group": "phase6_driver_submission_checks",
+      "hit": true,
+      "name": "fence_wait_signal_path"
+    },
+    {
+      "evidence": {
+        "name": "kernel_dispatch_set_modeled",
+        "pass": true
+      },
+      "group": "phase6_driver_submission_checks",
+      "hit": true,
+      "name": "kernel_dispatch_set_modeled"
+    },
+    {
+      "evidence": {
+        "name": "clean_room_non_driver_boundary",
+        "pass": true
+      },
+      "group": "phase6_driver_submission_checks",
+      "hit": true,
+      "name": "clean_room_non_driver_boundary"
+    },
+    {
+      "evidence": {},
+      "group": "phase6_synthesis_readiness",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "scala_files": 85
+      },
+      "group": "phase6_synthesis_readiness_checks",
+      "hit": true,
+      "name": "rtl_source_scope_present"
+    },
+    {
+      "evidence": {
+        "sim_files": 23
+      },
+      "group": "phase6_synthesis_readiness_checks",
+      "hit": true,
+      "name": "verilator_runtime_scope_present"
+    },
+    {
+      "evidence": {
+        "celviz_tokens": 1124,
+        "dontTouch": 96
+      },
+      "group": "phase6_synthesis_readiness_checks",
+      "hit": true,
+      "name": "debug_observability_hooks_present"
+    },
+    {
+      "evidence": {
+        "ppa_status": "pass"
+      },
+      "group": "phase6_synthesis_readiness_checks",
+      "hit": true,
+      "name": "ppa_proxy_present"
+    },
+    {
+      "evidence": {
+        "make": "/usr/bin/make",
+        "sbt": null,
+        "verilator": "/opt/homebrew/bin/verilator",
+        "yosys": "/opt/homebrew/bin/yosys"
+      },
+      "group": "phase6_synthesis_readiness_checks",
+      "hit": true,
+      "name": "build_tooling_detected"
+    },
+    {
+      "evidence": {
+        "yosys": "/opt/homebrew/bin/yosys"
+      },
+      "group": "phase6_synthesis_readiness_checks",
+      "hit": true,
+      "name": "yosys_status_recorded"
+    },
+    {
+      "evidence": {
+        "name": "no_signoff_overclaim",
+        "pass": true
+      },
+      "group": "phase6_synthesis_readiness_checks",
+      "hit": true,
+      "name": "no_signoff_overclaim"
+    },
+    {
+      "evidence": {},
+      "group": "phase6_yosys_synthesis_probe",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "yosys": "/opt/homebrew/bin/yosys"
+      },
+      "group": "phase6_yosys_synthesis_probe_checks",
+      "hit": true,
+      "name": "yosys_available"
+    },
+    {
+      "evidence": {
+        "dut": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+        "size_bytes": 22598129
+      },
+      "group": "phase6_yosys_synthesis_probe_checks",
+      "hit": true,
+      "name": "dut_verilog_present"
+    },
+    {
+      "evidence": {
+        "error": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v:89: ERROR: syntax error, unexpected TOK_CONSTVAL",
+        "status": "fail"
+      },
+      "group": "phase6_yosys_synthesis_probe_checks",
+      "hit": true,
+      "name": "raw_probe_executed"
+    },
+    {
+      "evidence": {
+        "coverage_prefixes_removed": 97500,
+        "input": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+        "line_count": 253182,
+        "output": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v"
+      },
+      "group": "phase6_yosys_synthesis_probe_checks",
+      "hit": true,
+      "name": "coverage_prefix_sanitizer_executed"
+    },
+    {
+      "evidence": {
+        "error": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v:1042: ERROR: Invalid nesting of always blocks and/or initializations.",
+        "status": "fail"
+      },
+      "group": "phase6_yosys_synthesis_probe_checks",
+      "hit": true,
+      "name": "sanitized_probe_executed"
+    },
+    {
+      "evidence": {
+        "blocker_recorded": true,
+        "stat_metrics": {}
+      },
+      "group": "phase6_yosys_synthesis_probe_checks",
+      "hit": true,
+      "name": "blocker_or_stat_recorded"
+    },
+    {
+      "evidence": {
+        "name": "no_signoff_overclaim",
+        "pass": true
+      },
+      "group": "phase6_yosys_synthesis_probe_checks",
+      "hit": true,
+      "name": "no_signoff_overclaim"
+    },
+    {
+      "evidence": {},
+      "group": "phase7_coalescing_score",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "microop_execution_pass",
+        "pass": true
+      },
+      "group": "phase7_coalescing_score_checks",
+      "hit": true,
+      "name": "microop_execution_pass"
+    },
+    {
+      "evidence": {
+        "name": "all_required_kernels_scored",
+        "pass": true
+      },
+      "group": "phase7_coalescing_score_checks",
+      "hit": true,
+      "name": "all_required_kernels_scored"
+    },
+    {
+      "evidence": {
+        "name": "transactions_reduce_for_all_kernels",
+        "pass": true
+      },
+      "group": "phase7_coalescing_score_checks",
+      "hit": true,
+      "name": "transactions_reduce_for_all_kernels"
+    },
+    {
+      "evidence": {
+        "name": "efficiency_in_range",
+        "pass": true
+      },
+      "group": "phase7_coalescing_score_checks",
+      "hit": true,
+      "name": "efficiency_in_range"
+    },
+    {
+      "evidence": {
+        "name": "aggregate_reduction_positive",
+        "pass": true
+      },
+      "group": "phase7_coalescing_score_checks",
+      "hit": true,
+      "name": "aggregate_reduction_positive"
+    },
+    {
+      "evidence": {
+        "name": "segment_size_recorded",
+        "pass": true
+      },
+      "group": "phase7_coalescing_score_checks",
+      "hit": true,
+      "name": "segment_size_recorded"
+    },
+    {
+      "evidence": {},
+      "group": "phase7_config_sweep",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "input_phase7_reports_pass",
+        "pass": true
+      },
+      "group": "phase7_config_sweep_checks",
+      "hit": true,
+      "name": "input_phase7_reports_pass"
+    },
+    {
+      "evidence": {
+        "name": "synthesis_readiness_available",
+        "pass": true
+      },
+      "group": "phase7_config_sweep_checks",
+      "hit": true,
+      "name": "synthesis_readiness_available"
+    },
+    {
+      "evidence": {
+        "name": "sweep_config_depth",
+        "pass": true
+      },
+      "group": "phase7_config_sweep_checks",
+      "hit": true,
+      "name": "sweep_config_depth"
+    },
+    {
+      "evidence": {
+        "name": "all_kernels_swept",
+        "pass": true
+      },
+      "group": "phase7_config_sweep_checks",
+      "hit": true,
+      "name": "all_kernels_swept"
+    },
+    {
+      "evidence": {
+        "name": "best_config_by_kernel_present",
+        "pass": true
+      },
+      "group": "phase7_config_sweep_checks",
+      "hit": true,
+      "name": "best_config_by_kernel_present"
+    },
+    {
+      "evidence": {
+        "name": "area_normalized_perf_proxy_positive",
+        "pass": true
+      },
+      "group": "phase7_config_sweep_checks",
+      "hit": true,
+      "name": "area_normalized_perf_proxy_positive"
+    },
+    {
+      "evidence": {
+        "name": "global_best_config_present",
+        "pass": true
+      },
+      "group": "phase7_config_sweep_checks",
+      "hit": true,
+      "name": "global_best_config_present"
+    },
+    {
+      "evidence": {
+        "name": "claim_boundary_declared",
+        "pass": true
+      },
+      "group": "phase7_config_sweep_checks",
+      "hit": true,
+      "name": "claim_boundary_declared"
+    },
+    {
+      "evidence": {},
+      "group": "phase7_control_flow_manager",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "input_reports_pass",
+        "pass": true
+      },
+      "group": "phase7_control_flow_manager_checks",
+      "hit": true,
+      "name": "input_reports_pass"
+    },
+    {
+      "evidence": {
+        "name": "all_required_kernels_projected",
+        "pass": true
+      },
+      "group": "phase7_control_flow_manager_checks",
+      "hit": true,
+      "name": "all_required_kernels_projected"
+    },
+    {
+      "evidence": {
+        "name": "predicate_and_cfg_evidence_present",
+        "pass": true
+      },
+      "group": "phase7_control_flow_manager_checks",
+      "hit": true,
+      "name": "predicate_and_cfg_evidence_present"
+    },
+    {
+      "evidence": {
+        "name": "active_mask_evidence_present",
+        "pass": true
+      },
+      "group": "phase7_control_flow_manager_checks",
+      "hit": true,
+      "name": "active_mask_evidence_present"
+    },
+    {
+      "evidence": {
+        "name": "reconvergence_evidence_present",
+        "pass": true
+      },
+      "group": "phase7_control_flow_manager_checks",
+      "hit": true,
+      "name": "reconvergence_evidence_present"
+    },
+    {
+      "evidence": {
+        "name": "dynamic_uop_reduction_positive_for_loop_kernels",
+        "pass": true
+      },
+      "group": "phase7_control_flow_manager_checks",
+      "hit": true,
+      "name": "dynamic_uop_reduction_positive_for_loop_kernels"
+    },
+    {
+      "evidence": {
+        "name": "control_uop_vocabulary_projected",
+        "pass": true
+      },
+      "group": "phase7_control_flow_manager_checks",
+      "hit": true,
+      "name": "control_uop_vocabulary_projected"
+    },
+    {
+      "evidence": {
+        "name": "aggregate_control_uop_reduction_positive",
+        "pass": true
+      },
+      "group": "phase7_control_flow_manager_checks",
+      "hit": true,
+      "name": "aggregate_control_uop_reduction_positive"
+    },
+    {
+      "evidence": {},
+      "group": "phase7_memory_streaming",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "input_reports_pass",
+        "pass": true
+      },
+      "group": "phase7_memory_streaming_checks",
+      "hit": true,
+      "name": "input_reports_pass"
+    },
+    {
+      "evidence": {
+        "name": "all_required_kernels_projected",
+        "pass": true
+      },
+      "group": "phase7_memory_streaming_checks",
+      "hit": true,
+      "name": "all_required_kernels_projected"
+    },
+    {
+      "evidence": {
+        "name": "stream_windows_present",
+        "pass": true
+      },
+      "group": "phase7_memory_streaming_checks",
+      "hit": true,
+      "name": "stream_windows_present"
+    },
+    {
+      "evidence": {
+        "name": "outstanding_slots_present",
+        "pass": true
+      },
+      "group": "phase7_memory_streaming_checks",
+      "hit": true,
+      "name": "outstanding_slots_present"
+    },
+    {
+      "evidence": {
+        "name": "alu_overlap_positive",
+        "pass": true
+      },
+      "group": "phase7_memory_streaming_checks",
+      "hit": true,
+      "name": "alu_overlap_positive"
+    },
+    {
+      "evidence": {
+        "name": "projected_scoreboard_wait_reduction_positive",
+        "pass": true
+      },
+      "group": "phase7_memory_streaming_checks",
+      "hit": true,
+      "name": "projected_scoreboard_wait_reduction_positive"
+    },
+    {
+      "evidence": {
+        "name": "stream_uop_vocabulary_projected",
+        "pass": true
+      },
+      "group": "phase7_memory_streaming_checks",
+      "hit": true,
+      "name": "stream_uop_vocabulary_projected"
+    },
+    {
+      "evidence": {},
+      "group": "phase7_register_occupancy",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "input_reports_pass",
+        "pass": true
+      },
+      "group": "phase7_register_occupancy_checks",
+      "hit": true,
+      "name": "input_reports_pass"
+    },
+    {
+      "evidence": {
+        "name": "all_required_kernels_modeled",
+        "pass": true
+      },
+      "group": "phase7_register_occupancy_checks",
+      "hit": true,
+      "name": "all_required_kernels_modeled"
+    },
+    {
+      "evidence": {
+        "name": "peak_vregs_peak_sregs_present",
+        "pass": true
+      },
+      "group": "phase7_register_occupancy_checks",
+      "hit": true,
+      "name": "peak_vregs_peak_sregs_present"
+    },
+    {
+      "evidence": {
+        "name": "occupancy_limit_reason_present",
+        "pass": true
+      },
+      "group": "phase7_register_occupancy_checks",
+      "hit": true,
+      "name": "occupancy_limit_reason_present"
+    },
+    {
+      "evidence": {
+        "name": "bank_conflict_proxy_present",
+        "pass": true
+      },
+      "group": "phase7_register_occupancy_checks",
+      "hit": true,
+      "name": "bank_conflict_proxy_present"
+    },
+    {
+      "evidence": {
+        "name": "active_wavefronts_positive",
+        "pass": true
+      },
+      "group": "phase7_register_occupancy_checks",
+      "hit": true,
+      "name": "active_wavefronts_positive"
+    },
+    {
+      "evidence": {
+        "name": "config_sweep_bank_link_present",
+        "pass": true
+      },
+      "group": "phase7_register_occupancy_checks",
+      "hit": true,
+      "name": "config_sweep_bank_link_present"
+    },
+    {
+      "evidence": {
+        "name": "claim_boundary_declared",
+        "pass": true
+      },
+      "group": "phase7_register_occupancy_checks",
+      "hit": true,
+      "name": "claim_boundary_declared"
+    },
+    {
+      "evidence": {},
+      "group": "phase7_warp_collectives",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "input_reports_pass",
+        "pass": true
+      },
+      "group": "phase7_warp_collectives_checks",
+      "hit": true,
+      "name": "input_reports_pass"
+    },
+    {
+      "evidence": {
+        "name": "all_required_kernels_projected",
+        "pass": true
+      },
+      "group": "phase7_warp_collectives_checks",
+      "hit": true,
+      "name": "all_required_kernels_projected"
+    },
+    {
+      "evidence": {
+        "name": "software_sequence_vs_hardware_projection",
+        "pass": true
+      },
+      "group": "phase7_warp_collectives_checks",
+      "hit": true,
+      "name": "software_sequence_vs_hardware_projection"
+    },
+    {
+      "evidence": {
+        "name": "collective_vocabulary_projected",
+        "pass": true
+      },
+      "group": "phase7_warp_collectives_checks",
+      "hit": true,
+      "name": "collective_vocabulary_projected"
+    },
+    {
+      "evidence": {
+        "name": "active_mask_or_sync_evidence_present",
+        "pass": true
+      },
+      "group": "phase7_warp_collectives_checks",
+      "hit": true,
+      "name": "active_mask_or_sync_evidence_present"
+    },
+    {
+      "evidence": {
+        "name": "gemm_conv_image_collectives_present",
+        "pass": true
+      },
+      "group": "phase7_warp_collectives_checks",
+      "hit": true,
+      "name": "gemm_conv_image_collectives_present"
+    },
+    {
+      "evidence": {
+        "name": "register_bank_effect_projected",
+        "pass": true
+      },
+      "group": "phase7_warp_collectives_checks",
+      "hit": true,
+      "name": "register_bank_effect_projected"
+    },
+    {
+      "evidence": {
+        "name": "claim_boundary_declared",
+        "pass": true
+      },
+      "group": "phase7_warp_collectives_checks",
+      "hit": true,
+      "name": "claim_boundary_declared"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_conformance_gap_map",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {},
+      "group": "phase8_claim_closure",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {},
+      "group": "phase8_claim_closure_checks",
+      "hit": true,
+      "name": "all_lanes_status_pass"
+    },
+    {
+      "evidence": {},
+      "group": "phase8_claim_closure_checks",
+      "hit": true,
+      "name": "six_known_non_complete_lanes_present"
+    },
+    {
+      "evidence": {},
+      "group": "phase8_claim_closure_checks",
+      "hit": true,
+      "name": "work_packages_present"
+    },
+    {
+      "evidence": {},
+      "group": "phase8_claim_closure_checks",
+      "hit": true,
+      "name": "clean_room_scope_has_all_boundaries"
+    },
+    {
+      "evidence": {},
+      "group": "phase8_work_package_artifacts",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/opencl_negative_tests.json"
+      },
+      "group": "phase8_work_package_artifacts_checks",
+      "hit": true,
+      "name": "opencl_negative_tests_status_pass"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/drm_uapi_contract.json"
+      },
+      "group": "phase8_work_package_artifacts_checks",
+      "hit": true,
+      "name": "drm_uapi_contract_status_pass"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/structural_coverage_uplift_plan.json"
+      },
+      "group": "phase8_work_package_artifacts_checks",
+      "hit": true,
+      "name": "structural_coverage_uplift_plan_status_pass"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/signoff_requirements.json"
+      },
+      "group": "phase8_work_package_artifacts_checks",
+      "hit": true,
+      "name": "signoff_requirements_status_pass"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/phase7_overclaim_scan.json"
+      },
+      "group": "phase8_work_package_artifacts_checks",
+      "hit": true,
+      "name": "phase7_overclaim_scan_status_pass"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/vivante_clean_room_boundary_checklist.json"
+      },
+      "group": "phase8_work_package_artifacts_checks",
+      "hit": true,
+      "name": "vivante_clean_room_boundary_checklist_status_pass"
+    },
+    {
+      "evidence": {
+        "artifact_count": 6
+      },
+      "group": "phase8_work_package_artifacts_checks",
+      "hit": true,
+      "name": "all_work_package_artifacts_present"
+    },
+    {
+      "evidence": {},
+      "group": "celviz_eda_methodology",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "manifest_schema",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "manifest_schema"
+    },
+    {
+      "evidence": {
+        "name": "doc_exists_nonempty",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "doc_exists_nonempty"
+    },
+    {
+      "evidence": {
+        "name": "all_required_sections_present",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "all_required_sections_present"
+    },
+    {
+      "evidence": {
+        "name": "gate_templates_present",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "gate_templates_present"
+    },
+    {
+      "evidence": {
+        "name": "manifest_template_gate_alignment",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "manifest_template_gate_alignment"
+    },
+    {
+      "evidence": {
+        "name": "claim_boundaries_present",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "claim_boundaries_present"
+    },
+    {
+      "evidence": {
+        "name": "methodology_assets_exist",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "methodology_assets_exist"
+    },
+    {
+      "evidence": {
+        "name": "acceptance_template_schema",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "acceptance_template_schema"
+    },
+    {
+      "evidence": {
+        "name": "acceptance_template_phase_depth",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "acceptance_template_phase_depth"
+    },
+    {
+      "evidence": {
+        "name": "acceptance_template_gate_depth",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "acceptance_template_gate_depth"
+    },
+    {
+      "evidence": {
+        "name": "bootstrap_tool_exists",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "bootstrap_tool_exists"
+    },
+    {
+      "evidence": {
+        "name": "bootstrap_command_pass",
+        "pass": true,
+        "stderr": "",
+        "stdout": "celviz_eda_methodology_bootstrap: pass ip_slug=celviz_methodology_selftest_gpgpu_ip phases=17 gates=20 output=artifacts/celviz-methodology/bootstrap_acceptance_matrix.json"
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "bootstrap_command_pass"
+    },
+    {
+      "evidence": {
+        "name": "bootstrap_output_schema",
+        "pass": true,
+        "schema": "celviz.gpgpu.acceptance_matrix.bootstrap.v1"
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "bootstrap_output_schema"
+    },
+    {
+      "evidence": {
+        "name": "bootstrap_output_phase_depth",
+        "pass": true,
+        "phase_count": 17
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "bootstrap_output_phase_depth"
+    },
+    {
+      "evidence": {
+        "bootstrap_gate_count": 20,
+        "name": "bootstrap_output_gate_alignment",
+        "pass": true,
+        "template_gate_count": 20
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "bootstrap_output_gate_alignment"
+    },
+    {
+      "evidence": {
+        "name": "bootstrap_claim_boundary_present",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "bootstrap_claim_boundary_present"
+    },
+    {
+      "evidence": {
+        "name": "functional_structural_boundary_written",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "functional_structural_boundary_written"
+    },
+    {
+      "evidence": {
+        "name": "microop_execution_method_written",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "microop_execution_method_written"
+    },
+    {
+      "evidence": {
+        "name": "worker_decomposition_written",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "worker_decomposition_written"
+    },
+    {
+      "evidence": {
+        "name": "no_overclaim_wording_written",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "no_overclaim_wording_written"
+    },
+    {
+      "evidence": {
+        "name": "template_library_written",
+        "pass": true
+      },
+      "group": "celviz_eda_methodology_checks",
+      "hit": true,
+      "name": "template_library_written"
+    },
+    {
+      "evidence": {
+        "schema": "celviz.gpgpu.phase8_work_packages.v1"
+      },
+      "group": "phase8_work_packages",
+      "hit": true,
+      "name": "schema"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "phase8_work_packages",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "package_count": 6
+      },
+      "group": "phase8_work_packages",
+      "hit": true,
+      "name": "package_count"
+    },
+    {
+      "evidence": {
+        "artifact_count": 6
+      },
+      "group": "phase8_work_package_artifacts",
+      "hit": true,
+      "name": "artifact_path_count"
+    },
+    {
+      "evidence": {
+        "schema": "celviz.gpgpu.acceptance_matrix.bootstrap.v1"
+      },
+      "group": "celviz_eda_methodology_bootstrap",
+      "hit": true,
+      "name": "schema"
+    },
+    {
+      "evidence": {
+        "phase_count": 17
+      },
+      "group": "celviz_eda_methodology_bootstrap",
+      "hit": true,
+      "name": "phase_depth"
+    },
+    {
+      "evidence": {
+        "gate_count": 20
+      },
+      "group": "celviz_eda_methodology_bootstrap",
+      "hit": true,
+      "name": "gate_depth"
+    },
+    {
+      "evidence": {
+        "bootstrap_gate_ids": [
+          "acceptance_matrix_json_check",
+          "boundary_check",
+          "compiler_ir_check",
+          "cross_layer_integration_check",
+          "driver_submission_check",
+          "full_acceptance_check",
+          "functional_coverage_100_check",
+          "kernel_lowering_check",
+          "memory_trace_integration_check",
+          "methodology_bootstrap_check",
+          "microop_execution_check",
+          "negative_contract_check",
+          "oracle_workload_check",
+          "performance_projection_check",
+          "rtl_observability_check",
+          "runtime_abi_check",
+          "source_hook_check",
+          "synthesis_readiness_check",
+          "verilator_supplemental_check",
+          "yosys_probe_check"
+        ]
+      },
+      "group": "celviz_eda_methodology_bootstrap_gates",
+      "hit": true,
+      "name": "acceptance_matrix_json_check"
+    },
+    {
+      "evidence": {
+        "bootstrap_gate_ids": [
+          "acceptance_matrix_json_check",
+          "boundary_check",
+          "compiler_ir_check",
+          "cross_layer_integration_check",
+          "driver_submission_check",
+          "full_acceptance_check",
+          "functional_coverage_100_check",
+          "kernel_lowering_check",
+          "memory_trace_integration_check",
+          "methodology_bootstrap_check",
+          "microop_execution_check",
+          "negative_contract_check",
+          "oracle_workload_check",
+          "performance_projection_check",
+          "rtl_observability_check",
+          "runtime_abi_check",
+          "source_hook_check",
+          "synthesis_readiness_check",
+          "verilator_supplemental_check",
+          "yosys_probe_check"
+        ]
+      },
+      "group": "celviz_eda_methodology_bootstrap_gates",
+      "hit": true,
+      "name": "boundary_check"
+    },
+    {
+      "evidence": {
+        "bootstrap_gate_ids": [
+          "acceptance_matrix_json_check",
+          "boundary_check",
+          "compiler_ir_check",
+          "cross_layer_integration_check",
+          "driver_submission_check",
+          "full_acceptance_check",
+          "functional_coverage_100_check",
+          "kernel_lowering_check",
+          "memory_trace_integration_check",
+          "methodology_bootstrap_check",
+          "microop_execution_check",
+          "negative_contract_check",
+          "oracle_workload_check",
+          "performance_projection_check",
+          "rtl_observability_check",
+          "runtime_abi_check",
+          "source_hook_check",
+          "synthesis_readiness_check",
+          "verilator_supplemental_check",
+          "yosys_probe_check"
+        ]
+      },
+      "group": "celviz_eda_methodology_bootstrap_gates",
+      "hit": true,
+      "name": "functional_coverage_100_check"
+    },
+    {
+      "evidence": {
+        "bootstrap_gate_ids": [
+          "acceptance_matrix_json_check",
+          "boundary_check",
+          "compiler_ir_check",
+          "cross_layer_integration_check",
+          "driver_submission_check",
+          "full_acceptance_check",
+          "functional_coverage_100_check",
+          "kernel_lowering_check",
+          "memory_trace_integration_check",
+          "methodology_bootstrap_check",
+          "microop_execution_check",
+          "negative_contract_check",
+          "oracle_workload_check",
+          "performance_projection_check",
+          "rtl_observability_check",
+          "runtime_abi_check",
+          "source_hook_check",
+          "synthesis_readiness_check",
+          "verilator_supplemental_check",
+          "yosys_probe_check"
+        ]
+      },
+      "group": "celviz_eda_methodology_bootstrap_gates",
+      "hit": true,
+      "name": "methodology_bootstrap_check"
+    },
+    {
+      "evidence": {
+        "bootstrap_gate_ids": [
+          "acceptance_matrix_json_check",
+          "boundary_check",
+          "compiler_ir_check",
+          "cross_layer_integration_check",
+          "driver_submission_check",
+          "full_acceptance_check",
+          "functional_coverage_100_check",
+          "kernel_lowering_check",
+          "memory_trace_integration_check",
+          "methodology_bootstrap_check",
+          "microop_execution_check",
+          "negative_contract_check",
+          "oracle_workload_check",
+          "performance_projection_check",
+          "rtl_observability_check",
+          "runtime_abi_check",
+          "source_hook_check",
+          "synthesis_readiness_check",
+          "verilator_supplemental_check",
+          "yosys_probe_check"
+        ]
+      },
+      "group": "celviz_eda_methodology_bootstrap_gates",
+      "hit": true,
+      "name": "microop_execution_check"
+    },
+    {
+      "evidence": {
+        "bootstrap_gate_ids": [
+          "acceptance_matrix_json_check",
+          "boundary_check",
+          "compiler_ir_check",
+          "cross_layer_integration_check",
+          "driver_submission_check",
+          "full_acceptance_check",
+          "functional_coverage_100_check",
+          "kernel_lowering_check",
+          "memory_trace_integration_check",
+          "methodology_bootstrap_check",
+          "microop_execution_check",
+          "negative_contract_check",
+          "oracle_workload_check",
+          "performance_projection_check",
+          "rtl_observability_check",
+          "runtime_abi_check",
+          "source_hook_check",
+          "synthesis_readiness_check",
+          "verilator_supplemental_check",
+          "yosys_probe_check"
+        ]
+      },
+      "group": "celviz_eda_methodology_bootstrap_gates",
+      "hit": true,
+      "name": "runtime_abi_check"
+    },
+    {
+      "evidence": {
+        "bootstrap_gate_ids": [
+          "acceptance_matrix_json_check",
+          "boundary_check",
+          "compiler_ir_check",
+          "cross_layer_integration_check",
+          "driver_submission_check",
+          "full_acceptance_check",
+          "functional_coverage_100_check",
+          "kernel_lowering_check",
+          "memory_trace_integration_check",
+          "methodology_bootstrap_check",
+          "microop_execution_check",
+          "negative_contract_check",
+          "oracle_workload_check",
+          "performance_projection_check",
+          "rtl_observability_check",
+          "runtime_abi_check",
+          "source_hook_check",
+          "synthesis_readiness_check",
+          "verilator_supplemental_check",
+          "yosys_probe_check"
+        ]
+      },
+      "group": "celviz_eda_methodology_bootstrap_gates",
+      "hit": true,
+      "name": "source_hook_check"
+    },
+    {
+      "evidence": {
+        "bootstrap_gate_ids": [
+          "acceptance_matrix_json_check",
+          "boundary_check",
+          "compiler_ir_check",
+          "cross_layer_integration_check",
+          "driver_submission_check",
+          "full_acceptance_check",
+          "functional_coverage_100_check",
+          "kernel_lowering_check",
+          "memory_trace_integration_check",
+          "methodology_bootstrap_check",
+          "microop_execution_check",
+          "negative_contract_check",
+          "oracle_workload_check",
+          "performance_projection_check",
+          "rtl_observability_check",
+          "runtime_abi_check",
+          "source_hook_check",
+          "synthesis_readiness_check",
+          "verilator_supplemental_check",
+          "yosys_probe_check"
+        ]
+      },
+      "group": "celviz_eda_methodology_bootstrap_gates",
+      "hit": true,
+      "name": "synthesis_readiness_check"
+    },
+    {
+      "evidence": {
+        "allowed": [
+          "clean-room proxy evidence",
+          "functional/acceptance bins",
+          "supplemental structural observations",
+          "synthesis readiness proxy"
+        ],
+        "forbidden_without_evidence": [
+          "proprietary vendor compatibility",
+          "official API conformance",
+          "RTL structural coverage closure",
+          "target-library synthesis signoff",
+          "timing/power/physical/silicon signoff"
+        ]
+      },
+      "group": "celviz_eda_methodology_bootstrap",
+      "hit": true,
+      "name": "claim_boundaries"
+    }
+  ],
+  "clean_room_scope": "clean-room functional and acceptance verification coverage for the Ventus-based Celviz GPGPU IP proxy only; no proprietary Vivante compatibility, proprietary command stream/driver/firmware/SDK claim, official OpenCL/OpenCV conformance claim, RTL timing closure, PPA, safety certification, silicon signoff, or production-readiness claim",
+  "coverage_kind": "functional_acceptance_verification_bins",
+  "coverage_percent": 100.0,
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "groups": {
+    "artifacts": {
+      "coverage_percent": 100.0,
+      "hit": 44,
+      "missed_bins": [],
+      "total": 44
+    },
+    "celviz_eda_methodology": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "celviz_eda_methodology_bootstrap": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "celviz_eda_methodology_bootstrap_gates": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
+    },
+    "celviz_eda_methodology_checks": {
+      "coverage_percent": 100.0,
+      "hit": 21,
+      "missed_bins": [],
+      "total": 21
+    },
+    "e1_expected_errors": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "e1_queue_lifecycle": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "e1_runtime_command_stream": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
+    },
+    "e3_native_runtime": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "e3_native_runtime_features": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "e4_buffer_bindings": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "e4_compute_model": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "e4_demo": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "e4_kernel_golden": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "e4_model_scaling": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "e4_queue_trace": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "e4_tier_scaling": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "e5_control_plane": {
+      "coverage_percent": 100.0,
+      "hit": 12,
+      "missed_bins": [],
+      "total": 12
+    },
+    "e5_negative_acceptance_checks": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "e5_negative_boundary": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "e6_integration": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "e6_integration_checks": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "e7_acceptance_log": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "e8_verilator_functional": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "e8_verilator_functional_bins": {
+      "coverage_percent": 100.0,
+      "hit": 15,
+      "missed_bins": [],
+      "total": 15
+    },
+    "kernel_lowering": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "kernel_lowering_checks": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "matrix": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "matrix_gates": {
+      "coverage_percent": 100.0,
+      "hit": 35,
+      "missed_bins": [],
+      "total": 35
+    },
+    "microop_execution": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "microop_execution_checks": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "microop_execution_kernels": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "opencl_conformance_gap_map": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase2_integration": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase2_integration_checks": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "phase3_cross_layer": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase3_cross_layer_checks": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "phase4_lowering_integration": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase4_lowering_integration_checks": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "phase5_microop_integration": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase5_microop_integration_checks": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "phase6_compiler_ir": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase6_compiler_ir_checks": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "phase6_driver_submission": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase6_driver_submission_checks": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
+    },
+    "phase6_memory_trace": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase6_memory_trace_checks": {
+      "coverage_percent": 100.0,
+      "hit": 9,
+      "missed_bins": [],
+      "total": 9
+    },
+    "phase6_synthesis_readiness": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase6_synthesis_readiness_checks": {
+      "coverage_percent": 100.0,
+      "hit": 7,
+      "missed_bins": [],
+      "total": 7
+    },
+    "phase6_yosys_synthesis_probe": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase6_yosys_synthesis_probe_checks": {
+      "coverage_percent": 100.0,
+      "hit": 7,
+      "missed_bins": [],
+      "total": 7
+    },
+    "phase7_coalescing_score": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase7_coalescing_score_checks": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "phase7_config_sweep": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase7_config_sweep_checks": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
+    },
+    "phase7_control_flow_manager": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase7_control_flow_manager_checks": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
+    },
+    "phase7_memory_streaming": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase7_memory_streaming_checks": {
+      "coverage_percent": 100.0,
+      "hit": 7,
+      "missed_bins": [],
+      "total": 7
+    },
+    "phase7_register_occupancy": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase7_register_occupancy_checks": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
+    },
+    "phase7_warp_collectives": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase7_warp_collectives_checks": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
+    },
+    "phase8_claim_closure": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase8_claim_closure_checks": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "phase8_work_package_artifacts": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "phase8_work_package_artifacts_checks": {
+      "coverage_percent": 100.0,
+      "hit": 7,
+      "missed_bins": [],
+      "total": 7
+    },
+    "phase8_work_packages": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "verification_harness": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    }
+  },
+  "hit_bins": 370,
+  "missed_bins": [],
+  "rtl_structural_coverage_observation": {
+    "lcov_info": {
+      "branch": {
+        "found": 2134626,
+        "hit": 614495,
+        "percent": 28.787,
+        "status": "available"
+      },
+      "line": {
+        "found": 97500,
+        "hit": 77108,
+        "percent": 79.085,
+        "status": "available"
+      },
+      "toggle": {
+        "found": null,
+        "hit": null,
+        "percent": null,
+        "reason": "toggle counts were not present in coverage info",
+        "status": "unavailable"
+      }
+    },
+    "line_metrics": {
+      "found": 97500,
+      "hit": 77108,
+      "percent": 79.085,
+      "status": "available"
+    },
+    "source_metrics": {
+      "found": null,
+      "hit": null,
+      "percent": null,
+      "reason": "LCOV FNF/FNH function counts were not present",
+      "status": "unavailable"
+    },
+    "status": "reported_separately_not_part_of_100_percent_functional_gate",
+    "toggle_metrics": {
+      "found": null,
+      "hit": null,
+      "percent": null,
+      "reason": "toggle counts were not present in coverage info",
+      "status": "unavailable"
+    }
+  },
+  "schema": "celviz.gpgpu.verification_coverage_100.v1",
+  "status": "pass",
+  "total_bins": 370
+}

@@ -1,0 +1,61 @@
+{
+  "context_id": 7,
+  "errors": 0,
+  "pending": 0,
+  "priority": 3,
+  "queue_id": 0,
+  "retired": 4,
+  "ring_base": "0x10000000",
+  "ring_size_bytes": 4096,
+  "states": [
+    {
+      "kernel": "vector_add",
+      "pending_after": 1,
+      "sequence": 1,
+      "state": "submitted"
+    },
+    {
+      "kernel": "vector_add",
+      "pending_after": 0,
+      "sequence": 1,
+      "state": "retired"
+    },
+    {
+      "kernel": "gemm",
+      "pending_after": 1,
+      "sequence": 2,
+      "state": "submitted"
+    },
+    {
+      "kernel": "gemm",
+      "pending_after": 0,
+      "sequence": 2,
+      "state": "retired"
+    },
+    {
+      "kernel": "conv2d",
+      "pending_after": 1,
+      "sequence": 3,
+      "state": "submitted"
+    },
+    {
+      "kernel": "conv2d",
+      "pending_after": 0,
+      "sequence": 3,
+      "state": "retired"
+    },
+    {
+      "kernel": "image_filter",
+      "pending_after": 1,
+      "sequence": 4,
+      "state": "submitted"
+    },
+    {
+      "kernel": "image_filter",
+      "pending_after": 0,
+      "sequence": 4,
+      "state": "retired"
+    }
+  ],
+  "submitted": 4
+}

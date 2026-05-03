@@ -1,0 +1,25 @@
+Celviz GPGPU IP S1 compute golden model run
+model=standard-library compute golden model
+orientation=GPGPU compute workloads, not 3D graphics workloads
+artifact_root=artifacts/rank_01_vivante_3d_gpgpu_ip/model
+outputs=artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs
+public_tier_source=https://www.verisilicon.com/cn/IPPortfolio/Vivante3DGPGPUIP
+fp32_path=implemented
+fp16_path=executed_proxy_for_vector_add_gemm_and_convolution
+simt_execution=artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/simt_execution.json
+simt_execution_status=pass
+simt_execution_features=wavefront_scheduler,register_file,alu,lsu,scoreboard,barrier
+workload[0]=vector_add precision=FP32 fp32_ops=32 fp16_status=executed_proxy bytes_read=256 bytes_written=128 pass=True
+workload[1]=gemm_proxy precision=FP32 fp32_ops=240 fp16_status=executed_proxy bytes_read=216 bytes_written=80 pass=True
+workload[2]=convolution_proxy precision=FP32 fp32_ops=450 fp16_status=executed_proxy bytes_read=232 bytes_written=100 pass=True
+workload[3]=image_filter precision=u8 fp32_ops=0 fp16_status=none bytes_read=64 bytes_written=64 pass=True
+workload[4]=memory_copy precision=byte fp32_ops=0 fp16_status=none bytes_read=256 bytes_written=256 pass=True
+shader_unit_scaling_tiers=CC8000L,CC8000,CC8200,CC8400,CC8400-MP2,CC8400-MP4,CC8800,CC8800-MP2,CC8800-MP4
+total_fp32_ops=722
+total_integer_ops=576
+total_fp16_proxy_ops=722
+total_bytes_touched=1652
+metrics=artifacts/rank_01_vivante_3d_gpgpu_ip/model/metrics.json
+metrics_sha256=2bbc92b1625398b85b87c6f275dcb7b34e586d31e060c4c7a37d0cf3fd75c0c5
+hashes=artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/hashes.txt
+status=pass

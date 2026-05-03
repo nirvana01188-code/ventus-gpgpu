@@ -1,0 +1,562 @@
+{
+  "checks": [
+    {
+      "name": "input_reports_pass",
+      "pass": true
+    },
+    {
+      "name": "all_required_kernels_modeled",
+      "pass": true
+    },
+    {
+      "name": "peak_vregs_peak_sregs_present",
+      "pass": true
+    },
+    {
+      "name": "occupancy_limit_reason_present",
+      "pass": true
+    },
+    {
+      "name": "bank_conflict_proxy_present",
+      "pass": true
+    },
+    {
+      "name": "active_wavefronts_positive",
+      "pass": true
+    },
+    {
+      "name": "config_sweep_bank_link_present",
+      "pass": true
+    },
+    {
+      "name": "claim_boundary_declared",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-7 register occupancy and banking proxy derived from Celviz compiler IR, lowering metadata, SIMT evidence, and config sweep only; not a physical register-file implementation, not timing closure, not place-and-route, and not silicon signoff",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "kernels": [
+    {
+      "active_wavefronts_proxy": 4,
+      "bank_conflict_proxy": 0.3125,
+      "bank_limited_wavefronts": 4,
+      "config_id": "balanced_16",
+      "issue_pressure_proxy": 3.0,
+      "kernel": "vector_add",
+      "live_register_timeline_head": [
+        {
+          "live_pregs": 0,
+          "live_vregs": 0,
+          "opcode": "uop_kernel_prologue",
+          "pc": 0
+        },
+        {
+          "live_pregs": 0,
+          "live_vregs": 1,
+          "opcode": "uop_read_workitem_id",
+          "pc": 1
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 1,
+          "opcode": "uop_predicate_bounds",
+          "pc": 2
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 2,
+          "opcode": "uop_read_scalar_arg",
+          "pc": 3
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 2,
+          "opcode": "uop_address_calc",
+          "pc": 4
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 3,
+          "opcode": "uop_global_load",
+          "pc": 5
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 3,
+          "opcode": "uop_address_calc",
+          "pc": 6
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 4,
+          "opcode": "uop_global_load",
+          "pc": 7
+        }
+      ],
+      "live_register_timeline_tail": [
+        {
+          "live_pregs": 1,
+          "live_vregs": 3,
+          "opcode": "uop_global_load",
+          "pc": 5
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 3,
+          "opcode": "uop_address_calc",
+          "pc": 6
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 4,
+          "opcode": "uop_global_load",
+          "pc": 7
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 4,
+          "opcode": "uop_address_calc",
+          "pc": 8
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 5,
+          "opcode": "uop_global_load",
+          "pc": 9
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 6,
+          "opcode": "uop_alu_add",
+          "pc": 10
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 6,
+          "opcode": "uop_global_store",
+          "pc": 11
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 6,
+          "opcode": "uop_write_completion",
+          "pc": 12
+        }
+      ],
+      "metadata_sgpr_usage": 16,
+      "metadata_vgpr_usage": 24,
+      "model": "deterministic proxy from lowering sgpr/vgpr metadata, compiler IR live-register growth, SIMT counters, and config-sweep register banks",
+      "occupancy_limit_reason": "sgpr",
+      "occupancy_ratio_proxy": 0.5,
+      "peak_ir_pregs": 1,
+      "peak_ir_vregs": 6,
+      "peak_sregs": 16,
+      "peak_vregs": 24,
+      "register_file_banks": 8,
+      "required_wavefronts": 32,
+      "sgpr_budget": 64,
+      "sgpr_limited_wavefronts": 4,
+      "vgpr_budget": 256,
+      "vgpr_limited_wavefronts": 10,
+      "warp_slots": 8,
+      "wavefront_size": 32,
+      "work_items": 1024,
+      "workload": "vector_add"
+    },
+    {
+      "active_wavefronts_proxy": 2,
+      "bank_conflict_proxy": 0.21875,
+      "bank_limited_wavefronts": 8,
+      "config_id": "wide_issue_32",
+      "issue_pressure_proxy": 11.875,
+      "kernel": "gemm",
+      "live_register_timeline_head": [
+        {
+          "live_pregs": 0,
+          "live_vregs": 0,
+          "opcode": "uop_kernel_prologue",
+          "pc": 0
+        },
+        {
+          "live_pregs": 0,
+          "live_vregs": 1,
+          "opcode": "uop_read_workitem_id",
+          "pc": 1
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 1,
+          "opcode": "uop_predicate_bounds",
+          "pc": 2
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 2,
+          "opcode": "uop_read_scalar_arg",
+          "pc": 3
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 3,
+          "opcode": "uop_read_scalar_arg",
+          "pc": 4
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 4,
+          "opcode": "uop_read_scalar_arg",
+          "pc": 5
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 4,
+          "opcode": "uop_address_calc",
+          "pc": 6
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 5,
+          "opcode": "uop_global_load",
+          "pc": 7
+        }
+      ],
+      "live_register_timeline_tail": [
+        {
+          "live_pregs": 1,
+          "live_vregs": 6,
+          "opcode": "uop_address_calc",
+          "pc": 10
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 7,
+          "opcode": "uop_global_load",
+          "pc": 11
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 7,
+          "opcode": "uop_loop_begin",
+          "pc": 12
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 8,
+          "opcode": "uop_alu_mad",
+          "pc": 13
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 8,
+          "opcode": "uop_loop_end",
+          "pc": 14
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 8,
+          "opcode": "uop_barrier",
+          "pc": 15
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 8,
+          "opcode": "uop_global_store",
+          "pc": 16
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 8,
+          "opcode": "uop_write_completion",
+          "pc": 17
+        }
+      ],
+      "metadata_sgpr_usage": 24,
+      "metadata_vgpr_usage": 32,
+      "model": "deterministic proxy from lowering sgpr/vgpr metadata, compiler IR live-register growth, SIMT counters, and config-sweep register banks",
+      "occupancy_limit_reason": "sgpr",
+      "occupancy_ratio_proxy": 0.166667,
+      "peak_ir_pregs": 2,
+      "peak_ir_vregs": 8,
+      "peak_sregs": 24,
+      "peak_vregs": 32,
+      "register_file_banks": 16,
+      "required_wavefronts": 128,
+      "sgpr_budget": 64,
+      "sgpr_limited_wavefronts": 2,
+      "vgpr_budget": 256,
+      "vgpr_limited_wavefronts": 8,
+      "warp_slots": 12,
+      "wavefront_size": 32,
+      "work_items": 4096,
+      "workload": "gemm_proxy"
+    },
+    {
+      "active_wavefronts_proxy": 2,
+      "bank_conflict_proxy": 0.234375,
+      "bank_limited_wavefronts": 8,
+      "config_id": "wide_issue_32",
+      "issue_pressure_proxy": 21.875,
+      "kernel": "conv2d",
+      "live_register_timeline_head": [
+        {
+          "live_pregs": 0,
+          "live_vregs": 0,
+          "opcode": "uop_kernel_prologue",
+          "pc": 0
+        },
+        {
+          "live_pregs": 0,
+          "live_vregs": 1,
+          "opcode": "uop_read_workitem_id",
+          "pc": 1
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 1,
+          "opcode": "uop_predicate_bounds",
+          "pc": 2
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 2,
+          "opcode": "uop_read_scalar_arg",
+          "pc": 3
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 3,
+          "opcode": "uop_read_scalar_arg",
+          "pc": 4
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 3,
+          "opcode": "uop_address_calc",
+          "pc": 5
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 4,
+          "opcode": "uop_global_load",
+          "pc": 6
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 4,
+          "opcode": "uop_address_calc",
+          "pc": 7
+        }
+      ],
+      "live_register_timeline_tail": [
+        {
+          "live_pregs": 1,
+          "live_vregs": 5,
+          "opcode": "uop_address_calc",
+          "pc": 9
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 6,
+          "opcode": "uop_global_load",
+          "pc": 10
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 6,
+          "opcode": "uop_loop_begin",
+          "pc": 11
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 7,
+          "opcode": "uop_alu_mad",
+          "pc": 12
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 7,
+          "opcode": "uop_loop_end",
+          "pc": 13
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 7,
+          "opcode": "uop_barrier",
+          "pc": 14
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 7,
+          "opcode": "uop_global_store",
+          "pc": 15
+        },
+        {
+          "live_pregs": 2,
+          "live_vregs": 7,
+          "opcode": "uop_write_completion",
+          "pc": 16
+        }
+      ],
+      "metadata_sgpr_usage": 24,
+      "metadata_vgpr_usage": 36,
+      "model": "deterministic proxy from lowering sgpr/vgpr metadata, compiler IR live-register growth, SIMT counters, and config-sweep register banks",
+      "occupancy_limit_reason": "sgpr",
+      "occupancy_ratio_proxy": 0.166667,
+      "peak_ir_pregs": 2,
+      "peak_ir_vregs": 7,
+      "peak_sregs": 24,
+      "peak_vregs": 36,
+      "register_file_banks": 16,
+      "required_wavefronts": 512,
+      "sgpr_budget": 64,
+      "sgpr_limited_wavefronts": 2,
+      "vgpr_budget": 256,
+      "vgpr_limited_wavefronts": 7,
+      "warp_slots": 12,
+      "wavefront_size": 32,
+      "work_items": 16384,
+      "workload": "convolution_proxy"
+    },
+    {
+      "active_wavefronts_proxy": 3,
+      "bank_conflict_proxy": 0.421875,
+      "bank_limited_wavefronts": 4,
+      "config_id": "balanced_16",
+      "issue_pressure_proxy": 43.0,
+      "kernel": "image_filter",
+      "live_register_timeline_head": [
+        {
+          "live_pregs": 0,
+          "live_vregs": 0,
+          "opcode": "uop_kernel_prologue",
+          "pc": 0
+        },
+        {
+          "live_pregs": 0,
+          "live_vregs": 1,
+          "opcode": "uop_read_workitem_id",
+          "pc": 1
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 1,
+          "opcode": "uop_predicate_bounds",
+          "pc": 2
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 2,
+          "opcode": "uop_read_scalar_arg",
+          "pc": 3
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 3,
+          "opcode": "uop_read_scalar_arg",
+          "pc": 4
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 4,
+          "opcode": "uop_read_scalar_arg",
+          "pc": 5
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 4,
+          "opcode": "uop_address_calc",
+          "pc": 6
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 5,
+          "opcode": "uop_global_load",
+          "pc": 7
+        }
+      ],
+      "live_register_timeline_tail": [
+        {
+          "live_pregs": 1,
+          "live_vregs": 5,
+          "opcode": "uop_global_load",
+          "pc": 7
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 5,
+          "opcode": "uop_address_calc",
+          "pc": 8
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 6,
+          "opcode": "uop_global_load",
+          "pc": 9
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 7,
+          "opcode": "uop_vector_unpack",
+          "pc": 10
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 8,
+          "opcode": "uop_alu_mul_clamp",
+          "pc": 11
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 9,
+          "opcode": "uop_vector_pack",
+          "pc": 12
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 9,
+          "opcode": "uop_global_store",
+          "pc": 13
+        },
+        {
+          "live_pregs": 1,
+          "live_vregs": 9,
+          "opcode": "uop_write_completion",
+          "pc": 14
+        }
+      ],
+      "metadata_sgpr_usage": 18,
+      "metadata_vgpr_usage": 28,
+      "model": "deterministic proxy from lowering sgpr/vgpr metadata, compiler IR live-register growth, SIMT counters, and config-sweep register banks",
+      "occupancy_limit_reason": "sgpr",
+      "occupancy_ratio_proxy": 0.375,
+      "peak_ir_pregs": 1,
+      "peak_ir_vregs": 9,
+      "peak_sregs": 18,
+      "peak_vregs": 36,
+      "register_file_banks": 8,
+      "required_wavefronts": 1024,
+      "sgpr_budget": 64,
+      "sgpr_limited_wavefronts": 3,
+      "vgpr_budget": 256,
+      "vgpr_limited_wavefronts": 7,
+      "warp_slots": 8,
+      "wavefront_size": 32,
+      "work_items": 32768,
+      "workload": "image_filter"
+    }
+  ],
+  "schema": "celviz.gpgpu.phase7_register_occupancy.v1",
+  "status": "pass",
+  "summary": {
+    "kernel_count": 4,
+    "max_bank_conflict_proxy": 0.421875,
+    "max_peak_sregs": 24,
+    "max_peak_vregs": 36,
+    "min_occupancy_ratio_proxy": 0.166667,
+    "occupancy_limit_reasons": {
+      "sgpr": 4
+    },
+    "sgpr_budget": 64,
+    "vgpr_budget": 256
+  }
+}

@@ -1,0 +1,1031 @@
+{
+  "schema": "celviz.gpgpu.acceptance_matrix.v1",
+  "ip_name": "Celviz GPGPU IP",
+  "artifact_root": "artifacts/rank_01_vivante_3d_gpgpu_ip",
+  "script": "scripts/accept_celviz_gpgpu_ip.sh",
+  "clean_room_scope": "Clean-room GPGPU proxy acceptance for Ventus/Celviz integration. This does not claim Vivante proprietary command-stream, firmware, driver, SDK, conformance, or silicon signoff compatibility.",
+  "boundary_scope": "Historical graphics-only artifacts are reference-only and cannot satisfy active Rank 1 GPGPU acceptance. Active evidence must be Rank 1 GPGPU artifacts or source implementation paths used by this clean-room proxy.",
+  "native_runtime_probe": {
+    "path_glob": "/tmp/ventus-gpgpu-celviz-build/**/libVentusRTL.so",
+    "behavior": "Run native_runtime_build first in a no-space /tmp workspace, then run native_runtime_require_runtime when a matching shared library exists; otherwise report SKIP."
+  },
+  "e1_fixture_evidence": {
+    "scope": "Runtime ABI command/evidence fixture metadata only; no runtime source code is used as fixture evidence.",
+    "command_stream": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json",
+    "kernel_demo": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json",
+    "required_categories": [
+      "host_to_device",
+      "device_to_host",
+      "dma_fill",
+      "dma_copy",
+      "queue_lifecycle",
+      "named_fence_wait_signal",
+      "status_polling",
+      "expected_error_injection"
+    ],
+    "expected_negative_errors": [
+      "ERR_SCHEDULER_FAULT",
+      "ERR_MMU_FAULT",
+      "ERR_FENCE_WAIT"
+    ],
+    "validation_commands": [
+      "python3 -m json.tool artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json",
+      "python3 -m json.tool artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json",
+      "python3 tools/celviz_gpgpu_ip/runtime_cli.py --commands artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json --dry-run --output-dir $TMP/runtime_dry_run --run-log $TMP/runtime_dry_run.log --print-status",
+      "python3 tools/celviz_gpgpu_ip/runtime_cli.py --kernel-demo artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json --output-dir $TMP/kernel_demo_outputs --run-log $TMP/kernel_demo_run.log"
+    ]
+  },
+  "e2_rtl_control_plane_evidence": {
+    "scope": "RTL source acceptance gate for the clean-room Ventus/Celviz GPGPU control plane. This is implementation-source evidence only and does not edit or claim proprietary Vivante RTL behavior.",
+    "covered_by_gate": "source_check",
+    "source_check_command": "bash scripts/check_celviz_gpgpu_sources.sh",
+    "required_source_checks": [
+      "e2_rtl_control_plane_axi_csr_gate",
+      "e2_rtl_control_plane_doorbell_irq_error_flow",
+      "e2_rtl_control_plane_apb_axi_counter_flow",
+      "e2_scheduler_handoff_counters",
+      "e2_rtl_debug_observability_top",
+      "e2_rtl_debug_observability_warp"
+    ],
+    "evidence": [
+      "ventus/src/axi/AXI4Lite2CTA.scala",
+      "ventus/src/cta/cta_scheduler.scala",
+      "ventus/src/top/GPGPU_top.scala",
+      "ventus/src/pipeline/warp_schedule.scala",
+      "ventus/src/pipeline/pipe.scala"
+    ],
+    "required_observations": [
+      "AXI4-Lite CSR storage for command/doorbell/completion/IRQ/error state.",
+      "RTL-visible queue progress via doorbell status/count plus command and completion counters.",
+      "APB/AXI read/write transaction counters and fire pulses preserved with dontTouch.",
+      "Scheduler host workgroup and CU wavefront handoff counters.",
+      "Top-level and warp scheduler debug bundles preserved with dontTouch."
+    ],
+    "pass_condition": "The source checker finds every E2 RTL control-plane source check in active implementation files and rejects docs or verification prose as proof."
+  },
+  "e3_native_runtime_evidence": {
+    "scope": "Native runtime acceptance evidence for the clean-room Ventus/Celviz GPGPU runtime proxy. This proves local build artifact presence, exported C ABI symbols, ctypes --require-runtime binding, queue and metric snapshots, ABI symbol coverage, and final pending-count closure.",
+    "covered_by_gates": [
+      "source_check",
+      "native_runtime_build",
+      "e3_native_runtime_build_manifest_log",
+      "native_runtime_require_runtime",
+      "e3_native_runtime_output_check"
+    ],
+    "source_check_command": "bash scripts/check_celviz_gpgpu_sources.sh",
+    "required_source_checks": [
+      "e3_native_runtime_build_script_manifest_log_source",
+      "e3_acceptance_native_build_manifest_log_gate",
+      "e3_acceptance_native_require_runtime_snapshot_gate"
+    ],
+    "runtime_build_manifest": "$TMP/e3_native_runtime_build_manifest.json",
+    "runtime_build_log": "$TMP/e3_native_runtime_build.log.jsonl",
+    "runtime_outputs": [
+      "$TMP/native_runtime/runtime_metrics.json",
+      "$TMP/native_runtime/runtime_status.json"
+    ],
+    "required_observations": [
+      "Build script emits a JSON manifest and JSONL log for the native runtime build or relink.",
+      "A non-empty libVentusRTL.so exists under /tmp/ventus-gpgpu-celviz-build after native_runtime_build.",
+      "nm-exported symbols include the required runtime bridge ABI plus queue, metric, pending-count, status-polling, and error-injection symbols.",
+      "runtime_cli --require-runtime records ctypes_bound runtime_bridge mode in both metrics and status outputs.",
+      "native_proxy_snapshot records queue snapshots, metric snapshots, ABI symbol coverage, and pending_count.",
+      "Final queue_totals.pending_count and summary.pending_count are zero."
+    ],
+    "pass_condition": "The E3 source and acceptance gates pass, and native --require-runtime output proves exported ABI coverage, queue/metric snapshots, and pending-count closure."
+  },
+  "e4_demo_model_evidence": {
+    "scope": "Demo/model evidence gate for the clean-room OpenCL-like runtime and standard-library compute model. This proves local proxy workloads and golden data checks only; it is not proprietary Vivante/OpenCL conformance evidence.",
+    "covered_by_gates": [
+      "source_check",
+      "e4_kernel_demo_fixture",
+      "runtime_kernel_demo",
+      "e4_demo_model_output_check"
+    ],
+    "source_check_command": "bash scripts/check_celviz_gpgpu_sources.sh",
+    "runtime_output_check": "python3 - $TMP/kernel_demo_outputs artifacts/rank_01_vivante_3d_gpgpu_ip/model $TMP/e4_kernel_demo.json",
+    "required_source_checks": [
+      "e4_demo_model_evidence",
+      "e4_kernel_demo_fixture",
+      "e4_vector_add_golden_compare",
+      "e4_gemm_convolution_image_filter",
+      "e4_memory_copy_golden_compare",
+      "e4_fp16_fp32_paths",
+      "e4_tier_scaling",
+      "e4_buffer_bindings",
+      "e4_dispatch_readback_golden_compare"
+    ],
+    "evidence": [
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/summary.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/kernel_metrics.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/buffer_binds.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/queue_trace.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/vector_add.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/gemm_proxy.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/image_filter.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/memory_copy.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/model/metrics.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/vector_add.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/gemm_proxy.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/convolution_proxy.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/memory_copy.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/shader_unit_scaling.json"
+    ],
+    "required_observations": [
+      "Kernel demo declares vector_add, gemm_proxy, image_filter, and memory_copy with queue dispatch sizes and global read/write buffer bindings.",
+      "The acceptance wrapper creates a temporary E4 kernel demo fixture with convolution_proxy when the checked-in demo fixture has not yet been regenerated by another worker.",
+      "Runtime queue trace records submit, wait, and readback phases for each demo workload with success completion and readback_sha256.",
+      "Demo outputs pass golden checks: vector_add result equals expected, memory_copy source/result hashes match, GEMM shape and image_filter metadata exist, and each result hash matches the summary golden hash.",
+      "Model outputs cover vector_add, gemm_proxy, convolution_proxy/image_filter, memory_copy, FP16 proxy metadata, FP32 operation metadata, and tier scaling metadata.",
+      "Runtime and model tier metadata provide monotonic FP16/FP32 operation scaling when sorted by shader-unit count."
+    ],
+    "pass_condition": "The source checker accepts checked-in E4 evidence, and the acceptance wrapper accepts freshly generated runtime kernel-demo outputs against model/golden evidence."
+  },
+  "e5_verification_evidence": {
+    "scope": "Verification evidence lane for command submission, interrupts, AXI traffic, reset behavior, invalid descriptors, DMA bounds/alignment, and throughput scaling by configured tier. This is clean-room proxy evidence only and does not add proprietary Vivante conformance claims.",
+    "covered_by_gates": [
+      "verification_command_list",
+      "artifact_verification"
+    ],
+    "command": "bash artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_commands.sh",
+    "required_checks": [
+      "e5_verification_coverage",
+      "e5_command_submission",
+      "e5_interrupts",
+      "e5_axi_traffic",
+      "e5_reset_behavior",
+      "e5_invalid_descriptors",
+      "e5_dma_bounds_alignment",
+      "e5_tier_throughput_scaling"
+    ],
+    "evidence": [
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_verification_demo.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_negative_boundary_fixture.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_check.log",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_run.log",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/shader_unit_scaling.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_commands.sh",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log"
+    ],
+    "required_observations": [
+      "The current control-plane stream has 19 submitted commands, 19 completed commands, and each queue snapshot closes with submitted equal to retired.",
+      "Completion and error interrupt events are both present; current counters report completion_interrupts=13 and error_interrupts=3.",
+      "AXI traffic evidence token is true and current counters report read/write transactions plus bytes_read=736 and bytes_written=2272.",
+      "Reset evidence token is true and current counters record exactly one reset for the stream.",
+      "Expected invalid descriptors include ERR_SCHEDULER_FAULT, ERR_MMU_FAULT, and ERR_FENCE_WAIT.",
+      "Valid DMA/H2D/D2H commands are 16-byte aligned and inside declared memory regions; the expected MMU-fault descriptor is out of range.",
+      "Runtime configured tiers include at least four rows and runtime/model FP16/FP32 operation-rate metadata is monotonic after sorting by shader-unit count."
+    ],
+    "latest_result_summary": {
+      "status": "pass",
+      "e5_probe_status": "pass",
+      "source_check_status": "pass",
+      "s3_verification_status": "pass",
+      "commands_submitted": 19,
+      "commands_completed": 19,
+      "queue_count": 3,
+      "completion_interrupts": 13,
+      "error_interrupts": 3,
+      "axi_read_transactions": 5,
+      "axi_write_transactions": 16,
+      "bytes_read": 736,
+      "bytes_written": 2272,
+      "resets": 1,
+      "expected_errors": [
+        "ERR_FENCE_WAIT",
+        "ERR_MMU_FAULT",
+        "ERR_SCHEDULER_FAULT"
+      ],
+      "valid_dma_commands": 6,
+      "negative_mmu_descriptors": 1,
+      "negative_boundary_scenarios": 12,
+      "negative_boundary_invalid_descriptor_scenarios": 5,
+      "negative_boundary_dma_bounds_alignment_scenarios": 5,
+      "negative_boundary_reset_pending_active_scenarios": 2,
+      "negative_boundary_expected_error_records": 10,
+      "runtime_tiers": 4,
+      "model_tiers": 9
+    },
+    "pass_condition": "The verification command list exits 0, writes e5_verification_coverage: pass to test_results.log, the executable E5 control-plane fixture reports all E5 coverage bits true, the negative-boundary fixture records invalid descriptor, DMA bounds/alignment, reset pending/active, and command-submission error-record fields, and configured-tier throughput scaling remains monotonic in proxy evidence."
+  },
+  "e6_integration_evidence": {
+    "scope": "E6 integration evidence for the clean-room Rank 1 Ventus/Celviz GPGPU proxy. This binds architecture, model, runtime, RTL control-plane, verification, and scaling evidence into one audit surface.",
+    "status": "pass_proxy",
+    "covered_by_gates": [
+      "acceptance_matrix_json",
+      "e6_integration_docs_gate",
+      "git_diff_check"
+    ],
+    "consumes_evidence_from_gates": [
+      "verification_command_list",
+      "artifact_verification"
+    ],
+    "evidence": [
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/README.md",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/worker_lanes.md",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_commands.sh",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_run.log",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/summary.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/model/metrics.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/perf_model_metrics.json"
+    ],
+    "validation_commands": [
+      "python3 -m json.tool artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json",
+      "python3 -c 'import json; from pathlib import Path; root=Path(\"artifacts/rank_01_vivante_3d_gpgpu_ip\"); matrix=json.loads((root/\"verification/acceptance_matrix.json\").read_text()); readme=(root/\"integration/README.md\").read_text(); lanes=(root/\"integration/worker_lanes.md\").read_text(); e6=matrix.get(\"e6_integration_evidence\", {}); required=e6.get(\"evidence\", [])[:10]; missing=[p for p in required if not Path(p).exists()]; assert e6.get(\"status\") == \"pass_proxy\"; assert not missing, missing; assert \"Overall E6 state: `pass_proxy`\" in readme; assert \"Overall E6 state: pass_proxy\" in lanes; assert \"licensed vendor collateral\" in readme and \"silicon signoff\" in readme; assert \"licensed vendor collateral\" in lanes and \"silicon signoff\" in lanes'",
+      "python3 -c 'from pathlib import Path; text=Path(\"artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log\").read_text(); required=(\"e5_command_submission=pass\", \"e5_interrupts=pass\", \"e5_axi_traffic=pass\", \"e5_reset_behavior=pass\", \"e5_invalid_descriptors=pass\", \"e5_dma_bounds_alignment=pass\", \"e5_tier_throughput_scaling=pass\"); missing=[item for item in required if item not in text]; assert not missing, missing'"
+    ],
+    "required_observations": [
+      "Integration README declares Overall E6 state as pass_proxy and lists machine-verifiable evidence paths.",
+      "Worker lanes declare Overall E6 state as pass_proxy, active Rank 1 roots, worker handoffs, and E6 acceptance surface pass conditions.",
+      "Acceptance matrix parses as JSON and records e6_integration_evidence.status as pass_proxy.",
+      "E6 evidence paths point to active Rank 1 GPGPU artifacts and do not depend on superseded graphics-only roots.",
+      "E6 consumes E5 verification outputs for command submission, interrupts, AXI traffic, reset behavior, invalid descriptors, DMA bounds/alignment, and configured-tier throughput scaling.",
+      "Documentation explicitly says E6 does not claim licensed vendor collateral, proprietary Vivante compatibility, official API conformance, RTL timing closure, production PPA, CDC/STA/DFT closure, or silicon signoff."
+    ],
+    "non_goals": [
+      "licensed vendor collateral review",
+      "proprietary Vivante command-stream compatibility",
+      "official API or OpenCL conformance",
+      "real RTL timing closure",
+      "production PPA",
+      "CDC/STA/DFT closure",
+      "silicon signoff"
+    ],
+    "pass_condition": "E6-D passes at pass_proxy level when acceptance_matrix.json parses, e6_integration_evidence.status is pass_proxy, the listed active Rank 1 evidence paths exist, README.md and worker_lanes.md declare the E6 pass_proxy state and no-overclaim boundary, e6_integration_docs_gate exits 0, and test_results.log contains the E5 proxy coverage pass lines consumed by E6. Broader script/source acceptance gates are separate lanes and are not claimed as licensed vendor collateral or silicon signoff."
+  },
+  "e8_verilator_coverage_evidence": {
+    "scope": "Supplemental E8 Verilator coverage evidence for the clean-room Ventus/Celviz GPGPU proxy. This gate records complex Verilator coverage artifacts and keeps RTL source/toggle/line coverage separate from functional coverage. It does not claim proprietary Vivante compatibility, official OpenCL conformance, production PPA, RTL timing closure, or silicon signoff.",
+    "status": "supplemental_gate_defined",
+    "covered_by_gates": [
+      "e8_verilator_coverage_report"
+    ],
+    "run_script": "scripts/run_celviz_gpgpu_verilator_coverage.sh",
+    "verify_script": "scripts/verify_celviz_gpgpu_verilator_coverage.sh",
+    "aggregate_coverage_100_script": "scripts/verify_celviz_gpgpu_coverage_100.sh",
+    "full_acceptance_script": "scripts/accept_celviz_gpgpu_ip_full.sh",
+    "coverage_output_dir": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage",
+    "rtl_coverage_artifacts": [
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.dat",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.info",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/index.html",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/run.log"
+    ],
+    "functional_coverage_artifacts": [
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/summary.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/queue_trace.json"
+    ],
+    "required_observations": [
+      "The coverage run script builds or relinks the Verilator model with coverage enabled, runs the clean-room Rank 1 workload set, and writes coverage.dat plus a human-readable coverage.info/report/run.log bundle.",
+      "RTL source, toggle, and line coverage are reported as structural Verilator metrics from the generated model and are not treated as functional correctness proof.",
+      "Functional coverage remains the acceptance-owned E1-E5 proxy evidence: command submission, queue closure, interrupts, AXI/APB traffic, reset behavior, invalid descriptors, DMA bounds/alignment, workload golden comparisons, and configured-tier scaling.",
+      "Functional coverage pass/fail is independent from RTL structural coverage percentages; 100% functional coverage means every declared clean-room functional coverage bin passed, not that every RTL line or toggle was covered.",
+      "The run log records the Verilator command, coverage output paths, workload manifest or command fixture, functional coverage bin summary, and clean-room/no-overclaim boundary."
+    ],
+    "functional_coverage_bins": [
+      "command_submission",
+      "queue_lifecycle_closure",
+      "completion_interrupt",
+      "error_interrupt",
+      "axi_apb_traffic",
+      "reset_behavior",
+      "invalid_descriptor_errors",
+      "dma_bounds_alignment",
+      "memory_copy_fill_h2d_d2h",
+      "vector_add_golden_compare",
+      "gemm_convolution_image_filter_golden_compare",
+      "fp16_fp32_paths",
+      "configured_tier_scaling"
+    ],
+    "pass_condition": "E8 passes only when the supplemental Verilator coverage script exits 0, coverage.dat and coverage.info are non-empty, report/index.html and run.log exist, run.log records the clean-room scope and the separation of RTL source/toggle/line coverage from functional coverage, and every declared functional coverage bin is PASS for an aggregate functional coverage result of 100%. RTL structural coverage percentages are reported but are not converted into a silicon signoff or official Vivante/OpenCL conformance claim.",
+    "non_goals": [
+      "licensed vendor collateral review",
+      "proprietary Vivante command-stream compatibility",
+      "official Vivante conformance",
+      "official OpenCL conformance",
+      "RTL timing closure",
+      "CDC/STA/DFT closure",
+      "production PPA",
+      "silicon signoff"
+    ]
+  },
+  "gates": [
+    {
+      "id": "acceptance_matrix_json",
+      "stage": "acceptance",
+      "command": "python3 -m json.tool artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json",
+      "required": true,
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json"
+      ],
+      "pass_condition": "JSON parses successfully."
+    },
+    {
+      "id": "rank1_boundary_evidence",
+      "stage": "acceptance",
+      "command": "python3 -c 'from pathlib import Path; pats=(\"rank_\"+\"12_vivante_3d_gpu_ip\", \"docs/celviz\"+\"-gpu-ip\"); roots=[Path(\"artifacts/rank_01_vivante_3d_gpgpu_ip/manifest.md\"), Path(\"artifacts/rank_01_vivante_3d_gpgpu_ip/criteria_to_evidence.csv\"), Path(\"artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json\")]+list(Path(\"artifacts/rank_01_vivante_3d_gpgpu_ip/spec\").glob(\"*.md\")); hits=[str(p) for p in roots if any(x in p.read_text() for x in pats)]; raise SystemExit(\"boundary references found: \"+\", \".join(hits) if hits else 0)'",
+      "required": true,
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/manifest.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/criteria_to_evidence.csv",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/spec/public_scope.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/spec/architecture_inventory.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/spec/ventus_framework_mapping.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json"
+      ],
+      "pass_condition": "No active Rank 1 acceptance artifact cites historical graphics-only paths as evidence, and the Rank 1 boundary statement is present."
+    },
+    {
+      "id": "rank1_boundary_check",
+      "stage": "acceptance",
+      "command": "python3 tools/celviz_gpgpu_ip/boundary_check.py --repo-root .",
+      "required": true,
+      "evidence": [
+        "tools/celviz_gpgpu_ip/boundary_check.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip",
+        "docs/celviz-gpgpu-ip"
+      ],
+      "pass_condition": "The Python boundary checker finds no superseded graphics-IP roots used as active Rank 1 acceptance evidence; explicitly historical/superseded context is allowed."
+    },
+    {
+      "id": "source_check",
+      "stage": "source hooks",
+      "command": "bash scripts/check_celviz_gpgpu_sources.sh",
+      "required": true,
+      "evidence": [
+        "ventus/src/top/GPGPU_top.scala",
+        "ventus/src/pipeline/pipe.scala",
+        "ventus/src/pipeline/warp_schedule.scala",
+        "ventus/src/pipeline/LSU.scala",
+        "ventus/src/pipeline/issue.scala",
+        "ventus/src/pipeline/scoreboard.scala",
+        "ventus/src/cta/cta_scheduler.scala",
+        "ventus/src/axi/AXI4Lite2CTA.scala",
+        "sim-verilator/celviz_gpgpu_runtime_proxy.h",
+        "sim-verilator/ventus_rtlsim.cpp",
+        "tools/celviz_gpgpu_ip/runtime_proxy.py",
+        "scripts/build_celviz_gpgpu_runtime.sh",
+        "scripts/accept_celviz_gpgpu_ip.sh",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/kernel_metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/buffer_binds.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/queue_trace.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/shader_unit_scaling.json"
+      ],
+      "pass_condition": "Required Celviz debug, control-plane, runtime hook, E2 RTL control-plane, E3 native-runtime source/acceptance patterns, and E4 demo/model evidence checks are present."
+    },
+    {
+      "id": "e2_rtl_control_plane_source_gate",
+      "stage": "source hooks",
+      "command": "bash scripts/check_celviz_gpgpu_sources.sh",
+      "required": true,
+      "covered_by_gate": "source_check",
+      "evidence": [
+        "ventus/src/axi/AXI4Lite2CTA.scala",
+        "ventus/src/cta/cta_scheduler.scala",
+        "ventus/src/top/GPGPU_top.scala",
+        "ventus/src/pipeline/warp_schedule.scala",
+        "scripts/check_celviz_gpgpu_sources.sh"
+      ],
+      "pass_condition": "E2 RTL control-plane source checks prove queue doorbell/progress CSRs, IRQ/error/APB/AXI counters, scheduler handoff counters, debug observability, and dontTouch preservation from implementation files."
+    },
+    {
+      "id": "e3_native_runtime_source_gate",
+      "stage": "source hooks",
+      "command": "bash scripts/check_celviz_gpgpu_sources.sh",
+      "required": true,
+      "covered_by_gate": "source_check",
+      "evidence": [
+        "scripts/check_celviz_gpgpu_sources.sh",
+        "scripts/build_celviz_gpgpu_runtime.sh",
+        "scripts/accept_celviz_gpgpu_ip.sh"
+      ],
+      "pass_condition": "E3 source checks prove the build script emits manifest/log evidence and the acceptance script verifies native library existence, exported symbols, native --require-runtime queue/metric snapshots, ABI coverage, native_command_results, and pending_count closure."
+    },
+    {
+      "id": "chisel_make_compile",
+      "stage": "rtl compile",
+      "command": "make compile",
+      "required": true,
+      "evidence": [
+        "ventus/src/top/GPGPU_top.scala",
+        "ventus/src/axi/AXI4Lite2CTA.scala",
+        "ventus/src/cta/cta_scheduler.scala",
+        "ventus/src/pipeline/LSU.scala",
+        "ventus/src/pipeline/issue.scala",
+        "ventus/src/pipeline/scoreboard.scala",
+        "ventus/src/pipeline/warp_schedule.scala"
+      ],
+      "pass_condition": "The Chisel/Mill RTL source tree compiles with the configured JDK."
+    },
+    {
+      "id": "python_py_compile",
+      "stage": "python syntax",
+      "command": "python3 -m py_compile tools/celviz_gpgpu_ip/compute_model.py tools/celviz_gpgpu_ip/control_plane.py tools/celviz_gpgpu_ip/perf_model.py tools/celviz_gpgpu_ip/boundary_check.py tools/celviz_gpgpu_ip/runtime_cli.py tools/celviz_gpgpu_ip/runtime_proxy.py",
+      "required": true,
+      "evidence": [
+        "tools/celviz_gpgpu_ip/compute_model.py",
+        "tools/celviz_gpgpu_ip/control_plane.py",
+        "tools/celviz_gpgpu_ip/perf_model.py",
+        "tools/celviz_gpgpu_ip/boundary_check.py",
+        "tools/celviz_gpgpu_ip/runtime_cli.py",
+        "tools/celviz_gpgpu_ip/runtime_proxy.py"
+      ],
+      "pass_condition": "All Celviz GPGPU Python entry points compile without syntax errors."
+    },
+    {
+      "id": "runtime_dry_run",
+      "stage": "runtime",
+      "command": "python3 tools/celviz_gpgpu_ip/runtime_cli.py --commands artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json --dry-run --output-dir $TMP/runtime_dry_run --run-log $TMP/runtime_dry_run.log --print-status",
+      "required": true,
+      "evidence": [
+        "tools/celviz_gpgpu_ip/runtime_cli.py",
+        "tools/celviz_gpgpu_ip/runtime_proxy.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json"
+      ],
+      "pass_condition": "Runtime command stream validates and reports status=pass in forced dry-run mode."
+    },
+    {
+      "id": "runtime_kernel_demo",
+      "stage": "runtime demo",
+      "command": "python3 tools/celviz_gpgpu_ip/runtime_cli.py --kernel-demo $TMP/e4_kernel_demo.json --output-dir $TMP/kernel_demo_outputs --run-log $TMP/kernel_demo_run.log",
+      "required": true,
+      "evidence": [
+        "tools/celviz_gpgpu_ip/runtime_cli.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json",
+        "$TMP/e4_kernel_demo.json"
+      ],
+      "pass_condition": "OpenCL-like kernel demo validates, runs through the compute-model proxy, and exits successfully."
+    },
+    {
+      "id": "e4_kernel_demo_fixture",
+      "stage": "runtime demo",
+      "command": "python3 - artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json $TMP/e4_kernel_demo.json",
+      "required": true,
+      "evidence": [
+        "scripts/accept_celviz_gpgpu_ip.sh",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json",
+        "$TMP/e4_kernel_demo.json"
+      ],
+      "pass_condition": "Acceptance creates a temporary E4 kernel-demo fixture containing convolution_proxy and its buffer bindings without modifying checked-in demo artifacts."
+    },
+    {
+      "id": "e4_demo_model_output_check",
+      "stage": "runtime demo",
+      "command": "python3 - $TMP/kernel_demo_outputs artifacts/rank_01_vivante_3d_gpgpu_ip/model $TMP/e4_kernel_demo.json",
+      "required": true,
+      "covered_by_gate": "runtime_kernel_demo",
+      "evidence": [
+        "$TMP/kernel_demo_outputs/summary.json",
+        "$TMP/kernel_demo_outputs/kernel_metrics.json",
+        "$TMP/kernel_demo_outputs/buffer_binds.json",
+        "$TMP/kernel_demo_outputs/device_tiers.json",
+        "$TMP/kernel_demo_outputs/queue_trace.json",
+        "$TMP/kernel_demo_outputs/vector_add.json",
+        "$TMP/kernel_demo_outputs/gemm_proxy.json",
+        "$TMP/kernel_demo_outputs/image_filter.json",
+        "$TMP/kernel_demo_outputs/memory_copy.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/vector_add.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/gemm_proxy.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/convolution_proxy.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/memory_copy.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/shader_unit_scaling.json"
+      ],
+      "pass_condition": "Fresh runtime kernel-demo output covers vector_add, GEMM, image_filter, memory_copy, buffer bindings, dispatch/wait/readback, golden hashes, FP16/FP32 model metadata, convolution proxy evidence, and tier scaling."
+    },
+    {
+      "id": "control_plane_demo",
+      "stage": "control plane",
+      "command": "python3 tools/celviz_gpgpu_ip/control_plane.py --demo artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json --log $TMP/control_plane_run.log --metrics $TMP/control_plane_metrics.json --print-metrics",
+      "required": true,
+      "evidence": [
+        "tools/celviz_gpgpu_ip/control_plane.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json"
+      ],
+      "pass_condition": "Control-plane demo completes with status=pass and emits command, interrupt, AXI, APB, reset, FP16, and FP32 evidence."
+    },
+    {
+      "id": "verification_command_list",
+      "stage": "verification evidence",
+      "command": "bash artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_commands.sh",
+      "required": true,
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_commands.sh",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_verification_demo.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_negative_boundary_fixture.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_check.log",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/shader_unit_scaling.json"
+      ],
+      "pass_condition": "The verification command list exits 0, writes test_results.log, records E5 pass lines for command submission, interrupts, AXI traffic, reset behavior, invalid descriptors, DMA bounds/alignment, and configured-tier throughput scaling, and the negative-boundary fixture/evidence JSON remains parseable."
+    },
+    {
+      "id": "e6_integration_docs_gate",
+      "stage": "integration evidence",
+      "command": "python3 -c 'import json; from pathlib import Path; root=Path(\"artifacts/rank_01_vivante_3d_gpgpu_ip\"); matrix=json.loads((root/\"verification/acceptance_matrix.json\").read_text()); readme=(root/\"integration/README.md\").read_text(); lanes=(root/\"integration/worker_lanes.md\").read_text(); e6=matrix.get(\"e6_integration_evidence\", {}); required=e6.get(\"evidence\", [])[:10]; missing=[p for p in required if not Path(p).exists()]; assert e6.get(\"status\") == \"pass_proxy\"; assert not missing, missing; assert \"Overall E6 state: `pass_proxy`\" in readme; assert \"Overall E6 state: pass_proxy\" in lanes; assert \"licensed vendor collateral\" in readme and \"silicon signoff\" in readme; assert \"licensed vendor collateral\" in lanes and \"silicon signoff\" in lanes'",
+      "required": true,
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/README.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/integration/worker_lanes.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json"
+      ],
+      "pass_condition": "The E6 integration docs gate proves e6_integration_evidence.status is pass_proxy, all listed checked-in E6 evidence paths exist, README.md and worker_lanes.md declare the E6 pass_proxy state, and both integration docs explicitly exclude licensed vendor collateral and silicon signoff claims."
+    },
+    {
+      "id": "artifact_verification",
+      "stage": "artifact verification",
+      "command": "bash scripts/verify_celviz_gpgpu_ip.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_ip.sh",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/README.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/coverage.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_commands.sh",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json"
+      ],
+      "pass_condition": "Existing Rank 1 S3 verification harness accepts required tokens and present optional evidence."
+    },
+    {
+      "id": "native_runtime_build",
+      "stage": "native runtime build",
+      "command": "CELVIZ_GPGPU_BUILD_MANIFEST=$TMP/e3_native_runtime_build_manifest.json CELVIZ_GPGPU_BUILD_LOG=$TMP/e3_native_runtime_build.log.jsonl bash scripts/build_celviz_gpgpu_runtime.sh --auto",
+      "required": true,
+      "evidence": [
+        "scripts/build_celviz_gpgpu_runtime.sh",
+        "sim-verilator/celviz_gpgpu_runtime_proxy.h",
+        "sim-verilator/ventus_rtlsim.cpp",
+        "sim-verilator/verilate.mk",
+        "sim-verilator/Makefile"
+      ],
+      "pass_condition": "The native runtime is built or fast-relinked in /tmp/ventus-gpgpu-celviz-build, produces libVentusRTL.so, and reports build manifest/log paths."
+    },
+    {
+      "id": "e3_native_runtime_build_manifest_log",
+      "stage": "native runtime build",
+      "command": "python3 - $TMP/e3_native_runtime_build_manifest.json $TMP/e3_native_runtime_build.log.jsonl",
+      "required": true,
+      "evidence": [
+        "scripts/build_celviz_gpgpu_runtime.sh",
+        "$TMP/e3_native_runtime_build_manifest.json",
+        "$TMP/e3_native_runtime_build.log.jsonl",
+        "/tmp/ventus-gpgpu-celviz-build/**/libVentusRTL.so"
+      ],
+      "pass_condition": "The build manifest parses, has status=pass, names an existing libVentusRTL.so, the JSONL build log contains manifest_written, and nm confirms all manifest-required exported symbols."
+    },
+    {
+      "id": "native_runtime_require_runtime",
+      "stage": "native runtime",
+      "command": "python3 tools/celviz_gpgpu_ip/runtime_cli.py --commands artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json --runtime-lib /tmp/ventus-gpgpu-celviz-build/.../libVentusRTL.so --require-runtime --output-dir $TMP/native_runtime --run-log $TMP/native_runtime.log --print-status",
+      "required": false,
+      "skip_condition": "No /tmp/ventus-gpgpu-celviz-build/**/libVentusRTL.so exists.",
+      "evidence": [
+        "tools/celviz_gpgpu_ip/runtime_cli.py",
+        "tools/celviz_gpgpu_ip/runtime_proxy.py",
+        "sim-verilator/celviz_gpgpu_runtime_proxy.h",
+        "sim-verilator/ventus_rtlsim.cpp"
+      ],
+      "pass_condition": "When a native libVentusRTL.so exists, runtime_cli binds it with --require-runtime and exits successfully."
+    },
+    {
+      "id": "e3_native_runtime_output_check",
+      "stage": "native runtime",
+      "command": "python3 - $TMP/native_runtime/runtime_metrics.json $TMP/native_runtime/runtime_status.json",
+      "required": false,
+      "covered_by_gate": "native_runtime_require_runtime",
+      "skip_condition": "No /tmp/ventus-gpgpu-celviz-build/**/libVentusRTL.so exists.",
+      "evidence": [
+        "$TMP/native_runtime/runtime_metrics.json",
+        "$TMP/native_runtime/runtime_status.json",
+        "tools/celviz_gpgpu_ip/runtime_proxy.py",
+        "sim-verilator/celviz_gpgpu_runtime_proxy.h",
+        "sim-verilator/ventus_rtlsim.cpp"
+      ],
+      "pass_condition": "Native --require-runtime metrics/status outputs mirror native_proxy_snapshot and native_runtime_acceptance, ABI coverage is complete, optional ABI symbols are present, queue/metric snapshots exist, native_command_results are present, and pending_count closes at zero."
+    },
+    {
+      "id": "e8_verilator_coverage_report",
+      "stage": "supplemental verilator coverage",
+      "command": "bash scripts/run_celviz_gpgpu_verilator_coverage.sh --output-dir artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage",
+      "required": false,
+      "evidence": [
+        "scripts/run_celviz_gpgpu_verilator_coverage.sh",
+        "scripts/verify_celviz_gpgpu_verilator_coverage.sh",
+        "scripts/accept_celviz_gpgpu_ip_full.sh",
+        "sim-verilator/verilate.mk",
+        "sim-verilator/gvm.mk",
+        "sim-verilator/ventus_rtlsim_impl.cpp",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.dat",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.info",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/index.html",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/run.log",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log"
+      ],
+      "pass_condition": "Supplemental E8 coverage passes when the run script exits 0, writes non-empty coverage.dat and coverage.info files, writes report/index.html, verilator_coverage_report.json, and run.log, reports RTL source/toggle/line coverage separately from functional coverage, and records functional coverage at 100% with every declared functional bin passing under the clean-room proxy scope. Existing E8 artifacts may be rechecked with scripts/verify_celviz_gpgpu_verilator_coverage.sh, and scripts/accept_celviz_gpgpu_ip_full.sh combines main E0-E7 acceptance with this E8 artifact verification without claiming RTL structural 100% coverage."
+    },
+    {
+      "id": "verification_coverage_100",
+      "stage": "aggregate verification coverage",
+      "command": "bash scripts/verify_celviz_gpgpu_coverage_100.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_coverage_100.sh",
+        "tools/celviz_gpgpu_ip/verification_coverage_100.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verification_coverage_100.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/e7_one_key_acceptance.log",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/test_results.log",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json"
+      ],
+      "pass_condition": "The aggregate verification coverage gate passes only when verification_coverage_100.json reports schema celviz.gpgpu.verification_coverage_100.v1, status pass, coverage_percent 100.000, no missed bins, and all declared clean-room functional/acceptance bins pass across E1/E3/E4/E5/E6/E7/E8 evidence. RTL structural Verilator line/source/toggle percentages are recorded as separate observations and are not converted into a 100% RTL coverage or silicon signoff claim."
+    },
+    {
+      "id": "phase2_hardening_evidence",
+      "stage": "phase-2 hardening",
+      "command": "bash scripts/verify_celviz_gpgpu_phase2.sh --run-focused",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_phase2.sh",
+        "tools/celviz_gpgpu_ip/phase2_integration.py",
+        "tools/celviz_gpgpu_ip/simt_execution_model.py",
+        "tools/celviz_gpgpu_ip/opencl_subset.py",
+        "tools/celviz_gpgpu_ip/memory_model.py",
+        "tools/celviz_gpgpu_ip/linux_runtime_proxy.py",
+        "tools/celviz_gpgpu_ip/verify_linux_runtime_proxy.py",
+        "tools/celviz_gpgpu_ip/ppa_proxy.py",
+        "scripts/tools/artifacts/celviz_gpgpu_verilator_supplemental_phase1.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase2_integration_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/simt_execution.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/phase1_supplemental_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json"
+      ],
+      "pass_condition": "Phase-2 hardening passes when the focused gate exits 0 and phase2_integration_report.json reports schema celviz.gpgpu.phase2_integration.v1, status pass, and all six clean-room checks passing: SIMT compute core path, OpenCL subset runtime ABI, memory system phase1, Linux userspace runtime proxy, supplemental Verilator phase1, and PPA proxy phase1. This does not claim Vivante compatibility, official OpenCL conformance, completed Linux kernel driver, RTL structural coverage closure, physical synthesis/timing/power signoff, or silicon readiness."
+    },
+    {
+      "id": "phase3_cross_layer_evidence",
+      "stage": "phase-3 cross-layer",
+      "command": "bash scripts/verify_celviz_gpgpu_phase3.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_phase3.sh",
+        "tools/celviz_gpgpu_ip/phase3_cross_layer.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase3_cross_layer_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/simt_execution.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase2_integration_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/phase1_supplemental_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json"
+      ],
+      "pass_condition": "Phase-3 cross-layer evidence passes only when phase3_cross_layer_report.json reports schema celviz.gpgpu.phase3_cross_layer.v1, status pass, and all six cross-layer checks passing: OpenCL-like kernel names align with runtime dispatches and SIMT workloads; kernel ABI metadata maps to runtime commands; SIMT LSU activity aligns with memory load/store/DMA evidence; runtime command completion aligns with Linux userspace submit/fence/event evidence; supplemental verification targets cover the cross-layer paths; and PPA proxy evidence links to the same clean-room scope. This is not Vivante compatibility, official OpenCL conformance, production Linux driver evidence, RTL structural coverage closure, or synthesis/signoff evidence."
+    },
+    {
+      "id": "phase4_kernel_lowering_evidence",
+      "stage": "phase-4 kernel lowering",
+      "command": "bash scripts/verify_celviz_gpgpu_phase4.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_kernel_lowering.sh",
+        "scripts/verify_celviz_gpgpu_phase4.sh",
+        "tools/celviz_gpgpu_ip/kernel_lowering.py",
+        "tools/celviz_gpgpu_ip/phase4_lowering_integration.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernel_lowering_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernels/vector_add.lowering.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernels/gemm.lowering.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernels/conv2d.lowering.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernels/image_filter.lowering.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase4_lowering_integration_report.json"
+      ],
+      "pass_condition": "Phase-4 kernel lowering passes when kernel_lowering_report.json reports schema celviz.gpgpu.kernel_lowering.v1, status pass, all OpenCL-like subset kernels lowered, required micro-ops present, loop/vector/control metadata present, and phase4_lowering_integration_report.json reports schema celviz.gpgpu.phase4_lowering_integration.v1 with all integration checks passing against runtime dispatches, SIMT workloads, memory evidence, and phase-3 dependency evidence. This is not a production compiler backend, ISA compatibility, SPIR-V/LLVM flow, Vivante command-stream compatibility, or timing/PPA signoff claim."
+    },
+    {
+      "id": "phase5_microop_execution_evidence",
+      "stage": "phase-5 executable micro-op",
+      "command": "bash scripts/verify_celviz_gpgpu_phase5.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_microop_execution.sh",
+        "scripts/verify_celviz_gpgpu_phase5.sh",
+        "tools/celviz_gpgpu_ip/microop_interpreter.py",
+        "tools/celviz_gpgpu_ip/phase5_microop_integration.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/microop_execution_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/kernels/vector_add.microop_execution.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/kernels/gemm.microop_execution.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/kernels/conv2d.microop_execution.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/kernels/image_filter.microop_execution.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase5_microop_integration_report.json"
+      ],
+      "pass_condition": "Phase-5 executable micro-op evidence passes when microop_execution_report.json reports schema celviz.gpgpu.microop_interpreter.v1, status pass, all four lowered kernels execute, every declared micro-op PC is visited, global load/store and completion paths are observed, generated memory traces are non-empty, oracle result hashes match the existing clean-room compute model, and phase5_microop_integration_report.json reports schema celviz.gpgpu.phase5_microop_integration.v1 with all integration checks passing against phase-4 lowering, runtime dispatches, SIMT workloads, and memory model evidence. This is not a production ISA simulator, compiler backend, SPIR-V/LLVM flow, Vivante ISA or command-stream compatibility, official OpenCL conformance, timing/PPA signoff, or silicon readiness claim."
+    },
+    {
+      "id": "phase6_basic_gpgpu_ip_parity_evidence",
+      "stage": "phase-6 basic GPGPU IP parity",
+      "command": "bash scripts/verify_celviz_gpgpu_phase6.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_phase6.sh",
+        "scripts/verify_celviz_gpgpu_compiler_ir.sh",
+        "scripts/verify_celviz_gpgpu_phase6_memory.sh",
+        "scripts/verify_celviz_gpgpu_driver_submission.sh",
+        "scripts/verify_celviz_gpgpu_synthesis_readiness.sh",
+        "scripts/verify_celviz_eda_methodology.sh",
+        "tools/celviz_gpgpu_ip/compiler_ir.py",
+        "tools/celviz_gpgpu_ip/phase6_memory_trace_integration.py",
+        "tools/celviz_gpgpu_ip/driver_submission_model.py",
+        "tools/celviz_gpgpu_ip/synthesis_readiness.py",
+        "tools/celviz_eda_methodology/verify_methodology_manifest.py",
+        "docs/celviz-methodology/GPGPU_IP_EDA_METHOD.md",
+        "docs/celviz-methodology/methodology_manifest.json",
+        "docs/celviz-gpgpu-ip/GPGPU_IP_PARITY_STATUS.md",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/compiler_ir_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase6_memory_trace_integration_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json",
+        "artifacts/celviz-methodology/methodology_verification_report.json",
+        "scripts/verify_celviz_gpgpu_yosys_synthesis_probe.sh",
+        "tools/celviz_gpgpu_ip/yosys_synthesis_probe.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/yosys_synthesis_probe_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v"
+      ],
+      "pass_condition": "Phase-6 basic GPGPU IP parity evidence passes when compiler IR, micro-op memory trace integration, driver submission lifecycle, synthesis readiness, and reusable Celviz EDA methodology gates all report status pass. The gate strengthens the Ventus-based clean-room proxy with virtual-register/control-flow evidence, per-kernel memory trace evidence, queue/fence/event lifecycle evidence, synthesis-readiness proxy evidence, reusable methodology assets, and bounded Yosys synthesis probe evidence that records either pass statistics or generated-Verilog blockers. This remains a clean-room proxy and does not claim Vivante compatibility, official OpenCL conformance, production Linux kernel driver readiness, RTL structural coverage closure, physical synthesis/timing/power signoff, or silicon readiness."
+    },
+    {
+      "id": "phase7_coalescing_performance_evidence",
+      "stage": "phase-7 coalescing performance",
+      "command": "bash scripts/verify_celviz_gpgpu_phase7_coalescing.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_phase7_coalescing.sh",
+        "tools/celviz_gpgpu_ip/phase7_coalescing_score.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_coalescing_score_report.json",
+        "docs/celviz-gpgpu-ip/RISCV_GPU_PERFORMANCE_RESEARCH.md"
+      ],
+      "pass_condition": "Phase-7 coalescing performance evidence passes when phase7_coalescing_score_report.json reports schema celviz.gpgpu.phase7_coalescing_score.v1, status pass, all four kernels scored, transaction reduction is positive for every kernel, aggregate coalescing efficiency is recorded, and the clean-room scope states this is not a proprietary cache/LSU/bus/timing/bandwidth/silicon performance claim."
+    },
+    {
+      "id": "phase7_control_flow_manager_performance_evidence",
+      "stage": "phase-7 control-flow manager performance",
+      "command": "bash scripts/verify_celviz_gpgpu_phase7_control_flow_manager.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_phase7_control_flow_manager.sh",
+        "tools/celviz_gpgpu_ip/phase7_control_flow_manager.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_control_flow_manager_report.json",
+        "docs/celviz-gpgpu-ip/RISCV_GPU_PERFORMANCE_RESEARCH.md"
+      ],
+      "pass_condition": "Phase-7 control-flow manager evidence passes when phase7_control_flow_manager_report.json reports schema celviz.gpgpu.phase7_control_flow_manager.v1, status pass, predicate/CFG evidence is present for all kernels, active-mask and reconvergence evidence are present, dynamic control-uop reduction is positive for gemm and conv2d, control-flow vocabulary is recorded, and the clean-room scope states this is not a proprietary branch-stack/compiler/timing/silicon signoff claim."
+    },
+    {
+      "id": "phase7_memory_streaming_performance_evidence",
+      "stage": "phase-7 memory streaming performance",
+      "command": "bash scripts/verify_celviz_gpgpu_phase7_memory_streaming.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_phase7_memory_streaming.sh",
+        "tools/celviz_gpgpu_ip/phase7_memory_streaming.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_memory_streaming_report.json",
+        "docs/celviz-gpgpu-ip/RISCV_GPU_PERFORMANCE_RESEARCH.md"
+      ],
+      "pass_condition": "Phase-7 memory streaming performance evidence passes when phase7_memory_streaming_report.json reports schema celviz.gpgpu.phase7_memory_streaming.v1, status pass, all four kernels have stream windows and outstanding stream slots, ALU overlap is positive, projected scoreboard wait reduction is positive, stream micro-op vocabulary is recorded, and the clean-room scope states this is not a proprietary LSU/cache/bus/timing/bandwidth/silicon performance claim."
+    },
+    {
+      "id": "phase7_config_sweep_performance_evidence",
+      "stage": "phase-7 config sweep performance",
+      "command": "bash scripts/verify_celviz_gpgpu_phase7_config_sweep.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_phase7_config_sweep.sh",
+        "tools/celviz_gpgpu_ip/phase7_config_sweep.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_config_sweep_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_coalescing_score_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_control_flow_manager_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_memory_streaming_report.json",
+        "docs/celviz-gpgpu-ip/RISCV_GPU_PERFORMANCE_RESEARCH.md"
+      ],
+      "pass_condition": "Phase-7 config sweep evidence passes when phase7_config_sweep_report.json reports schema celviz.gpgpu.phase7_config_sweep.v1, status pass, at least five configurations are swept across issue width, ALU/FPU/LSU lanes, warp count, and register-file banks, best_config_by_kernel is present, area_normalized_perf_proxy is positive, and the clean-room scope states this is not RTL synthesis, physical PPA, timing closure, vendor performance, or silicon signoff."
+    },
+    {
+      "id": "phase7_register_occupancy_performance_evidence",
+      "stage": "phase-7 register occupancy performance",
+      "command": "bash scripts/verify_celviz_gpgpu_phase7_register_occupancy.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_phase7_register_occupancy.sh",
+        "tools/celviz_gpgpu_ip/phase7_register_occupancy.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_register_occupancy_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_config_sweep_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/compiler_ir_report.json",
+        "docs/celviz-gpgpu-ip/RISCV_GPU_PERFORMANCE_RESEARCH.md"
+      ],
+      "pass_condition": "Phase-7 register occupancy evidence passes when phase7_register_occupancy_report.json reports schema celviz.gpgpu.phase7_register_occupancy.v1, status pass, peak_vregs and peak_sregs are present for all kernels, occupancy_limit_reason and active_wavefronts_proxy are present, bank_conflict_proxy is positive, config-sweep register-bank links are present, and the clean-room scope states this is not a physical register-file implementation, timing closure, place-and-route, or silicon signoff."
+    },
+    {
+      "id": "phase7_warp_collectives_performance_evidence",
+      "stage": "phase-7 warp collectives performance",
+      "command": "bash scripts/verify_celviz_gpgpu_phase7_warp_collectives.sh",
+      "required": true,
+      "evidence": [
+        "scripts/verify_celviz_gpgpu_phase7_warp_collectives.sh",
+        "tools/celviz_gpgpu_ip/phase7_warp_collectives.py",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_warp_collectives_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/simt_execution.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_control_flow_manager_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_register_occupancy_report.json",
+        "docs/celviz-gpgpu-ip/RISCV_GPU_PERFORMANCE_RESEARCH.md"
+      ],
+      "pass_condition": "Phase-7 warp collectives evidence passes when phase7_warp_collectives_report.json reports schema celviz.gpgpu.phase7_warp_collectives.v1, status pass, software_sequence_vs_hardware_projection reports positive aggregate reduction, collective vocabulary includes ballot/vote/shuffle/reduce/subgroup sync, active-mask or sync evidence is present for all kernels, GEMM/conv/image kernels have shuffle or reduce needs, register-bank effect is projected, and the clean-room scope states this is not CUDA/OpenCL subgroup conformance, vendor ISA, physical implementation, or silicon signoff."
+    },
+    {
+      "id": "git_diff_check",
+      "stage": "repository hygiene",
+      "command": "git diff --check",
+      "required": true,
+      "evidence": [
+        "working tree diff"
+      ],
+      "pass_condition": "Git reports no whitespace or conflict-marker issues in the current diff."
+    },
+    {
+      "id": "e7_one_key_acceptance_log",
+      "stage": "one-key acceptance",
+      "command": "python3 -c 'from pathlib import Path; text=Path(\"artifacts/rank_01_vivante_3d_gpgpu_ip/verification/e7_one_key_acceptance.log\").read_text(); required=[\"[PASS] acceptance_matrix_json\",\"[PASS] source_check\",\"[PASS] python_py_compile\",\"[PASS] chisel_make_compile\",\"[PASS] native_runtime_build\",\"[PASS] native_runtime_require_runtime\",\"[PASS] artifact_verification\",\"[PASS] git_diff_check\",\"PASS=24 FAIL=0 SKIP=0\",\"OVERALL: PASS\"]; missing=[item for item in required if item not in text]; raise SystemExit(\"missing E7 acceptance markers: \"+str(missing) if missing else 0)'",
+      "required": true,
+      "evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/e7_one_key_acceptance.log"
+      ],
+      "pass_condition": "Persisted E7 one-key acceptance transcript contains all required green gates and PASS=24 FAIL=0 SKIP=0 / OVERALL: PASS."
+    }
+  ],
+  "e7_one_key_acceptance": {
+    "scope": "E7 authoritative one-key acceptance evidence for the active Rank 1 Ventus/Celviz GPGPU proxy package.",
+    "status": "pass",
+    "command": "./scripts/accept_celviz_gpgpu_ip.sh",
+    "evidence": [
+      "scripts/accept_celviz_gpgpu_ip.sh",
+      "scripts/check_celviz_gpgpu_sources.sh",
+      "scripts/verify_celviz_gpgpu_ip.sh",
+      "scripts/build_celviz_gpgpu_runtime.sh",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/e7_one_key_acceptance.log"
+    ],
+    "required_green_gates": [
+      "acceptance_matrix_json",
+      "source_check",
+      "chisel_make_compile",
+      "python_py_compile",
+      "artifact_verification",
+      "native_runtime_build",
+      "native_runtime_require_runtime",
+      "git_diff_check"
+    ],
+    "latest_result_summary": {
+      "pass_count": 24,
+      "fail_count": 0,
+      "skip_count": 0,
+      "overall": "PASS",
+      "acceptance_matrix_json": true,
+      "source_hook_checker": true,
+      "python_compile": true,
+      "chisel_compile": true,
+      "native_runtime_build": true,
+      "native_runtime_execution": true,
+      "artifact_verification": true,
+      "git_diff_check": true
+    },
+    "non_goals": [
+      "Passing E7 does not claim licensed vendor collateral access.",
+      "Passing E7 does not claim proprietary Vivante compatibility, official API conformance, RTL timing closure, production PPA, certification, or silicon signoff."
+    ],
+    "pass_condition": "E7 passes when ./scripts/accept_celviz_gpgpu_ip.sh exits 0 and the persisted transcript shows PASS=24 FAIL=0 SKIP=0 with acceptance matrix, source hook checker, Python compile, Chisel compile, native runtime build, native runtime execution, artifact verification, and git diff --check all green."
+  },
+  "phase6_basic_gpgpu_ip_parity": {
+    "scope": "compiler IR, memory trace, driver submission, synthesis readiness, and reusable Celviz EDA methodology evidence",
+    "status": "pass_proxy",
+    "covered_by_gates": [
+      "phase6_basic_gpgpu_ip_parity_evidence"
+    ],
+    "evidence": [
+      "scripts/verify_celviz_gpgpu_phase6.sh",
+      "scripts/verify_celviz_gpgpu_compiler_ir.sh",
+      "scripts/verify_celviz_gpgpu_phase6_memory.sh",
+      "scripts/verify_celviz_gpgpu_driver_submission.sh",
+      "scripts/verify_celviz_gpgpu_synthesis_readiness.sh",
+      "scripts/verify_celviz_eda_methodology.sh",
+      "tools/celviz_gpgpu_ip/compiler_ir.py",
+      "tools/celviz_gpgpu_ip/phase6_memory_trace_integration.py",
+      "tools/celviz_gpgpu_ip/driver_submission_model.py",
+      "tools/celviz_gpgpu_ip/synthesis_readiness.py",
+      "tools/celviz_eda_methodology/verify_methodology_manifest.py",
+      "docs/celviz-methodology/GPGPU_IP_EDA_METHOD.md",
+      "docs/celviz-methodology/methodology_manifest.json",
+      "docs/celviz-gpgpu-ip/GPGPU_IP_PARITY_STATUS.md",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/compiler_ir/compiler_ir_report.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase6_memory_trace_integration_report.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json",
+      "artifacts/celviz-methodology/methodology_verification_report.json",
+      "scripts/verify_celviz_gpgpu_yosys_synthesis_probe.sh",
+      "tools/celviz_gpgpu_ip/yosys_synthesis_probe.py",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/yosys_synthesis_probe_report.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v"
+    ],
+    "required_observations": [
+      "compiler_ir_report status pass with virtual registers, predicate registers, CFG edges, and def-use evidence",
+      "phase6_memory_trace_integration_report status pass with per-kernel load/store traces linked to memory model operations",
+      "driver_submission_report status pass with queue/fence/event lifecycle and error path evidence",
+      "synthesis_readiness_report status pass with tool availability and proxy PPA boundaries",
+      "methodology_verification_report status pass for reusable Celviz EDA methodology assets",
+      "yosys_synthesis_probe_report status pass with Yosys availability, raw probe, sanitized probe, and blocker/stat evidence recorded"
+    ],
+    "non_goals": [
+      "proprietary Vivante compatibility",
+      "official OpenCL conformance",
+      "production Linux kernel driver or DRM compatibility",
+      "RTL structural coverage closure",
+      "logic synthesis, timing, power, DFT, physical, or silicon signoff"
+    ]
+  },
+  "phase7_performance_research": {
+    "scope": "RISC-V GPU performance research, coalescing-score gate, and decoupled memory-streaming projection gate",
+    "status": "pass_proxy",
+    "covered_by_gates": [
+      "phase7_coalescing_performance_evidence",
+      "phase7_control_flow_manager_performance_evidence",
+      "phase7_memory_streaming_performance_evidence",
+      "phase7_config_sweep_performance_evidence",
+      "phase7_register_occupancy_performance_evidence",
+      "phase7_warp_collectives_performance_evidence"
+    ],
+    "evidence": [
+      "scripts/verify_celviz_gpgpu_phase7_coalescing.sh",
+      "scripts/verify_celviz_gpgpu_phase7_config_sweep.sh",
+      "scripts/verify_celviz_gpgpu_phase7_control_flow_manager.sh",
+      "scripts/verify_celviz_gpgpu_phase7_memory_streaming.sh",
+      "scripts/verify_celviz_gpgpu_phase7_register_occupancy.sh",
+      "scripts/verify_celviz_gpgpu_phase7_warp_collectives.sh",
+      "tools/celviz_gpgpu_ip/phase7_coalescing_score.py",
+      "tools/celviz_gpgpu_ip/phase7_config_sweep.py",
+      "tools/celviz_gpgpu_ip/phase7_control_flow_manager.py",
+      "tools/celviz_gpgpu_ip/phase7_memory_streaming.py",
+      "tools/celviz_gpgpu_ip/phase7_register_occupancy.py",
+      "tools/celviz_gpgpu_ip/phase7_warp_collectives.py",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_coalescing_score_report.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_config_sweep_report.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_control_flow_manager_report.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_memory_streaming_report.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_register_occupancy_report.json",
+      "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_warp_collectives_report.json",
+      "docs/celviz-gpgpu-ip/RISCV_GPU_PERFORMANCE_RESEARCH.md"
+    ],
+    "required_observations": [
+      "RISC-V GPU performance research doc maps Vortex/Ventus/open RISC-V GPGPU ideas to local Celviz implementation backlog",
+      "phase7_coalescing_score_report status pass",
+      "per-kernel naive and coalesced transaction counts are present",
+      "aggregate coalescing efficiency and transaction reduction are positive",
+      "phase7_control_flow_manager_report status pass",
+      "control-flow vocabulary, active-mask evidence, reconvergence evidence, and loop-kernel dynamic uop reduction are present",
+      "phase7_memory_streaming_report status pass",
+      "per-kernel stream windows, outstanding slots, load distance, and ALU overlap evidence are present",
+      "projected scoreboard wait reduction is positive",
+      "phase7_config_sweep_report status pass",
+      "best_config_by_kernel and area_normalized_perf_proxy evidence are present",
+      "phase7_register_occupancy_report status pass",
+      "peak register pressure, occupancy limit reason, active wavefront proxy, and bank conflict proxy evidence are present",
+      "phase7_warp_collectives_report status pass",
+      "software-emulated versus hardware-projected collective sequence evidence is present"
+    ],
+    "non_goals": [
+      "proprietary RISC-V GPU ISA copy",
+      "official OpenCL conformance",
+      "silicon bandwidth claim",
+      "timing or power signoff"
+    ]
+  }
+}

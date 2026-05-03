@@ -1,0 +1,507 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "pc_sequence_head": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "uop_count": 15
+      },
+      "name": "pc_sequence_is_dense",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "declared": 15,
+        "executed": 15
+      },
+      "name": "all_uops_executed",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "opcodes": [
+          "uop_address_calc",
+          "uop_alu_mul_clamp",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_vector_pack",
+          "uop_vector_unpack",
+          "uop_write_completion"
+        ],
+        "unknown": []
+      },
+      "name": "known_opcode_subset",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "load": 484,
+        "store": 64
+      },
+      "name": "global_load_store_trace_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "completion_written": true
+      },
+      "name": "completion_written",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "expected": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+        "observed": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+        "oracle_workload": "image_filter"
+      },
+      "name": "oracle_hash_match",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "opcode_counts": {
+          "uop_address_calc": 2,
+          "uop_alu_mul_clamp": 1,
+          "uop_global_load": 2,
+          "uop_global_store": 1,
+          "uop_kernel_prologue": 1,
+          "uop_predicate_bounds": 1,
+          "uop_read_scalar_arg": 3,
+          "uop_read_workitem_id": 1,
+          "uop_vector_pack": 1,
+          "uop_vector_unpack": 1,
+          "uop_write_completion": 1
+        }
+      },
+      "name": "vector_pack_unpack_executed",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-5 executable micro-op evidence for the Ventus-based Celviz GPGPU IP proxy only; not a production ISA simulator, not a compiler backend, not SPIR-V/LLVM, not Vivante ISA or command-stream compatibility, not official OpenCL conformance, and not timing/PPA signoff",
+  "execution": {
+    "address_args": [
+      "src",
+      "dst"
+    ],
+    "alu_ops": {
+      "uop_alu_mul_clamp": 1
+    },
+    "barrier_count": 0,
+    "completion_written": true,
+    "loop_trips": {},
+    "memory_counts": {
+      "load": 484,
+      "store": 64
+    },
+    "memory_event_count": 548,
+    "memory_trace_head": [
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 0,
+        "bytes_per_element": 1,
+        "index": 0,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 1,
+        "bytes_per_element": 1,
+        "index": 1,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 8,
+        "bytes_per_element": 1,
+        "index": 8,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 9,
+        "bytes_per_element": 1,
+        "index": 9,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "dst",
+        "byte_offset": 0,
+        "bytes_per_element": 1,
+        "index": 0,
+        "kind": "store",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 0,
+        "bytes_per_element": 1,
+        "index": 0,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 1,
+        "bytes_per_element": 1,
+        "index": 1,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 2,
+        "bytes_per_element": 1,
+        "index": 2,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 8,
+        "bytes_per_element": 1,
+        "index": 8,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 9,
+        "bytes_per_element": 1,
+        "index": 9,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 10,
+        "bytes_per_element": 1,
+        "index": 10,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "dst",
+        "byte_offset": 1,
+        "bytes_per_element": 1,
+        "index": 1,
+        "kind": "store",
+        "lanes": 1
+      }
+    ],
+    "memory_trace_tail": [
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 53,
+        "bytes_per_element": 1,
+        "index": 53,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 54,
+        "bytes_per_element": 1,
+        "index": 54,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 55,
+        "bytes_per_element": 1,
+        "index": 55,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 61,
+        "bytes_per_element": 1,
+        "index": 61,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 62,
+        "bytes_per_element": 1,
+        "index": 62,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 63,
+        "bytes_per_element": 1,
+        "index": 63,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "dst",
+        "byte_offset": 62,
+        "bytes_per_element": 1,
+        "index": 62,
+        "kind": "store",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 54,
+        "bytes_per_element": 1,
+        "index": 54,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 55,
+        "bytes_per_element": 1,
+        "index": 55,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 62,
+        "bytes_per_element": 1,
+        "index": 62,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "src",
+        "byte_offset": 63,
+        "bytes_per_element": 1,
+        "index": 63,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "dst",
+        "byte_offset": 63,
+        "bytes_per_element": 1,
+        "index": 63,
+        "kind": "store",
+        "lanes": 1
+      }
+    ],
+    "opcode_counts": {
+      "uop_address_calc": 2,
+      "uop_alu_mul_clamp": 1,
+      "uop_global_load": 2,
+      "uop_global_store": 1,
+      "uop_kernel_prologue": 1,
+      "uop_predicate_bounds": 1,
+      "uop_read_scalar_arg": 3,
+      "uop_read_workitem_id": 1,
+      "uop_vector_pack": 1,
+      "uop_vector_unpack": 1,
+      "uop_write_completion": 1
+    },
+    "pc_count": 15,
+    "pc_trace_head": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "pc_trace_tail": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "runtime_sequence": 4,
+    "scalar_reads": [
+      "width",
+      "height",
+      "gain"
+    ],
+    "wavefront_size": 32,
+    "work_items": 32768
+  },
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "kernel": "image_filter",
+  "oracle_workload": "image_filter",
+  "result": {
+    "elements": 64,
+    "filter": "3x3_box_u8_edge_truncated",
+    "input_shape": {
+      "channels": 1,
+      "height": 8,
+      "width": 8
+    },
+    "json_result_sha256": "45db9277e3ad2faed1c6af27d89071e6e6227417c54db792b9bbfb7769a2f0f0",
+    "output_shape": {
+      "channels": 1,
+      "height": 8,
+      "width": 8
+    },
+    "result": [
+      [
+        23,
+        39,
+        69,
+        100,
+        130,
+        161,
+        191,
+        206
+      ],
+      [
+        33,
+        49,
+        81,
+        113,
+        145,
+        177,
+        180,
+        182
+      ],
+      [
+        51,
+        69,
+        104,
+        139,
+        174,
+        180,
+        158,
+        133
+      ],
+      [
+        70,
+        89,
+        127,
+        165,
+        174,
+        155,
+        108,
+        84
+      ],
+      [
+        88,
+        109,
+        150,
+        162,
+        146,
+        102,
+        86,
+        78
+      ],
+      [
+        107,
+        129,
+        173,
+        160,
+        118,
+        77,
+        93,
+        115
+      ],
+      [
+        125,
+        149,
+        167,
+        129,
+        90,
+        81,
+        128,
+        151
+      ],
+      [
+        134,
+        159,
+        164,
+        128,
+        91,
+        97,
+        145,
+        169
+      ]
+    ],
+    "result_head": [
+      23,
+      39,
+      69,
+      100,
+      130,
+      161,
+      191,
+      206
+    ],
+    "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+    "result_sum": 7859,
+    "workload": "image_filter"
+  },
+  "schema": "celviz.gpgpu.microop_interpreter.kernel.v1",
+  "sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+  "source_lowering_sha256": "6da6af4209636f9617a5ab4d6cfb5ca6f095da61615edfcb7be70d19b3db82d6",
+  "status": "pass"
+}

@@ -1,0 +1,133 @@
+{
+  "artifacts": {
+    "lowering": "artifacts/rank_01_vivante_3d_gpgpu_ip/lowering/kernel_lowering_report.json",
+    "memory": "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+    "microop_execution": "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/microop_execution_report.json",
+    "phase4": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase4_lowering_integration_report.json",
+    "runtime": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json",
+    "simt": "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/simt_execution.json"
+  },
+  "checks": [
+    {
+      "evidence": {
+        "schema": "celviz.gpgpu.microop_interpreter.v1",
+        "status": "pass"
+      },
+      "name": "microop_execution_report_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "phase4_status": "pass"
+      },
+      "name": "phase4_dependency_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "executed": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "lowered": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "runtime": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "name": "executed_kernel_set_matches_lowering_and_runtime",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "oracle_workloads": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ],
+        "simt_workloads": [
+          "convolution_proxy",
+          "gemm_proxy",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "name": "oracle_workloads_match_simt_workloads",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "memory_model_ops": {
+          "copy": 3,
+          "fill": 1,
+          "load": 20,
+          "store": 11
+        },
+        "microop_memory_events": 1379
+      },
+      "name": "microop_memory_trace_links_memory_model",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "uop_categories_executed": [
+          "uop_address_calc",
+          "uop_alu_add",
+          "uop_alu_mad",
+          "uop_alu_mul_clamp",
+          "uop_barrier",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_loop_begin",
+          "uop_loop_end",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_vector_pack",
+          "uop_vector_unpack",
+          "uop_write_completion"
+        ]
+      },
+      "name": "control_data_memory_uops_executed",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-5 executable micro-op integration evidence; not a production ISA simulator, not a compiler backend, not SPIR-V/LLVM, not Vivante ISA or command-stream compatibility, not official OpenCL conformance, and not timing/PPA signoff",
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "microop_summary": {
+    "kernel_count": 4,
+    "total_memory_events": 1379,
+    "total_uops_executed": 63,
+    "uop_categories_executed": [
+      "uop_address_calc",
+      "uop_alu_add",
+      "uop_alu_mad",
+      "uop_alu_mul_clamp",
+      "uop_barrier",
+      "uop_global_load",
+      "uop_global_store",
+      "uop_kernel_prologue",
+      "uop_loop_begin",
+      "uop_loop_end",
+      "uop_predicate_bounds",
+      "uop_read_scalar_arg",
+      "uop_read_workitem_id",
+      "uop_vector_pack",
+      "uop_vector_unpack",
+      "uop_write_completion"
+    ]
+  },
+  "schema": "celviz.gpgpu.phase5_microop_integration.v1",
+  "status": "pass"
+}

@@ -1,0 +1,512 @@
+{
+  "checks": [
+    {
+      "name": "input_phase7_reports_pass",
+      "pass": true
+    },
+    {
+      "name": "synthesis_readiness_available",
+      "pass": true
+    },
+    {
+      "name": "sweep_config_depth",
+      "pass": true
+    },
+    {
+      "name": "all_kernels_swept",
+      "pass": true
+    },
+    {
+      "name": "best_config_by_kernel_present",
+      "pass": true
+    },
+    {
+      "name": "area_normalized_perf_proxy_positive",
+      "pass": true
+    },
+    {
+      "name": "global_best_config_present",
+      "pass": true
+    },
+    {
+      "name": "claim_boundary_declared",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-7 configuration sweep evidence derived from Celviz SIMT/compiler/micro-op and Phase 7 proxy reports only; not RTL synthesis, not physical PPA, not timing closure, not a vendor performance claim, and not silicon signoff",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "schema": "celviz.gpgpu.phase7_config_sweep.v1",
+  "status": "pass",
+  "summary": {
+    "area_proxy_range": {
+      "max": 646.4,
+      "min": 181.3
+    },
+    "best_config_by_kernel": {
+      "conv2d": {
+        "area_normalized_perf_proxy": 0.006631447,
+        "bottleneck_proxy": "scoreboard",
+        "config_id": "wide_issue_32",
+        "projected_cycles_proxy": 161,
+        "throughput_proxy": 3.565217
+      },
+      "gemm": {
+        "area_normalized_perf_proxy": 0.005928878,
+        "bottleneck_proxy": "scoreboard",
+        "config_id": "wide_issue_32",
+        "projected_cycles_proxy": 96,
+        "throughput_proxy": 3.1875
+      },
+      "image_filter": {
+        "area_normalized_perf_proxy": 0.003704489,
+        "bottleneck_proxy": "scoreboard",
+        "config_id": "balanced_16",
+        "projected_cycles_proxy": 617,
+        "throughput_proxy": 1.069692
+      },
+      "vector_add": {
+        "area_normalized_perf_proxy": 0.003343716,
+        "bottleneck_proxy": "scoreboard",
+        "config_id": "balanced_16",
+        "projected_cycles_proxy": 58,
+        "throughput_proxy": 0.965517
+      }
+    },
+    "config_count": 6,
+    "frequency_proxy_range": {
+      "max": 0.883542,
+      "min": 0.55
+    },
+    "global_best_config": "wide_issue_32",
+    "global_best_mean_area_normalized_perf_proxy": 0.004604695,
+    "kernel_count": 4
+  },
+  "sweep_configs": [
+    {
+      "alu_lanes": 8,
+      "area_proxy_units": 181.3,
+      "config_id": "tiny_balanced",
+      "fpu_lanes": 8,
+      "frequency_proxy_index": 0.883542,
+      "issue_width": 1,
+      "kernel_estimates": [
+        {
+          "area_normalized_perf_proxy": 0.003328156,
+          "area_proxy_units": 181.3,
+          "bottleneck_proxy": "compute",
+          "compute_cycles_proxy": 32,
+          "config_id": "tiny_balanced",
+          "control_cycles_proxy": 2,
+          "frequency_proxy_index": 0.883542,
+          "kernel": "vector_add",
+          "memory_cycles_proxy": 11,
+          "projected_cycles_proxy": 82,
+          "scoreboard_cycles_proxy": 30,
+          "throughput_proxy": 0.682927
+        },
+        {
+          "area_normalized_perf_proxy": 0.004373172,
+          "area_proxy_units": 181.3,
+          "bottleneck_proxy": "compute",
+          "compute_cycles_proxy": 240,
+          "config_id": "tiny_balanced",
+          "control_cycles_proxy": 6,
+          "frequency_proxy_index": 0.883542,
+          "kernel": "gemm",
+          "memory_cycles_proxy": 33,
+          "projected_cycles_proxy": 341,
+          "scoreboard_cycles_proxy": 77,
+          "throughput_proxy": 0.897361
+        },
+        {
+          "area_normalized_perf_proxy": 0.004533735,
+          "area_proxy_units": 181.3,
+          "bottleneck_proxy": "compute",
+          "compute_cycles_proxy": 450,
+          "config_id": "tiny_balanced",
+          "control_cycles_proxy": 6,
+          "frequency_proxy_index": 0.883542,
+          "kernel": "conv2d",
+          "memory_cycles_proxy": 32,
+          "projected_cycles_proxy": 617,
+          "scoreboard_cycles_proxy": 143,
+          "throughput_proxy": 0.930308
+        },
+        {
+          "area_normalized_perf_proxy": 0.003197243,
+          "area_proxy_units": 181.3,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 484,
+          "config_id": "tiny_balanced",
+          "control_cycles_proxy": 2,
+          "frequency_proxy_index": 0.883542,
+          "kernel": "image_filter",
+          "memory_cycles_proxy": 16,
+          "projected_cycles_proxy": 1006,
+          "scoreboard_cycles_proxy": 502,
+          "throughput_proxy": 0.656064
+        }
+      ],
+      "lsu_lanes": 1,
+      "mean_area_normalized_perf_proxy": 0.003858076,
+      "mean_throughput_proxy": 0.791665,
+      "register_file_banks": 4,
+      "warp_count": 4
+    },
+    {
+      "alu_lanes": 16,
+      "area_proxy_units": 244.6,
+      "config_id": "balanced_16",
+      "fpu_lanes": 16,
+      "frequency_proxy_index": 0.847083,
+      "issue_width": 1,
+      "kernel_estimates": [
+        {
+          "area_normalized_perf_proxy": 0.003343716,
+          "area_proxy_units": 244.6,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 16,
+          "config_id": "balanced_16",
+          "control_cycles_proxy": 2,
+          "frequency_proxy_index": 0.847083,
+          "kernel": "vector_add",
+          "memory_cycles_proxy": 5,
+          "projected_cycles_proxy": 58,
+          "scoreboard_cycles_proxy": 22,
+          "throughput_proxy": 0.965517
+        },
+        {
+          "area_normalized_perf_proxy": 0.005325222,
+          "area_proxy_units": 244.6,
+          "bottleneck_proxy": "compute",
+          "compute_cycles_proxy": 120,
+          "config_id": "balanced_16",
+          "control_cycles_proxy": 6,
+          "frequency_proxy_index": 0.847083,
+          "kernel": "gemm",
+          "memory_cycles_proxy": 16,
+          "projected_cycles_proxy": 199,
+          "scoreboard_cycles_proxy": 55,
+          "throughput_proxy": 1.537688
+        },
+        {
+          "area_normalized_perf_proxy": 0.005663363,
+          "area_proxy_units": 244.6,
+          "bottleneck_proxy": "compute",
+          "compute_cycles_proxy": 225,
+          "config_id": "balanced_16",
+          "control_cycles_proxy": 6,
+          "frequency_proxy_index": 0.847083,
+          "kernel": "conv2d",
+          "memory_cycles_proxy": 15,
+          "projected_cycles_proxy": 351,
+          "scoreboard_cycles_proxy": 102,
+          "throughput_proxy": 1.635328
+        },
+        {
+          "area_normalized_perf_proxy": 0.003704489,
+          "area_proxy_units": 244.6,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 242,
+          "config_id": "balanced_16",
+          "control_cycles_proxy": 2,
+          "frequency_proxy_index": 0.847083,
+          "kernel": "image_filter",
+          "memory_cycles_proxy": 8,
+          "projected_cycles_proxy": 617,
+          "scoreboard_cycles_proxy": 355,
+          "throughput_proxy": 1.069692
+        }
+      ],
+      "lsu_lanes": 2,
+      "mean_area_normalized_perf_proxy": 0.004509198,
+      "mean_throughput_proxy": 1.302056,
+      "register_file_banks": 8,
+      "warp_count": 8
+    },
+    {
+      "alu_lanes": 16,
+      "area_proxy_units": 261.6,
+      "config_id": "memory_heavy_16",
+      "fpu_lanes": 16,
+      "frequency_proxy_index": 0.82625,
+      "issue_width": 1,
+      "kernel_estimates": [
+        {
+          "area_normalized_perf_proxy": 0.003049535,
+          "area_proxy_units": 261.6,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 16,
+          "config_id": "memory_heavy_16",
+          "control_cycles_proxy": 2,
+          "frequency_proxy_index": 0.82625,
+          "kernel": "vector_add",
+          "memory_cycles_proxy": 3,
+          "projected_cycles_proxy": 58,
+          "scoreboard_cycles_proxy": 22,
+          "throughput_proxy": 0.965517
+        },
+        {
+          "area_normalized_perf_proxy": 0.004856708,
+          "area_proxy_units": 261.6,
+          "bottleneck_proxy": "compute",
+          "compute_cycles_proxy": 120,
+          "config_id": "memory_heavy_16",
+          "control_cycles_proxy": 6,
+          "frequency_proxy_index": 0.82625,
+          "kernel": "gemm",
+          "memory_cycles_proxy": 8,
+          "projected_cycles_proxy": 199,
+          "scoreboard_cycles_proxy": 55,
+          "throughput_proxy": 1.537688
+        },
+        {
+          "area_normalized_perf_proxy": 0.005165098,
+          "area_proxy_units": 261.6,
+          "bottleneck_proxy": "compute",
+          "compute_cycles_proxy": 225,
+          "config_id": "memory_heavy_16",
+          "control_cycles_proxy": 6,
+          "frequency_proxy_index": 0.82625,
+          "kernel": "conv2d",
+          "memory_cycles_proxy": 8,
+          "projected_cycles_proxy": 351,
+          "scoreboard_cycles_proxy": 102,
+          "throughput_proxy": 1.635328
+        },
+        {
+          "area_normalized_perf_proxy": 0.003378567,
+          "area_proxy_units": 261.6,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 242,
+          "config_id": "memory_heavy_16",
+          "control_cycles_proxy": 2,
+          "frequency_proxy_index": 0.82625,
+          "kernel": "image_filter",
+          "memory_cycles_proxy": 4,
+          "projected_cycles_proxy": 617,
+          "scoreboard_cycles_proxy": 355,
+          "throughput_proxy": 1.069692
+        }
+      ],
+      "lsu_lanes": 4,
+      "mean_area_normalized_perf_proxy": 0.004112477,
+      "mean_throughput_proxy": 1.302056,
+      "register_file_banks": 8,
+      "warp_count": 8
+    },
+    {
+      "alu_lanes": 32,
+      "area_proxy_units": 373.2,
+      "config_id": "wide_issue_32",
+      "fpu_lanes": 32,
+      "frequency_proxy_index": 0.694167,
+      "issue_width": 2,
+      "kernel_estimates": [
+        {
+          "area_normalized_perf_proxy": 0.002540543,
+          "area_proxy_units": 373.2,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 4,
+          "config_id": "wide_issue_32",
+          "control_cycles_proxy": 1,
+          "frequency_proxy_index": 0.694167,
+          "kernel": "vector_add",
+          "memory_cycles_proxy": 3,
+          "projected_cycles_proxy": 41,
+          "scoreboard_cycles_proxy": 18,
+          "throughput_proxy": 1.365854
+        },
+        {
+          "area_normalized_perf_proxy": 0.005928878,
+          "area_proxy_units": 373.2,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 30,
+          "config_id": "wide_issue_32",
+          "control_cycles_proxy": 3,
+          "frequency_proxy_index": 0.694167,
+          "kernel": "gemm",
+          "memory_cycles_proxy": 8,
+          "projected_cycles_proxy": 96,
+          "scoreboard_cycles_proxy": 45,
+          "throughput_proxy": 3.1875
+        },
+        {
+          "area_normalized_perf_proxy": 0.006631447,
+          "area_proxy_units": 373.2,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 57,
+          "config_id": "wide_issue_32",
+          "control_cycles_proxy": 3,
+          "frequency_proxy_index": 0.694167,
+          "kernel": "conv2d",
+          "memory_cycles_proxy": 7,
+          "projected_cycles_proxy": 161,
+          "scoreboard_cycles_proxy": 83,
+          "throughput_proxy": 3.565217
+        },
+        {
+          "area_normalized_perf_proxy": 0.00331791,
+          "area_proxy_units": 373.2,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 61,
+          "config_id": "wide_issue_32",
+          "control_cycles_proxy": 1,
+          "frequency_proxy_index": 0.694167,
+          "kernel": "image_filter",
+          "memory_cycles_proxy": 4,
+          "projected_cycles_proxy": 370,
+          "scoreboard_cycles_proxy": 290,
+          "throughput_proxy": 1.783784
+        }
+      ],
+      "lsu_lanes": 4,
+      "mean_area_normalized_perf_proxy": 0.004604695,
+      "mean_throughput_proxy": 2.475589,
+      "register_file_banks": 16,
+      "warp_count": 12
+    },
+    {
+      "alu_lanes": 32,
+      "area_proxy_units": 406.2,
+      "config_id": "latency_hiding_32",
+      "fpu_lanes": 32,
+      "frequency_proxy_index": 0.673333,
+      "issue_width": 2,
+      "kernel_estimates": [
+        {
+          "area_normalized_perf_proxy": 0.002442836,
+          "area_proxy_units": 406.2,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 4,
+          "config_id": "latency_hiding_32",
+          "control_cycles_proxy": 1,
+          "frequency_proxy_index": 0.673333,
+          "kernel": "vector_add",
+          "memory_cycles_proxy": 2,
+          "projected_cycles_proxy": 38,
+          "scoreboard_cycles_proxy": 15,
+          "throughput_proxy": 1.473684
+        },
+        {
+          "area_normalized_perf_proxy": 0.005635973,
+          "area_proxy_units": 406.2,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 30,
+          "config_id": "latency_hiding_32",
+          "control_cycles_proxy": 3,
+          "frequency_proxy_index": 0.673333,
+          "kernel": "gemm",
+          "memory_cycles_proxy": 5,
+          "projected_cycles_proxy": 90,
+          "scoreboard_cycles_proxy": 39,
+          "throughput_proxy": 3.4
+        },
+        {
+          "area_normalized_perf_proxy": 0.006343233,
+          "area_proxy_units": 406.2,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 57,
+          "config_id": "latency_hiding_32",
+          "control_cycles_proxy": 3,
+          "frequency_proxy_index": 0.673333,
+          "kernel": "conv2d",
+          "memory_cycles_proxy": 5,
+          "projected_cycles_proxy": 150,
+          "scoreboard_cycles_proxy": 72,
+          "throughput_proxy": 3.826667
+        },
+        {
+          "area_normalized_perf_proxy": 0.003305263,
+          "area_proxy_units": 406.2,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 61,
+          "config_id": "latency_hiding_32",
+          "control_cycles_proxy": 1,
+          "frequency_proxy_index": 0.673333,
+          "kernel": "image_filter",
+          "memory_cycles_proxy": 3,
+          "projected_cycles_proxy": 331,
+          "scoreboard_cycles_proxy": 251,
+          "throughput_proxy": 1.993958
+        }
+      ],
+      "lsu_lanes": 6,
+      "mean_area_normalized_perf_proxy": 0.004431826,
+      "mean_throughput_proxy": 2.673577,
+      "register_file_banks": 16,
+      "warp_count": 16
+    },
+    {
+      "alu_lanes": 64,
+      "area_proxy_units": 646.4,
+      "config_id": "max_proxy_64",
+      "fpu_lanes": 64,
+      "frequency_proxy_index": 0.55,
+      "issue_width": 4,
+      "kernel_estimates": [
+        {
+          "area_normalized_perf_proxy": 0.001401427,
+          "area_proxy_units": 646.4,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 1,
+          "config_id": "max_proxy_64",
+          "control_cycles_proxy": 1,
+          "frequency_proxy_index": 0.55,
+          "kernel": "vector_add",
+          "memory_cycles_proxy": 2,
+          "projected_cycles_proxy": 34,
+          "scoreboard_cycles_proxy": 13,
+          "throughput_proxy": 1.647059
+        },
+        {
+          "area_normalized_perf_proxy": 0.004412968,
+          "area_proxy_units": 646.4,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 8,
+          "config_id": "max_proxy_64",
+          "control_cycles_proxy": 1,
+          "frequency_proxy_index": 0.55,
+          "kernel": "gemm",
+          "memory_cycles_proxy": 4,
+          "projected_cycles_proxy": 59,
+          "scoreboard_cycles_proxy": 32,
+          "throughput_proxy": 5.186441
+        },
+        {
+          "area_normalized_perf_proxy": 0.005251584,
+          "area_proxy_units": 646.4,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 15,
+          "config_id": "max_proxy_64",
+          "control_cycles_proxy": 1,
+          "frequency_proxy_index": 0.55,
+          "kernel": "conv2d",
+          "memory_cycles_proxy": 4,
+          "projected_cycles_proxy": 93,
+          "scoreboard_cycles_proxy": 59,
+          "throughput_proxy": 6.172043
+        },
+        {
+          "area_normalized_perf_proxy": 0.002339882,
+          "area_proxy_units": 646.4,
+          "bottleneck_proxy": "scoreboard",
+          "compute_cycles_proxy": 16,
+          "config_id": "max_proxy_64",
+          "control_cycles_proxy": 1,
+          "frequency_proxy_index": 0.55,
+          "kernel": "image_filter",
+          "memory_cycles_proxy": 2,
+          "projected_cycles_proxy": 240,
+          "scoreboard_cycles_proxy": 205,
+          "throughput_proxy": 2.75
+        }
+      ],
+      "lsu_lanes": 8,
+      "mean_area_normalized_perf_proxy": 0.003351465,
+      "mean_throughput_proxy": 3.938886,
+      "register_file_banks": 32,
+      "warp_count": 24
+    }
+  ]
+}

@@ -1,0 +1,1123 @@
+{
+  "clean_room_scope": "public-information-derived compute proxy; no proprietary Vivante RTL, firmware, SDK, compiler, driver, command-stream, or conformance claim",
+  "ip_name": "Celviz GPGPU IP",
+  "model": "standard-library compute golden model",
+  "orientation": "GPGPU compute workloads, not 3D graphics workloads",
+  "outputs": {
+    "directory": "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs",
+    "expected_files": [
+      "vector_add.json",
+      "gemm_proxy.json",
+      "convolution_proxy.json",
+      "image_filter.json",
+      "memory_copy.json",
+      "simt_execution.json",
+      "shader_unit_scaling.json",
+      "hashes.txt"
+    ],
+    "file_hashes": {
+      "convolution_proxy.json": "0c40d12e6eec9429297b96296bd00fbaee25520d7211512aeb74f7b6d6fb3c04",
+      "gemm_proxy.json": "2319cbf0434d7078b7444061de60da7d9cc3ccf965302a87bee8c04eac3fd177",
+      "hashes.txt": "c62d587309442f7db6df757b09d71af9c860ae50066fb136ef43a894bd46ae77",
+      "image_filter.json": "0c72ace467459695a25eced3b0724f5cc97a0449070227d6f777be5fdce5a786",
+      "memory_copy.json": "820e4b947594ecf80363210edbae6f44a1cfe3368ab5a88e45805063f315b5a6",
+      "shader_unit_scaling.json": "552aeed12fa571f1ecc8b791afa6f9d78e9311c4d52dffd5443e9e9a5552c88c",
+      "simt_execution.json": "08a9bc756805020945b5e5dc926aace2cc52eac2d4eb30408776145d0da0dee4",
+      "vector_add.json": "ddcc373f6f991483b8f001b06b9ed8669168aab8ae8eba1a7b9edf6f6558e390"
+    },
+    "fp16_proxy_result_hashes": {
+      "convolution_proxy": "131edd89d206268d3cfb1177400f5b0289f6c609a0d3b898980109176817f2c3",
+      "gemm_proxy": "7a5e79bcc50ee95d1a727f644899c5dfc1e66108e430eba7a500a796f4a17eca",
+      "vector_add": "94198c4b77e0dbca1f0bbf127df17127dfa7b533fbe70832364d70faeb6ee31d"
+    },
+    "result_hashes": {
+      "convolution_proxy": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+      "gemm_proxy": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+      "image_filter": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+      "memory_copy": "3ef33734daae0e353f132ff5f3241d8f86ba81f851c0b9685149f079c16eb45b",
+      "vector_add": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f"
+    },
+    "workload_tolerances": {
+      "convolution_proxy": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 25,
+        "elements_within_tolerance": 25,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "deterministic in-model oracle",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      },
+      "gemm_proxy": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 20,
+        "elements_within_tolerance": 20,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "deterministic in-model oracle",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      },
+      "image_filter": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 64,
+        "elements_within_tolerance": 64,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "integer u8 deterministic oracle",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      },
+      "memory_copy": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 256,
+        "elements_within_tolerance": 256,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "byte-exact copy",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      },
+      "vector_add": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 32,
+        "elements_within_tolerance": 32,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "deterministic in-model oracle",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      }
+    }
+  },
+  "pass_by_workload": {
+    "convolution_proxy": true,
+    "gemm_proxy": true,
+    "image_filter": true,
+    "memory_copy": true,
+    "vector_add": true
+  },
+  "precision": {
+    "fp16_path": "deterministic binary16 proxy execution for vector_add, gemm_proxy, and convolution_proxy; no Vivante RTL/ISA/conformance claim",
+    "fp32_path": "implemented with Python float values rounded through IEEE-754 binary32 storage"
+  },
+  "public_reference_ip": "Vivante 3D GPGPU IP",
+  "public_shader_unit_scaling": {
+    "claim_boundary": "public tier metadata only; not measured local RTL performance",
+    "source": {
+      "fields": [
+        "Shader Units (vec1 equivalent shader)",
+        "FP32/16 Operations/Cycle"
+      ],
+      "label": "VeriSilicon Vivante 3D GPGPU IP public product table",
+      "url": "https://www.verisilicon.com/cn/IPPortfolio/Vivante3DGPGPUIP"
+    },
+    "tiers": [
+      {
+        "fp16_ops_per_cycle": 64,
+        "fp16_ops_per_shader_unit": 4.0,
+        "fp16_speedup_vs_cc8000l": 1.0,
+        "fp16_to_fp32_ops_ratio": 2.0,
+        "fp32_ops_per_cycle": 32,
+        "fp32_ops_per_shader_unit": 2.0,
+        "fp32_speedup_vs_cc8000l": 1.0,
+        "shader_units_vec1": 16,
+        "tier": "CC8000L"
+      },
+      {
+        "fp16_ops_per_cycle": 128,
+        "fp16_ops_per_shader_unit": 4.0,
+        "fp16_speedup_vs_cc8000l": 2.0,
+        "fp16_to_fp32_ops_ratio": 2.0,
+        "fp32_ops_per_cycle": 64,
+        "fp32_ops_per_shader_unit": 2.0,
+        "fp32_speedup_vs_cc8000l": 2.0,
+        "shader_units_vec1": 32,
+        "tier": "CC8000"
+      },
+      {
+        "fp16_ops_per_cycle": 256,
+        "fp16_ops_per_shader_unit": 2.0,
+        "fp16_speedup_vs_cc8000l": 4.0,
+        "fp16_to_fp32_ops_ratio": 2.0,
+        "fp32_ops_per_cycle": 128,
+        "fp32_ops_per_shader_unit": 1.0,
+        "fp32_speedup_vs_cc8000l": 4.0,
+        "shader_units_vec1": 128,
+        "tier": "CC8200"
+      },
+      {
+        "fp16_ops_per_cycle": 1024,
+        "fp16_ops_per_shader_unit": 4.0,
+        "fp16_speedup_vs_cc8000l": 16.0,
+        "fp16_to_fp32_ops_ratio": 2.0,
+        "fp32_ops_per_cycle": 512,
+        "fp32_ops_per_shader_unit": 2.0,
+        "fp32_speedup_vs_cc8000l": 16.0,
+        "shader_units_vec1": 256,
+        "tier": "CC8400"
+      },
+      {
+        "fp16_ops_per_cycle": 2048,
+        "fp16_ops_per_shader_unit": 4.0,
+        "fp16_speedup_vs_cc8000l": 32.0,
+        "fp16_to_fp32_ops_ratio": 2.0,
+        "fp32_ops_per_cycle": 1024,
+        "fp32_ops_per_shader_unit": 2.0,
+        "fp32_speedup_vs_cc8000l": 32.0,
+        "shader_units_vec1": 512,
+        "tier": "CC8400-MP2"
+      },
+      {
+        "fp16_ops_per_cycle": 4096,
+        "fp16_ops_per_shader_unit": 4.0,
+        "fp16_speedup_vs_cc8000l": 64.0,
+        "fp16_to_fp32_ops_ratio": 2.0,
+        "fp32_ops_per_cycle": 2048,
+        "fp32_ops_per_shader_unit": 2.0,
+        "fp32_speedup_vs_cc8000l": 64.0,
+        "shader_units_vec1": 1024,
+        "tier": "CC8400-MP4"
+      },
+      {
+        "fp16_ops_per_cycle": 2048,
+        "fp16_ops_per_shader_unit": 4.0,
+        "fp16_speedup_vs_cc8000l": 32.0,
+        "fp16_to_fp32_ops_ratio": 2.0,
+        "fp32_ops_per_cycle": 1024,
+        "fp32_ops_per_shader_unit": 2.0,
+        "fp32_speedup_vs_cc8000l": 32.0,
+        "shader_units_vec1": 512,
+        "tier": "CC8800"
+      },
+      {
+        "fp16_ops_per_cycle": 4096,
+        "fp16_ops_per_shader_unit": 4.0,
+        "fp16_speedup_vs_cc8000l": 64.0,
+        "fp16_to_fp32_ops_ratio": 2.0,
+        "fp32_ops_per_cycle": 2048,
+        "fp32_ops_per_shader_unit": 2.0,
+        "fp32_speedup_vs_cc8000l": 64.0,
+        "shader_units_vec1": 1024,
+        "tier": "CC8800-MP2"
+      },
+      {
+        "fp16_ops_per_cycle": 8192,
+        "fp16_ops_per_shader_unit": 4.0,
+        "fp16_speedup_vs_cc8000l": 128.0,
+        "fp16_to_fp32_ops_ratio": 2.0,
+        "fp32_ops_per_cycle": 4096,
+        "fp32_ops_per_shader_unit": 2.0,
+        "fp32_speedup_vs_cc8000l": 128.0,
+        "shader_units_vec1": 2048,
+        "tier": "CC8800-MP4"
+      }
+    ]
+  },
+  "rank": 1,
+  "simt_execution": {
+    "claim_scope": "clean-room SIMT execution evidence only; no proprietary Vivante RTL, ISA, firmware, SDK, compiler, driver, command stream, timing, or conformance claim",
+    "output": "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/simt_execution.json",
+    "result_hashes": {
+      "convolution_proxy": "e1c01f8a9a60d358a006cabadf9f16ca76077cb77b66a92eedace25f653d9d6c",
+      "gemm_proxy": "970acbfa277806869115abf29313d1aa1d601a1b1fdcfb79459f68586589126f",
+      "image_filter": "24d5075078d9610c44172826c81b54cd810e0ba325d0d723734b99facea9405f",
+      "vector_add": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f"
+    },
+    "schema": "celviz.gpgpu.simt_execution.v1",
+    "status": "pass",
+    "totals": {
+      "alu_ops": 1206,
+      "barrier_events": 19,
+      "barrier_wait_cycles": 0,
+      "lsu_loads": 1238,
+      "lsu_stores": 141,
+      "register_reads": 2208,
+      "register_writes": 2208,
+      "scheduler_issues": 390,
+      "scoreboard_hazard_cycles": 1710,
+      "scoreboard_hazard_events": 380
+    },
+    "wavefront_size": 8,
+    "workloads": [
+      "vector_add",
+      "gemm_proxy",
+      "convolution_proxy",
+      "image_filter"
+    ]
+  },
+  "stage": "S1",
+  "status": "pass",
+  "totals": {
+    "bytes_read": 1024,
+    "bytes_touched": 1652,
+    "bytes_written": 628,
+    "fp16_proxy_ops": 722,
+    "fp32_ops": 722,
+    "integer_ops": 576
+  },
+  "workload_count": 5,
+  "workloads": [
+    {
+      "bytes_read": 256,
+      "bytes_written": 128,
+      "fp16_proxy": {
+        "claim_boundary": "deterministic Python binary16 round-trip arithmetic proxy; not Vivante RTL, ISA, compiler, firmware, driver, or conformance behavior",
+        "error_vs_fp32": {
+          "error_head": [
+            0.0004457235336303711,
+            1.2814998626708984e-05,
+            0.00038492679595947266,
+            0.00048482418060302734,
+            7.43865966796875e-05,
+            3.170967102050781e-05,
+            0.0009071826934814453,
+            7.605552673339844e-05
+          ],
+          "max_abs": 0.0009071826934814453,
+          "reference": "FP32 proxy output from the same clean-room model",
+          "sum_abs": 0.007785409688949585
+        },
+        "fp16_ops": 32,
+        "method": "operands and arithmetic results are rounded through standard-library struct binary16 storage at each modeled FP16 operation",
+        "precision_path": "FP16 proxy",
+        "result": [
+          -0.541015625,
+          0.22412109375,
+          0.99267578125,
+          1.693359375,
+          2.267578125,
+          2.669921875,
+          2.880859375,
+          1.1533203125,
+          1.0205078125,
+          0.783203125,
+          0.5078125,
+          0.265625,
+          0.1220703125,
+          0.13134765625,
+          -1.423828125,
+          -1.037109375,
+          -0.47509765625,
+          0.218505859375,
+          0.98388671875,
+          1.7509765625,
+          2.451171875,
+          1.271484375,
+          1.6708984375,
+          1.8779296875,
+          1.8974609375,
+          1.76171875,
+          1.5244140625,
+          1.248046875,
+          -0.7431640625,
+          -0.8837890625,
+          -0.87109375,
+          -0.6728515625
+        ],
+        "result_head": [
+          -0.541015625,
+          0.22412109375,
+          0.99267578125,
+          1.693359375,
+          2.267578125,
+          2.669921875,
+          2.880859375,
+          1.1533203125
+        ],
+        "result_sha256": "94198c4b77e0dbca1f0bbf127df17127dfa7b533fbe70832364d70faeb6ee31d",
+        "result_sum": 24.71875,
+        "sample_head": [
+          -0.541015625,
+          0.22412109375,
+          0.99267578125,
+          1.693359375,
+          2.267578125,
+          2.669921875,
+          2.880859375,
+          1.1533203125
+        ],
+        "status": "executed_proxy",
+        "tolerance": {
+          "abs_tolerance": 0.009999999776482582,
+          "elements_checked": 32,
+          "elements_within_tolerance": 32,
+          "max_abs": 0.0009071826934814453,
+          "pass": true,
+          "reference": "FP32 proxy output from the same clean-room model",
+          "rel_tolerance": 0.019999999552965164,
+          "sum_abs": 0.007785409688949585,
+          "worst_index": 6
+        },
+        "workload": "vector_add"
+      },
+      "fp32_ops": 32,
+      "input_a_head": [
+        0.2615167200565338,
+        0.9945402145385742,
+        1.6098755598068237,
+        2.0411581993103027,
+        2.246933937072754,
+        2.2162704467773438,
+        1.97023606300354,
+        0.6840483546257019
+      ],
+      "input_b_head": [
+        -0.8020866513252258,
+        -0.7704319357872009,
+        -0.6175847053527832,
+        -0.3473139703273773,
+        0.020718583837151527,
+        0.4536196291446686,
+        0.9097161889076233,
+        0.4691959023475647
+      ],
+      "length": 32,
+      "output_hashes": {
+        "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f"
+      },
+      "precision_path": "FP32",
+      "result": [
+        -0.5405699014663696,
+        0.2241082787513733,
+        0.9922908544540405,
+        1.693844199180603,
+        2.2676525115966797,
+        2.6698901653289795,
+        2.8799521923065186,
+        1.1532442569732666,
+        1.0204501152038574,
+        0.783379077911377,
+        0.5079541802406311,
+        0.26528894901275635,
+        0.12206339836120605,
+        0.13149875402450562,
+        -1.423845648765564,
+        -1.036479115486145,
+        -0.4749937951564789,
+        0.21845239400863647,
+        0.983841061592102,
+        1.751416802406311,
+        2.4511280059814453,
+        1.2721086740493774,
+        1.6709152460098267,
+        1.8774077892303467,
+        1.8974745273590088,
+        1.7622359991073608,
+        1.5238323211669922,
+        1.2483668327331543,
+        -0.7430412769317627,
+        -0.8838822841644287,
+        -0.8712576031684875,
+        -0.6730396747589111
+      ],
+      "result_head": [
+        -0.5405699014663696,
+        0.2241082787513733,
+        0.9922908544540405,
+        1.693844199180603,
+        2.2676525115966797,
+        2.6698901653289795,
+        2.8799521923065186,
+        1.1532442569732666
+      ],
+      "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
+      "result_sum": 24.72168731689453,
+      "tolerance": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 32,
+        "elements_within_tolerance": 32,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "deterministic in-model oracle",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      },
+      "workload": "vector_add"
+    },
+    {
+      "bytes_read": 216,
+      "bytes_written": 80,
+      "fp16_proxy": {
+        "claim_boundary": "deterministic Python binary16 round-trip arithmetic proxy; not Vivante RTL, ISA, compiler, firmware, driver, or conformance behavior",
+        "error_vs_fp32": {
+          "error_head": [
+            8.83340835571289e-05,
+            0.0004775822162628174,
+            0.0003377199172973633,
+            1.9788742065429688e-05,
+            8.317828178405762e-05,
+            0.00011044740676879883,
+            0.000803828239440918,
+            0.0005311965942382812
+          ],
+          "max_abs": 0.000803828239440918,
+          "reference": "FP32 proxy output from the same clean-room model",
+          "sum_abs": 0.00582297146320343
+        },
+        "fp16_ops": 240,
+        "matrix_c": [
+          [
+            -1.044921875,
+            -0.238037109375,
+            0.27880859375,
+            0.421875,
+            0.349853515625
+          ],
+          [
+            0.6005859375,
+            -0.529296875,
+            -1.400390625,
+            -1.1123046875,
+            0.1561279296875
+          ],
+          [
+            -0.97998046875,
+            -0.49365234375,
+            0.081787109375,
+            0.423828125,
+            0.392578125
+          ],
+          [
+            1.4453125,
+            0.7626953125,
+            -0.83837890625,
+            -1.9033203125,
+            -1.3486328125
+          ]
+        ],
+        "method": "operands and arithmetic results are rounded through standard-library struct binary16 storage at each modeled FP16 operation",
+        "precision_path": "FP16 proxy",
+        "result": [
+          -1.044921875,
+          -0.238037109375,
+          0.27880859375,
+          0.421875,
+          0.349853515625,
+          0.6005859375,
+          -0.529296875,
+          -1.400390625,
+          -1.1123046875,
+          0.1561279296875,
+          -0.97998046875,
+          -0.49365234375,
+          0.081787109375,
+          0.423828125,
+          0.392578125,
+          1.4453125,
+          0.7626953125,
+          -0.83837890625,
+          -1.9033203125,
+          -1.3486328125
+        ],
+        "result_head": [
+          -1.044921875,
+          -0.238037109375,
+          0.27880859375,
+          0.421875,
+          0.349853515625,
+          0.6005859375,
+          -0.529296875,
+          -1.400390625
+        ],
+        "result_sha256": "7a5e79bcc50ee95d1a727f644899c5dfc1e66108e430eba7a500a796f4a17eca",
+        "result_sum": -4.9765625,
+        "sample_head": [
+          -1.044921875,
+          -0.238037109375,
+          0.27880859375,
+          0.421875,
+          0.349853515625,
+          0.6005859375,
+          -0.529296875,
+          -1.400390625
+        ],
+        "shape": {
+          "k": 6,
+          "m": 4,
+          "n": 5
+        },
+        "status": "executed_proxy",
+        "tolerance": {
+          "abs_tolerance": 0.009999999776482582,
+          "elements_checked": 20,
+          "elements_within_tolerance": 20,
+          "max_abs": 0.000803828239440918,
+          "pass": true,
+          "reference": "FP32 proxy output from the same clean-room model",
+          "rel_tolerance": 0.019999999552965164,
+          "sum_abs": 0.00582297146320343,
+          "worst_index": 6
+        },
+        "workload": "gemm_proxy"
+      },
+      "fp32_ops": 240,
+      "matrix_a": [
+        [
+          -0.9375,
+          -0.75,
+          -0.5625,
+          -0.375,
+          -0.1875,
+          0.0
+        ],
+        [
+          0.1875,
+          0.375,
+          0.5625,
+          0.75,
+          0.9375,
+          -0.9375
+        ],
+        [
+          -0.75,
+          -0.5625,
+          -0.375,
+          -0.1875,
+          0.0,
+          0.1875
+        ],
+        [
+          0.375,
+          0.5625,
+          0.75,
+          0.9375,
+          -0.9375,
+          -0.75
+        ]
+      ],
+      "matrix_b": [
+        [
+          0.6848167181015015,
+          0.6060206294059753,
+          0.5005971193313599,
+          0.37317827343940735,
+          0.22936268150806427
+        ],
+        [
+          0.5005971193313599,
+          0.22936268150806427,
+          -0.08174006640911102,
+          -0.37863457202911377,
+          -0.6097140312194824
+        ],
+        [
+          0.22936268150806427,
+          -0.23535792529582977,
+          -0.6097140312194824,
+          -0.749973475933075,
+          -0.6022843718528748
+        ],
+        [
+          -0.08174006640911102,
+          -0.6097140312194824,
+          -0.7321828603744507,
+          -0.3676956295967102,
+          0.24133652448654175
+        ],
+        [
+          -0.37863457202911377,
+          -0.749973475933075,
+          -0.3676956295967102,
+          0.38406410813331604,
+          0.7498939633369446
+        ],
+        [
+          -0.6097140312194824,
+          -0.6022843718528748,
+          0.24133652448654175,
+          0.7498939633369446,
+          0.21732398867607117
+        ]
+      ],
+      "matrix_c": [
+        [
+          -1.0448335409164429,
+          -0.23851469159126282,
+          0.27847087383270264,
+          0.42185521125793457,
+          0.34993669390678406
+        ],
+        [
+          0.6004754900932312,
+          -0.5284930467605591,
+          -1.3998594284057617,
+          -1.112614393234253,
+          0.15586449205875397
+        ],
+        [
+          -0.9802044630050659,
+          -0.49387967586517334,
+          0.08170858025550842,
+          0.42388632893562317,
+          0.3922964036464691
+        ],
+        [
+          1.4460382461547852,
+          0.7629623413085938,
+          -0.8382495641708374,
+          -1.9027153253555298,
+          -1.348431944847107
+        ]
+      ],
+      "output_hashes": {
+        "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0"
+      },
+      "precision_path": "FP32",
+      "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+      "result_sum": -4.974301338195801,
+      "shape": {
+        "k": 6,
+        "m": 4,
+        "n": 5
+      },
+      "tolerance": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 20,
+        "elements_within_tolerance": 20,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "deterministic in-model oracle",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      },
+      "workload": "gemm_proxy"
+    },
+    {
+      "alias": "image_filter",
+      "bytes_read": 232,
+      "bytes_written": 100,
+      "fp16_proxy": {
+        "claim_boundary": "deterministic Python binary16 round-trip arithmetic proxy; not Vivante RTL, ISA, compiler, firmware, driver, or conformance behavior",
+        "error_vs_fp32": {
+          "error_head": [
+            0.0004439353942871094,
+            2.2199004888534546e-05,
+            0.0,
+            0.0002663135528564453,
+            2.9802322387695312e-08,
+            0.0002219676971435547,
+            0.0,
+            2.2172927856445312e-05
+          ],
+          "max_abs": 0.0004439353942871094,
+          "reference": "FP32 proxy output from the same clean-room model",
+          "sum_abs": 0.0030129924416542053
+        },
+        "fp16_ops": 450,
+        "input_shape": {
+          "channels": 1,
+          "height": 7,
+          "width": 7
+        },
+        "kernel_shape": {
+          "height": 3,
+          "width": 3
+        },
+        "method": "operands and arithmetic results are rounded through standard-library struct binary16 storage at each modeled FP16 operation",
+        "output": [
+          [
+            -0.7041015625,
+            0.022705078125,
+            0.75,
+            -0.3525390625,
+            0.375
+          ],
+          [
+            0.72705078125,
+            -0.375,
+            0.352294921875,
+            -0.75,
+            -0.022705078125
+          ],
+          [
+            0.32958984375,
+            -0.7724609375,
+            -0.04534912109375,
+            0.681640625,
+            -0.68212890625
+          ],
+          [
+            -0.32958984375,
+            0.6591796875,
+            -0.7041015625,
+            0.022705078125,
+            0.75
+          ],
+          [
+            -0.7275390625,
+            0.0,
+            0.72705078125,
+            -0.375,
+            0.352294921875
+          ]
+        ],
+        "output_shape": {
+          "channels": 1,
+          "height": 5,
+          "width": 5
+        },
+        "precision_path": "FP16 proxy",
+        "result": [
+          -0.7041015625,
+          0.022705078125,
+          0.75,
+          -0.3525390625,
+          0.375,
+          0.72705078125,
+          -0.375,
+          0.352294921875,
+          -0.75,
+          -0.022705078125,
+          0.32958984375,
+          -0.7724609375,
+          -0.04534912109375,
+          0.681640625,
+          -0.68212890625,
+          -0.32958984375,
+          0.6591796875,
+          -0.7041015625,
+          0.022705078125,
+          0.75,
+          -0.7275390625,
+          0.0,
+          0.72705078125,
+          -0.375,
+          0.352294921875
+        ],
+        "result_head": [
+          -0.7041015625,
+          0.022705078125,
+          0.75,
+          -0.3525390625,
+          0.375,
+          0.72705078125,
+          -0.375,
+          0.352294921875
+        ],
+        "result_sha256": "131edd89d206268d3cfb1177400f5b0289f6c609a0d3b898980109176817f2c3",
+        "result_sum": -0.09100341796875,
+        "sample_head": [
+          -0.7041015625,
+          0.022705078125,
+          0.75,
+          -0.3525390625,
+          0.375,
+          0.72705078125,
+          -0.375,
+          0.352294921875
+        ],
+        "status": "executed_proxy",
+        "tolerance": {
+          "abs_tolerance": 0.009999999776482582,
+          "elements_checked": 25,
+          "elements_within_tolerance": 25,
+          "max_abs": 0.0004439353942871094,
+          "pass": true,
+          "reference": "FP32 proxy output from the same clean-room model",
+          "rel_tolerance": 0.019999999552965164,
+          "sum_abs": 0.0030129924416542053,
+          "worst_index": 0
+        },
+        "workload": "convolution_proxy"
+      },
+      "fp32_ops": 450,
+      "input_shape": {
+        "channels": 1,
+        "height": 7,
+        "width": 7
+      },
+      "kernel": [
+        [
+          0.0,
+          -0.125,
+          0.0
+        ],
+        [
+          -0.125,
+          0.75,
+          -0.125
+        ],
+        [
+          0.0,
+          -0.125,
+          0.0
+        ]
+      ],
+      "kernel_shape": {
+        "height": 3,
+        "width": 3
+      },
+      "output": [
+        [
+          -0.7045454978942871,
+          0.022727277129888535,
+          0.75,
+          -0.35227274894714355,
+          0.3749999701976776
+        ],
+        [
+          0.7272727489471436,
+          -0.375,
+          0.35227274894714355,
+          -0.75,
+          -0.022727280855178833
+        ],
+        [
+          0.3295454680919647,
+          -0.7727273106575012,
+          -0.04545454680919647,
+          0.6818181872367859,
+          -0.6818181276321411
+        ],
+        [
+          -0.3295454680919647,
+          0.6590909957885742,
+          -0.7045454978942871,
+          0.022727277129888535,
+          0.75
+        ],
+        [
+          -0.7272727489471436,
+          0.0,
+          0.7272727489471436,
+          -0.375,
+          0.35227274894714355
+        ]
+      ],
+      "output_hashes": {
+        "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a"
+      },
+      "output_shape": {
+        "channels": 1,
+        "height": 5,
+        "width": 5
+      },
+      "precision_path": "FP32",
+      "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+      "result_sum": -0.09090905636548996,
+      "tolerance": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 25,
+        "elements_within_tolerance": 25,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "deterministic in-model oracle",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      },
+      "workload": "convolution_proxy"
+    },
+    {
+      "bytes_read": 64,
+      "bytes_written": 64,
+      "filter": "3x3_box_u8_edge_truncated",
+      "fp32_ops": 0,
+      "input_shape": {
+        "channels": 1,
+        "height": 8,
+        "width": 8
+      },
+      "integer_ops": 576,
+      "output_hashes": {
+        "pgm_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+        "result_sha256": "45db9277e3ad2faed1c6af27d89071e6e6227417c54db792b9bbfb7769a2f0f0"
+      },
+      "output_shape": {
+        "channels": 1,
+        "height": 8,
+        "width": 8
+      },
+      "pass": true,
+      "precision_path": "u8",
+      "result": [
+        [
+          23,
+          39,
+          69,
+          100,
+          130,
+          161,
+          191,
+          206
+        ],
+        [
+          33,
+          49,
+          81,
+          113,
+          145,
+          177,
+          180,
+          182
+        ],
+        [
+          51,
+          69,
+          104,
+          139,
+          174,
+          180,
+          158,
+          133
+        ],
+        [
+          70,
+          89,
+          127,
+          165,
+          174,
+          155,
+          108,
+          84
+        ],
+        [
+          88,
+          109,
+          150,
+          162,
+          146,
+          102,
+          86,
+          78
+        ],
+        [
+          107,
+          129,
+          173,
+          160,
+          118,
+          77,
+          93,
+          115
+        ],
+        [
+          125,
+          149,
+          167,
+          129,
+          90,
+          81,
+          128,
+          151
+        ],
+        [
+          134,
+          159,
+          164,
+          128,
+          91,
+          97,
+          145,
+          169
+        ]
+      ],
+      "result_head": [
+        23,
+        39,
+        69,
+        100,
+        130,
+        161,
+        191,
+        206
+      ],
+      "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+      "result_sum": 7859,
+      "source_head": [
+        0,
+        29,
+        58,
+        87,
+        116,
+        145,
+        174,
+        203
+      ],
+      "tolerance": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 64,
+        "elements_within_tolerance": 64,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "integer u8 deterministic oracle",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      },
+      "workload": "image_filter"
+    },
+    {
+      "bytes_copied": 256,
+      "bytes_read": 256,
+      "bytes_written": 256,
+      "destination_head": [
+        11,
+        48,
+        85,
+        122,
+        159,
+        196,
+        233,
+        14,
+        51,
+        88,
+        125,
+        162,
+        199,
+        236,
+        17,
+        54
+      ],
+      "destination_sha256": "3ef33734daae0e353f132ff5f3241d8f86ba81f851c0b9685149f079c16eb45b",
+      "fp32_ops": 0,
+      "output_hashes": {
+        "destination_sha256": "3ef33734daae0e353f132ff5f3241d8f86ba81f851c0b9685149f079c16eb45b",
+        "result_sha256": "3ef33734daae0e353f132ff5f3241d8f86ba81f851c0b9685149f079c16eb45b",
+        "source_sha256": "3ef33734daae0e353f132ff5f3241d8f86ba81f851c0b9685149f079c16eb45b"
+      },
+      "pass": true,
+      "precision_path": "byte",
+      "result_sha256": "3ef33734daae0e353f132ff5f3241d8f86ba81f851c0b9685149f079c16eb45b",
+      "source_head": [
+        11,
+        48,
+        85,
+        122,
+        159,
+        196,
+        233,
+        14,
+        51,
+        88,
+        125,
+        162,
+        199,
+        236,
+        17,
+        54
+      ],
+      "source_sha256": "3ef33734daae0e353f132ff5f3241d8f86ba81f851c0b9685149f079c16eb45b",
+      "tolerance": {
+        "abs_tolerance": 0.0,
+        "elements_checked": 256,
+        "elements_within_tolerance": 256,
+        "max_abs": 0.0,
+        "pass": true,
+        "reference": "byte-exact copy",
+        "rel_tolerance": 0.0,
+        "sum_abs": 0.0,
+        "worst_index": 0
+      },
+      "workload": "memory_copy"
+    }
+  ]
+}

@@ -1,0 +1,484 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "pc_sequence_head": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "uop_count": 17
+      },
+      "name": "pc_sequence_is_dense",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "declared": 17,
+        "executed": 17
+      },
+      "name": "all_uops_executed",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "opcodes": [
+          "uop_address_calc",
+          "uop_alu_mad",
+          "uop_barrier",
+          "uop_global_load",
+          "uop_global_store",
+          "uop_kernel_prologue",
+          "uop_loop_begin",
+          "uop_loop_end",
+          "uop_predicate_bounds",
+          "uop_read_scalar_arg",
+          "uop_read_workitem_id",
+          "uop_write_completion"
+        ],
+        "unknown": []
+      },
+      "name": "known_opcode_subset",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "load": 450,
+        "store": 25
+      },
+      "name": "global_load_store_trace_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "completion_written": true
+      },
+      "name": "completion_written",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "expected": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+        "observed": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+        "oracle_workload": "convolution_proxy"
+      },
+      "name": "oracle_hash_match",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "barrier_count": 1,
+        "loop_trips": {
+          "filter_yx": 9
+        }
+      },
+      "name": "loop_and_barrier_executed",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-5 executable micro-op evidence for the Ventus-based Celviz GPGPU IP proxy only; not a production ISA simulator, not a compiler backend, not SPIR-V/LLVM, not Vivante ISA or command-stream compatibility, not official OpenCL conformance, and not timing/PPA signoff",
+  "execution": {
+    "address_args": [
+      "input",
+      "filter",
+      "output"
+    ],
+    "alu_ops": {
+      "uop_alu_mad": 1
+    },
+    "barrier_count": 1,
+    "completion_written": true,
+    "loop_trips": {
+      "filter_yx": 9
+    },
+    "memory_counts": {
+      "load": 450,
+      "store": 25
+    },
+    "memory_event_count": 475,
+    "memory_trace_head": [
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 0,
+        "bytes_per_element": 4,
+        "index": 0,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 0,
+        "bytes_per_element": 4,
+        "index": 0,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 4,
+        "bytes_per_element": 4,
+        "index": 1,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 4,
+        "bytes_per_element": 4,
+        "index": 1,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 8,
+        "bytes_per_element": 4,
+        "index": 2,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 8,
+        "bytes_per_element": 4,
+        "index": 2,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 28,
+        "bytes_per_element": 4,
+        "index": 7,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 12,
+        "bytes_per_element": 4,
+        "index": 3,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 32,
+        "bytes_per_element": 4,
+        "index": 8,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 16,
+        "bytes_per_element": 4,
+        "index": 4,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 36,
+        "bytes_per_element": 4,
+        "index": 9,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 20,
+        "bytes_per_element": 4,
+        "index": 5,
+        "kind": "load",
+        "lanes": 1
+      }
+    ],
+    "memory_trace_tail": [
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 12,
+        "bytes_per_element": 4,
+        "index": 3,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 160,
+        "bytes_per_element": 4,
+        "index": 40,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 16,
+        "bytes_per_element": 4,
+        "index": 4,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 164,
+        "bytes_per_element": 4,
+        "index": 41,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 20,
+        "bytes_per_element": 4,
+        "index": 5,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 184,
+        "bytes_per_element": 4,
+        "index": 46,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 24,
+        "bytes_per_element": 4,
+        "index": 6,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 188,
+        "bytes_per_element": 4,
+        "index": 47,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 28,
+        "bytes_per_element": 4,
+        "index": 7,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "input",
+        "byte_offset": 192,
+        "bytes_per_element": 4,
+        "index": 48,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "filter",
+        "byte_offset": 32,
+        "bytes_per_element": 4,
+        "index": 8,
+        "kind": "load",
+        "lanes": 1
+      },
+      {
+        "address_space": "global",
+        "arg": "output",
+        "byte_offset": 96,
+        "bytes_per_element": 4,
+        "index": 24,
+        "kind": "store",
+        "lanes": 1
+      }
+    ],
+    "opcode_counts": {
+      "uop_address_calc": 3,
+      "uop_alu_mad": 1,
+      "uop_barrier": 1,
+      "uop_global_load": 3,
+      "uop_global_store": 1,
+      "uop_kernel_prologue": 1,
+      "uop_loop_begin": 1,
+      "uop_loop_end": 1,
+      "uop_predicate_bounds": 1,
+      "uop_read_scalar_arg": 2,
+      "uop_read_workitem_id": 1,
+      "uop_write_completion": 1
+    },
+    "pc_count": 17,
+    "pc_trace_head": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "pc_trace_tail": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "runtime_sequence": 3,
+    "scalar_reads": [
+      "width",
+      "height"
+    ],
+    "wavefront_size": 32,
+    "work_items": 16384
+  },
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "kernel": "conv2d",
+  "oracle_workload": "convolution_proxy",
+  "result": {
+    "elements": 25,
+    "input_shape": {
+      "channels": 1,
+      "height": 7,
+      "width": 7
+    },
+    "output": [
+      [
+        -0.7045454978942871,
+        0.022727277129888535,
+        0.75,
+        -0.35227274894714355,
+        0.3749999701976776
+      ],
+      [
+        0.7272727489471436,
+        -0.375,
+        0.35227274894714355,
+        -0.75,
+        -0.022727280855178833
+      ],
+      [
+        0.3295454680919647,
+        -0.7727273106575012,
+        -0.04545454680919647,
+        0.6818181872367859,
+        -0.6818181276321411
+      ],
+      [
+        -0.3295454680919647,
+        0.6590909957885742,
+        -0.7045454978942871,
+        0.022727277129888535,
+        0.75
+      ],
+      [
+        -0.7272727489471436,
+        0.0,
+        0.7272727489471436,
+        -0.375,
+        0.35227274894714355
+      ]
+    ],
+    "output_shape": {
+      "channels": 1,
+      "height": 5,
+      "width": 5
+    },
+    "result": [
+      -0.7045454978942871,
+      0.022727277129888535,
+      0.75,
+      -0.35227274894714355,
+      0.3749999701976776,
+      0.7272727489471436,
+      -0.375,
+      0.35227274894714355,
+      -0.75,
+      -0.022727280855178833,
+      0.3295454680919647,
+      -0.7727273106575012,
+      -0.04545454680919647,
+      0.6818181872367859,
+      -0.6818181276321411,
+      -0.3295454680919647,
+      0.6590909957885742,
+      -0.7045454978942871,
+      0.022727277129888535,
+      0.75,
+      -0.7272727489471436,
+      0.0,
+      0.7272727489471436,
+      -0.375,
+      0.35227274894714355
+    ],
+    "result_head": [
+      -0.7045454978942871,
+      0.022727277129888535,
+      0.75,
+      -0.35227274894714355,
+      0.3749999701976776,
+      0.7272727489471436,
+      -0.375,
+      0.35227274894714355
+    ],
+    "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+    "result_sum": -0.09090905636548996,
+    "workload": "convolution_proxy"
+  },
+  "schema": "celviz.gpgpu.microop_interpreter.kernel.v1",
+  "sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+  "source_lowering_sha256": "465b1f9195adfb87518c6af1ec138c05220978b591747f5b5d1fead5bde31654",
+  "status": "pass"
+}

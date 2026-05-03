@@ -1,0 +1,7 @@
+celviz_gpgpu_driver_submission_model: start
+schema=celviz.gpgpu.driver_submission_model.v1
+scope=clean-room Linux userspace/DRM-like queue-submit-fence-event model only; not a real Linux kernel driver, not upstream DRM compatibility, not ioctl ABI compatibility, not GEM/syncobj ABI compatibility, not firmware ABI, and not proprietary Vivante compatibility
+metrics runtime_kernel_dispatches=4 driver_submissions=4 queues_modeled=1 fences_created=4 fences_signaled=4 events_emitted=5 completion_events=4 error_events=1 error_paths=4 pending=0 linux_input_submit_errors=1
+checks runtime_commands_schema=pass,linux_runtime_evidence_schema=pass,clean_room_non_driver_boundary=pass,linux_input_has_queue_fence_event_evidence=pass,kernel_dispatch_set_aligned=pass,queue_pending_zero=pass,all_driver_fences_signaled=pass,completion_events_readable=pass,error_paths_present=pass,linux_input_error_path_observed=pass
+artifacts=artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission
+celviz_gpgpu_driver_submission_model: pass

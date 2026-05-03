@@ -1,0 +1,360 @@
+{
+  "clean_room_scope": "supplemental clean-room Verilator structural-coverage uplift fixtures; fast gate uses the control-plane simulator and does not claim RTL line, toggle, branch, silicon signoff, timing closure, proprietary Vivante command-stream compatibility, driver ABI compatibility, or conformance",
+  "failures": [],
+  "fixture_manifest": {
+    "directed": {
+      "command_count": 13,
+      "fixture": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/directed.json",
+      "sha256": "4751614e07da175b82bdaf5003cb4c3f3bdf86905c79fb29fb6098199b10b14d"
+    },
+    "fault": {
+      "command_count": 10,
+      "fixture": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/fault.json",
+      "sha256": "316ef09da9797c4487b5181d7d7b75bbfc60d37b6c231b904f2d1ac14583d83a"
+    },
+    "random": {
+      "command_count": 48,
+      "fixture": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/random.json",
+      "sha256": "e8aedda1aee0ee7f338e9b1bb74cd525b96ab73cb7c9d849164f3c64a71c714b"
+    },
+    "stress": {
+      "command_count": 224,
+      "fixture": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/stress.json",
+      "sha256": "2d8e82d1c8b9c3df9c194bc402dd37ffbf904fc6f26009cb7d7a45b6fb6b4c04"
+    }
+  },
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "integration_notes": {
+    "does_not_modify_full_verilator_wrapper": true,
+    "does_not_modify_shared_acceptance_matrix": true,
+    "fast_gate_backend": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/tools/celviz_gpgpu_ip/control_plane.py",
+    "future_full_coverage_inputs": [
+      "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/directed.json",
+      "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/random.json",
+      "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/fault.json",
+      "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/stress.json"
+    ]
+  },
+  "observed_metrics": {
+    "structural_target_hit_count": 24,
+    "structural_target_percent": 100.0,
+    "structural_target_total": 24,
+    "total_commands": 295,
+    "total_completion_interrupts": 85,
+    "total_dma_alignment_errors": 1,
+    "total_dma_copies": 102,
+    "total_dma_fills": 103,
+    "total_error_interrupts": 7,
+    "total_kernel_dispatches": 10,
+    "total_mmu_faults": 2,
+    "total_scheduler_faults": 1
+  },
+  "quick_gate": true,
+  "responsibility_scope": "scripts/tools/artifacts supplemental lane only; shared acceptance matrix and full wrapper intentionally untouched",
+  "run_records": {
+    "directed": {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/tools/celviz_gpgpu_ip/control_plane.py",
+        "--demo",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/directed.json",
+        "--log",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/directed.log",
+        "--metrics",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/directed.metrics.json"
+      ],
+      "log": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/directed.log",
+      "metrics": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/directed.metrics.json",
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a532de2dfca001c3e24674b550a2f6997da395820a3e1c205f6af3222b03355b"
+    },
+    "fault": {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/tools/celviz_gpgpu_ip/control_plane.py",
+        "--demo",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/fault.json",
+        "--log",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/fault.log",
+        "--metrics",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/fault.metrics.json"
+      ],
+      "log": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/fault.log",
+      "metrics": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/fault.metrics.json",
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "bdec34f0f0d168a8548605f02c9338ca5a7298573ee03adec2ca7e73ccfc5197"
+    },
+    "random": {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/tools/celviz_gpgpu_ip/control_plane.py",
+        "--demo",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/random.json",
+        "--log",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/random.log",
+        "--metrics",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/random.metrics.json"
+      ],
+      "log": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/random.log",
+      "metrics": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/random.metrics.json",
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "6c0d33db27ac8cec084110f1a699ffa064cd318935b28d7846c1fb4839d8cda9"
+    },
+    "stress": {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/tools/celviz_gpgpu_ip/control_plane.py",
+        "--demo",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/stress.json",
+        "--log",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/stress.log",
+        "--metrics",
+        "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/stress.metrics.json"
+      ],
+      "log": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/stress.log",
+      "metrics": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/stress.metrics.json",
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "fd018474f73fb373ea521b444d6a1476d9d075a0ada5659b200be7148b9e28af"
+    }
+  },
+  "schema": "celviz.gpgpu.verilator_supplemental_phase1.v1",
+  "status": "pass",
+  "structural_coverage_improvement_plan": [
+    "Replay generated directed/random/fault/stress fixtures through coverage-enabled Verilator runtime_cli once mainline wrapper integration is ready.",
+    "Merge target-hit matrix with LCOV line/branch/toggle deltas by source module without treating proxy functional hits as RTL signoff.",
+    "Promote suites that produce positive branch/toggle deltas into the shared full wrapper after review by the integration worker.",
+    "Keep quick gate deterministic and cheap so it can guard fixture drift while slow coverage remains optional."
+  ],
+  "structural_targets": {
+    "bad_queue_reject": {
+      "hit": true,
+      "structural_coverage_intent": "cover bad queue command-submission reject branch"
+    },
+    "completion_interrupt_clear": {
+      "hit": true,
+      "structural_coverage_intent": "toggle completion interrupt generation and clear path"
+    },
+    "counter_snapshot": {
+      "hit": true,
+      "structural_coverage_intent": "cover counter snapshot readback path"
+    },
+    "device_to_host_path": {
+      "hit": true,
+      "structural_coverage_intent": "cover runtime D2H copy command category"
+    },
+    "dma_alignment_reject": {
+      "hit": true,
+      "structural_coverage_intent": "cover unaligned DMA reject branch"
+    },
+    "dma_copy_read_write_path": {
+      "hit": true,
+      "structural_coverage_intent": "cover DMA read/write beat accounting"
+    },
+    "dma_fill_write_path": {
+      "hit": true,
+      "structural_coverage_intent": "cover DMA fill writable-range and AXI write path"
+    },
+    "dma_mmu_fault": {
+      "hit": true,
+      "structural_coverage_intent": "cover DMA MMU range fault branch"
+    },
+    "doorbell_apb_status_poll": {
+      "hit": true,
+      "structural_coverage_intent": "toggle APB submit/status paths for command issue"
+    },
+    "error_interrupt_clear": {
+      "hit": true,
+      "structural_coverage_intent": "toggle error interrupt generation and clear path"
+    },
+    "fence_signal_wait_success": {
+      "hit": true,
+      "structural_coverage_intent": "cover fence signal and successful wait dependency"
+    },
+    "fence_wait_timeout": {
+      "hit": true,
+      "structural_coverage_intent": "cover timeout/error branch of fence wait"
+    },
+    "host_to_device_path": {
+      "hit": true,
+      "structural_coverage_intent": "cover runtime H2D copy command category"
+    },
+    "kernel_arg_mmu_fault": {
+      "hit": true,
+      "structural_coverage_intent": "cover kernel arg-buffer MMU fault branch"
+    },
+    "kernel_dispatch_fp16": {
+      "hit": true,
+      "structural_coverage_intent": "cover FP16 kernel dispatch metadata branch"
+    },
+    "kernel_dispatch_fp32": {
+      "hit": true,
+      "structural_coverage_intent": "cover FP32 kernel dispatch metadata branch"
+    },
+    "long_run_idle_retire": {
+      "hit": true,
+      "structural_coverage_intent": "stress long-run retirement and idle completion"
+    },
+    "multi_queue_tail_wrap_proxy": {
+      "hit": true,
+      "structural_coverage_intent": "stress queue head/tail modulo movement"
+    },
+    "queue_arbitration": {
+      "hit": true,
+      "structural_coverage_intent": "exercise multiple queue IDs and priority-retire bookkeeping"
+    },
+    "reset_recovery": {
+      "hit": true,
+      "structural_coverage_intent": "cover reset cleanup and post-reset recovery path"
+    },
+    "scheduler_config_write": {
+      "hit": true,
+      "structural_coverage_intent": "cover scheduler config register update path"
+    },
+    "scheduler_fault_reject": {
+      "hit": true,
+      "structural_coverage_intent": "cover scheduler fault reject branch"
+    },
+    "shader_mode_fp16_fp32": {
+      "hit": true,
+      "structural_coverage_intent": "cover FP mode switch control path"
+    },
+    "unsupported_opcode_reject": {
+      "hit": true,
+      "structural_coverage_intent": "cover unsupported opcode reject branch"
+    }
+  },
+  "suite_summaries": {
+    "directed": {
+      "bytes_read": 992,
+      "bytes_written": 2848,
+      "command_count": 13,
+      "commands_completed": 13,
+      "commands_failed": 0,
+      "commands_submitted": 13,
+      "completion_interrupts": 13,
+      "dma_alignment_errors": 0,
+      "dma_copies": 1,
+      "dma_fills": 1,
+      "error_interrupts": 0,
+      "expected_command_failures": 0,
+      "expected_command_passes": 13,
+      "kernel_dispatches": 2,
+      "mmu_faults": 0,
+      "opcodes": [
+        "counter_snapshot",
+        "device_to_host",
+        "dma_copy",
+        "dma_fill",
+        "fence_signal",
+        "fence_wait",
+        "host_to_device",
+        "kernel_dispatch",
+        "reset",
+        "set_scheduler_config",
+        "set_shader_mode"
+      ],
+      "queue_closed": true,
+      "queues": 4,
+      "scheduler_faults": 0,
+      "status": "pass"
+    },
+    "fault": {
+      "bytes_read": 0,
+      "bytes_written": 96,
+      "command_count": 10,
+      "commands_completed": 10,
+      "commands_failed": 7,
+      "commands_submitted": 10,
+      "completion_interrupts": 3,
+      "dma_alignment_errors": 1,
+      "dma_copies": 0,
+      "dma_fills": 1,
+      "error_interrupts": 7,
+      "expected_command_failures": 0,
+      "expected_command_passes": 10,
+      "kernel_dispatches": 0,
+      "mmu_faults": 2,
+      "opcodes": [
+        "dma_copy",
+        "dma_fill",
+        "fence_wait",
+        "kernel_dispatch",
+        "nop",
+        "reset",
+        "undefined_opcode"
+      ],
+      "queue_closed": true,
+      "queues": 4,
+      "scheduler_faults": 1,
+      "status": "pass"
+    },
+    "random": {
+      "bytes_read": 3168,
+      "bytes_written": 5088,
+      "command_count": 48,
+      "commands_completed": 48,
+      "commands_failed": 0,
+      "commands_submitted": 48,
+      "completion_interrupts": 29,
+      "dma_alignment_errors": 0,
+      "dma_copies": 5,
+      "dma_fills": 5,
+      "error_interrupts": 0,
+      "expected_command_failures": 0,
+      "expected_command_passes": 48,
+      "kernel_dispatches": 2,
+      "mmu_faults": 0,
+      "opcodes": [
+        "barrier",
+        "counter_snapshot",
+        "device_to_host",
+        "dma_copy",
+        "dma_fill",
+        "fence_signal",
+        "fence_wait",
+        "host_to_device",
+        "kernel_dispatch",
+        "nop",
+        "reset"
+      ],
+      "queue_closed": true,
+      "queues": 4,
+      "scheduler_faults": 0,
+      "status": "pass"
+    },
+    "stress": {
+      "bytes_read": 15936,
+      "bytes_written": 31776,
+      "command_count": 224,
+      "commands_completed": 224,
+      "commands_failed": 0,
+      "commands_submitted": 224,
+      "completion_interrupts": 40,
+      "dma_alignment_errors": 0,
+      "dma_copies": 96,
+      "dma_fills": 96,
+      "error_interrupts": 0,
+      "expected_command_failures": 0,
+      "expected_command_passes": 224,
+      "kernel_dispatches": 6,
+      "mmu_faults": 0,
+      "opcodes": [
+        "counter_snapshot",
+        "dma_copy",
+        "dma_fill",
+        "fence_signal",
+        "fence_wait",
+        "kernel_dispatch",
+        "reset"
+      ],
+      "queue_closed": true,
+      "queues": 4,
+      "scheduler_faults": 0,
+      "status": "pass"
+    }
+  }
+}

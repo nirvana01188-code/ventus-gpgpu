@@ -1,0 +1,939 @@
+{
+  "artifact_manifest": {
+    "driver_submission_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_evidence.json",
+    "error_paths": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/error_paths.json",
+    "fence_event_lifecycle": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/fence_event_lifecycle.json",
+    "kernel_dispatch_alignment": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/kernel_dispatch_alignment.json",
+    "linux_runtime_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+    "log": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_check.log",
+    "queue_lifecycle": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/queue_lifecycle.json",
+    "runtime_commands": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json"
+  },
+  "boundary": {
+    "drm_compatibility_claim": false,
+    "firmware_abi_claim": false,
+    "gem_syncobj_abi_claim": false,
+    "ioctl_abi_claim": false,
+    "kernel_driver_claim": false,
+    "mode": "userspace_drm_like_submission_proxy",
+    "proprietary_vivante_compatibility_claim": false
+  },
+  "checks": [
+    {
+      "name": "runtime_commands_schema",
+      "pass": true
+    },
+    {
+      "name": "linux_runtime_evidence_schema",
+      "pass": true
+    },
+    {
+      "name": "clean_room_non_driver_boundary",
+      "pass": true
+    },
+    {
+      "name": "linux_input_has_queue_fence_event_evidence",
+      "pass": true
+    },
+    {
+      "name": "kernel_dispatch_set_aligned",
+      "pass": true
+    },
+    {
+      "name": "queue_pending_zero",
+      "pass": true
+    },
+    {
+      "name": "all_driver_fences_signaled",
+      "pass": true
+    },
+    {
+      "name": "completion_events_readable",
+      "pass": true
+    },
+    {
+      "name": "error_paths_present",
+      "pass": true
+    },
+    {
+      "name": "linux_input_error_path_observed",
+      "pass": true
+    }
+  ],
+  "driver_submissions": [
+    {
+      "arg_buffer": "0x80010000",
+      "arg_bytes": 32,
+      "context_id": 7,
+      "drm_compatibility_claim": false,
+      "errno": 0,
+      "errno_name": "OK",
+      "grid": [
+        1024,
+        1,
+        1
+      ],
+      "ioctl_model": "DRM_IOCTL_CELVIZ_GPGPU_SUBMIT_PROXY_DESCRIPTOR_ONLY",
+      "kernel": "vector_add",
+      "kernel_driver_claim": false,
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "out_fence": 1,
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 1,
+      "status": "complete",
+      "submit_tag": "opencl-subset-vector_add"
+    },
+    {
+      "arg_buffer": "0x80020000",
+      "arg_bytes": 48,
+      "context_id": 7,
+      "drm_compatibility_claim": false,
+      "errno": 0,
+      "errno_name": "OK",
+      "grid": [
+        64,
+        64,
+        1
+      ],
+      "ioctl_model": "DRM_IOCTL_CELVIZ_GPGPU_SUBMIT_PROXY_DESCRIPTOR_ONLY",
+      "kernel": "gemm",
+      "kernel_driver_claim": false,
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "out_fence": 2,
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 2,
+      "status": "complete",
+      "submit_tag": "opencl-subset-gemm"
+    },
+    {
+      "arg_buffer": "0x80030000",
+      "arg_bytes": 32,
+      "context_id": 7,
+      "drm_compatibility_claim": false,
+      "errno": 0,
+      "errno_name": "OK",
+      "grid": [
+        128,
+        128,
+        1
+      ],
+      "ioctl_model": "DRM_IOCTL_CELVIZ_GPGPU_SUBMIT_PROXY_DESCRIPTOR_ONLY",
+      "kernel": "conv2d",
+      "kernel_driver_claim": false,
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "out_fence": 3,
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 3,
+      "status": "complete",
+      "submit_tag": "opencl-subset-conv2d"
+    },
+    {
+      "arg_buffer": "0x80040000",
+      "arg_bytes": 32,
+      "context_id": 7,
+      "drm_compatibility_claim": false,
+      "errno": 0,
+      "errno_name": "OK",
+      "grid": [
+        256,
+        128,
+        1
+      ],
+      "ioctl_model": "DRM_IOCTL_CELVIZ_GPGPU_SUBMIT_PROXY_DESCRIPTOR_ONLY",
+      "kernel": "image_filter",
+      "kernel_driver_claim": false,
+      "local": [
+        16,
+        16,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "out_fence": 4,
+      "queue_id": 0,
+      "required_fp_mode": "fp32",
+      "sequence": 4,
+      "status": "complete",
+      "submit_tag": "opencl-subset-image_filter"
+    }
+  ],
+  "error_paths": [
+    {
+      "completion_path": "eventfd_poll_style_readable_event",
+      "errno": -13,
+      "errno_name": "EACCES",
+      "fence": {
+        "error": "EACCES",
+        "handle": 2,
+        "name": "submit_error",
+        "signaled": true,
+        "timeline_value": 2
+      },
+      "message": "BO 3 lacks write access",
+      "opcode": "dma_fill",
+      "sequence": 2,
+      "source": "linux_runtime_evidence.submissions",
+      "status": "error"
+    },
+    {
+      "errno": -13,
+      "event_id": 3,
+      "fence_handle": 2,
+      "kind": "error",
+      "poll_mask": 3,
+      "readable": true,
+      "source": "linux_runtime_evidence.events",
+      "status": "error"
+    },
+    {
+      "errno": -13,
+      "event_id": 4,
+      "fence_handle": 2,
+      "kind": "fence_wait",
+      "poll_mask": 3,
+      "readable": true,
+      "source": "linux_runtime_evidence.events",
+      "status": "error"
+    },
+    {
+      "errno": -22,
+      "errno_name": "EINVAL",
+      "event_readable": true,
+      "fence_signaled": true,
+      "kernel_driver_claim": false,
+      "message": "invalid queue rejected before enqueue; queue pending unchanged",
+      "path": "submit_reject_invalid_queue",
+      "pending_after": 0,
+      "queue_id": 9999,
+      "source": "phase6c_driver_submission_model",
+      "status": "error"
+    }
+  ],
+  "event_lifecycle": [
+    {
+      "errno": 0,
+      "error": false,
+      "event_id": 1,
+      "fence_handle": 1,
+      "kernel": "vector_add",
+      "kind": "completion",
+      "poll_mask": 1,
+      "queue_id": 0,
+      "readable": true,
+      "sequence": 1,
+      "source": "phase6c_driver_submission_model",
+      "status": "complete"
+    },
+    {
+      "errno": 0,
+      "error": false,
+      "event_id": 2,
+      "fence_handle": 2,
+      "kernel": "gemm",
+      "kind": "completion",
+      "poll_mask": 1,
+      "queue_id": 0,
+      "readable": true,
+      "sequence": 2,
+      "source": "phase6c_driver_submission_model",
+      "status": "complete"
+    },
+    {
+      "errno": 0,
+      "error": false,
+      "event_id": 3,
+      "fence_handle": 3,
+      "kernel": "conv2d",
+      "kind": "completion",
+      "poll_mask": 1,
+      "queue_id": 0,
+      "readable": true,
+      "sequence": 3,
+      "source": "phase6c_driver_submission_model",
+      "status": "complete"
+    },
+    {
+      "errno": 0,
+      "error": false,
+      "event_id": 4,
+      "fence_handle": 4,
+      "kernel": "image_filter",
+      "kind": "completion",
+      "poll_mask": 1,
+      "queue_id": 0,
+      "readable": true,
+      "sequence": 4,
+      "source": "phase6c_driver_submission_model",
+      "status": "complete"
+    },
+    {
+      "errno": -22,
+      "error": true,
+      "event_id": 5,
+      "fence_handle": null,
+      "kernel": null,
+      "kind": "error",
+      "poll_mask": 3,
+      "queue_id": 9999,
+      "readable": true,
+      "sequence": null,
+      "source": "phase6c_driver_submission_model",
+      "status": "error"
+    }
+  ],
+  "fence_lifecycle": [
+    {
+      "error": null,
+      "handle": 1,
+      "kernel": "vector_add",
+      "name": "phase6c_vector_add_fence",
+      "sequence": 1,
+      "signaled": true,
+      "timeline_value": 1
+    },
+    {
+      "error": null,
+      "handle": 2,
+      "kernel": "gemm",
+      "name": "phase6c_gemm_fence",
+      "sequence": 2,
+      "signaled": true,
+      "timeline_value": 2
+    },
+    {
+      "error": null,
+      "handle": 3,
+      "kernel": "conv2d",
+      "name": "phase6c_conv2d_fence",
+      "sequence": 3,
+      "signaled": true,
+      "timeline_value": 3
+    },
+    {
+      "error": null,
+      "handle": 4,
+      "kernel": "image_filter",
+      "name": "phase6c_image_filter_fence",
+      "sequence": 4,
+      "signaled": true,
+      "timeline_value": 4
+    }
+  ],
+  "generated_at": "2026-05-02T17:28:38+00:00",
+  "inputs": {
+    "linux_runtime_schema": "celviz.gpgpu.linux_userspace_runtime_evidence.v1",
+    "linux_runtime_status": "pass",
+    "runtime_schema": "celviz.gpgpu.runtime_commands.v1"
+  },
+  "kernel_dispatch_alignment": {
+    "aligned": true,
+    "driver_submission_count": 4,
+    "driver_submissions": [
+      {
+        "grid": [
+          1024,
+          1,
+          1
+        ],
+        "kernel": "vector_add",
+        "local": [
+          64,
+          1,
+          1
+        ],
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 1,
+        "submit_tag": "opencl-subset-vector_add"
+      },
+      {
+        "grid": [
+          64,
+          64,
+          1
+        ],
+        "kernel": "gemm",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 2,
+        "submit_tag": "opencl-subset-gemm"
+      },
+      {
+        "grid": [
+          128,
+          128,
+          1
+        ],
+        "kernel": "conv2d",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 3,
+        "submit_tag": "opencl-subset-conv2d"
+      },
+      {
+        "grid": [
+          256,
+          128,
+          1
+        ],
+        "kernel": "image_filter",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 4,
+        "submit_tag": "opencl-subset-image_filter"
+      }
+    ],
+    "extra_in_driver": [],
+    "missing_in_driver": [],
+    "runtime_dispatch_count": 4,
+    "runtime_dispatches": [
+      {
+        "arg_buffer": "0x80010000",
+        "arg_bytes": 32,
+        "grid": [
+          1024,
+          1,
+          1
+        ],
+        "kernel": "vector_add",
+        "local": [
+          64,
+          1,
+          1
+        ],
+        "metadata_name": "vector_add",
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 1,
+        "submit_tag": "opencl-subset-vector_add"
+      },
+      {
+        "arg_buffer": "0x80020000",
+        "arg_bytes": 48,
+        "grid": [
+          64,
+          64,
+          1
+        ],
+        "kernel": "gemm",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "metadata_name": "gemm",
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 2,
+        "submit_tag": "opencl-subset-gemm"
+      },
+      {
+        "arg_buffer": "0x80030000",
+        "arg_bytes": 32,
+        "grid": [
+          128,
+          128,
+          1
+        ],
+        "kernel": "conv2d",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "metadata_name": "conv2d",
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 3,
+        "submit_tag": "opencl-subset-conv2d"
+      },
+      {
+        "arg_buffer": "0x80040000",
+        "arg_bytes": 32,
+        "grid": [
+          256,
+          128,
+          1
+        ],
+        "kernel": "image_filter",
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "metadata_name": "image_filter",
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 4,
+        "submit_tag": "opencl-subset-image_filter"
+      }
+    ]
+  },
+  "metrics": {
+    "completion_events": 4,
+    "driver_submissions": 4,
+    "error_events": 1,
+    "error_paths": 4,
+    "events_emitted": 5,
+    "fences_created": 4,
+    "fences_signaled": 4,
+    "linux_input_submit_errors": 1,
+    "pending": 0,
+    "queues_modeled": 1,
+    "runtime_kernel_dispatches": 4
+  },
+  "model_schema": "celviz.gpgpu.driver_submission_model.v1",
+  "queue_lifecycle": {
+    "context_id": 7,
+    "errors": 0,
+    "pending": 0,
+    "priority": 3,
+    "queue_id": 0,
+    "retired": 4,
+    "ring_base": "0x10000000",
+    "ring_size_bytes": 4096,
+    "states": [
+      {
+        "kernel": "vector_add",
+        "pending_after": 1,
+        "sequence": 1,
+        "state": "submitted"
+      },
+      {
+        "kernel": "vector_add",
+        "pending_after": 0,
+        "sequence": 1,
+        "state": "retired"
+      },
+      {
+        "kernel": "gemm",
+        "pending_after": 1,
+        "sequence": 2,
+        "state": "submitted"
+      },
+      {
+        "kernel": "gemm",
+        "pending_after": 0,
+        "sequence": 2,
+        "state": "retired"
+      },
+      {
+        "kernel": "conv2d",
+        "pending_after": 1,
+        "sequence": 3,
+        "state": "submitted"
+      },
+      {
+        "kernel": "conv2d",
+        "pending_after": 0,
+        "sequence": 3,
+        "state": "retired"
+      },
+      {
+        "kernel": "image_filter",
+        "pending_after": 1,
+        "sequence": 4,
+        "state": "submitted"
+      },
+      {
+        "kernel": "image_filter",
+        "pending_after": 0,
+        "sequence": 4,
+        "state": "retired"
+      }
+    ],
+    "submitted": 4
+  },
+  "schema": "celviz.gpgpu.driver_submission_evidence.v1",
+  "scope": "clean-room Linux userspace/DRM-like queue-submit-fence-event model only; not a real Linux kernel driver, not upstream DRM compatibility, not ioctl ABI compatibility, not GEM/syncobj ABI compatibility, not firmware ABI, and not proprietary Vivante compatibility",
+  "status": "pass",
+  "timeline": [
+    {
+      "detail": {
+        "boundary": "userspace_proxy_only",
+        "node": "/dev/dri/renderD128"
+      },
+      "op": "open_render_node_proxy",
+      "time": 1
+    },
+    {
+      "detail": {
+        "context_id": 7
+      },
+      "op": "create_context_proxy",
+      "time": 2
+    },
+    {
+      "detail": {
+        "context_id": 7,
+        "priority": 3,
+        "queue_id": 0,
+        "ring_base": "0x10000000",
+        "ring_size_bytes": 4096
+      },
+      "op": "create_drm_like_queue",
+      "time": 3
+    },
+    {
+      "detail": {
+        "error": null,
+        "handle": 1,
+        "kernel": "vector_add",
+        "name": "phase6c_vector_add_fence",
+        "sequence": 1,
+        "signaled": false,
+        "timeline_value": 0
+      },
+      "op": "create_out_fence",
+      "time": 4
+    },
+    {
+      "detail": {
+        "arg_buffer": "0x80010000",
+        "arg_bytes": 32,
+        "context_id": 7,
+        "drm_compatibility_claim": false,
+        "errno": 0,
+        "errno_name": "OK",
+        "grid": [
+          1024,
+          1,
+          1
+        ],
+        "ioctl_model": "DRM_IOCTL_CELVIZ_GPGPU_SUBMIT_PROXY_DESCRIPTOR_ONLY",
+        "kernel": "vector_add",
+        "kernel_driver_claim": false,
+        "local": [
+          64,
+          1,
+          1
+        ],
+        "opcode": "kernel_dispatch",
+        "out_fence": 1,
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 1,
+        "status": "complete",
+        "submit_tag": "opencl-subset-vector_add"
+      },
+      "op": "drm_like_submit_descriptor",
+      "time": 5
+    },
+    {
+      "detail": {
+        "event": {
+          "errno": 0,
+          "error": false,
+          "event_id": 1,
+          "fence_handle": 1,
+          "kernel": "vector_add",
+          "kind": "completion",
+          "poll_mask": 1,
+          "queue_id": 0,
+          "readable": true,
+          "sequence": 1,
+          "source": "phase6c_driver_submission_model",
+          "status": "complete"
+        },
+        "fence": {
+          "error": null,
+          "handle": 1,
+          "kernel": "vector_add",
+          "name": "phase6c_vector_add_fence",
+          "sequence": 1,
+          "signaled": true,
+          "timeline_value": 1
+        }
+      },
+      "op": "signal_fence_and_emit_event",
+      "time": 6
+    },
+    {
+      "detail": {
+        "error": null,
+        "handle": 2,
+        "kernel": "gemm",
+        "name": "phase6c_gemm_fence",
+        "sequence": 2,
+        "signaled": false,
+        "timeline_value": 0
+      },
+      "op": "create_out_fence",
+      "time": 7
+    },
+    {
+      "detail": {
+        "arg_buffer": "0x80020000",
+        "arg_bytes": 48,
+        "context_id": 7,
+        "drm_compatibility_claim": false,
+        "errno": 0,
+        "errno_name": "OK",
+        "grid": [
+          64,
+          64,
+          1
+        ],
+        "ioctl_model": "DRM_IOCTL_CELVIZ_GPGPU_SUBMIT_PROXY_DESCRIPTOR_ONLY",
+        "kernel": "gemm",
+        "kernel_driver_claim": false,
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "opcode": "kernel_dispatch",
+        "out_fence": 2,
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 2,
+        "status": "complete",
+        "submit_tag": "opencl-subset-gemm"
+      },
+      "op": "drm_like_submit_descriptor",
+      "time": 8
+    },
+    {
+      "detail": {
+        "event": {
+          "errno": 0,
+          "error": false,
+          "event_id": 2,
+          "fence_handle": 2,
+          "kernel": "gemm",
+          "kind": "completion",
+          "poll_mask": 1,
+          "queue_id": 0,
+          "readable": true,
+          "sequence": 2,
+          "source": "phase6c_driver_submission_model",
+          "status": "complete"
+        },
+        "fence": {
+          "error": null,
+          "handle": 2,
+          "kernel": "gemm",
+          "name": "phase6c_gemm_fence",
+          "sequence": 2,
+          "signaled": true,
+          "timeline_value": 2
+        }
+      },
+      "op": "signal_fence_and_emit_event",
+      "time": 9
+    },
+    {
+      "detail": {
+        "error": null,
+        "handle": 3,
+        "kernel": "conv2d",
+        "name": "phase6c_conv2d_fence",
+        "sequence": 3,
+        "signaled": false,
+        "timeline_value": 0
+      },
+      "op": "create_out_fence",
+      "time": 10
+    },
+    {
+      "detail": {
+        "arg_buffer": "0x80030000",
+        "arg_bytes": 32,
+        "context_id": 7,
+        "drm_compatibility_claim": false,
+        "errno": 0,
+        "errno_name": "OK",
+        "grid": [
+          128,
+          128,
+          1
+        ],
+        "ioctl_model": "DRM_IOCTL_CELVIZ_GPGPU_SUBMIT_PROXY_DESCRIPTOR_ONLY",
+        "kernel": "conv2d",
+        "kernel_driver_claim": false,
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "opcode": "kernel_dispatch",
+        "out_fence": 3,
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 3,
+        "status": "complete",
+        "submit_tag": "opencl-subset-conv2d"
+      },
+      "op": "drm_like_submit_descriptor",
+      "time": 11
+    },
+    {
+      "detail": {
+        "event": {
+          "errno": 0,
+          "error": false,
+          "event_id": 3,
+          "fence_handle": 3,
+          "kernel": "conv2d",
+          "kind": "completion",
+          "poll_mask": 1,
+          "queue_id": 0,
+          "readable": true,
+          "sequence": 3,
+          "source": "phase6c_driver_submission_model",
+          "status": "complete"
+        },
+        "fence": {
+          "error": null,
+          "handle": 3,
+          "kernel": "conv2d",
+          "name": "phase6c_conv2d_fence",
+          "sequence": 3,
+          "signaled": true,
+          "timeline_value": 3
+        }
+      },
+      "op": "signal_fence_and_emit_event",
+      "time": 12
+    },
+    {
+      "detail": {
+        "error": null,
+        "handle": 4,
+        "kernel": "image_filter",
+        "name": "phase6c_image_filter_fence",
+        "sequence": 4,
+        "signaled": false,
+        "timeline_value": 0
+      },
+      "op": "create_out_fence",
+      "time": 13
+    },
+    {
+      "detail": {
+        "arg_buffer": "0x80040000",
+        "arg_bytes": 32,
+        "context_id": 7,
+        "drm_compatibility_claim": false,
+        "errno": 0,
+        "errno_name": "OK",
+        "grid": [
+          256,
+          128,
+          1
+        ],
+        "ioctl_model": "DRM_IOCTL_CELVIZ_GPGPU_SUBMIT_PROXY_DESCRIPTOR_ONLY",
+        "kernel": "image_filter",
+        "kernel_driver_claim": false,
+        "local": [
+          16,
+          16,
+          1
+        ],
+        "opcode": "kernel_dispatch",
+        "out_fence": 4,
+        "queue_id": 0,
+        "required_fp_mode": "fp32",
+        "sequence": 4,
+        "status": "complete",
+        "submit_tag": "opencl-subset-image_filter"
+      },
+      "op": "drm_like_submit_descriptor",
+      "time": 14
+    },
+    {
+      "detail": {
+        "event": {
+          "errno": 0,
+          "error": false,
+          "event_id": 4,
+          "fence_handle": 4,
+          "kernel": "image_filter",
+          "kind": "completion",
+          "poll_mask": 1,
+          "queue_id": 0,
+          "readable": true,
+          "sequence": 4,
+          "source": "phase6c_driver_submission_model",
+          "status": "complete"
+        },
+        "fence": {
+          "error": null,
+          "handle": 4,
+          "kernel": "image_filter",
+          "name": "phase6c_image_filter_fence",
+          "sequence": 4,
+          "signaled": true,
+          "timeline_value": 4
+        }
+      },
+      "op": "signal_fence_and_emit_event",
+      "time": 15
+    },
+    {
+      "detail": {
+        "error_path": {
+          "errno": -22,
+          "errno_name": "EINVAL",
+          "event_readable": true,
+          "fence_signaled": true,
+          "kernel_driver_claim": false,
+          "message": "invalid queue rejected before enqueue; queue pending unchanged",
+          "path": "submit_reject_invalid_queue",
+          "pending_after": 0,
+          "queue_id": 9999,
+          "source": "phase6c_driver_submission_model",
+          "status": "error"
+        },
+        "event": {
+          "errno": -22,
+          "error": true,
+          "event_id": 5,
+          "fence_handle": null,
+          "kernel": null,
+          "kind": "error",
+          "poll_mask": 3,
+          "queue_id": 9999,
+          "readable": true,
+          "sequence": null,
+          "source": "phase6c_driver_submission_model",
+          "status": "error"
+        }
+      },
+      "op": "reject_invalid_queue_error_path",
+      "time": 16
+    }
+  ]
+}

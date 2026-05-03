@@ -1,0 +1,1108 @@
+{
+  "artifacts": {
+    "memory_event_trace": "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json",
+    "memory_model_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+    "memory_summary": "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+    "microop_execution_report": "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/microop_execution_report.json",
+    "per_kernel_microop_execution": {
+      "conv2d": "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/kernels/conv2d.microop_execution.json",
+      "gemm": "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/kernels/gemm.microop_execution.json",
+      "image_filter": "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/kernels/image_filter.microop_execution.json",
+      "vector_add": "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/kernels/vector_add.microop_execution.json"
+    }
+  },
+  "checks": [
+    {
+      "evidence": {
+        "memory_schema": "celviz.gpgpu.memory_model.phase1.v1",
+        "memory_status": "pass",
+        "memory_summary_status": "pass",
+        "microop_schema": "celviz.gpgpu.microop_interpreter.v1",
+        "microop_status": "pass"
+      },
+      "name": "input_reports_pass_and_clean_room_scoped",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "aggregate_report_kernels": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "per_kernel_status": {
+          "conv2d": "pass",
+          "gemm": "pass",
+          "image_filter": "pass",
+          "vector_add": "pass"
+        },
+        "required": [
+          "vector_add",
+          "gemm",
+          "conv2d",
+          "image_filter"
+        ]
+      },
+      "name": "required_per_kernel_microop_reports_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "conv2d": {
+          "memory_count_closes": true,
+          "memory_counts": {
+            "load": 450,
+            "store": 25
+          },
+          "memory_event_count": 475,
+          "sample_kinds": [
+            "load",
+            "store"
+          ]
+        },
+        "gemm": {
+          "memory_count_closes": true,
+          "memory_counts": {
+            "load": 240,
+            "store": 20
+          },
+          "memory_event_count": 260,
+          "sample_kinds": [
+            "load",
+            "store"
+          ]
+        },
+        "image_filter": {
+          "memory_count_closes": true,
+          "memory_counts": {
+            "load": 484,
+            "store": 64
+          },
+          "memory_event_count": 548,
+          "sample_kinds": [
+            "load",
+            "store"
+          ]
+        },
+        "vector_add": {
+          "memory_count_closes": true,
+          "memory_counts": {
+            "load": 64,
+            "store": 32
+          },
+          "memory_event_count": 96,
+          "sample_kinds": [
+            "load",
+            "store"
+          ]
+        }
+      },
+      "name": "per_kernel_load_store_traces_close",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "aggregate_loads": 1238,
+        "aggregate_stores": 141,
+        "microop_report_total_memory_events": 1379,
+        "per_kernel_total_memory_events": 1379
+      },
+      "name": "aggregate_microop_memory_counts_match_report",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "alignment_bytes": 4,
+        "global_size_bytes": 256,
+        "kernel_sample_address_spaces": {
+          "conv2d": [
+            "global"
+          ],
+          "gemm": [
+            "global"
+          ],
+          "image_filter": [
+            "global"
+          ],
+          "vector_add": [
+            "global"
+          ]
+        },
+        "memory_global_semantics": "mutable device memory visible to DMA and kernel load/store events"
+      },
+      "name": "global_memory_semantics_close",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "memory_event_categories": [
+          "dma",
+          "kernel",
+          "negative"
+        ],
+        "memory_event_operations": [
+          "copy",
+          "fill",
+          "load",
+          "store"
+        ],
+        "memory_event_schemas": [
+          "celviz.gpgpu.memory_event.v1"
+        ],
+        "memory_operations": {
+          "copy": 3,
+          "fill": 1,
+          "load": 20,
+          "store": 11
+        },
+        "memory_trace_event_count": 35
+      },
+      "name": "memory_model_load_store_copy_fill_event_schema_closes",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "coalescing_sample_kernels": [
+          "vector_add",
+          "gemm",
+          "conv2d",
+          "image_filter"
+        ],
+        "kernel_sample_coalescing": {
+          "conv2d": {
+            "coalesced_transactions": 7,
+            "coalescing_reduction_observed": true,
+            "groups_head": [
+              {
+                "arg": "filter",
+                "byte_span": [
+                  0,
+                  32
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 11,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "filter",
+                "byte_span": [
+                  32,
+                  36
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 1,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              },
+              {
+                "arg": "input",
+                "byte_span": [
+                  0,
+                  32
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "input",
+                "byte_span": [
+                  32,
+                  40
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 2,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              },
+              {
+                "arg": "input",
+                "byte_span": [
+                  160,
+                  192
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 160,
+                "segment_index": 5
+              },
+              {
+                "arg": "input",
+                "byte_span": [
+                  192,
+                  196
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 1,
+                "segment_base_offset": 192,
+                "segment_index": 6
+              },
+              {
+                "arg": "output",
+                "byte_span": [
+                  96,
+                  100
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 1,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              }
+            ],
+            "naive_transactions": 24,
+            "sample_events": 24,
+            "segment_bytes": 32
+          },
+          "gemm": {
+            "coalesced_transactions": 7,
+            "coalescing_reduction_observed": true,
+            "groups_head": [
+              {
+                "arg": "a",
+                "byte_span": [
+                  0,
+                  24
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 6,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "a",
+                "byte_span": [
+                  76,
+                  96
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 5,
+                "segment_base_offset": 64,
+                "segment_index": 2
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  0,
+                  24
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 3,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  36,
+                  64
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  76,
+                  84
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 2,
+                "segment_base_offset": 64,
+                "segment_index": 2
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  96,
+                  120
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 3,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              },
+              {
+                "arg": "c",
+                "byte_span": [
+                  76,
+                  80
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 1,
+                "segment_base_offset": 64,
+                "segment_index": 2
+              }
+            ],
+            "naive_transactions": 24,
+            "sample_events": 24,
+            "segment_bytes": 32
+          },
+          "image_filter": {
+            "coalesced_transactions": 4,
+            "coalescing_reduction_observed": true,
+            "groups_head": [
+              {
+                "arg": "src",
+                "byte_span": [
+                  0,
+                  11
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 10,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "src",
+                "byte_span": [
+                  53,
+                  64
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 10,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              },
+              {
+                "arg": "dst",
+                "byte_span": [
+                  0,
+                  2
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 2,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "dst",
+                "byte_span": [
+                  62,
+                  64
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 2,
+                "segment_base_offset": 32,
+                "segment_index": 1
+              }
+            ],
+            "naive_transactions": 24,
+            "sample_events": 24,
+            "segment_bytes": 32
+          },
+          "vector_add": {
+            "coalesced_transactions": 6,
+            "coalescing_reduction_observed": true,
+            "groups_head": [
+              {
+                "arg": "a",
+                "byte_span": [
+                  0,
+                  16
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "a",
+                "byte_span": [
+                  112,
+                  128
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  0,
+                  16
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "b",
+                "byte_span": [
+                  112,
+                  128
+                ],
+                "kind": "load",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              },
+              {
+                "arg": "c",
+                "byte_span": [
+                  0,
+                  16
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 0,
+                "segment_index": 0
+              },
+              {
+                "arg": "c",
+                "byte_span": [
+                  112,
+                  128
+                ],
+                "kind": "store",
+                "proxy_transactions": 1,
+                "sample_event_count": 4,
+                "segment_base_offset": 96,
+                "segment_index": 3
+              }
+            ],
+            "naive_transactions": 24,
+            "sample_events": 24,
+            "segment_bytes": 32
+          }
+        },
+        "memory_model_coalescing": {
+          "coalesced_transactions": 1,
+          "group_count": 1,
+          "groups": [
+            {
+              "address_space": "global",
+              "byte_span": [
+                0,
+                32
+              ],
+              "lane_count": 8,
+              "lane_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "proxy_transactions": 1,
+              "segment_base_offset": 0,
+              "segment_index": 0
+            }
+          ],
+          "lane_count": 8,
+          "naive_transactions": 8,
+          "segment_bytes": 32
+        }
+      },
+      "name": "coalescing_proxy_model_links_to_microop_samples",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "conv2d": {
+          "aggregate_report_sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+          "aggregate_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+          "per_kernel_report_sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+          "per_kernel_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a"
+        },
+        "gemm": {
+          "aggregate_report_sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+          "aggregate_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+          "per_kernel_report_sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+          "per_kernel_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0"
+        },
+        "image_filter": {
+          "aggregate_report_sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+          "aggregate_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+          "per_kernel_report_sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+          "per_kernel_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101"
+        },
+        "vector_add": {
+          "aggregate_report_sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+          "aggregate_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
+          "per_kernel_report_sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+          "per_kernel_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f"
+        }
+      },
+      "name": "result_and_hash_continuity",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "memory_checks": [
+          {
+            "name": "global_memory_h2d_visible_to_kernel",
+            "pass": true
+          },
+          {
+            "name": "dma_fill_pattern_visible",
+            "pass": true
+          },
+          {
+            "name": "kernel_global_store_visible_to_d2h",
+            "pass": true
+          },
+          {
+            "name": "coalescing_reduces_transactions",
+            "pass": true
+          },
+          {
+            "name": "local_scratchpad_roundtrip",
+            "pass": true
+          },
+          {
+            "name": "constant_reads_are_read_only_and_cacheable_proxy",
+            "pass": true
+          },
+          {
+            "name": "bounds_alignment_negative_cases",
+            "pass": true
+          },
+          {
+            "name": "unified_dma_kernel_event_model",
+            "pass": true
+          }
+        ]
+      },
+      "name": "memory_model_checks_all_pass",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room phase-6B micro-op memory trace integration evidence; uses phase-5 proxy micro-op traces and the clean-room memory model only; not a production ISA simulator, proprietary Vivante RTL/firmware/driver/SDK, cache microarchitecture, command-stream compatibility, timing/PPA signoff, or official API conformance claim",
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "per_kernel": [
+    {
+      "address_args": [
+        "a",
+        "b",
+        "c"
+      ],
+      "coalescing_proxy_from_samples": {
+        "coalesced_transactions": 6,
+        "coalescing_reduction_observed": true,
+        "groups_head": [
+          {
+            "arg": "a",
+            "byte_span": [
+              0,
+              16
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 4,
+            "segment_base_offset": 0,
+            "segment_index": 0
+          },
+          {
+            "arg": "a",
+            "byte_span": [
+              112,
+              128
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 4,
+            "segment_base_offset": 96,
+            "segment_index": 3
+          },
+          {
+            "arg": "b",
+            "byte_span": [
+              0,
+              16
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 4,
+            "segment_base_offset": 0,
+            "segment_index": 0
+          },
+          {
+            "arg": "b",
+            "byte_span": [
+              112,
+              128
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 4,
+            "segment_base_offset": 96,
+            "segment_index": 3
+          },
+          {
+            "arg": "c",
+            "byte_span": [
+              0,
+              16
+            ],
+            "kind": "store",
+            "proxy_transactions": 1,
+            "sample_event_count": 4,
+            "segment_base_offset": 0,
+            "segment_index": 0
+          },
+          {
+            "arg": "c",
+            "byte_span": [
+              112,
+              128
+            ],
+            "kind": "store",
+            "proxy_transactions": 1,
+            "sample_event_count": 4,
+            "segment_base_offset": 96,
+            "segment_index": 3
+          }
+        ],
+        "naive_transactions": 24,
+        "sample_events": 24,
+        "segment_bytes": 32
+      },
+      "global_only_samples": true,
+      "has_load_store_samples": true,
+      "kernel": "vector_add",
+      "memory_count_closes": true,
+      "memory_count_sum": 96,
+      "memory_counts": {
+        "load": 64,
+        "store": 32
+      },
+      "memory_event_count": 96,
+      "oracle_workload": "vector_add",
+      "report_sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+      "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
+      "sample_address_spaces": [
+        "global"
+      ],
+      "sample_args": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sample_bytes_per_element": [
+        4
+      ],
+      "sample_event_count": 24,
+      "sample_kinds": [
+        "load",
+        "store"
+      ],
+      "status": "pass",
+      "wavefront_size": 32,
+      "work_items": 1024
+    },
+    {
+      "address_args": [
+        "a",
+        "b",
+        "c"
+      ],
+      "coalescing_proxy_from_samples": {
+        "coalesced_transactions": 7,
+        "coalescing_reduction_observed": true,
+        "groups_head": [
+          {
+            "arg": "a",
+            "byte_span": [
+              0,
+              24
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 6,
+            "segment_base_offset": 0,
+            "segment_index": 0
+          },
+          {
+            "arg": "a",
+            "byte_span": [
+              76,
+              96
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 5,
+            "segment_base_offset": 64,
+            "segment_index": 2
+          },
+          {
+            "arg": "b",
+            "byte_span": [
+              0,
+              24
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 3,
+            "segment_base_offset": 0,
+            "segment_index": 0
+          },
+          {
+            "arg": "b",
+            "byte_span": [
+              36,
+              64
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 4,
+            "segment_base_offset": 32,
+            "segment_index": 1
+          },
+          {
+            "arg": "b",
+            "byte_span": [
+              76,
+              84
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 2,
+            "segment_base_offset": 64,
+            "segment_index": 2
+          },
+          {
+            "arg": "b",
+            "byte_span": [
+              96,
+              120
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 3,
+            "segment_base_offset": 96,
+            "segment_index": 3
+          },
+          {
+            "arg": "c",
+            "byte_span": [
+              76,
+              80
+            ],
+            "kind": "store",
+            "proxy_transactions": 1,
+            "sample_event_count": 1,
+            "segment_base_offset": 64,
+            "segment_index": 2
+          }
+        ],
+        "naive_transactions": 24,
+        "sample_events": 24,
+        "segment_bytes": 32
+      },
+      "global_only_samples": true,
+      "has_load_store_samples": true,
+      "kernel": "gemm",
+      "memory_count_closes": true,
+      "memory_count_sum": 260,
+      "memory_counts": {
+        "load": 240,
+        "store": 20
+      },
+      "memory_event_count": 260,
+      "oracle_workload": "gemm_proxy",
+      "report_sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+      "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+      "sample_address_spaces": [
+        "global"
+      ],
+      "sample_args": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sample_bytes_per_element": [
+        4
+      ],
+      "sample_event_count": 24,
+      "sample_kinds": [
+        "load",
+        "store"
+      ],
+      "status": "pass",
+      "wavefront_size": 32,
+      "work_items": 4096
+    },
+    {
+      "address_args": [
+        "input",
+        "filter",
+        "output"
+      ],
+      "coalescing_proxy_from_samples": {
+        "coalesced_transactions": 7,
+        "coalescing_reduction_observed": true,
+        "groups_head": [
+          {
+            "arg": "filter",
+            "byte_span": [
+              0,
+              32
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 11,
+            "segment_base_offset": 0,
+            "segment_index": 0
+          },
+          {
+            "arg": "filter",
+            "byte_span": [
+              32,
+              36
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 1,
+            "segment_base_offset": 32,
+            "segment_index": 1
+          },
+          {
+            "arg": "input",
+            "byte_span": [
+              0,
+              32
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 4,
+            "segment_base_offset": 0,
+            "segment_index": 0
+          },
+          {
+            "arg": "input",
+            "byte_span": [
+              32,
+              40
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 2,
+            "segment_base_offset": 32,
+            "segment_index": 1
+          },
+          {
+            "arg": "input",
+            "byte_span": [
+              160,
+              192
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 4,
+            "segment_base_offset": 160,
+            "segment_index": 5
+          },
+          {
+            "arg": "input",
+            "byte_span": [
+              192,
+              196
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 1,
+            "segment_base_offset": 192,
+            "segment_index": 6
+          },
+          {
+            "arg": "output",
+            "byte_span": [
+              96,
+              100
+            ],
+            "kind": "store",
+            "proxy_transactions": 1,
+            "sample_event_count": 1,
+            "segment_base_offset": 96,
+            "segment_index": 3
+          }
+        ],
+        "naive_transactions": 24,
+        "sample_events": 24,
+        "segment_bytes": 32
+      },
+      "global_only_samples": true,
+      "has_load_store_samples": true,
+      "kernel": "conv2d",
+      "memory_count_closes": true,
+      "memory_count_sum": 475,
+      "memory_counts": {
+        "load": 450,
+        "store": 25
+      },
+      "memory_event_count": 475,
+      "oracle_workload": "convolution_proxy",
+      "report_sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+      "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+      "sample_address_spaces": [
+        "global"
+      ],
+      "sample_args": [
+        "filter",
+        "input",
+        "output"
+      ],
+      "sample_bytes_per_element": [
+        4
+      ],
+      "sample_event_count": 24,
+      "sample_kinds": [
+        "load",
+        "store"
+      ],
+      "status": "pass",
+      "wavefront_size": 32,
+      "work_items": 16384
+    },
+    {
+      "address_args": [
+        "src",
+        "dst"
+      ],
+      "coalescing_proxy_from_samples": {
+        "coalesced_transactions": 4,
+        "coalescing_reduction_observed": true,
+        "groups_head": [
+          {
+            "arg": "src",
+            "byte_span": [
+              0,
+              11
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 10,
+            "segment_base_offset": 0,
+            "segment_index": 0
+          },
+          {
+            "arg": "src",
+            "byte_span": [
+              53,
+              64
+            ],
+            "kind": "load",
+            "proxy_transactions": 1,
+            "sample_event_count": 10,
+            "segment_base_offset": 32,
+            "segment_index": 1
+          },
+          {
+            "arg": "dst",
+            "byte_span": [
+              0,
+              2
+            ],
+            "kind": "store",
+            "proxy_transactions": 1,
+            "sample_event_count": 2,
+            "segment_base_offset": 0,
+            "segment_index": 0
+          },
+          {
+            "arg": "dst",
+            "byte_span": [
+              62,
+              64
+            ],
+            "kind": "store",
+            "proxy_transactions": 1,
+            "sample_event_count": 2,
+            "segment_base_offset": 32,
+            "segment_index": 1
+          }
+        ],
+        "naive_transactions": 24,
+        "sample_events": 24,
+        "segment_bytes": 32
+      },
+      "global_only_samples": true,
+      "has_load_store_samples": true,
+      "kernel": "image_filter",
+      "memory_count_closes": true,
+      "memory_count_sum": 548,
+      "memory_counts": {
+        "load": 484,
+        "store": 64
+      },
+      "memory_event_count": 548,
+      "oracle_workload": "image_filter",
+      "report_sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+      "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+      "sample_address_spaces": [
+        "global"
+      ],
+      "sample_args": [
+        "dst",
+        "src"
+      ],
+      "sample_bytes_per_element": [
+        1
+      ],
+      "sample_event_count": 24,
+      "sample_kinds": [
+        "load",
+        "store"
+      ],
+      "status": "pass",
+      "wavefront_size": 32,
+      "work_items": 32768
+    }
+  ],
+  "schema": "celviz.gpgpu.phase6_memory_trace_integration.v1",
+  "status": "pass",
+  "summary": {
+    "coalescing_sample_kernels": [
+      "vector_add",
+      "gemm",
+      "conv2d",
+      "image_filter"
+    ],
+    "coalescing_segment_bytes": 32,
+    "global_memory_semantics": "mutable device memory visible to DMA and kernel load/store events",
+    "kernel_count": 4,
+    "memory_model_event_count": 35,
+    "memory_model_operations": {
+      "copy": 3,
+      "fill": 1,
+      "load": 20,
+      "store": 11
+    },
+    "total_microop_loads": 1238,
+    "total_microop_memory_events": 1379,
+    "total_microop_stores": 141
+  }
+}

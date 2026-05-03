@@ -1,0 +1,112 @@
+{
+  "events": [
+    {
+      "errno": 0,
+      "error": false,
+      "event_id": 1,
+      "fence_handle": 1,
+      "kernel": "vector_add",
+      "kind": "completion",
+      "poll_mask": 1,
+      "queue_id": 0,
+      "readable": true,
+      "sequence": 1,
+      "source": "phase6c_driver_submission_model",
+      "status": "complete"
+    },
+    {
+      "errno": 0,
+      "error": false,
+      "event_id": 2,
+      "fence_handle": 2,
+      "kernel": "gemm",
+      "kind": "completion",
+      "poll_mask": 1,
+      "queue_id": 0,
+      "readable": true,
+      "sequence": 2,
+      "source": "phase6c_driver_submission_model",
+      "status": "complete"
+    },
+    {
+      "errno": 0,
+      "error": false,
+      "event_id": 3,
+      "fence_handle": 3,
+      "kernel": "conv2d",
+      "kind": "completion",
+      "poll_mask": 1,
+      "queue_id": 0,
+      "readable": true,
+      "sequence": 3,
+      "source": "phase6c_driver_submission_model",
+      "status": "complete"
+    },
+    {
+      "errno": 0,
+      "error": false,
+      "event_id": 4,
+      "fence_handle": 4,
+      "kernel": "image_filter",
+      "kind": "completion",
+      "poll_mask": 1,
+      "queue_id": 0,
+      "readable": true,
+      "sequence": 4,
+      "source": "phase6c_driver_submission_model",
+      "status": "complete"
+    },
+    {
+      "errno": -22,
+      "error": true,
+      "event_id": 5,
+      "fence_handle": null,
+      "kernel": null,
+      "kind": "error",
+      "poll_mask": 3,
+      "queue_id": 9999,
+      "readable": true,
+      "sequence": null,
+      "source": "phase6c_driver_submission_model",
+      "status": "error"
+    }
+  ],
+  "fences": [
+    {
+      "error": null,
+      "handle": 1,
+      "kernel": "vector_add",
+      "name": "phase6c_vector_add_fence",
+      "sequence": 1,
+      "signaled": true,
+      "timeline_value": 1
+    },
+    {
+      "error": null,
+      "handle": 2,
+      "kernel": "gemm",
+      "name": "phase6c_gemm_fence",
+      "sequence": 2,
+      "signaled": true,
+      "timeline_value": 2
+    },
+    {
+      "error": null,
+      "handle": 3,
+      "kernel": "conv2d",
+      "name": "phase6c_conv2d_fence",
+      "sequence": 3,
+      "signaled": true,
+      "timeline_value": 3
+    },
+    {
+      "error": null,
+      "handle": 4,
+      "kernel": "image_filter",
+      "name": "phase6c_image_filter_fence",
+      "sequence": 4,
+      "signaled": true,
+      "timeline_value": 4
+    }
+  ]
+}

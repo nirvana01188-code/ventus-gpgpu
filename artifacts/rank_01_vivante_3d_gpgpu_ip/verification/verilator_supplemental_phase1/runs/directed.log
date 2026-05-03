@@ -1,0 +1,20 @@
+celviz_gpgpu_control_plane: start
+schema=celviz.gpgpu.control_plane_demo.v1
+scope=clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim
+tier=gpgpu_nano_ultra31
+queues=[0, 1, 2, 3] shader_units=4
+sequence=1 queue=0 opcode=reset status=complete error=OK expected=OK detail=reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records
+sequence=2 queue=0 opcode=set_scheduler_config status=complete error=OK expected=OK detail=scheduler config updated
+sequence=3 queue=0 opcode=set_shader_mode status=complete error=OK expected=OK detail=shader mode set to fp16
+sequence=4 queue=1 opcode=dma_fill status=complete error=OK expected=OK detail=dma_fill wrote 512 bytes
+sequence=5 queue=1 opcode=host_to_device status=complete error=OK expected=OK detail=host_to_device staged 384 bytes
+sequence=6 queue=1 opcode=dma_copy status=complete error=OK expected=OK detail=dma_copy moved 512 bytes
+sequence=7 queue=1 opcode=fence_signal status=complete error=OK expected=OK detail=fence_signal copy_done=1
+sequence=8 queue=2 opcode=fence_wait status=complete error=OK expected=OK detail=fence_wait observed copy_done=1
+sequence=9 queue=2 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch image_filter retired 64 workgroups
+sequence=10 queue=2 opcode=set_shader_mode status=complete error=OK expected=OK detail=shader mode set to fp32
+sequence=11 queue=3 opcode=kernel_dispatch status=complete error=OK expected=OK detail=kernel_dispatch vector_add retired 4 workgroups
+sequence=12 queue=3 opcode=device_to_host status=complete error=OK expected=OK detail=device_to_host read 256 bytes
+sequence=13 queue=3 opcode=counter_snapshot status=complete error=OK expected=OK detail=counter snapshot captured
+celviz_gpgpu_control_plane: pass
+summary commands=13 completed=13 failed=0 bytes_read=992 bytes_written=2848 completion_interrupts=13 error_interrupts=0

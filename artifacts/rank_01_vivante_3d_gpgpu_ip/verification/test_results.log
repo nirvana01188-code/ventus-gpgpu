@@ -1,0 +1,199 @@
+celviz_gpgpu_ip_verification: command_matrix
+  - vector_add
+  - gemm_convolution_image_filter
+  - memory_copy
+  - shader_unit_scaling
+  - fp16_fp32_paths
+  - command_submission
+  - interrupts
+  - axi_traffic
+  - throughput_scaling_by_tier
+  - fp16_proxy_outputs
+  - runtime_queue_phases
+  - interrupt_error_reset_tokens
+  - axi_apb_transaction_counters
+  - throughput_monotonicity_cues
+  - source_hook_axi4lite2cta_register_counters
+  - source_hook_axi4lite2cta_csr_plumbing
+  - source_hook_cta_scheduler_debug_counters
+  - source_hook_warp_scheduler_debug_counters
+  - source_hook_sim_verilator_runtime_proxy_api
+  - source_hook_tools_runtime_cli_hooks
+  - source_level_hook_strictness
+  - source_hook_implementation_files_only
+  - celviz_gpgpu_source_check
+  - native_runtime_abi_header
+  - native_runtime_abi_implementation
+  - native_runtime_python_bridge
+  - native_queue_snapshot
+  - native_pending_count
+  - native_named_fence
+  - native_submit_fill
+  - native_proxy_snapshot
+  - native_runtime_acceptance
+  - e1_runtime_command_stream_fixture
+  - e1_dma_fill_copy_h2d_d2h
+  - e1_queue_lifecycle_observability
+  - e1_named_fence_wait_signal
+  - e1_status_polling_expectations
+  - e1_expected_error_injection
+  - e3_native_runtime_build_or_relink
+  - e3_require_runtime_bind
+  - e3_native_queue_metric_snapshots
+  - e4_demo_model_evidence
+  - e4_kernel_demo_fixture
+  - e4_vector_add_golden_compare
+  - e4_gemm_convolution_image_filter
+  - e4_memory_copy_golden_compare
+  - e4_fp16_fp32_paths
+  - e4_tier_scaling
+  - e4_buffer_bindings
+  - e4_dispatch_readback_golden_compare
+  - e5_verification_coverage
+  - e5_command_submission
+  - e5_interrupts
+  - e5_axi_traffic
+  - e5_reset_behavior
+  - e5_invalid_descriptors
+  - e5_dma_bounds_alignment
+  - e5_tier_throughput_scaling
+  - optional_present_file_strictness
+
+e5_verification_coverage: pass
+  - e5_command_submission=pass submitted=19 completed=19 queues=3
+  - e5_interrupts=pass completion_interrupts=13 error_interrupts=3
+  - e5_axi_traffic=pass read_tx=5 write_tx=16 bytes_read=736 bytes_written=2272
+  - e5_reset_behavior=pass resets=1
+  - e5_invalid_descriptors=pass expected_errors=ERR_FENCE_WAIT,ERR_MMU_FAULT,ERR_SCHEDULER_FAULT
+  - e5_dma_bounds_alignment=pass valid_dma_commands=6 negative_mmu_descriptors=1
+  - e5_tier_throughput_scaling=pass runtime_tiers=4 model_tiers=9
+
+celviz_gpgpu_boundary_check: pass
+  - forbidden_rank12_evidence_roots: docs/celviz-gpu-ip, artifacts/rank_12_vivante_3d_gpu_ip
+  - active_rank1_evidence_paths_only
+  - checked: artifacts/rank_01_vivante_3d_gpgpu_ip/criteria_to_evidence.csv
+  - checked: artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json
+celviz_gpgpu_source_check: pass
+  - top_debug_plumbing
+  - pipe_warp_debug_plumbing
+  - axi_control_plane_csr
+  - e2_rtl_control_plane_axi_csr_gate
+  - e2_rtl_control_plane_doorbell_irq_error_flow
+  - e2_rtl_control_plane_apb_axi_counter_flow
+  - cta_scheduler_counters
+  - e2_scheduler_handoff_counters
+  - e2_rtl_debug_observability_top
+  - e2_rtl_debug_observability_warp
+  - warp_scheduler_counters
+  - memory_issue_scoreboard_counters
+  - issue_counters
+  - scoreboard_counters
+  - sim_runtime_proxy_c_api
+  - native_runtime_abi_header
+  - e5_runtime_proxy_submission_interrupt_axi_reset_abi
+  - e1_queue_lifecycle_status_polling_abi
+  - e1_dma_fill_copy_fence_error_metrics_abi
+  - sim_runtime_proxy_implementation
+  - e1_queue_lifecycle_status_polling_implementation
+  - e1_dma_fill_copy_fence_error_metrics_implementation
+  - e5_runtime_proxy_submission_interrupt_axi_reset_implementation
+  - native_runtime_abi_implementation
+  - tools_runtime_command_layer
+  - e1_control_plane_runtime_contract
+  - e5_control_plane_strict_command_irq_axi_dma_reset_gate
+  - native_runtime_python_bridge
+  - e1_runtime_python_bridge_consistency
+  - e5_runtime_cli_descriptor_submission_dma_gate
+  - native_runtime_acceptance
+  - e3_native_runtime_build_script_manifest_log_source
+  - e3_acceptance_native_build_manifest_log_gate
+  - e3_acceptance_native_require_runtime_snapshot_gate
+  - e4_acceptance_demo_model_output_gate
+  - e5_acceptance_strict_control_runtime_gate
+  - e5_verification_strict_evidence_gate
+  - e4_demo_model_evidence
+  - e4_kernel_demo_fixture
+  - e4_vector_add_golden_compare
+  - e4_gemm_convolution_image_filter
+  - e4_memory_copy_golden_compare
+  - e4_fp16_fp32_paths
+  - e4_tier_scaling
+  - e4_buffer_bindings
+  - e4_dispatch_readback_golden_compare
+  - source_hook_implementation_files_only
+  - source_hook_rank12_boundary_enforced
+
+celviz_gpgpu_boundary_check: pass
+  - forbidden_rank12_evidence_roots: docs/celviz-gpu-ip, artifacts/rank_12_vivante_3d_gpu_ip
+  - active_rank1_evidence_paths_only
+  - checked: artifacts/rank_01_vivante_3d_gpgpu_ip/criteria_to_evidence.csv
+  - checked: artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json
+component_compute_model: found tools/celviz_gpgpu_ip/compute_model.py
+component_runtime: found tools/celviz_gpgpu_ip/runtime_cli.py
+component_control_plane: found tools/celviz_gpgpu_ip/control_plane.py
+component_compute_model: running tools/celviz_gpgpu_ip/compute_model.py
+component_runtime: running tools/celviz_gpgpu_ip/runtime_cli.py
+component_control_plane: running tools/celviz_gpgpu_ip/control_plane.py
+celviz_gpgpu_ip_verification: pass
+checked_components:
+  - compute_model: tools/celviz_gpgpu_ip/compute_model.py
+  - runtime: tools/celviz_gpgpu_ip/runtime_cli.py
+  - control_plane: tools/celviz_gpgpu_ip/control_plane.py
+checked_tokens:
+  - vector_add
+  - gemm_convolution_image_filter
+  - memory_copy
+  - shader_unit_scaling
+  - fp16_fp32_paths
+  - command_submission
+  - interrupts
+  - axi_traffic
+  - throughput_scaling_by_tier
+checked_optional_rich_evidence:
+  - fp16_proxy_outputs
+  - control_plane_py_syntax_if_present
+  - runtime_queue_phases
+  - interrupt_error_reset_tokens
+  - axi_apb_transaction_counters
+  - throughput_monotonicity_cues
+  - e5_command_submission_strict
+  - e5_interrupt_reset_axi_strict
+  - e5_illegal_descriptor_negative_paths
+  - e5_dma_bounds_alignment
+  - e5_tier_throughput_monotonicity
+  - source_hook_axi4lite2cta_register_counters
+  - source_hook_axi4lite2cta_csr_plumbing
+  - source_hook_cta_scheduler_debug_counters
+  - source_hook_warp_scheduler_debug_counters
+  - source_hook_sim_verilator_runtime_proxy_api
+  - source_hook_tools_runtime_cli_hooks
+  - source_level_hook_strictness
+  - source_hook_implementation_files_only
+  - optional_present_file_strictness
+optional_rich_evidence_summary:
+  - fp16_proxy_outputs=present count=13
+  - runtime_queue_phases=present count=5
+  - axi_apb_transaction_counters=present axi=yes apb=yes
+  - interrupt_error_reset_tokens=present
+  - e5_command_submission_strict=present
+  - e5_interrupt_reset_axi_strict=present
+  - e5_illegal_descriptor_negative_paths=present
+  - e5_dma_bounds_alignment=present
+  - e5_tier_throughput_monotonicity=present
+  - control_plane_py_syntax=present tools/celviz_gpgpu_ip/control_plane.py
+  - source_hook_axi4lite2cta_register_counters=present paths=ventus/src/axi/AXI4Lite2CTA.scala
+  - source_hook_axi4lite2cta_register_counters_evidence=axi4lite2cta_module,celviz_named_register_or_counter,stateful_register_storage,axi_lite_channel_hook
+  - source_hook_axi4lite2cta_csr_plumbing=present paths=ventus/src/axi/AXI4Lite2CTA.scala
+  - source_hook_axi4lite2cta_csr_plumbing_evidence=axi4lite2cta_module,command_doorbell_csr,irq_status_csr,error_status_csr,completion_count_csr,apb_axi_read_counter_csr,apb_axi_write_counter_csr,register_file_extended_by_reg_count,read_counter_increments_on_axi_ar,write_counter_increments_on_axi_w,completion_updates_from_rsp_channel,doorbell_dispatch_updates_data_channel
+  - source_hook_cta_scheduler_debug_counters=present paths=ventus/src/cta/cta_scheduler.scala
+  - source_hook_cta_scheduler_debug_counters_evidence=cta_scheduler_top_module,celviz_debug_bundle,celviz_debug_output_port,celviz_debug_counter_identifier,stateful_counter_storage,counter_helper_increment,cta_fire_or_done_hook
+  - source_hook_warp_scheduler_debug_counters=present paths=ventus/src/pipeline/warp_schedule.scala
+  - source_hook_warp_scheduler_debug_counters_evidence=warp_scheduler_module,celviz_debug_bundle,celviz_debug_output_port,celviz_debug_dont_touch,celviz_debug_counter_identifier,stateful_counter_storage,counter_increment_logic,warp_fire_or_ready_hook
+  - source_hook_sim_verilator_runtime_proxy_api=present paths=sim-verilator/ventus_rtlsim.h,sim-verilator/celviz_gpgpu_runtime_proxy.h,sim-verilator/ventus_rtlsim.cpp,sim-verilator/ventus_rtlsim_impl.hpp,sim-verilator/ventus_rtlsim_impl.cpp
+  - source_hook_sim_verilator_runtime_proxy_api_evidence=ventus_header_includes_celviz_proxy,public_celviz_runtime_api,celviz_runtime_proxy_type,implemented_celviz_runtime_api,kernel_enqueue_calls_rtlsim,copy_h2d_calls_rtlsim,copy_d2h_calls_rtlsim,step_status_adapter,runtime_metrics_storage
+  - source_hook_tools_runtime_cli_hooks=present paths=tools/celviz_gpgpu_ip/runtime_cli.py
+  - source_hook_tools_runtime_cli_hooks_evidence=argparse_cli,kernel_demo_argument,list_devices_argument,kernel_demo_validation,queue_trace_builder,queue_trace_json_output,status_summary_json_output,compute_model_subprocess_hook,runtime_main_entrypoint
+  - throughput_monotonicity_cues=present
+  - source_level_hook_strictness=pass
+  - source_hook_implementation_files_only=pass
+  - optional_present_file_strictness=pass

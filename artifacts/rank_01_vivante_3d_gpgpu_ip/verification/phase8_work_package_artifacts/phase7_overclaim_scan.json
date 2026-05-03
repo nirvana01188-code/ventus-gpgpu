@@ -1,0 +1,15 @@
+{
+  "claim_boundary": "Phase7 reports are proxy evidence; silicon performance wording is rejected unless explicitly negated",
+  "findings": [],
+  "scanned_paths": [
+    "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_coalescing_score_report.json",
+    "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_control_flow_manager_report.json",
+    "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_memory_streaming_report.json",
+    "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_config_sweep_report.json",
+    "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_register_occupancy_report.json",
+    "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_warp_collectives_report.json",
+    "/Users/nirvana/Documents/New project 2/ventus-gpgpu/docs/celviz-gpgpu-ip/RISCV_GPU_PERFORMANCE_RESEARCH.md"
+  ],
+  "schema": "celviz.gpgpu.phase8.phase7_overclaim_scan.v1",
+  "status": "pass"
+}

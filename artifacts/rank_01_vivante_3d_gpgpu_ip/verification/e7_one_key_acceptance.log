@@ -1,0 +1,104 @@
+Celviz GPGPU IP acceptance
+repo=/Users/nirvana/Documents/New project 2/ventus-gpgpu
+matrix=artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json
+tmp=/var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425
+
+==> acceptance_matrix_json
+    python3 -m json.tool artifacts/rank_01_vivante_3d_gpgpu_ip/verification/acceptance_matrix.json
+[PASS] acceptance_matrix_json
+
+==> rank1_boundary_check
+    python3 tools/celviz_gpgpu_ip/boundary_check.py --repo-root .
+[PASS] rank1_boundary_check
+
+==> source_check
+    bash scripts/check_celviz_gpgpu_sources.sh
+[PASS] source_check
+
+==> chisel_make_compile
+    make compile
+[PASS] chisel_make_compile
+
+==> python_py_compile
+    python3 -m py_compile tools/celviz_gpgpu_ip/compute_model.py tools/celviz_gpgpu_ip/control_plane.py tools/celviz_gpgpu_ip/perf_model.py tools/celviz_gpgpu_ip/integration_evidence.py tools/celviz_gpgpu_ip/boundary_check.py tools/celviz_gpgpu_ip/runtime_cli.py tools/celviz_gpgpu_ip/runtime_proxy.py
+[PASS] python_py_compile
+
+==> runtime_dry_run
+    python3 tools/celviz_gpgpu_ip/runtime_cli.py --commands artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json --dry-run --output-dir /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/runtime_dry_run --run-log /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/runtime_dry_run.log --print-status
+[PASS] runtime_dry_run
+
+==> e1_runtime_dry_run_output_check
+    python3 - /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/runtime_dry_run/runtime_metrics.json /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/runtime_dry_run/runtime_status.json artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json
+[PASS] e1_runtime_dry_run_output_check
+
+==> e5_runtime_control_plane_strict_gate
+    python3 - /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/runtime_dry_run/runtime_metrics.json /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/runtime_dry_run/runtime_status.json artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json artifacts/rank_01_vivante_3d_gpgpu_ip
+[PASS] e5_runtime_control_plane_strict_gate
+
+==> e5_runtime_negative_contracts
+    python3 - artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425
+[PASS] e5_runtime_negative_contracts
+
+==> e4_kernel_demo_fixture
+    python3 - artifacts/rank_01_vivante_3d_gpgpu_ip/demo/kernel_demo.json /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e4_kernel_demo.json
+[PASS] e4_kernel_demo_fixture
+
+==> runtime_kernel_demo
+    python3 tools/celviz_gpgpu_ip/runtime_cli.py --kernel-demo /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e4_kernel_demo.json --output-dir /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/kernel_demo_outputs --run-log /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/kernel_demo_run.log
+[PASS] runtime_kernel_demo
+
+==> e4_demo_model_output_check
+    python3 - /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/kernel_demo_outputs artifacts/rank_01_vivante_3d_gpgpu_ip/model /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e4_kernel_demo.json
+[PASS] e4_demo_model_output_check
+
+==> control_plane_demo
+    python3 tools/celviz_gpgpu_ip/control_plane.py --demo artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json --log /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/control_plane_run.log --metrics /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/control_plane_metrics.json --print-metrics
+[PASS] control_plane_demo
+
+==> e5_verification_coverage
+    python3 tools/celviz_gpgpu_ip/control_plane.py --demo artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_verification_demo.json --log /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e5_control_plane_run.log --metrics /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e5_control_plane_metrics.json --print-metrics
+[PASS] e5_verification_coverage
+
+==> e5_verification_output_check
+    python3 - /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e5_control_plane_metrics.json artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_verification_demo.json /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e5_control_plane_run.log
+[PASS] e5_verification_output_check
+
+==> e5_negative_boundary_fixture_check
+    python3 - artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_negative_boundary_fixture.json artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_check.log
+[PASS] e5_negative_boundary_fixture_check
+
+==> e6_integration_evidence
+    python3 tools/celviz_gpgpu_ip/integration_evidence.py --output artifacts/rank_01_vivante_3d_gpgpu_ip/integration/e6_integration_evidence.json --log artifacts/rank_01_vivante_3d_gpgpu_ip/integration/e6_integration_check.log --print-summary
+[PASS] e6_integration_evidence
+
+==> e6_integration_output_check
+    python3 - artifacts/rank_01_vivante_3d_gpgpu_ip/integration/e6_integration_evidence.json artifacts/rank_01_vivante_3d_gpgpu_ip/integration/e6_integration_check.log artifacts/rank_01_vivante_3d_gpgpu_ip/integration docs/celviz-gpgpu-ip/S5_INTEGRATION_GATE.md
+[PASS] e6_integration_output_check
+
+==> artifact_verification
+    bash scripts/verify_celviz_gpgpu_ip.sh
+[PASS] artifact_verification
+
+==> native_runtime_build
+    env CELVIZ_GPGPU_BUILD_MANIFEST=/var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e3_native_runtime_build_manifest.json CELVIZ_GPGPU_BUILD_LOG=/var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e3_native_runtime_build.log.jsonl bash scripts/build_celviz_gpgpu_runtime.sh --auto
+[PASS] native_runtime_build
+
+==> e3_native_runtime_build_manifest_log
+    python3 - /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e3_native_runtime_build_manifest.json /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/e3_native_runtime_build.log.jsonl
+[PASS] e3_native_runtime_build_manifest_log
+
+==> native_runtime_require_runtime
+    python3 tools/celviz_gpgpu_ip/runtime_cli.py --commands artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json --runtime-lib /tmp/ventus-gpgpu-celviz-build/sim-verilator/build/libVentusRTL/debug/libVentusRTL.so --require-runtime --output-dir /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/native_runtime --run-log /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/native_runtime.log --print-status
+[PASS] native_runtime_require_runtime
+
+==> e3_native_runtime_output_check
+    python3 - /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/native_runtime/runtime_metrics.json /var/folders/wv/m41kzh2137n5h0b8s_tb9dnr0000gn/T//celviz-gpgpu-acceptance.40425/native_runtime/runtime_status.json
+[PASS] e3_native_runtime_output_check
+
+==> git_diff_check
+    git diff --check
+[PASS] git_diff_check
+
+Celviz GPGPU IP acceptance summary
+PASS=24 FAIL=0 SKIP=0
+OVERALL: PASS

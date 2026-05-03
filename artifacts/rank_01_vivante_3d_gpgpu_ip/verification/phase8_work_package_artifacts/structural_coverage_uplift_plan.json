@@ -1,0 +1,40 @@
+{
+  "acceptance": [
+    "each directed target must add or preserve line/branch coverage",
+    "toggle/source metrics must remain reported separately from functional acceptance coverage",
+    "waivers must be explicit before any 100% structural claim"
+  ],
+  "claim_boundary": "structural coverage uplift plan; not RTL structural coverage 100%",
+  "current_structural_metrics": {
+    "branch": {
+      "found": 2134626,
+      "hit": 614495,
+      "percent": 28.787,
+      "status": "available"
+    },
+    "line": {
+      "found": 97500,
+      "hit": 77108,
+      "percent": 79.085,
+      "status": "available"
+    },
+    "toggle": {
+      "found": null,
+      "hit": null,
+      "percent": null,
+      "reason": "toggle counts were not present in coverage info",
+      "status": "unavailable"
+    }
+  },
+  "directed_test_targets": [
+    "reset CSR transitions",
+    "IRQ mask/status/clear flow",
+    "AXI/APB read-write counter fire pulses",
+    "scoreboard source/writeback hazard stalls",
+    "LSU global/shared request and response paths",
+    "warp scheduler accept/branch-flush/reconvergence paths",
+    "random command stream with injected MMU, scheduler, and fence faults"
+  ],
+  "schema": "celviz.gpgpu.phase8.structural_coverage_uplift_plan.v1",
+  "status": "pass"
+}

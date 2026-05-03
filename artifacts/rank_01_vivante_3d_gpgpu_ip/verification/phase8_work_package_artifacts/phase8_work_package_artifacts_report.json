@@ -1,0 +1,71 @@
+{
+  "artifact_paths": {
+    "drm_uapi_contract": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/drm_uapi_contract.json",
+    "opencl_negative_tests": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/opencl_negative_tests.json",
+    "phase7_overclaim_scan": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/phase7_overclaim_scan.json",
+    "signoff_requirements": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/signoff_requirements.json",
+    "structural_coverage_uplift_plan": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/structural_coverage_uplift_plan.json",
+    "vivante_clean_room_boundary_checklist": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/vivante_clean_room_boundary_checklist.json"
+  },
+  "checks": [
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/opencl_negative_tests.json"
+      },
+      "name": "opencl_negative_tests_status_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/drm_uapi_contract.json"
+      },
+      "name": "drm_uapi_contract_status_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/structural_coverage_uplift_plan.json"
+      },
+      "name": "structural_coverage_uplift_plan_status_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/signoff_requirements.json"
+      },
+      "name": "signoff_requirements_status_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/phase7_overclaim_scan.json"
+      },
+      "name": "phase7_overclaim_scan_status_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/vivante_clean_room_boundary_checklist.json"
+      },
+      "name": "vivante_clean_room_boundary_checklist_status_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "artifact_count": 6
+      },
+      "name": "all_work_package_artifacts_present",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "Phase-8 executable work-package artifacts for the Ventus-based Celviz GPGPU IP proxy; not proprietary Vivante compatibility, not official OpenCL conformance, not production Linux kernel/DRM driver readiness, not RTL structural coverage closure, not synthesis/STA/power/DFT/physical/silicon signoff, and not silicon performance evidence",
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "schema": "celviz.gpgpu.phase8_work_package_artifacts.v1",
+  "status": "pass",
+  "summary": {
+    "artifact_count": 6,
+    "artifacts_passed": 6,
+    "completion_claim": "not_completed_for_external_or_signoff_items",
+    "engineering_progress_claim": "six Phase-8 work packages now have concrete checkable artifacts"
+  }
+}

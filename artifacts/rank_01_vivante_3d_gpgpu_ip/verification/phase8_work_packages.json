@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "schema": "celviz.gpgpu.phase8_work_packages.v1",
+  "status": "pass",
+  "work_packages": [
+    {
+      "acceptance": "A JSON report records pass/fail for each negative case and keeps official conformance claim disabled.",
+      "id": "P8-WP1",
+      "lane": "official_opencl_conformance",
+      "task": "Add conformance-style OpenCL subset negative tests for unsupported builtins, address spaces, and launch geometry."
+    },
+    {
+      "acceptance": "The contract maps each UAPI concept to existing userspace proxy evidence and names missing kernel-only behavior.",
+      "id": "P8-WP2",
+      "lane": "production_linux_kernel_drm_driver",
+      "task": "Draft a minimal DRM-like UAPI contract for BO, queue, fence, event, and error semantics."
+    },
+    {
+      "acceptance": "Structural line/toggle/branch metrics are regenerated and compared to the previous report.",
+      "id": "P8-WP3",
+      "lane": "rtl_structural_coverage_100",
+      "task": "Add directed Verilator structural tests for reset, IRQ, AXI/APB counters, scoreboard hazards, LSU, and warp branch flushes."
+    },
+    {
+      "acceptance": "The readiness report names every required external input before signoff gates can become completion gates.",
+      "id": "P8-WP4",
+      "lane": "signoff_synthesis_sta_power_dft_physical_silicon",
+      "task": "Create target-library synthesis/STA/power/DFT/physical artifact requirements without claiming signoff."
+    },
+    {
+      "acceptance": "A boundary checker rejects Phase7 silicon-performance overclaim language in active reports.",
+      "id": "P8-WP5",
+      "lane": "phase7_proxy_not_silicon_performance",
+      "task": "Bind every Phase7 proxy metric to its source evidence and forbid silicon-performance wording."
+    },
+    {
+      "acceptance": "The checklist requires licensed collateral, legal approval, and separated evidence roots.",
+      "id": "P8-WP6",
+      "lane": "vivante_proprietary_compatibility",
+      "task": "Keep a clean-room compatibility boundary checklist before any vendor-specific feature request is accepted."
+    }
+  ]
+}

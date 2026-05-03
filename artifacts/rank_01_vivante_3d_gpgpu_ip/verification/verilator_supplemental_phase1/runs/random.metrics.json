@@ -1,0 +1,1978 @@
+{
+  "clean_room_scope": "clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim",
+  "command_count": 48,
+  "completion_records": [
+    {
+      "detail": "reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "reset",
+      "queue_head": 80,
+      "queue_id": 0,
+      "queue_tail": 80,
+      "reset_asserted": true,
+      "reset_behavior": "soft_control_plane_reset",
+      "reset_recovery": {
+        "fault_status_after_reset": "clear",
+        "had_pending_or_fault_before_reset": true,
+        "interrupt_status_after_reset": "clear",
+        "queue_idle_after_reset": true
+      },
+      "sequence": 1,
+      "status": "complete",
+      "submit_tag": "random-reset"
+    },
+    {
+      "detail": "fence_signal rfence_2=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 96,
+      "queue_id": 3,
+      "queue_tail": 96,
+      "sequence": 2,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-2"
+    },
+    {
+      "detail": "fence_signal rfence_3=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 176,
+      "queue_id": 0,
+      "queue_tail": 176,
+      "sequence": 3,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-3"
+    },
+    {
+      "detail": "fence_wait observed rfence_3=1",
+      "error": "OK",
+      "error_code": 0,
+      "observed_value": 1,
+      "opcode": "fence_wait",
+      "queue_head": 96,
+      "queue_id": 2,
+      "queue_tail": 96,
+      "sequence": 4,
+      "status": "complete",
+      "submit_tag": "random-fence_wait-4"
+    },
+    {
+      "detail": "fence_wait observed rfence_2=1",
+      "error": "OK",
+      "error_code": 0,
+      "observed_value": 1,
+      "opcode": "fence_wait",
+      "queue_head": 96,
+      "queue_id": 1,
+      "queue_tail": 96,
+      "sequence": 5,
+      "status": "complete",
+      "submit_tag": "random-fence_wait-5"
+    },
+    {
+      "bytes_copied": 512,
+      "completion_writeback": {
+        "addr": "0x900010c0",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 32,
+        "axi_write_beats": 32,
+        "bytes_read": 512,
+        "bytes_written": 512,
+        "dma_copies": 1,
+        "dma_fills": 0,
+        "kernel_dispatches": 0
+      },
+      "detail": "dma_copy moved 512 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_copy",
+      "queue_head": 208,
+      "queue_id": 3,
+      "queue_tail": 208,
+      "sequence": 6,
+      "status": "complete",
+      "submit_tag": "random-dma_copy-6"
+    },
+    {
+      "bytes_written": 512,
+      "detail": "dma_fill wrote 512 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_fill",
+      "pattern_u32": "0x8117e04f",
+      "queue_head": 192,
+      "queue_id": 1,
+      "queue_tail": 192,
+      "sequence": 7,
+      "status": "complete",
+      "submit_tag": "random-dma_fill-7"
+    },
+    {
+      "bytes_written": 128,
+      "completion_writeback": {
+        "addr": "0x90001100",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 32,
+        "axi_write_beats": 74,
+        "bytes_read": 512,
+        "bytes_written": 1184,
+        "dma_copies": 1,
+        "dma_fills": 1,
+        "kernel_dispatches": 0
+      },
+      "detail": "host_to_device staged 128 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "host_to_device",
+      "queue_head": 288,
+      "queue_id": 0,
+      "queue_tail": 288,
+      "runtime_api": "celviz_gpgpu_proxy_copy_h2d",
+      "sequence": 8,
+      "status": "complete",
+      "submit_tag": "random-host_to_device-8"
+    },
+    {
+      "bytes_read": 128,
+      "detail": "device_to_host read 128 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "device_to_host",
+      "queue_head": 304,
+      "queue_id": 1,
+      "queue_tail": 304,
+      "runtime_api": "celviz_gpgpu_proxy_copy_d2h",
+      "sequence": 9,
+      "status": "complete",
+      "submit_tag": "random-device_to_host-9"
+    },
+    {
+      "bytes_read": 64,
+      "completion_writeback": {
+        "addr": "0x90001140",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 44,
+        "axi_write_beats": 76,
+        "bytes_read": 704,
+        "bytes_written": 1216,
+        "dma_copies": 1,
+        "dma_fills": 1,
+        "kernel_dispatches": 0
+      },
+      "detail": "device_to_host read 64 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "device_to_host",
+      "queue_head": 320,
+      "queue_id": 3,
+      "queue_tail": 320,
+      "runtime_api": "celviz_gpgpu_proxy_copy_d2h",
+      "sequence": 10,
+      "status": "complete",
+      "submit_tag": "random-device_to_host-10"
+    },
+    {
+      "counter_snapshot": {
+        "apb_reads": 11,
+        "apb_writes": 22,
+        "axi_read_beats": 44,
+        "axi_read_transactions": 3,
+        "axi_write_beats": 78,
+        "axi_write_transactions": 6,
+        "bytes_moved": 1952,
+        "bytes_read": 704,
+        "bytes_written": 1248,
+        "command_submission_errors": 0,
+        "commands_completed": 10,
+        "commands_failed": 0,
+        "commands_submitted": 11,
+        "completion_interrupts": 6,
+        "dma_alignment_errors": 0,
+        "dma_bounds_errors": 0,
+        "dma_copies": 1,
+        "dma_fills": 1,
+        "error_interrupts": 0,
+        "fence_signals": 2,
+        "fence_waits": 2,
+        "interrupt_clears": 6,
+        "invalid_descriptors": 0,
+        "kernel_dispatches": 0,
+        "mmu_faults": 0,
+        "queue_errors": 0,
+        "queue_head": 96,
+        "queue_tail": 192,
+        "reset_recoveries": 1,
+        "resets": 1,
+        "scheduler_faults": 0
+      },
+      "detail": "counter snapshot captured",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "counter_snapshot",
+      "queue_head": 192,
+      "queue_id": 2,
+      "queue_tail": 192,
+      "sequence": 11,
+      "status": "complete",
+      "submit_tag": "random-counter_snapshot-11"
+    },
+    {
+      "bytes_copied": 512,
+      "completion_writeback": {
+        "addr": "0x90001180",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 76,
+        "axi_write_beats": 110,
+        "bytes_read": 1216,
+        "bytes_written": 1760,
+        "dma_copies": 2,
+        "dma_fills": 1,
+        "kernel_dispatches": 0
+      },
+      "detail": "dma_copy moved 512 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_copy",
+      "queue_head": 416,
+      "queue_id": 1,
+      "queue_tail": 416,
+      "sequence": 12,
+      "status": "complete",
+      "submit_tag": "random-dma_copy-12"
+    },
+    {
+      "bytes_read": 64,
+      "completion_writeback": {
+        "addr": "0x900011a0",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 80,
+        "axi_write_beats": 112,
+        "bytes_read": 1280,
+        "bytes_written": 1792,
+        "dma_copies": 2,
+        "dma_fills": 1,
+        "kernel_dispatches": 0
+      },
+      "detail": "device_to_host read 64 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "device_to_host",
+      "queue_head": 432,
+      "queue_id": 3,
+      "queue_tail": 432,
+      "runtime_api": "celviz_gpgpu_proxy_copy_d2h",
+      "sequence": 13,
+      "status": "complete",
+      "submit_tag": "random-device_to_host-13"
+    },
+    {
+      "bytes_written": 128,
+      "completion_writeback": {
+        "addr": "0x900011c0",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 80,
+        "axi_write_beats": 122,
+        "bytes_read": 1280,
+        "bytes_written": 1952,
+        "dma_copies": 2,
+        "dma_fills": 1,
+        "kernel_dispatches": 0
+      },
+      "detail": "host_to_device staged 128 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "host_to_device",
+      "queue_head": 544,
+      "queue_id": 3,
+      "queue_tail": 544,
+      "runtime_api": "celviz_gpgpu_proxy_copy_h2d",
+      "sequence": 14,
+      "status": "complete",
+      "submit_tag": "random-host_to_device-14"
+    },
+    {
+      "detail": "fence_signal rfence_15=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 640,
+      "queue_id": 3,
+      "queue_tail": 640,
+      "sequence": 15,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-15"
+    },
+    {
+      "bytes_copied": 512,
+      "detail": "dma_copy moved 512 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_copy",
+      "queue_head": 400,
+      "queue_id": 0,
+      "queue_tail": 400,
+      "sequence": 16,
+      "status": "complete",
+      "submit_tag": "random-dma_copy-16"
+    },
+    {
+      "detail": "fence_wait observed rfence_2=1",
+      "error": "OK",
+      "error_code": 0,
+      "observed_value": 1,
+      "opcode": "fence_wait",
+      "queue_head": 496,
+      "queue_id": 0,
+      "queue_tail": 496,
+      "sequence": 17,
+      "status": "complete",
+      "submit_tag": "random-fence_wait-17"
+    },
+    {
+      "detail": "fence_signal rfence_18=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 736,
+      "queue_id": 3,
+      "queue_tail": 736,
+      "sequence": 18,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-18"
+    },
+    {
+      "bytes_read": 32,
+      "completion_writeback": {
+        "addr": "0x90001260",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 114,
+        "axi_write_beats": 156,
+        "bytes_read": 1824,
+        "bytes_written": 2496,
+        "dma_copies": 3,
+        "dma_fills": 1,
+        "kernel_dispatches": 0
+      },
+      "detail": "device_to_host read 32 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "device_to_host",
+      "queue_head": 304,
+      "queue_id": 2,
+      "queue_tail": 304,
+      "runtime_api": "celviz_gpgpu_proxy_copy_d2h",
+      "sequence": 19,
+      "status": "complete",
+      "submit_tag": "random-device_to_host-19"
+    },
+    {
+      "bytes_copied": 256,
+      "detail": "dma_copy moved 256 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_copy",
+      "queue_head": 608,
+      "queue_id": 0,
+      "queue_tail": 608,
+      "sequence": 20,
+      "status": "complete",
+      "submit_tag": "random-dma_copy-20"
+    },
+    {
+      "bytes_read": 128,
+      "detail": "device_to_host read 128 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "device_to_host",
+      "queue_head": 416,
+      "queue_id": 2,
+      "queue_tail": 416,
+      "runtime_api": "celviz_gpgpu_proxy_copy_d2h",
+      "sequence": 21,
+      "status": "complete",
+      "submit_tag": "random-device_to_host-21"
+    },
+    {
+      "counter_snapshot": {
+        "apb_reads": 22,
+        "apb_writes": 44,
+        "axi_read_beats": 138,
+        "axi_read_transactions": 9,
+        "axi_write_beats": 174,
+        "axi_write_transactions": 14,
+        "bytes_moved": 4992,
+        "bytes_read": 2208,
+        "bytes_written": 2784,
+        "command_submission_errors": 0,
+        "commands_completed": 21,
+        "commands_failed": 0,
+        "commands_submitted": 22,
+        "completion_interrupts": 13,
+        "dma_alignment_errors": 0,
+        "dma_bounds_errors": 0,
+        "dma_copies": 4,
+        "dma_fills": 1,
+        "error_interrupts": 0,
+        "fence_signals": 4,
+        "fence_waits": 3,
+        "interrupt_clears": 13,
+        "invalid_descriptors": 0,
+        "kernel_dispatches": 0,
+        "mmu_faults": 0,
+        "queue_errors": 0,
+        "queue_head": 416,
+        "queue_tail": 512,
+        "reset_recoveries": 1,
+        "resets": 1,
+        "scheduler_faults": 0
+      },
+      "detail": "counter snapshot captured",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "counter_snapshot",
+      "queue_head": 512,
+      "queue_id": 1,
+      "queue_tail": 512,
+      "sequence": 22,
+      "status": "complete",
+      "submit_tag": "random-counter_snapshot-22"
+    },
+    {
+      "bytes_written": 256,
+      "completion_writeback": {
+        "addr": "0x900012e0",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 138,
+        "axi_write_beats": 190,
+        "bytes_read": 2208,
+        "bytes_written": 3040,
+        "dma_copies": 4,
+        "dma_fills": 1,
+        "kernel_dispatches": 0
+      },
+      "detail": "host_to_device staged 256 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "host_to_device",
+      "queue_head": 848,
+      "queue_id": 3,
+      "queue_tail": 848,
+      "runtime_api": "celviz_gpgpu_proxy_copy_h2d",
+      "sequence": 23,
+      "status": "complete",
+      "submit_tag": "random-host_to_device-23"
+    },
+    {
+      "detail": "kernel_dispatch image_filter retired 2 workgroups",
+      "error": "OK",
+      "error_code": 0,
+      "fp16_path": true,
+      "fp32_path": false,
+      "grid": [
+        2,
+        1,
+        1
+      ],
+      "kernel": "image_filter",
+      "local": [
+        8,
+        8,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "queue_head": 736,
+      "queue_id": 0,
+      "queue_tail": 736,
+      "required_fp_mode": "fp16",
+      "scheduler": {
+        "estimated_warps": 4,
+        "private_bytes_per_thread": 12,
+        "shared_bytes": 2048,
+        "warp_size": 32
+      },
+      "sequence": 24,
+      "shader_units": 4,
+      "status": "complete",
+      "submit_tag": "random-kernel_dispatch-24",
+      "work_items": 128,
+      "workgroups": 2
+    },
+    {
+      "detail": "fence_signal rfence_25=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 512,
+      "queue_id": 2,
+      "queue_tail": 512,
+      "sequence": 25,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-25"
+    },
+    {
+      "detail": "nop retired",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "nop",
+      "queue_head": 928,
+      "queue_id": 3,
+      "queue_tail": 928,
+      "sequence": 26,
+      "status": "complete",
+      "submit_tag": "random-nop-26"
+    },
+    {
+      "bytes_written": 128,
+      "detail": "dma_fill wrote 128 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_fill",
+      "pattern_u32": "0xf3d7a2b9",
+      "queue_head": 1024,
+      "queue_id": 3,
+      "queue_tail": 1024,
+      "sequence": 27,
+      "status": "complete",
+      "submit_tag": "random-dma_fill-27"
+    },
+    {
+      "bytes_written": 32,
+      "detail": "host_to_device staged 32 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "host_to_device",
+      "queue_head": 848,
+      "queue_id": 0,
+      "queue_tail": 848,
+      "runtime_api": "celviz_gpgpu_proxy_copy_h2d",
+      "sequence": 28,
+      "status": "complete",
+      "submit_tag": "random-host_to_device-28"
+    },
+    {
+      "detail": "fence_signal rfence_29=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 608,
+      "queue_id": 2,
+      "queue_tail": 608,
+      "sequence": 29,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-29"
+    },
+    {
+      "detail": "barrier observed prior queue work",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "barrier",
+      "queue_head": 1120,
+      "queue_id": 3,
+      "queue_tail": 1120,
+      "sequence": 30,
+      "status": "complete",
+      "submit_tag": "random-barrier-30"
+    },
+    {
+      "bytes_written": 256,
+      "completion_writeback": {
+        "addr": "0x900013e0",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 144,
+        "axi_write_beats": 220,
+        "bytes_read": 2304,
+        "bytes_written": 3520,
+        "dma_copies": 4,
+        "dma_fills": 2,
+        "kernel_dispatches": 1
+      },
+      "detail": "host_to_device staged 256 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "host_to_device",
+      "queue_head": 624,
+      "queue_id": 1,
+      "queue_tail": 624,
+      "runtime_api": "celviz_gpgpu_proxy_copy_h2d",
+      "sequence": 31,
+      "status": "complete",
+      "submit_tag": "random-host_to_device-31"
+    },
+    {
+      "completion_writeback": {
+        "addr": "0x90001400",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 150,
+        "axi_write_beats": 226,
+        "bytes_read": 2400,
+        "bytes_written": 3616,
+        "dma_copies": 4,
+        "dma_fills": 2,
+        "kernel_dispatches": 2
+      },
+      "detail": "kernel_dispatch vector_add retired 4 workgroups",
+      "error": "OK",
+      "error_code": 0,
+      "fp16_path": false,
+      "fp32_path": true,
+      "grid": [
+        4,
+        1,
+        1
+      ],
+      "kernel": "vector_add",
+      "local": [
+        64,
+        1,
+        1
+      ],
+      "opcode": "kernel_dispatch",
+      "queue_head": 736,
+      "queue_id": 2,
+      "queue_tail": 736,
+      "required_fp_mode": "fp32",
+      "scheduler": {
+        "estimated_warps": 8,
+        "private_bytes_per_thread": 16,
+        "shared_bytes": 512,
+        "warp_size": 32
+      },
+      "sequence": 32,
+      "shader_units": 4,
+      "status": "complete",
+      "submit_tag": "random-kernel_dispatch-32",
+      "work_items": 256,
+      "workgroups": 4
+    },
+    {
+      "bytes_written": 128,
+      "completion_writeback": {
+        "addr": "0x90001420",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 150,
+        "axi_write_beats": 236,
+        "bytes_read": 2400,
+        "bytes_written": 3776,
+        "dma_copies": 4,
+        "dma_fills": 3,
+        "kernel_dispatches": 2
+      },
+      "detail": "dma_fill wrote 128 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_fill",
+      "pattern_u32": "0x65202288",
+      "queue_head": 832,
+      "queue_id": 2,
+      "queue_tail": 832,
+      "sequence": 33,
+      "status": "complete",
+      "submit_tag": "random-dma_fill-33"
+    },
+    {
+      "detail": "fence_signal rfence_34=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 928,
+      "queue_id": 2,
+      "queue_tail": 928,
+      "sequence": 34,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-34"
+    },
+    {
+      "detail": "nop retired",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "nop",
+      "queue_head": 1200,
+      "queue_id": 3,
+      "queue_tail": 1200,
+      "sequence": 35,
+      "status": "complete",
+      "submit_tag": "random-nop-35"
+    },
+    {
+      "detail": "fence_signal rfence_36=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 1296,
+      "queue_id": 3,
+      "queue_tail": 1296,
+      "sequence": 36,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-36"
+    },
+    {
+      "detail": "fence_wait observed rfence_25=1",
+      "error": "OK",
+      "error_code": 0,
+      "observed_value": 1,
+      "opcode": "fence_wait",
+      "queue_head": 720,
+      "queue_id": 1,
+      "queue_tail": 720,
+      "sequence": 37,
+      "status": "complete",
+      "submit_tag": "random-fence_wait-37"
+    },
+    {
+      "detail": "nop retired",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "nop",
+      "queue_head": 928,
+      "queue_id": 0,
+      "queue_tail": 928,
+      "sequence": 38,
+      "status": "complete",
+      "submit_tag": "random-nop-38"
+    },
+    {
+      "detail": "fence_wait observed rfence_29=1",
+      "error": "OK",
+      "error_code": 0,
+      "observed_value": 1,
+      "opcode": "fence_wait",
+      "queue_head": 816,
+      "queue_id": 1,
+      "queue_tail": 816,
+      "sequence": 39,
+      "status": "complete",
+      "submit_tag": "random-fence_wait-39"
+    },
+    {
+      "completion_writeback": {
+        "addr": "0x90001500",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 150,
+        "axi_write_beats": 238,
+        "bytes_read": 2400,
+        "bytes_written": 3808,
+        "dma_copies": 4,
+        "dma_fills": 3,
+        "kernel_dispatches": 2
+      },
+      "detail": "counter snapshot captured",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "counter_snapshot",
+      "queue_head": 1024,
+      "queue_id": 2,
+      "queue_tail": 1024,
+      "sequence": 40,
+      "status": "complete",
+      "submit_tag": "random-counter_snapshot-40"
+    },
+    {
+      "detail": "fence_signal rfence_41=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 912,
+      "queue_id": 1,
+      "queue_tail": 912,
+      "sequence": 41,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-41"
+    },
+    {
+      "bytes_copied": 512,
+      "completion_writeback": {
+        "addr": "0x90001540",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 182,
+        "axi_write_beats": 272,
+        "bytes_read": 2912,
+        "bytes_written": 4352,
+        "dma_copies": 5,
+        "dma_fills": 3,
+        "kernel_dispatches": 2
+      },
+      "detail": "dma_copy moved 512 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_copy",
+      "queue_head": 1136,
+      "queue_id": 2,
+      "queue_tail": 1136,
+      "sequence": 42,
+      "status": "complete",
+      "submit_tag": "random-dma_copy-42"
+    },
+    {
+      "bytes_written": 256,
+      "detail": "dma_fill wrote 256 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_fill",
+      "pattern_u32": "0x48dee17d",
+      "queue_head": 1008,
+      "queue_id": 1,
+      "queue_tail": 1008,
+      "sequence": 43,
+      "status": "complete",
+      "submit_tag": "random-dma_fill-43"
+    },
+    {
+      "detail": "fence_signal rfence_44=1",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "fence_signal",
+      "queue_head": 1104,
+      "queue_id": 1,
+      "queue_tail": 1104,
+      "sequence": 44,
+      "status": "complete",
+      "submit_tag": "random-fence_signal-44"
+    },
+    {
+      "bytes_written": 128,
+      "completion_writeback": {
+        "addr": "0x900015a0",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 182,
+        "axi_write_beats": 298,
+        "bytes_read": 2912,
+        "bytes_written": 4768,
+        "dma_copies": 5,
+        "dma_fills": 5,
+        "kernel_dispatches": 2
+      },
+      "detail": "dma_fill wrote 128 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_fill",
+      "pattern_u32": "0x4122e1c9",
+      "queue_head": 1392,
+      "queue_id": 3,
+      "queue_tail": 1392,
+      "sequence": 45,
+      "status": "complete",
+      "submit_tag": "random-dma_fill-45"
+    },
+    {
+      "bytes_written": 128,
+      "completion_writeback": {
+        "addr": "0x900015c0",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 182,
+        "axi_write_beats": 308,
+        "bytes_read": 2912,
+        "bytes_written": 4928,
+        "dma_copies": 5,
+        "dma_fills": 5,
+        "kernel_dispatches": 2
+      },
+      "detail": "host_to_device staged 128 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "host_to_device",
+      "queue_head": 1216,
+      "queue_id": 1,
+      "queue_tail": 1216,
+      "runtime_api": "celviz_gpgpu_proxy_copy_h2d",
+      "sequence": 46,
+      "status": "complete",
+      "submit_tag": "random-host_to_device-46"
+    },
+    {
+      "bytes_read": 256,
+      "completion_writeback": {
+        "addr": "0x900015e0",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 198,
+        "axi_write_beats": 310,
+        "bytes_read": 3168,
+        "bytes_written": 4960,
+        "dma_copies": 5,
+        "dma_fills": 5,
+        "kernel_dispatches": 2
+      },
+      "detail": "device_to_host read 256 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "device_to_host",
+      "queue_head": 1248,
+      "queue_id": 2,
+      "queue_tail": 1248,
+      "runtime_api": "celviz_gpgpu_proxy_copy_d2h",
+      "sequence": 47,
+      "status": "complete",
+      "submit_tag": "random-device_to_host-47"
+    },
+    {
+      "bytes_written": 64,
+      "completion_writeback": {
+        "addr": "0x90001600",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 198,
+        "axi_write_beats": 316,
+        "bytes_read": 3168,
+        "bytes_written": 5056,
+        "dma_copies": 5,
+        "dma_fills": 5,
+        "kernel_dispatches": 2
+      },
+      "detail": "host_to_device staged 64 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "host_to_device",
+      "queue_head": 1328,
+      "queue_id": 1,
+      "queue_tail": 1328,
+      "runtime_api": "celviz_gpgpu_proxy_copy_h2d",
+      "sequence": 48,
+      "status": "complete",
+      "submit_tag": "random-host_to_device-48"
+    }
+  ],
+  "counters": {
+    "apb_reads": 49,
+    "apb_writes": 96,
+    "axi_read_beats": 198,
+    "axi_read_transactions": 13,
+    "axi_write_beats": 318,
+    "axi_write_transactions": 36,
+    "bytes_moved": 8256,
+    "bytes_read": 3168,
+    "bytes_written": 5088,
+    "command_submission_errors": 0,
+    "commands_completed": 48,
+    "commands_failed": 0,
+    "commands_submitted": 48,
+    "completion_interrupts": 29,
+    "dma_alignment_errors": 0,
+    "dma_bounds_errors": 0,
+    "dma_copies": 5,
+    "dma_fills": 5,
+    "error_interrupts": 0,
+    "fence_signals": 10,
+    "fence_waits": 5,
+    "interrupt_clears": 29,
+    "invalid_descriptors": 0,
+    "kernel_dispatches": 2,
+    "mmu_faults": 0,
+    "queue_errors": 0,
+    "reset_recoveries": 1,
+    "resets": 1,
+    "scheduler_faults": 0
+  },
+  "e5_verification_coverage": {
+    "apb_traffic": true,
+    "axi_traffic": true,
+    "command_submission": true,
+    "completion_interrupts": true,
+    "dma_alignment": true,
+    "dma_bounds": false,
+    "fault_interrupts": false,
+    "interrupt_clear": true,
+    "invalid_descriptors": false,
+    "reset_behavior": true,
+    "throughput_tier_link": true
+  },
+  "evidence_tokens": {
+    "apb_transactions": true,
+    "axi_traffic": true,
+    "command_submission": true,
+    "completion_interrupt_events": true,
+    "dma_bounds_alignment_negative_paths": false,
+    "dma_copy": true,
+    "dma_fill": true,
+    "error_interrupt_events": false,
+    "fence_signal": true,
+    "fence_wait": true,
+    "fp16_path": true,
+    "fp32_path": true,
+    "interrupt_clear_events": true,
+    "invalid_descriptor_negative_paths": false,
+    "kernel_dispatch": true,
+    "reset_behavior": true,
+    "reset_recovery": true,
+    "throughput_tier_linkage": true
+  },
+  "expected_command_failures": 0,
+  "expected_command_passes": 48,
+  "fences": {
+    "rfence_15": 1,
+    "rfence_18": 1,
+    "rfence_2": 1,
+    "rfence_25": 1,
+    "rfence_29": 1,
+    "rfence_3": 1,
+    "rfence_34": 1,
+    "rfence_36": 1,
+    "rfence_41": 1,
+    "rfence_44": 1
+  },
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "interrupt_events": [
+    {
+      "kind": "completion",
+      "message": "reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records",
+      "queue_id": 0,
+      "sequence": 1
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 1
+    },
+    {
+      "kind": "completion",
+      "message": "fence_signal rfence_2=1",
+      "queue_id": 3,
+      "sequence": 2
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 3,
+      "sequence": 2
+    },
+    {
+      "kind": "completion",
+      "message": "fence_signal rfence_3=1",
+      "queue_id": 0,
+      "sequence": 3
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 3
+    },
+    {
+      "kind": "completion",
+      "message": "fence_wait observed rfence_3=1",
+      "queue_id": 2,
+      "sequence": 4
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 4
+    },
+    {
+      "kind": "completion",
+      "message": "dma_fill wrote 512 bytes",
+      "queue_id": 1,
+      "sequence": 7
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 1,
+      "sequence": 7
+    },
+    {
+      "kind": "completion",
+      "message": "device_to_host read 64 bytes",
+      "queue_id": 3,
+      "sequence": 10
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 3,
+      "sequence": 10
+    },
+    {
+      "kind": "completion",
+      "message": "dma_copy moved 512 bytes",
+      "queue_id": 1,
+      "sequence": 12
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 1,
+      "sequence": 12
+    },
+    {
+      "kind": "completion",
+      "message": "device_to_host read 64 bytes",
+      "queue_id": 3,
+      "sequence": 13
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 3,
+      "sequence": 13
+    },
+    {
+      "kind": "completion",
+      "message": "dma_copy moved 512 bytes",
+      "queue_id": 0,
+      "sequence": 16
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 16
+    },
+    {
+      "kind": "completion",
+      "message": "fence_wait observed rfence_2=1",
+      "queue_id": 0,
+      "sequence": 17
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 17
+    },
+    {
+      "kind": "completion",
+      "message": "fence_signal rfence_18=1",
+      "queue_id": 3,
+      "sequence": 18
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 3,
+      "sequence": 18
+    },
+    {
+      "kind": "completion",
+      "message": "device_to_host read 32 bytes",
+      "queue_id": 2,
+      "sequence": 19
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 19
+    },
+    {
+      "kind": "completion",
+      "message": "dma_copy moved 256 bytes",
+      "queue_id": 0,
+      "sequence": 20
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 20
+    },
+    {
+      "kind": "completion",
+      "message": "kernel_dispatch image_filter retired 2 workgroups",
+      "queue_id": 0,
+      "sequence": 24
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 24
+    },
+    {
+      "kind": "completion",
+      "message": "fence_signal rfence_25=1",
+      "queue_id": 2,
+      "sequence": 25
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 25
+    },
+    {
+      "kind": "completion",
+      "message": "nop retired",
+      "queue_id": 3,
+      "sequence": 26
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 3,
+      "sequence": 26
+    },
+    {
+      "kind": "completion",
+      "message": "dma_fill wrote 128 bytes",
+      "queue_id": 3,
+      "sequence": 27
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 3,
+      "sequence": 27
+    },
+    {
+      "kind": "completion",
+      "message": "fence_signal rfence_29=1",
+      "queue_id": 2,
+      "sequence": 29
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 29
+    },
+    {
+      "kind": "completion",
+      "message": "kernel_dispatch vector_add retired 4 workgroups",
+      "queue_id": 2,
+      "sequence": 32
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 32
+    },
+    {
+      "kind": "completion",
+      "message": "dma_fill wrote 128 bytes",
+      "queue_id": 2,
+      "sequence": 33
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 33
+    },
+    {
+      "kind": "completion",
+      "message": "fence_signal rfence_34=1",
+      "queue_id": 2,
+      "sequence": 34
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 34
+    },
+    {
+      "kind": "completion",
+      "message": "nop retired",
+      "queue_id": 3,
+      "sequence": 35
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 3,
+      "sequence": 35
+    },
+    {
+      "kind": "completion",
+      "message": "nop retired",
+      "queue_id": 0,
+      "sequence": 38
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 38
+    },
+    {
+      "kind": "completion",
+      "message": "fence_wait observed rfence_29=1",
+      "queue_id": 1,
+      "sequence": 39
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 1,
+      "sequence": 39
+    },
+    {
+      "kind": "completion",
+      "message": "fence_signal rfence_41=1",
+      "queue_id": 1,
+      "sequence": 41
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 1,
+      "sequence": 41
+    },
+    {
+      "kind": "completion",
+      "message": "fence_signal rfence_44=1",
+      "queue_id": 1,
+      "sequence": 44
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 1,
+      "sequence": 44
+    },
+    {
+      "kind": "completion",
+      "message": "dma_fill wrote 128 bytes",
+      "queue_id": 3,
+      "sequence": 45
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 3,
+      "sequence": 45
+    },
+    {
+      "kind": "completion",
+      "message": "device_to_host read 256 bytes",
+      "queue_id": 2,
+      "sequence": 47
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 47
+    },
+    {
+      "kind": "completion",
+      "message": "host_to_device staged 64 bytes",
+      "queue_id": 1,
+      "sequence": 48
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 1,
+      "sequence": 48
+    }
+  ],
+  "ip_name": "Celviz GPGPU IP",
+  "queue_state": {
+    "0": {
+      "base": "0x10000000",
+      "errors": 0,
+      "head": 928,
+      "priority": 3,
+      "retired": 9,
+      "size_bytes": 4096,
+      "submitted": 9,
+      "tail": 928
+    },
+    "1": {
+      "base": "0x10001000",
+      "errors": 0,
+      "head": 1328,
+      "priority": 2,
+      "retired": 13,
+      "size_bytes": 4096,
+      "submitted": 13,
+      "tail": 1328
+    },
+    "2": {
+      "base": "0x10002000",
+      "errors": 0,
+      "head": 1248,
+      "priority": 1,
+      "retired": 12,
+      "size_bytes": 4096,
+      "submitted": 12,
+      "tail": 1248
+    },
+    "3": {
+      "base": "0x10003000",
+      "errors": 0,
+      "head": 1392,
+      "priority": 0,
+      "retired": 14,
+      "size_bytes": 4096,
+      "submitted": 14,
+      "tail": 1392
+    }
+  },
+  "runtime_control_evidence": {
+    "axi_apb_traffic": {
+      "apb_reads": 49,
+      "apb_traffic_observed": true,
+      "apb_writes": 96,
+      "axi_read_beats": 198,
+      "axi_read_transactions": 13,
+      "axi_traffic_observed": true,
+      "axi_write_beats": 318,
+      "axi_write_transactions": 36,
+      "bytes_moved": 8256,
+      "bytes_read": 3168,
+      "bytes_written": 5088
+    },
+    "command_submission": {
+      "apb_doorbell_writes": 96,
+      "command_count": 48,
+      "completed": 48,
+      "failed": 0,
+      "observed": true,
+      "sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "submission_errors": 0,
+      "submitted": 48
+    },
+    "dma_bounds_alignment": {
+      "alignment_bytes": 4,
+      "alignment_checked": true,
+      "alignment_errors": 0,
+      "bounds_checked": true,
+      "bounds_errors": 0,
+      "dma_sequences": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        14,
+        16,
+        19,
+        20,
+        21,
+        23,
+        27,
+        28,
+        31,
+        33,
+        42,
+        43,
+        45,
+        46,
+        47,
+        48
+      ],
+      "error_sequences": [],
+      "observed": true
+    },
+    "interrupt_counters_clear": {
+      "clear_observed": true,
+      "clear_sequences": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        10,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        24,
+        25,
+        26,
+        27,
+        29,
+        32,
+        33,
+        34,
+        35,
+        38,
+        39,
+        41,
+        44,
+        45,
+        47,
+        48
+      ],
+      "completion_interrupts": 29,
+      "error_interrupts": 0,
+      "events": [
+        {
+          "kind": "completion",
+          "message": "reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records",
+          "queue_id": 0,
+          "sequence": 1
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 1
+        },
+        {
+          "kind": "completion",
+          "message": "fence_signal rfence_2=1",
+          "queue_id": 3,
+          "sequence": 2
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 3,
+          "sequence": 2
+        },
+        {
+          "kind": "completion",
+          "message": "fence_signal rfence_3=1",
+          "queue_id": 0,
+          "sequence": 3
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 3
+        },
+        {
+          "kind": "completion",
+          "message": "fence_wait observed rfence_3=1",
+          "queue_id": 2,
+          "sequence": 4
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 4
+        },
+        {
+          "kind": "completion",
+          "message": "dma_fill wrote 512 bytes",
+          "queue_id": 1,
+          "sequence": 7
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 1,
+          "sequence": 7
+        },
+        {
+          "kind": "completion",
+          "message": "device_to_host read 64 bytes",
+          "queue_id": 3,
+          "sequence": 10
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 3,
+          "sequence": 10
+        },
+        {
+          "kind": "completion",
+          "message": "dma_copy moved 512 bytes",
+          "queue_id": 1,
+          "sequence": 12
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 1,
+          "sequence": 12
+        },
+        {
+          "kind": "completion",
+          "message": "device_to_host read 64 bytes",
+          "queue_id": 3,
+          "sequence": 13
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 3,
+          "sequence": 13
+        },
+        {
+          "kind": "completion",
+          "message": "dma_copy moved 512 bytes",
+          "queue_id": 0,
+          "sequence": 16
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 16
+        },
+        {
+          "kind": "completion",
+          "message": "fence_wait observed rfence_2=1",
+          "queue_id": 0,
+          "sequence": 17
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 17
+        },
+        {
+          "kind": "completion",
+          "message": "fence_signal rfence_18=1",
+          "queue_id": 3,
+          "sequence": 18
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 3,
+          "sequence": 18
+        },
+        {
+          "kind": "completion",
+          "message": "device_to_host read 32 bytes",
+          "queue_id": 2,
+          "sequence": 19
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 19
+        },
+        {
+          "kind": "completion",
+          "message": "dma_copy moved 256 bytes",
+          "queue_id": 0,
+          "sequence": 20
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 20
+        },
+        {
+          "kind": "completion",
+          "message": "kernel_dispatch image_filter retired 2 workgroups",
+          "queue_id": 0,
+          "sequence": 24
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 24
+        },
+        {
+          "kind": "completion",
+          "message": "fence_signal rfence_25=1",
+          "queue_id": 2,
+          "sequence": 25
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 25
+        },
+        {
+          "kind": "completion",
+          "message": "nop retired",
+          "queue_id": 3,
+          "sequence": 26
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 3,
+          "sequence": 26
+        },
+        {
+          "kind": "completion",
+          "message": "dma_fill wrote 128 bytes",
+          "queue_id": 3,
+          "sequence": 27
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 3,
+          "sequence": 27
+        },
+        {
+          "kind": "completion",
+          "message": "fence_signal rfence_29=1",
+          "queue_id": 2,
+          "sequence": 29
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 29
+        },
+        {
+          "kind": "completion",
+          "message": "kernel_dispatch vector_add retired 4 workgroups",
+          "queue_id": 2,
+          "sequence": 32
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 32
+        },
+        {
+          "kind": "completion",
+          "message": "dma_fill wrote 128 bytes",
+          "queue_id": 2,
+          "sequence": 33
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 33
+        },
+        {
+          "kind": "completion",
+          "message": "fence_signal rfence_34=1",
+          "queue_id": 2,
+          "sequence": 34
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 34
+        },
+        {
+          "kind": "completion",
+          "message": "nop retired",
+          "queue_id": 3,
+          "sequence": 35
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 3,
+          "sequence": 35
+        },
+        {
+          "kind": "completion",
+          "message": "nop retired",
+          "queue_id": 0,
+          "sequence": 38
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 38
+        },
+        {
+          "kind": "completion",
+          "message": "fence_wait observed rfence_29=1",
+          "queue_id": 1,
+          "sequence": 39
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 1,
+          "sequence": 39
+        },
+        {
+          "kind": "completion",
+          "message": "fence_signal rfence_41=1",
+          "queue_id": 1,
+          "sequence": 41
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 1,
+          "sequence": 41
+        },
+        {
+          "kind": "completion",
+          "message": "fence_signal rfence_44=1",
+          "queue_id": 1,
+          "sequence": 44
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 1,
+          "sequence": 44
+        },
+        {
+          "kind": "completion",
+          "message": "dma_fill wrote 128 bytes",
+          "queue_id": 3,
+          "sequence": 45
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 3,
+          "sequence": 45
+        },
+        {
+          "kind": "completion",
+          "message": "device_to_host read 256 bytes",
+          "queue_id": 2,
+          "sequence": 47
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 47
+        },
+        {
+          "kind": "completion",
+          "message": "host_to_device staged 64 bytes",
+          "queue_id": 1,
+          "sequence": 48
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 1,
+          "sequence": 48
+        }
+      ],
+      "interrupt_clears": 29
+    },
+    "invalid_descriptor": {
+      "errors": [],
+      "invalid_descriptor_counter": 0,
+      "observed": false,
+      "rejected_count": 0,
+      "sequences": [],
+      "submission_error_counter": 0
+    },
+    "reset_recovery": {
+      "fault_status_after_reset": "clear",
+      "interrupt_status_after_reset": "clear",
+      "post_reset_smoke_status": "pass",
+      "queue_idle_after_reset": true,
+      "reset_asserted": true,
+      "reset_recoveries": 1,
+      "reset_sequences": [
+        1
+      ]
+    },
+    "throughput_tier_linkage": {
+      "claim_scope": "proxy_model_only",
+      "fp_modes": [
+        "fp16",
+        "fp32",
+        "mixed"
+      ],
+      "max_local_size": 512,
+      "queue_count": 4,
+      "shader_units": 4,
+      "throughput_scaling_by_tier": true,
+      "tier": "gpgpu_nano_ultra31"
+    }
+  },
+  "schema": "celviz.gpgpu.control_plane_metrics.v1",
+  "shader_units": 4,
+  "status": "pass",
+  "status_registers": {
+    "last_sequence": 48,
+    "last_tag": "random-host_to_device-48",
+    "status": "idle",
+    "sticky_error": null
+  },
+  "tier": "gpgpu_nano_ultra31"
+}

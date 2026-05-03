@@ -1,0 +1,654 @@
+{
+  "clean_room_scope": "clean-room command/control-plane proxy; no proprietary Vivante command stream, driver ABI, firmware, SDK, compiler, RTL, or conformance claim",
+  "command_count": 10,
+  "completion_records": [
+    {
+      "detail": "reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "reset",
+      "queue_head": 80,
+      "queue_id": 0,
+      "queue_tail": 80,
+      "reset_asserted": true,
+      "reset_behavior": "soft_control_plane_reset",
+      "reset_recovery": {
+        "fault_status_after_reset": "clear",
+        "had_pending_or_fault_before_reset": true,
+        "interrupt_status_after_reset": "clear",
+        "queue_idle_after_reset": true
+      },
+      "sequence": 1,
+      "status": "complete",
+      "submit_tag": "fault-reset"
+    },
+    {
+      "detail": "dma_copy source, destination, and byte_count must be 4-byte aligned",
+      "error": "ERR_BAD_DMA",
+      "error_code": 8,
+      "error_expected": true,
+      "expected_error": "ERR_BAD_DMA",
+      "opcode": "dma_copy",
+      "queue_head": 192,
+      "queue_id": 0,
+      "queue_tail": 192,
+      "sequence": 2,
+      "status": "error",
+      "submit_tag": "fault-dma-align"
+    },
+    {
+      "detail": "dma_copy source or destination failed range check",
+      "error": "ERR_MMU_FAULT",
+      "error_code": 9,
+      "error_expected": true,
+      "expected_error": "ERR_MMU_FAULT",
+      "opcode": "dma_copy",
+      "queue_head": 304,
+      "queue_id": 0,
+      "queue_tail": 304,
+      "sequence": 3,
+      "status": "error",
+      "submit_tag": "fault-dma-mmu"
+    },
+    {
+      "detail": "local workgroup size exceeds tier scheduler limit",
+      "error": "ERR_SCHEDULER_FAULT",
+      "error_code": 514,
+      "error_expected": true,
+      "expected_error": "ERR_SCHEDULER_FAULT",
+      "opcode": "kernel_dispatch",
+      "queue_head": 128,
+      "queue_id": 1,
+      "queue_tail": 128,
+      "sequence": 4,
+      "status": "error",
+      "submit_tag": "fault-scheduler"
+    },
+    {
+      "detail": "kernel arg buffer failed readable range check",
+      "error": "ERR_MMU_FAULT",
+      "error_code": 9,
+      "error_expected": true,
+      "expected_error": "ERR_MMU_FAULT",
+      "opcode": "kernel_dispatch",
+      "queue_head": 256,
+      "queue_id": 1,
+      "queue_tail": 256,
+      "sequence": 5,
+      "status": "error",
+      "submit_tag": "fault-kernel-arg-mmu"
+    },
+    {
+      "detail": "fence_wait timed out after 2 cycles waiting for never>=1",
+      "error": "ERR_FENCE_WAIT",
+      "error_code": 256,
+      "error_expected": true,
+      "expected_error": "ERR_FENCE_WAIT",
+      "observed_value": null,
+      "opcode": "fence_wait",
+      "queue_head": 96,
+      "queue_id": 2,
+      "queue_tail": 96,
+      "sequence": 6,
+      "status": "error",
+      "submit_tag": "fault-fence-timeout"
+    },
+    {
+      "detail": "unsupported opcode undefined_opcode",
+      "error": "ERR_UNSUPPORTED_OPCODE",
+      "error_code": 5,
+      "error_expected": true,
+      "expected_error": "ERR_UNSUPPORTED_OPCODE",
+      "opcode": "undefined_opcode",
+      "queue_head": 176,
+      "queue_id": 2,
+      "queue_tail": 176,
+      "sequence": 7,
+      "status": "error",
+      "submit_tag": "fault-unsupported"
+    },
+    {
+      "detail": "queue_id not configured for this tier",
+      "error": "ERR_BAD_QUEUE",
+      "error_code": 6,
+      "error_expected": true,
+      "expected_error": "ERR_BAD_QUEUE",
+      "opcode": "nop",
+      "queue_id": 7,
+      "sequence": 8,
+      "status": "error",
+      "submit_tag": "fault-bad-queue"
+    },
+    {
+      "detail": "reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "reset",
+      "queue_head": 80,
+      "queue_id": 0,
+      "queue_tail": 80,
+      "reset_asserted": true,
+      "reset_behavior": "soft_control_plane_reset",
+      "reset_recovery": {
+        "fault_status_after_reset": "clear",
+        "had_pending_or_fault_before_reset": true,
+        "interrupt_status_after_reset": "clear",
+        "queue_idle_after_reset": true
+      },
+      "sequence": 9,
+      "status": "complete",
+      "submit_tag": "fault-recovery-reset"
+    },
+    {
+      "bytes_written": 64,
+      "completion_writeback": {
+        "addr": "0x90002000",
+        "bytes": 32
+      },
+      "counter_snapshot": {
+        "axi_read_beats": 0,
+        "axi_write_beats": 4,
+        "bytes_read": 0,
+        "bytes_written": 64,
+        "dma_copies": 0,
+        "dma_fills": 1,
+        "kernel_dispatches": 0
+      },
+      "detail": "dma_fill wrote 64 bytes",
+      "error": "OK",
+      "error_code": 0,
+      "opcode": "dma_fill",
+      "pattern_u32": "0x00000000",
+      "queue_head": 176,
+      "queue_id": 0,
+      "queue_tail": 176,
+      "sequence": 10,
+      "status": "complete",
+      "submit_tag": "fault-post-reset-smoke"
+    }
+  ],
+  "counters": {
+    "apb_reads": 10,
+    "apb_writes": 20,
+    "axi_read_beats": 0,
+    "axi_read_transactions": 0,
+    "axi_write_beats": 6,
+    "axi_write_transactions": 2,
+    "bytes_moved": 96,
+    "bytes_read": 0,
+    "bytes_written": 96,
+    "command_submission_errors": 4,
+    "commands_completed": 10,
+    "commands_failed": 7,
+    "commands_submitted": 10,
+    "completion_interrupts": 3,
+    "dma_alignment_errors": 1,
+    "dma_bounds_errors": 2,
+    "dma_copies": 0,
+    "dma_fills": 1,
+    "error_interrupts": 7,
+    "fence_signals": 0,
+    "fence_waits": 1,
+    "interrupt_clears": 10,
+    "invalid_descriptors": 4,
+    "kernel_dispatches": 0,
+    "mmu_faults": 2,
+    "queue_errors": 7,
+    "reset_recoveries": 2,
+    "resets": 2,
+    "scheduler_faults": 1
+  },
+  "e5_verification_coverage": {
+    "apb_traffic": true,
+    "axi_traffic": true,
+    "command_submission": true,
+    "completion_interrupts": true,
+    "dma_alignment": true,
+    "dma_bounds": true,
+    "fault_interrupts": true,
+    "interrupt_clear": true,
+    "invalid_descriptors": true,
+    "reset_behavior": true,
+    "throughput_tier_link": true
+  },
+  "evidence_tokens": {
+    "apb_transactions": true,
+    "axi_traffic": true,
+    "command_submission": true,
+    "completion_interrupt_events": true,
+    "dma_bounds_alignment_negative_paths": true,
+    "dma_copy": false,
+    "dma_fill": true,
+    "error_interrupt_events": true,
+    "fence_signal": false,
+    "fence_wait": true,
+    "fp16_path": false,
+    "fp32_path": false,
+    "interrupt_clear_events": true,
+    "invalid_descriptor_negative_paths": true,
+    "kernel_dispatch": false,
+    "reset_behavior": true,
+    "reset_recovery": true,
+    "throughput_tier_linkage": true
+  },
+  "expected_command_failures": 0,
+  "expected_command_passes": 10,
+  "fences": {},
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "interrupt_events": [
+    {
+      "kind": "completion",
+      "message": "reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records",
+      "queue_id": 0,
+      "sequence": 1
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 1
+    },
+    {
+      "kind": "error",
+      "message": "dma_copy source, destination, and byte_count must be 4-byte aligned",
+      "queue_id": 0,
+      "sequence": 2
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 2
+    },
+    {
+      "kind": "error",
+      "message": "dma_copy source or destination failed range check",
+      "queue_id": 0,
+      "sequence": 3
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 3
+    },
+    {
+      "kind": "error",
+      "message": "local workgroup size exceeds tier scheduler limit",
+      "queue_id": 1,
+      "sequence": 4
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 1,
+      "sequence": 4
+    },
+    {
+      "kind": "error",
+      "message": "kernel arg buffer failed readable range check",
+      "queue_id": 1,
+      "sequence": 5
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 1,
+      "sequence": 5
+    },
+    {
+      "kind": "error",
+      "message": "fence_wait timed out after 2 cycles waiting for never>=1",
+      "queue_id": 2,
+      "sequence": 6
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 6
+    },
+    {
+      "kind": "error",
+      "message": "unsupported opcode undefined_opcode",
+      "queue_id": 2,
+      "sequence": 7
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 2,
+      "sequence": 7
+    },
+    {
+      "kind": "error",
+      "message": "bad queue id",
+      "queue_id": 7,
+      "sequence": 8
+    },
+    {
+      "kind": "clear",
+      "message": "bad queue interrupt acknowledged",
+      "queue_id": 7,
+      "sequence": 8
+    },
+    {
+      "kind": "completion",
+      "message": "reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records",
+      "queue_id": 0,
+      "sequence": 9
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 9
+    },
+    {
+      "kind": "completion",
+      "message": "dma_fill wrote 64 bytes",
+      "queue_id": 0,
+      "sequence": 10
+    },
+    {
+      "kind": "clear",
+      "message": "interrupt status acknowledged after completion record",
+      "queue_id": 0,
+      "sequence": 10
+    }
+  ],
+  "ip_name": "Celviz GPGPU IP",
+  "queue_state": {
+    "0": {
+      "base": "0x10000000",
+      "errors": 0,
+      "head": 176,
+      "priority": 3,
+      "retired": 2,
+      "size_bytes": 4096,
+      "submitted": 2,
+      "tail": 176
+    },
+    "1": {
+      "base": "0x10001000",
+      "errors": 0,
+      "head": 0,
+      "priority": 2,
+      "retired": 0,
+      "size_bytes": 4096,
+      "submitted": 0,
+      "tail": 0
+    },
+    "2": {
+      "base": "0x10002000",
+      "errors": 0,
+      "head": 0,
+      "priority": 1,
+      "retired": 0,
+      "size_bytes": 4096,
+      "submitted": 0,
+      "tail": 0
+    },
+    "3": {
+      "base": "0x10003000",
+      "errors": 0,
+      "head": 0,
+      "priority": 0,
+      "retired": 0,
+      "size_bytes": 4096,
+      "submitted": 0,
+      "tail": 0
+    }
+  },
+  "runtime_control_evidence": {
+    "axi_apb_traffic": {
+      "apb_reads": 10,
+      "apb_traffic_observed": true,
+      "apb_writes": 20,
+      "axi_read_beats": 0,
+      "axi_read_transactions": 0,
+      "axi_traffic_observed": true,
+      "axi_write_beats": 6,
+      "axi_write_transactions": 2,
+      "bytes_moved": 96,
+      "bytes_read": 0,
+      "bytes_written": 96
+    },
+    "command_submission": {
+      "apb_doorbell_writes": 20,
+      "command_count": 10,
+      "completed": 10,
+      "failed": 7,
+      "observed": true,
+      "sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "submission_errors": 4,
+      "submitted": 10
+    },
+    "dma_bounds_alignment": {
+      "alignment_bytes": 4,
+      "alignment_checked": true,
+      "alignment_errors": 1,
+      "bounds_checked": true,
+      "bounds_errors": 2,
+      "dma_sequences": [
+        2,
+        3,
+        10
+      ],
+      "error_sequences": [
+        2,
+        3
+      ],
+      "observed": true
+    },
+    "interrupt_counters_clear": {
+      "clear_observed": true,
+      "clear_sequences": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "completion_interrupts": 3,
+      "error_interrupts": 7,
+      "events": [
+        {
+          "kind": "completion",
+          "message": "reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records",
+          "queue_id": 0,
+          "sequence": 1
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 1
+        },
+        {
+          "kind": "error",
+          "message": "dma_copy source, destination, and byte_count must be 4-byte aligned",
+          "queue_id": 0,
+          "sequence": 2
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 2
+        },
+        {
+          "kind": "error",
+          "message": "dma_copy source or destination failed range check",
+          "queue_id": 0,
+          "sequence": 3
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 3
+        },
+        {
+          "kind": "error",
+          "message": "local workgroup size exceeds tier scheduler limit",
+          "queue_id": 1,
+          "sequence": 4
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 1,
+          "sequence": 4
+        },
+        {
+          "kind": "error",
+          "message": "kernel arg buffer failed readable range check",
+          "queue_id": 1,
+          "sequence": 5
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 1,
+          "sequence": 5
+        },
+        {
+          "kind": "error",
+          "message": "fence_wait timed out after 2 cycles waiting for never>=1",
+          "queue_id": 2,
+          "sequence": 6
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 6
+        },
+        {
+          "kind": "error",
+          "message": "unsupported opcode undefined_opcode",
+          "queue_id": 2,
+          "sequence": 7
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 2,
+          "sequence": 7
+        },
+        {
+          "kind": "error",
+          "message": "bad queue id",
+          "queue_id": 7,
+          "sequence": 8
+        },
+        {
+          "kind": "clear",
+          "message": "bad queue interrupt acknowledged",
+          "queue_id": 7,
+          "sequence": 8
+        },
+        {
+          "kind": "completion",
+          "message": "reset cleared queues, sticky status, fences, and live interrupt state while preserving audit records",
+          "queue_id": 0,
+          "sequence": 9
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 9
+        },
+        {
+          "kind": "completion",
+          "message": "dma_fill wrote 64 bytes",
+          "queue_id": 0,
+          "sequence": 10
+        },
+        {
+          "kind": "clear",
+          "message": "interrupt status acknowledged after completion record",
+          "queue_id": 0,
+          "sequence": 10
+        }
+      ],
+      "interrupt_clears": 10
+    },
+    "invalid_descriptor": {
+      "errors": [
+        "ERR_BAD_DMA",
+        "ERR_BAD_QUEUE",
+        "ERR_FENCE_WAIT",
+        "ERR_MMU_FAULT",
+        "ERR_SCHEDULER_FAULT",
+        "ERR_UNSUPPORTED_OPCODE"
+      ],
+      "invalid_descriptor_counter": 4,
+      "observed": true,
+      "rejected_count": 7,
+      "sequences": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "submission_error_counter": 4
+    },
+    "reset_recovery": {
+      "fault_status_after_reset": "clear",
+      "interrupt_status_after_reset": "clear",
+      "post_reset_smoke_status": "pass",
+      "queue_idle_after_reset": true,
+      "reset_asserted": true,
+      "reset_recoveries": 2,
+      "reset_sequences": [
+        1,
+        9
+      ]
+    },
+    "throughput_tier_linkage": {
+      "claim_scope": "proxy_model_only",
+      "fp_modes": [
+        "fp16",
+        "fp32",
+        "mixed"
+      ],
+      "max_local_size": 512,
+      "queue_count": 4,
+      "shader_units": 4,
+      "throughput_scaling_by_tier": true,
+      "tier": "gpgpu_nano_ultra31"
+    }
+  },
+  "schema": "celviz.gpgpu.control_plane_metrics.v1",
+  "shader_units": 4,
+  "status": "pass",
+  "status_registers": {
+    "last_sequence": 10,
+    "last_tag": "fault-post-reset-smoke",
+    "status": "idle",
+    "sticky_error": null
+  },
+  "tier": "gpgpu_nano_ultra31"
+}

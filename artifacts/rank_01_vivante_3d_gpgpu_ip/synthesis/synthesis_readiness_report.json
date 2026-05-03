@@ -1,0 +1,85 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "scala_files": 85
+      },
+      "name": "rtl_source_scope_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "sim_files": 23
+      },
+      "name": "verilator_runtime_scope_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "celviz_tokens": 1124,
+        "dontTouch": 96
+      },
+      "name": "debug_observability_hooks_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "ppa_status": "pass"
+      },
+      "name": "ppa_proxy_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "make": "/usr/bin/make",
+        "sbt": null,
+        "verilator": "/opt/homebrew/bin/verilator",
+        "yosys": "/opt/homebrew/bin/yosys"
+      },
+      "name": "build_tooling_detected",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "yosys": "/opt/homebrew/bin/yosys"
+      },
+      "name": "yosys_status_recorded",
+      "pass": true
+    },
+    {
+      "name": "no_signoff_overclaim",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room synthesis readiness and PPA proxy evidence only; not logic synthesis through a target library, not STA, not power signoff, not DFT, not physical implementation, and not silicon readiness",
+  "generated_at": "2026-05-03T03:22:50+00:00",
+  "non_goals": [
+    "target-library logic synthesis",
+    "static timing analysis",
+    "power signoff",
+    "DFT or scan insertion",
+    "physical implementation",
+    "silicon readiness"
+  ],
+  "ppa_proxy": {
+    "area_proxy_units": null,
+    "frequency_proxy_index": null,
+    "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json",
+    "status": "pass"
+  },
+  "schema": "celviz.gpgpu.synthesis_readiness.v1",
+  "source_scope": {
+    "blackbox_or_extmodule_hints": 19,
+    "celviz_debug_hook_tokens": 1124,
+    "dont_touch_tokens": 96,
+    "scala_files": 85,
+    "sim_verilator_files": 23
+  },
+  "status": "pass",
+  "tool_availability": {
+    "make": "/usr/bin/make",
+    "sbt": "tool_unavailable",
+    "verilator": "/opt/homebrew/bin/verilator",
+    "yosys": "/opt/homebrew/bin/yosys"
+  }
+}

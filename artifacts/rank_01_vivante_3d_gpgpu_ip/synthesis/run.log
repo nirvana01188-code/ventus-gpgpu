@@ -1,0 +1,13 @@
+Celviz GPGPU IP Phase 6D synthesis/PPA readiness run
+schema=celviz.gpgpu.synthesis_readiness.phase6d.v1
+status=pass
+tools=make:available,sbt:tool_unavailable,verilator:available,yosys:available
+source_files=113
+source_nonblank_lines=24328
+debug_hook_count=908
+blackbox_unsupported_hint_count=92
+area_proxy_units=45397
+frequency_proxy_index=106.046548
+power_proxy_index=0.14991
+claim_boundary=Phase 6D clean-room synthesis/PPA readiness evidence for the Ventus-based Celviz GPGPU IP only; not a Yosys synthesis result, Verilator signoff, SBT/Chisel elaboration signoff, STA/timing closure, physical area report, power signoff, CDC/RDC/DFT closure, silicon signoff, or tapeout readiness
+report=artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json

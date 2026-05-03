@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "name": "global_memory_h2d_visible_to_kernel",
+      "pass": true
+    },
+    {
+      "name": "dma_fill_pattern_visible",
+      "pass": true
+    },
+    {
+      "name": "kernel_global_store_visible_to_d2h",
+      "pass": true
+    },
+    {
+      "name": "coalescing_reduces_transactions",
+      "pass": true
+    },
+    {
+      "name": "local_scratchpad_roundtrip",
+      "pass": true
+    },
+    {
+      "name": "constant_reads_are_read_only_and_cacheable_proxy",
+      "pass": true
+    },
+    {
+      "name": "bounds_alignment_negative_cases",
+      "pass": true
+    },
+    {
+      "name": "unified_dma_kernel_event_model",
+      "pass": true
+    }
+  ],
+  "evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+  "schema": "celviz.gpgpu.memory_model.summary.v1",
+  "status": "pass",
+  "summary": {
+    "categories": {
+      "dma": 3,
+      "kernel": 27,
+      "negative": 5
+    },
+    "event_count": 35,
+    "event_trace_sha256": "f64c60fc7d7ef6d11684ab2232a1e389000fe0304d1fa70cd469bcf755b3023b",
+    "global_final_sha256": "f65254191a101dd4d5a8192157a801475922efa318816cb5668fed74be6a6746",
+    "global_initial_sha256": "f9f144638942ff7f59e14a18d85a775e8f47cba25cf1b6316f2bff2362517679",
+    "host_final_sha256": "dfd580c6578c61deffad8035f59e76a1d2c144397c4c22612e83e102be9c73d8",
+    "operations": {
+      "copy": 3,
+      "fill": 1,
+      "load": 20,
+      "store": 11
+    },
+    "status": "pass"
+  },
+  "trace": "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json"
+}

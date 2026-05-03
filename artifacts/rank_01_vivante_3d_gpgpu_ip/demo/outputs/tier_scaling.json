@@ -1,0 +1,46 @@
+[
+  {
+    "fp16_ops_per_cycle": 64,
+    "fp16_scale_vs_nano": 1.0,
+    "fp32_ops_per_cycle": 32,
+    "fp32_scale_vs_nano": 1.0,
+    "public_reference_tier": "CC8000L",
+    "queue_count": 1,
+    "runtime_tier": "nano",
+    "shader_scale_vs_nano": 1.0,
+    "shader_units_vec1": 16
+  },
+  {
+    "fp16_ops_per_cycle": 128,
+    "fp16_scale_vs_nano": 2.0,
+    "fp32_ops_per_cycle": 64,
+    "fp32_scale_vs_nano": 2.0,
+    "public_reference_tier": "CC8000",
+    "queue_count": 2,
+    "runtime_tier": "micro",
+    "shader_scale_vs_nano": 2.0,
+    "shader_units_vec1": 32
+  },
+  {
+    "fp16_ops_per_cycle": 256,
+    "fp16_scale_vs_nano": 4.0,
+    "fp32_ops_per_cycle": 128,
+    "fp32_scale_vs_nano": 4.0,
+    "public_reference_tier": "CC8200",
+    "queue_count": 4,
+    "runtime_tier": "small",
+    "shader_scale_vs_nano": 8.0,
+    "shader_units_vec1": 128
+  },
+  {
+    "fp16_ops_per_cycle": 1024,
+    "fp16_scale_vs_nano": 16.0,
+    "fp32_ops_per_cycle": 512,
+    "fp32_scale_vs_nano": 16.0,
+    "public_reference_tier": "CC8400",
+    "queue_count": 8,
+    "runtime_tier": "full",
+    "shader_scale_vs_nano": 16.0,
+    "shader_units_vec1": 256
+  }
+]

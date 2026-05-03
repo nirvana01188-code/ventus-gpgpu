@@ -1,0 +1,660 @@
+{
+  "event_count": 15,
+  "events": [
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "a",
+          "buffer_id": "buf_vector_a",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80000000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            16
+          ],
+          "type": "int32*"
+        },
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 1,
+          "arg_name": "b",
+          "buffer_id": "buf_vector_b",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80001000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            16
+          ],
+          "type": "int32*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 2,
+          "arg_name": "out",
+          "buffer_id": "buf_vector_out",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80002000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            16
+          ],
+          "type": "int32*"
+        }
+      ],
+      "completion_status": "success",
+      "dispatch_name": "vadd",
+      "event_id": "evt000",
+      "global_size": [
+        16
+      ],
+      "kernel": "vector_add",
+      "local_size": [
+        4
+      ],
+      "phase": "submit",
+      "precision_modes": [
+        "fp32",
+        "fp16_proxy"
+      ],
+      "queue_id": "queue0",
+      "runtime_action": "bind_buffers_and_enqueue_dispatch",
+      "sequence": 0,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "vadd",
+      "event_id": "evt001",
+      "kernel": "vector_add",
+      "phase": "wait",
+      "queue_id": "queue0",
+      "sequence": 1,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "vadd",
+      "event_id": "evt002",
+      "golden_comparison": {
+        "max_abs_error": 0,
+        "mismatch_count": 0,
+        "status": "pass"
+      },
+      "hashes": {
+        "expected_sha256": "f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022",
+        "input_a_sha256": "c4e123f9729ff5899ab837276e7e5b46d8cdf45c8affad706133d12b2acda493",
+        "input_b_sha256": "f77f048a8aa0ffa7ccc6d92b55c2384ef6d80dbb1f8f552c746b73a0fb54bfc8",
+        "readback_sha256": "f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022",
+        "result_sha256": "f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022"
+      },
+      "kernel": "vector_add",
+      "metrics": {
+        "bytes_read": 256,
+        "bytes_touched": 384,
+        "bytes_written": 128,
+        "claim_boundary": "estimate derived from public/proxy tier metadata and S1 compute_model metrics; not RTL timing",
+        "device_fp16_ops_per_cycle": 128,
+        "device_fp32_ops_per_cycle": 64,
+        "dispatch_name": "vadd",
+        "estimated_bytes_per_cycle": 64.0,
+        "estimated_compute_cycles": 1,
+        "estimated_cycles": 6,
+        "estimated_fp16_cycles": 1,
+        "estimated_fp32_ops_per_cycle": 5.333,
+        "estimated_memory_cycles": 6,
+        "fp16_proxy_ops": 32,
+        "fp32_ops": 32,
+        "kernel": "vector_add",
+        "model_data_available": true,
+        "model_workload": "vector_add",
+        "precision_modes": [
+          "fp32",
+          "fp16_proxy"
+        ],
+        "queue_id": "queue0",
+        "work_groups": 4,
+        "work_items": 16
+      },
+      "phase": "readback",
+      "queue_id": "queue0",
+      "readback_sha256": "f45c7f98f925d71ea27f8075e03dd5d18ce980abaf8e2e50aa13dfded7c82022",
+      "sequence": 2,
+      "status": "complete"
+    },
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "a",
+          "buffer_id": "buf_gemm_a",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80003000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            4,
+            4
+          ],
+          "type": "int32*"
+        },
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 1,
+          "arg_name": "b",
+          "buffer_id": "buf_gemm_b",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80004000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            4,
+            4
+          ],
+          "type": "int32*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 2,
+          "arg_name": "c",
+          "buffer_id": "buf_gemm_c",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80005000",
+          "element_type": "int32",
+          "host_visible": true,
+          "shape": [
+            4,
+            4
+          ],
+          "type": "int32*"
+        }
+      ],
+      "completion_status": "success",
+      "dispatch_name": "gemm",
+      "event_id": "evt003",
+      "global_size": [
+        4,
+        4
+      ],
+      "kernel": "gemm_proxy",
+      "local_size": [
+        2,
+        2
+      ],
+      "phase": "submit",
+      "precision_modes": [
+        "fp32",
+        "fp16_proxy"
+      ],
+      "queue_id": "queue0",
+      "runtime_action": "bind_buffers_and_enqueue_dispatch",
+      "sequence": 3,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "gemm",
+      "event_id": "evt004",
+      "kernel": "gemm_proxy",
+      "phase": "wait",
+      "queue_id": "queue0",
+      "sequence": 4,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "gemm",
+      "event_id": "evt005",
+      "golden_comparison": {
+        "max_abs_error": 0,
+        "mismatch_count": 0,
+        "status": "pass"
+      },
+      "hashes": {
+        "expected_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+        "input_a_sha256": "d1a931efa33277c0b42dfb7f49a806f3e4701c66d17915e78474f7c8b1efcb55",
+        "input_b_sha256": "bce41ffbe2759e13ca2a2a378972bcb72c5569d54701bc88b917d5f8dab0deaf",
+        "readback_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+        "result_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f"
+      },
+      "kernel": "gemm_proxy",
+      "metrics": {
+        "bytes_read": 216,
+        "bytes_touched": 296,
+        "bytes_written": 80,
+        "claim_boundary": "estimate derived from public/proxy tier metadata and S1 compute_model metrics; not RTL timing",
+        "device_fp16_ops_per_cycle": 128,
+        "device_fp32_ops_per_cycle": 64,
+        "dispatch_name": "gemm",
+        "estimated_bytes_per_cycle": 59.2,
+        "estimated_compute_cycles": 4,
+        "estimated_cycles": 5,
+        "estimated_fp16_cycles": 2,
+        "estimated_fp32_ops_per_cycle": 48.0,
+        "estimated_memory_cycles": 5,
+        "fp16_proxy_ops": 240,
+        "fp32_ops": 240,
+        "kernel": "gemm_proxy",
+        "model_data_available": true,
+        "model_workload": "gemm_proxy",
+        "precision_modes": [
+          "fp32",
+          "fp16_proxy"
+        ],
+        "queue_id": "queue0",
+        "work_groups": 4,
+        "work_items": 16
+      },
+      "phase": "readback",
+      "queue_id": "queue0",
+      "readback_sha256": "9464ac2cbaac2e04d1b581e40ae82d76497167543715d4c67c65383876335a4f",
+      "sequence": 5,
+      "status": "complete"
+    },
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "src",
+          "buffer_id": "buf_conv_src",
+          "buffer_size_bytes": 196,
+          "device_address": "0x80006000",
+          "element_type": "fp32",
+          "host_visible": true,
+          "shape": [
+            7,
+            7
+          ],
+          "type": "float*"
+        },
+        {
+          "access": "read",
+          "address_space": "constant",
+          "arg_index": 1,
+          "arg_name": "filter",
+          "buffer_id": "buf_conv_filter",
+          "buffer_size_bytes": 36,
+          "device_address": "0x80007000",
+          "element_type": "fp32",
+          "host_visible": true,
+          "shape": [
+            3,
+            3
+          ],
+          "type": "float*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 2,
+          "arg_name": "dst",
+          "buffer_id": "buf_conv_dst",
+          "buffer_size_bytes": 100,
+          "device_address": "0x80008000",
+          "element_type": "fp32",
+          "host_visible": true,
+          "shape": [
+            5,
+            5
+          ],
+          "type": "float*"
+        }
+      ],
+      "completion_status": "success",
+      "dispatch_name": "conv",
+      "event_id": "evt006",
+      "global_size": [
+        5,
+        5
+      ],
+      "kernel": "convolution_proxy",
+      "local_size": [
+        5,
+        5
+      ],
+      "phase": "submit",
+      "precision_modes": [
+        "fp32",
+        "fp16_proxy"
+      ],
+      "queue_id": "queue0",
+      "runtime_action": "bind_buffers_and_enqueue_dispatch",
+      "sequence": 6,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "conv",
+      "event_id": "evt007",
+      "kernel": "convolution_proxy",
+      "phase": "wait",
+      "queue_id": "queue0",
+      "sequence": 7,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "conv",
+      "event_id": "evt008",
+      "golden_comparison": {
+        "max_abs_error": 0.0,
+        "mismatch_count": 0,
+        "status": "pass"
+      },
+      "hashes": {
+        "expected_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+        "filter_sha256": "afc5f1052424634c57555b85273f4ed05c22befc3d7f65085477e396380aead9",
+        "readback_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+        "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+        "source_sha256": "6012139c42fdf55d354a14e1731d38b7056d0c3b33672185204842504f1664ff"
+      },
+      "kernel": "convolution_proxy",
+      "metrics": {
+        "bytes_read": 232,
+        "bytes_touched": 332,
+        "bytes_written": 100,
+        "claim_boundary": "estimate derived from public/proxy tier metadata and S1 compute_model metrics; not RTL timing",
+        "device_fp16_ops_per_cycle": 128,
+        "device_fp32_ops_per_cycle": 64,
+        "dispatch_name": "conv",
+        "estimated_bytes_per_cycle": 41.5,
+        "estimated_compute_cycles": 8,
+        "estimated_cycles": 8,
+        "estimated_fp16_cycles": 4,
+        "estimated_fp32_ops_per_cycle": 56.25,
+        "estimated_memory_cycles": 6,
+        "fp16_proxy_ops": 450,
+        "fp32_ops": 450,
+        "kernel": "convolution_proxy",
+        "model_data_available": true,
+        "model_workload": "convolution_proxy",
+        "precision_modes": [
+          "fp32",
+          "fp16_proxy"
+        ],
+        "queue_id": "queue0",
+        "work_groups": 1,
+        "work_items": 25
+      },
+      "phase": "readback",
+      "queue_id": "queue0",
+      "readback_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+      "sequence": 8,
+      "status": "complete"
+    },
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "src_image",
+          "buffer_id": "buf_image_src",
+          "buffer_size_bytes": 64,
+          "device_address": "0x80009000",
+          "element_type": "uint8",
+          "host_visible": true,
+          "shape": [
+            8,
+            8
+          ],
+          "type": "uint8*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 1,
+          "arg_name": "dst_image",
+          "buffer_id": "buf_image_dst",
+          "buffer_size_bytes": 64,
+          "device_address": "0x8000a000",
+          "element_type": "uint8",
+          "host_visible": true,
+          "shape": [
+            8,
+            8
+          ],
+          "type": "uint8*"
+        },
+        {
+          "access": "read",
+          "address_space": "private",
+          "arg_index": 2,
+          "arg_name": "width",
+          "buffer_id": null,
+          "buffer_size_bytes": null,
+          "device_address": null,
+          "element_type": null,
+          "host_visible": null,
+          "shape": null,
+          "type": "uint32"
+        }
+      ],
+      "completion_status": "success",
+      "dispatch_name": "image_filter",
+      "event_id": "evt009",
+      "global_size": [
+        8,
+        8
+      ],
+      "kernel": "image_filter",
+      "local_size": [
+        4,
+        4
+      ],
+      "phase": "submit",
+      "precision_modes": [
+        "fp16_proxy"
+      ],
+      "queue_id": "queue0",
+      "runtime_action": "bind_buffers_and_enqueue_dispatch",
+      "sequence": 9,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "image_filter",
+      "event_id": "evt010",
+      "kernel": "image_filter",
+      "phase": "wait",
+      "queue_id": "queue0",
+      "sequence": 10,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "image_filter",
+      "event_id": "evt011",
+      "golden_comparison": {
+        "max_abs_error": 0,
+        "mismatch_count": 0,
+        "status": "pass"
+      },
+      "hashes": {
+        "expected_sha256": "45db9277e3ad2faed1c6af27d89071e6e6227417c54db792b9bbfb7769a2f0f0",
+        "pgm_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+        "readback_sha256": "45db9277e3ad2faed1c6af27d89071e6e6227417c54db792b9bbfb7769a2f0f0",
+        "result_sha256": "45db9277e3ad2faed1c6af27d89071e6e6227417c54db792b9bbfb7769a2f0f0",
+        "source_sha256": "106dfb02dc9c7ca5c3e70d768c412e6ebd5151e5569b942ad81b88400c3aad8e"
+      },
+      "kernel": "image_filter",
+      "metrics": {
+        "bytes_read": 232,
+        "bytes_touched": 332,
+        "bytes_written": 100,
+        "claim_boundary": "estimate derived from public/proxy tier metadata and S1 compute_model metrics; not RTL timing",
+        "device_fp16_ops_per_cycle": 128,
+        "device_fp32_ops_per_cycle": 64,
+        "dispatch_name": "image_filter",
+        "estimated_bytes_per_cycle": 41.5,
+        "estimated_compute_cycles": 8,
+        "estimated_cycles": 8,
+        "estimated_fp16_cycles": 4,
+        "estimated_fp32_ops_per_cycle": 56.25,
+        "estimated_memory_cycles": 6,
+        "fp16_proxy_ops": 450,
+        "fp32_ops": 450,
+        "kernel": "image_filter",
+        "model_data_available": true,
+        "model_workload": "convolution_proxy",
+        "precision_modes": [
+          "fp16_proxy"
+        ],
+        "queue_id": "queue0",
+        "work_groups": 4,
+        "work_items": 64
+      },
+      "phase": "readback",
+      "queue_id": "queue0",
+      "readback_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+      "sequence": 11,
+      "status": "complete"
+    },
+    {
+      "buffer_binds": [
+        {
+          "access": "read",
+          "address_space": "global",
+          "arg_index": 0,
+          "arg_name": "src",
+          "buffer_id": "buf_copy_src",
+          "buffer_size_bytes": 64,
+          "device_address": "0x8000b000",
+          "element_type": "uint8",
+          "host_visible": true,
+          "shape": [
+            64
+          ],
+          "type": "uint8*"
+        },
+        {
+          "access": "write",
+          "address_space": "global",
+          "arg_index": 1,
+          "arg_name": "dst",
+          "buffer_id": "buf_copy_dst",
+          "buffer_size_bytes": 64,
+          "device_address": "0x8000c000",
+          "element_type": "uint8",
+          "host_visible": true,
+          "shape": [
+            64
+          ],
+          "type": "uint8*"
+        }
+      ],
+      "completion_status": "success",
+      "dispatch_name": "memcpy",
+      "event_id": "evt012",
+      "global_size": [
+        64
+      ],
+      "kernel": "memory_copy",
+      "local_size": [
+        8
+      ],
+      "phase": "submit",
+      "precision_modes": [
+        "byte"
+      ],
+      "queue_id": "queue1",
+      "runtime_action": "bind_buffers_and_enqueue_dispatch",
+      "sequence": 12,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "memcpy",
+      "event_id": "evt013",
+      "kernel": "memory_copy",
+      "phase": "wait",
+      "queue_id": "queue1",
+      "sequence": 13,
+      "status": "complete"
+    },
+    {
+      "completion_status": "success",
+      "dispatch_name": "memcpy",
+      "event_id": "evt014",
+      "golden_comparison": {
+        "max_abs_error": 0,
+        "mismatch_count": 0,
+        "status": "pass"
+      },
+      "hashes": {
+        "expected_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+        "readback_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+        "result_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+        "source_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e"
+      },
+      "kernel": "memory_copy",
+      "metrics": {
+        "bytes_read": 256,
+        "bytes_touched": 512,
+        "bytes_written": 256,
+        "claim_boundary": "estimate derived from public/proxy tier metadata and S1 compute_model metrics; not RTL timing",
+        "device_fp16_ops_per_cycle": 128,
+        "device_fp32_ops_per_cycle": 64,
+        "dispatch_name": "memcpy",
+        "estimated_bytes_per_cycle": 64.0,
+        "estimated_compute_cycles": 0,
+        "estimated_cycles": 8,
+        "estimated_fp16_cycles": 0,
+        "estimated_fp32_ops_per_cycle": 0.0,
+        "estimated_memory_cycles": 8,
+        "fp16_proxy_ops": 0,
+        "fp32_ops": 0,
+        "kernel": "memory_copy",
+        "model_data_available": true,
+        "model_workload": "memory_copy",
+        "precision_modes": [
+          "byte"
+        ],
+        "queue_id": "queue1",
+        "work_groups": 8,
+        "work_items": 64
+      },
+      "phase": "readback",
+      "queue_id": "queue1",
+      "readback_sha256": "94eb5de4943613fd048dc93393ab06877405faa39c11f53e9386083339833e7e",
+      "sequence": 14,
+      "status": "complete"
+    }
+  ],
+  "queue_count": 2,
+  "queues": [
+    {
+      "device_id": "celviz-micro-proxy",
+      "id": "queue0",
+      "mode": "software_proxy",
+      "properties": [
+        "in_order",
+        "profiling"
+      ]
+    },
+    {
+      "device_id": "celviz-micro-proxy",
+      "id": "queue1",
+      "mode": "software_proxy",
+      "properties": [
+        "in_order",
+        "profiling"
+      ]
+    }
+  ],
+  "scope": "clean-room OpenCL-like runtime proxy; non-conformant and not compatible with proprietary Vivante command streams, firmware, SDKs, drivers, or certification suites",
+  "status": "complete"
+}

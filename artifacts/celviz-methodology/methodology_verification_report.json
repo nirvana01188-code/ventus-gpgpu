@@ -1,0 +1,109 @@
+{
+  "checks": [
+    {
+      "name": "manifest_schema",
+      "pass": true
+    },
+    {
+      "name": "doc_exists_nonempty",
+      "pass": true
+    },
+    {
+      "name": "all_required_sections_present",
+      "pass": true
+    },
+    {
+      "name": "gate_templates_present",
+      "pass": true
+    },
+    {
+      "name": "manifest_template_gate_alignment",
+      "pass": true
+    },
+    {
+      "name": "claim_boundaries_present",
+      "pass": true
+    },
+    {
+      "name": "methodology_assets_exist",
+      "pass": true
+    },
+    {
+      "name": "acceptance_template_schema",
+      "pass": true
+    },
+    {
+      "name": "acceptance_template_phase_depth",
+      "pass": true
+    },
+    {
+      "name": "acceptance_template_gate_depth",
+      "pass": true
+    },
+    {
+      "name": "bootstrap_tool_exists",
+      "pass": true
+    },
+    {
+      "name": "bootstrap_command_pass",
+      "pass": true,
+      "stderr": "",
+      "stdout": "celviz_eda_methodology_bootstrap: pass ip_slug=celviz_methodology_selftest_gpgpu_ip phases=17 gates=20 output=artifacts/celviz-methodology/bootstrap_acceptance_matrix.json"
+    },
+    {
+      "name": "bootstrap_output_schema",
+      "pass": true,
+      "schema": "celviz.gpgpu.acceptance_matrix.bootstrap.v1"
+    },
+    {
+      "name": "bootstrap_output_phase_depth",
+      "pass": true,
+      "phase_count": 17
+    },
+    {
+      "bootstrap_gate_count": 20,
+      "name": "bootstrap_output_gate_alignment",
+      "pass": true,
+      "template_gate_count": 20
+    },
+    {
+      "name": "bootstrap_claim_boundary_present",
+      "pass": true
+    },
+    {
+      "name": "functional_structural_boundary_written",
+      "pass": true
+    },
+    {
+      "name": "microop_execution_method_written",
+      "pass": true
+    },
+    {
+      "name": "worker_decomposition_written",
+      "pass": true
+    },
+    {
+      "name": "no_overclaim_wording_written",
+      "pass": true
+    },
+    {
+      "name": "template_library_written",
+      "pass": true
+    }
+  ],
+  "generated_at": "2026-05-03T03:22:52+00:00",
+  "schema": "celviz.eda_methodology.verification.v1",
+  "status": "pass",
+  "summary": {
+    "bootstrap_gate_count": 20,
+    "bootstrap_output_path": "artifacts/celviz-methodology/bootstrap_acceptance_matrix.json",
+    "claim_boundaries": 4,
+    "doc_path": "docs/celviz-methodology/GPGPU_IP_EDA_METHOD.md",
+    "manifest_path": "docs/celviz-methodology/methodology_manifest.json",
+    "methodology_assets": 9,
+    "required_sections": 14,
+    "reusable_gate_templates": 20,
+    "template_gate_count": 20,
+    "template_phase_count": 17
+  }
+}
