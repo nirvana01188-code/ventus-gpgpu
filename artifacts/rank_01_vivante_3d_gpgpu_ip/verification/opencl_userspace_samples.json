@@ -1,0 +1,2538 @@
+{
+  "checks": [
+    {
+      "name": "required_samples_present",
+      "pass": true
+    },
+    {
+      "name": "all_samples_pass",
+      "pass": true
+    },
+    {
+      "name": "negative_error_paths_pass",
+      "pass": true
+    },
+    {
+      "name": "microop_summary_pass",
+      "pass": true
+    },
+    {
+      "name": "not_official_conformance_or_cts",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "clean-room executable userspace samples using the Celviz OpenCL host API shim, OpenCL C subset compiler, runtime proxy, and microop interpreter evidence. This is not Khronos CTS, not official OpenCL conformance, not a Khronos ICD, not libOpenCL, and not a production driver claim.",
+  "conformance_boundary": {
+    "khronos_cts": false,
+    "khronos_icd": false,
+    "libopencl": false,
+    "official_opencl_conformance": false
+  },
+  "evidence_path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_userspace_samples.json",
+  "generated_at": "2026-05-03T06:13:05+00:00",
+  "microop_summary": {
+    "kernel_count": 4,
+    "path": "/Users/nirvana/Documents/New project 2/ventus-gpgpu/artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/microop_execution_report.json",
+    "schema": "celviz.gpgpu.microop_interpreter.v1",
+    "status": "pass"
+  },
+  "negative_tests": [
+    {
+      "expected_error": "CL_BUILD_PROGRAM_FAILURE",
+      "name": "build_rejects_unsupported_double",
+      "observed_error": "CL_BUILD_PROGRAM_FAILURE",
+      "pass": true,
+      "path": "host_api_shim.clBuildProgram"
+    },
+    {
+      "expected_error": "CL_INVALID_KERNEL_NAME",
+      "name": "kernel_name_error_path",
+      "observed_error": "CL_INVALID_KERNEL_NAME",
+      "pass": true,
+      "path": "host_api_shim.clCreateKernel"
+    },
+    {
+      "expected_error": "ERR_MMU_FAULT",
+      "name": "runtime_rejects_out_of_bounds_write_buffer",
+      "observed_failed_commands": 1,
+      "pass": true,
+      "path": "runtime_proxy.write_buffer"
+    }
+  ],
+  "sample_count": 4,
+  "samples": [
+    {
+      "abi": {
+        "address_spaces": [
+          "global",
+          "private"
+        ],
+        "arg_count": 4,
+        "buffer_count": 3,
+        "kernel_id": 1,
+        "precision": "fp32",
+        "schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1"
+      },
+      "buffer_io": {
+        "read_count": 1,
+        "reads": [
+          {
+            "access": "write_only",
+            "arg": "c",
+            "device_address": "0x81002000",
+            "id": "vadd_c",
+            "size_bytes": 4096
+          }
+        ],
+        "write_count": 2,
+        "writes": [
+          {
+            "access": "read_only",
+            "arg": "a",
+            "device_address": "0x81000000",
+            "id": "vadd_a",
+            "size_bytes": 4096
+          },
+          {
+            "access": "read_only",
+            "arg": "b",
+            "device_address": "0x81001000",
+            "id": "vadd_b",
+            "size_bytes": 4096
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "host_api_lifecycle_complete",
+          "observed": [
+            "clBuildProgram",
+            "clCreateBuffer",
+            "clCreateCommandQueueWithProperties",
+            "clCreateContext",
+            "clCreateKernel",
+            "clCreateProgramWithSource",
+            "clEnqueueNDRangeKernel",
+            "clEnqueueReadBuffer",
+            "clEnqueueWriteBuffer",
+            "clFinish",
+            "clGetDeviceIDs",
+            "clGetPlatformIDs",
+            "clReleaseBuffer",
+            "clReleaseContext",
+            "clReleaseDevice",
+            "clReleaseEvent",
+            "clReleaseKernel",
+            "clReleasePlatform",
+            "clReleaseProgram",
+            "clReleaseQueue",
+            "clSetKernelArg",
+            "clWaitForEvents"
+          ],
+          "pass": true
+        },
+        {
+          "name": "host_api_released_handles",
+          "pass": true
+        },
+        {
+          "name": "buffer_write_path_executed",
+          "pass": true
+        },
+        {
+          "name": "buffer_read_path_executed",
+          "pass": true
+        },
+        {
+          "name": "ndrange_path_executed",
+          "pass": true
+        },
+        {
+          "name": "runtime_proxy_completed_all_commands",
+          "pass": true
+        },
+        {
+          "name": "runtime_proxy_no_failed_commands",
+          "pass": true
+        },
+        {
+          "name": "microop_status_pass",
+          "pass": true
+        },
+        {
+          "name": "microop_oracle_hash_present",
+          "pass": true
+        },
+        {
+          "name": "microop_global_load_store_present",
+          "pass": true
+        }
+      ],
+      "description": "1D FP32 vector add using global buffers and scalar element count.",
+      "global_size": [
+        1024,
+        1,
+        1
+      ],
+      "host_api": {
+        "api_call_count": 33,
+        "api_call_trace": [
+          {
+            "api": "clGetPlatformIDs",
+            "error_code": 0,
+            "handle": "platform_1",
+            "index": 1,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clGetDeviceIDs",
+            "error_code": 0,
+            "handle": "device_2",
+            "index": 2,
+            "platform": "platform_1",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateContext",
+            "device": "device_2",
+            "error_code": 0,
+            "handle": "context_3",
+            "index": 3,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateCommandQueueWithProperties",
+            "context": "context_3",
+            "device": "device_2",
+            "error_code": 0,
+            "handle": "queue_4",
+            "index": 4,
+            "properties": {
+              "CL_QUEUE_PROFILING_ENABLE": false
+            },
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "read_only",
+            "handle": "buffer_5",
+            "index": 5,
+            "name": "vadd_a",
+            "result": "CL_SUCCESS",
+            "size_bytes": 4096
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "read_only",
+            "handle": "buffer_6",
+            "index": 6,
+            "name": "vadd_b",
+            "result": "CL_SUCCESS",
+            "size_bytes": 4096
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "write_only",
+            "handle": "buffer_7",
+            "index": 7,
+            "name": "vadd_c",
+            "result": "CL_SUCCESS",
+            "size_bytes": 4096
+          },
+          {
+            "api": "clEnqueueWriteBuffer",
+            "buffer": "buffer_5",
+            "error_code": 0,
+            "handle": "event_8",
+            "index": 8,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "size_bytes": 4096
+          },
+          {
+            "api": "clEnqueueWriteBuffer",
+            "buffer": "buffer_6",
+            "error_code": 0,
+            "handle": "event_9",
+            "index": 9,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "size_bytes": 4096
+          },
+          {
+            "api": "clCreateProgramWithSource",
+            "context": "context_3",
+            "error_code": 0,
+            "handle": "program_10",
+            "index": 10,
+            "result": "CL_SUCCESS",
+            "source_sha256": "4919ba7bd0791b57603e89c0195b4adfb33a0a0b8d23dcf0b6ea720276feb57d"
+          },
+          {
+            "abi_schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+            "api": "clBuildProgram",
+            "error_code": 0,
+            "index": 11,
+            "kernel": "vector_add",
+            "program": "program_10",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateKernel",
+            "error_code": 0,
+            "handle": "kernel_11",
+            "index": 12,
+            "kernel_name": "vector_add",
+            "program": "program_10",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 0,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "buffer_5"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 1,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "buffer_6"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 2,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "buffer_7"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 3,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "1024"
+          },
+          {
+            "api": "clEnqueueNDRangeKernel",
+            "error_code": 0,
+            "handle": "event_12",
+            "index": 17,
+            "kernel": "kernel_11",
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "runtime_status": "pass"
+          },
+          {
+            "api": "clEnqueueReadBuffer",
+            "buffer": "buffer_7",
+            "error_code": 0,
+            "handle": "event_13",
+            "index": 18,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "wait_for": [
+              "event_12"
+            ]
+          },
+          {
+            "api": "clWaitForEvents",
+            "error_code": 0,
+            "event_count": 4,
+            "events": [
+              "event_8",
+              "event_9",
+              "event_12",
+              "event_13"
+            ],
+            "index": 19,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clFinish",
+            "error_code": 0,
+            "index": 20,
+            "pending_count": 0,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_13",
+            "index": 21,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_12",
+            "index": 22,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_8",
+            "index": 23,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_9",
+            "index": 24,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseKernel",
+            "error_code": 0,
+            "handle": "kernel_11",
+            "index": 25,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseProgram",
+            "error_code": 0,
+            "handle": "program_10",
+            "index": 26,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_5",
+            "index": 27,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_6",
+            "index": 28,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_7",
+            "index": 29,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseQueue",
+            "error_code": 0,
+            "handle": "queue_4",
+            "index": 30,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseContext",
+            "error_code": 0,
+            "handle": "context_3",
+            "index": 31,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseDevice",
+            "error_code": 0,
+            "handle": "device_2",
+            "index": 32,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleasePlatform",
+            "error_code": 0,
+            "handle": "platform_1",
+            "index": 33,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          }
+        ],
+        "events": [
+          {
+            "buffer": "buffer_5",
+            "command": "write_buffer",
+            "event": "event_8",
+            "profiling": {
+              "duration": 7,
+              "end": 121,
+              "queued": 100,
+              "start": 114,
+              "submit": 107
+            },
+            "queue": "queue_4",
+            "size_bytes": 4096,
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "buffer": "buffer_6",
+            "command": "write_buffer",
+            "event": "event_9",
+            "profiling": {
+              "duration": 7,
+              "end": 149,
+              "queued": 128,
+              "start": 142,
+              "submit": 135
+            },
+            "queue": "queue_4",
+            "size_bytes": 4096,
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "command": "ndrange_kernel",
+            "event": "event_12",
+            "kernel": "kernel_11",
+            "profiling": {
+              "duration": 7,
+              "end": 177,
+              "queued": 156,
+              "start": 170,
+              "submit": 163
+            },
+            "queue": "queue_4",
+            "runtime_status": "pass",
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "buffer": "buffer_7",
+            "command": "read_buffer",
+            "event": "event_13",
+            "profiling": {
+              "duration": 7,
+              "end": 205,
+              "queued": 184,
+              "start": 198,
+              "submit": 191
+            },
+            "queue": "queue_4",
+            "status": "complete",
+            "wait_for": [
+              "event_12"
+            ]
+          }
+        ],
+        "live_handles_after_release": {},
+        "runtime_proxy_summary": {
+          "commands_completed": 1,
+          "commands_failed": 0,
+          "commands_submitted": 1,
+          "completion_count": 1,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "local_size": [
+        64,
+        1,
+        1
+      ],
+      "microop_evidence": {
+        "completion_written": true,
+        "kernel": "vector_add",
+        "memory_counts": {
+          "load": 64,
+          "store": 32
+        },
+        "memory_event_count": 96,
+        "oracle_workload": "vector_add",
+        "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
+        "schema": "celviz.gpgpu.microop_interpreter.kernel.v1",
+        "sha256": "06dde01574c43e94945fe5f6630974af7312c3b60f68a82fa5e98cfef433ff39",
+        "status": "pass",
+        "uops_executed": 13
+      },
+      "name": "vector_add",
+      "runtime_proxy": {
+        "command_summary": {
+          "command_count": 4,
+          "ndrange_count": 1,
+          "read_buffer_count": 1,
+          "write_buffer_count": 2
+        },
+        "commands": [
+          {
+            "byte_count": 4096,
+            "data_pattern": "deterministic_sample_fixture",
+            "dst_addr": "0x81000000",
+            "opcode": "write_buffer",
+            "queue_id": 0,
+            "sequence": 1,
+            "submit_tag": "vector_add-write-a"
+          },
+          {
+            "byte_count": 4096,
+            "data_pattern": "deterministic_sample_fixture",
+            "dst_addr": "0x81001000",
+            "opcode": "write_buffer",
+            "queue_id": 0,
+            "sequence": 2,
+            "submit_tag": "vector_add-write-b"
+          },
+          {
+            "arg_buffer": "0x80010000",
+            "arg_bytes": 32,
+            "completion_addr": "0x90000000",
+            "flags": [
+              "INT_ON_COMPLETE",
+              "CAPTURE_COUNTERS"
+            ],
+            "grid": [
+              1024,
+              1,
+              1
+            ],
+            "kernel": "vector_add",
+            "kernel_entry": "0x1000",
+            "local": [
+              64,
+              1,
+              1
+            ],
+            "opcode": "kernel_dispatch",
+            "private_bytes_per_thread": 0,
+            "queue_id": 0,
+            "required_fp_mode": "fp32",
+            "sequence": 3,
+            "sgpr_count": 16,
+            "shared_bytes": 0,
+            "submit_tag": "vector_add-ndrange",
+            "ventus_metadata": {
+              "buffer_allocsize": [
+                4096,
+                4096,
+                4096
+              ],
+              "buffer_base": [
+                2164260864,
+                2164264960,
+                2164269056
+              ],
+              "buffer_size": [
+                4096,
+                4096,
+                4096
+              ],
+              "kernel_id": 1,
+              "kernel_size": [
+                1024,
+                1,
+                1
+              ],
+              "ldsSize": 0,
+              "metaDataBaseAddr": 2147549184,
+              "name": "vector_add",
+              "num_buffer": 3,
+              "pdsBaseAddr": 0,
+              "pdsSize": 0,
+              "sgprUsage": 16,
+              "startaddr": 4096,
+              "vgprUsage": 24,
+              "wf_size": 32,
+              "wg_size": 2
+            },
+            "vgpr_count": 24
+          },
+          {
+            "byte_count": 4096,
+            "opcode": "read_buffer",
+            "queue_id": 0,
+            "sequence": 4,
+            "src_addr": "0x81002000",
+            "submit_tag": "vector_add-read-c"
+          }
+        ],
+        "schema": "celviz.gpgpu.runtime_commands.v1",
+        "summary": {
+          "commands_completed": 4,
+          "commands_failed": 0,
+          "commands_submitted": 4,
+          "completion_count": 4,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "source_sha256": "4919ba7bd0791b57603e89c0195b4adfb33a0a0b8d23dcf0b6ea720276feb57d",
+      "status": "pass",
+      "work_items": 1024
+    },
+    {
+      "abi": {
+        "address_spaces": [
+          "global",
+          "private"
+        ],
+        "arg_count": 6,
+        "buffer_count": 3,
+        "kernel_id": 2,
+        "precision": "fp32",
+        "schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1"
+      },
+      "buffer_io": {
+        "read_count": 1,
+        "reads": [
+          {
+            "access": "write_only",
+            "arg": "c",
+            "device_address": "0x81120000",
+            "id": "gemm_c",
+            "size_bytes": 16384
+          }
+        ],
+        "write_count": 2,
+        "writes": [
+          {
+            "access": "read_only",
+            "arg": "a",
+            "device_address": "0x81100000",
+            "id": "gemm_a",
+            "size_bytes": 16384
+          },
+          {
+            "access": "read_only",
+            "arg": "b",
+            "device_address": "0x81110000",
+            "id": "gemm_b",
+            "size_bytes": 16384
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "host_api_lifecycle_complete",
+          "observed": [
+            "clBuildProgram",
+            "clCreateBuffer",
+            "clCreateCommandQueueWithProperties",
+            "clCreateContext",
+            "clCreateKernel",
+            "clCreateProgramWithSource",
+            "clEnqueueNDRangeKernel",
+            "clEnqueueReadBuffer",
+            "clEnqueueWriteBuffer",
+            "clFinish",
+            "clGetDeviceIDs",
+            "clGetPlatformIDs",
+            "clReleaseBuffer",
+            "clReleaseContext",
+            "clReleaseDevice",
+            "clReleaseEvent",
+            "clReleaseKernel",
+            "clReleasePlatform",
+            "clReleaseProgram",
+            "clReleaseQueue",
+            "clSetKernelArg",
+            "clWaitForEvents"
+          ],
+          "pass": true
+        },
+        {
+          "name": "host_api_released_handles",
+          "pass": true
+        },
+        {
+          "name": "buffer_write_path_executed",
+          "pass": true
+        },
+        {
+          "name": "buffer_read_path_executed",
+          "pass": true
+        },
+        {
+          "name": "ndrange_path_executed",
+          "pass": true
+        },
+        {
+          "name": "runtime_proxy_completed_all_commands",
+          "pass": true
+        },
+        {
+          "name": "runtime_proxy_no_failed_commands",
+          "pass": true
+        },
+        {
+          "name": "microop_status_pass",
+          "pass": true
+        },
+        {
+          "name": "microop_oracle_hash_present",
+          "pass": true
+        },
+        {
+          "name": "microop_global_load_store_present",
+          "pass": true
+        }
+      ],
+      "description": "Tiled FP32 GEMM subset kernel with global matrices and scalar dimensions.",
+      "global_size": [
+        64,
+        64,
+        1
+      ],
+      "host_api": {
+        "api_call_count": 35,
+        "api_call_trace": [
+          {
+            "api": "clGetPlatformIDs",
+            "error_code": 0,
+            "handle": "platform_1",
+            "index": 1,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clGetDeviceIDs",
+            "error_code": 0,
+            "handle": "device_2",
+            "index": 2,
+            "platform": "platform_1",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateContext",
+            "device": "device_2",
+            "error_code": 0,
+            "handle": "context_3",
+            "index": 3,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateCommandQueueWithProperties",
+            "context": "context_3",
+            "device": "device_2",
+            "error_code": 0,
+            "handle": "queue_4",
+            "index": 4,
+            "properties": {
+              "CL_QUEUE_PROFILING_ENABLE": false
+            },
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "read_only",
+            "handle": "buffer_5",
+            "index": 5,
+            "name": "gemm_a",
+            "result": "CL_SUCCESS",
+            "size_bytes": 16384
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "read_only",
+            "handle": "buffer_6",
+            "index": 6,
+            "name": "gemm_b",
+            "result": "CL_SUCCESS",
+            "size_bytes": 16384
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "write_only",
+            "handle": "buffer_7",
+            "index": 7,
+            "name": "gemm_c",
+            "result": "CL_SUCCESS",
+            "size_bytes": 16384
+          },
+          {
+            "api": "clEnqueueWriteBuffer",
+            "buffer": "buffer_5",
+            "error_code": 0,
+            "handle": "event_8",
+            "index": 8,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "size_bytes": 16384
+          },
+          {
+            "api": "clEnqueueWriteBuffer",
+            "buffer": "buffer_6",
+            "error_code": 0,
+            "handle": "event_9",
+            "index": 9,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "size_bytes": 16384
+          },
+          {
+            "api": "clCreateProgramWithSource",
+            "context": "context_3",
+            "error_code": 0,
+            "handle": "program_10",
+            "index": 10,
+            "result": "CL_SUCCESS",
+            "source_sha256": "7bc83988abd2ec9e449bd69ab900de0ede610ed0af9e5f23b478fde0fd64c9a5"
+          },
+          {
+            "abi_schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+            "api": "clBuildProgram",
+            "error_code": 0,
+            "index": 11,
+            "kernel": "gemm",
+            "program": "program_10",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateKernel",
+            "error_code": 0,
+            "handle": "kernel_11",
+            "index": 12,
+            "kernel_name": "gemm",
+            "program": "program_10",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 0,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "buffer_5"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 1,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "buffer_6"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 2,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "buffer_7"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 3,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "64"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 4,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "64"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 5,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "64"
+          },
+          {
+            "api": "clEnqueueNDRangeKernel",
+            "error_code": 0,
+            "handle": "event_12",
+            "index": 19,
+            "kernel": "kernel_11",
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "runtime_status": "pass"
+          },
+          {
+            "api": "clEnqueueReadBuffer",
+            "buffer": "buffer_7",
+            "error_code": 0,
+            "handle": "event_13",
+            "index": 20,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "wait_for": [
+              "event_12"
+            ]
+          },
+          {
+            "api": "clWaitForEvents",
+            "error_code": 0,
+            "event_count": 4,
+            "events": [
+              "event_8",
+              "event_9",
+              "event_12",
+              "event_13"
+            ],
+            "index": 21,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clFinish",
+            "error_code": 0,
+            "index": 22,
+            "pending_count": 0,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_13",
+            "index": 23,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_12",
+            "index": 24,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_8",
+            "index": 25,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_9",
+            "index": 26,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseKernel",
+            "error_code": 0,
+            "handle": "kernel_11",
+            "index": 27,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseProgram",
+            "error_code": 0,
+            "handle": "program_10",
+            "index": 28,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_5",
+            "index": 29,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_6",
+            "index": 30,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_7",
+            "index": 31,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseQueue",
+            "error_code": 0,
+            "handle": "queue_4",
+            "index": 32,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseContext",
+            "error_code": 0,
+            "handle": "context_3",
+            "index": 33,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseDevice",
+            "error_code": 0,
+            "handle": "device_2",
+            "index": 34,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleasePlatform",
+            "error_code": 0,
+            "handle": "platform_1",
+            "index": 35,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          }
+        ],
+        "events": [
+          {
+            "buffer": "buffer_5",
+            "command": "write_buffer",
+            "event": "event_8",
+            "profiling": {
+              "duration": 7,
+              "end": 121,
+              "queued": 100,
+              "start": 114,
+              "submit": 107
+            },
+            "queue": "queue_4",
+            "size_bytes": 16384,
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "buffer": "buffer_6",
+            "command": "write_buffer",
+            "event": "event_9",
+            "profiling": {
+              "duration": 7,
+              "end": 149,
+              "queued": 128,
+              "start": 142,
+              "submit": 135
+            },
+            "queue": "queue_4",
+            "size_bytes": 16384,
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "command": "ndrange_kernel",
+            "event": "event_12",
+            "kernel": "kernel_11",
+            "profiling": {
+              "duration": 7,
+              "end": 177,
+              "queued": 156,
+              "start": 170,
+              "submit": 163
+            },
+            "queue": "queue_4",
+            "runtime_status": "pass",
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "buffer": "buffer_7",
+            "command": "read_buffer",
+            "event": "event_13",
+            "profiling": {
+              "duration": 7,
+              "end": 205,
+              "queued": 184,
+              "start": 198,
+              "submit": 191
+            },
+            "queue": "queue_4",
+            "status": "complete",
+            "wait_for": [
+              "event_12"
+            ]
+          }
+        ],
+        "live_handles_after_release": {},
+        "runtime_proxy_summary": {
+          "commands_completed": 1,
+          "commands_failed": 0,
+          "commands_submitted": 1,
+          "completion_count": 1,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "local_size": [
+        16,
+        16,
+        1
+      ],
+      "microop_evidence": {
+        "completion_written": true,
+        "kernel": "gemm",
+        "memory_counts": {
+          "load": 240,
+          "store": 20
+        },
+        "memory_event_count": 260,
+        "oracle_workload": "gemm_proxy",
+        "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
+        "schema": "celviz.gpgpu.microop_interpreter.kernel.v1",
+        "sha256": "fce72522042abba970bab01a2546a5d06c4fda773a74745b21e37311b8fb41da",
+        "status": "pass",
+        "uops_executed": 18
+      },
+      "name": "gemm",
+      "runtime_proxy": {
+        "command_summary": {
+          "command_count": 4,
+          "ndrange_count": 1,
+          "read_buffer_count": 1,
+          "write_buffer_count": 2
+        },
+        "commands": [
+          {
+            "byte_count": 16384,
+            "data_pattern": "deterministic_sample_fixture",
+            "dst_addr": "0x81100000",
+            "opcode": "write_buffer",
+            "queue_id": 0,
+            "sequence": 1,
+            "submit_tag": "gemm-write-a"
+          },
+          {
+            "byte_count": 16384,
+            "data_pattern": "deterministic_sample_fixture",
+            "dst_addr": "0x81110000",
+            "opcode": "write_buffer",
+            "queue_id": 0,
+            "sequence": 2,
+            "submit_tag": "gemm-write-b"
+          },
+          {
+            "arg_buffer": "0x80020000",
+            "arg_bytes": 48,
+            "completion_addr": "0x90000000",
+            "flags": [
+              "INT_ON_COMPLETE",
+              "CAPTURE_COUNTERS"
+            ],
+            "grid": [
+              64,
+              64,
+              1
+            ],
+            "kernel": "gemm",
+            "kernel_entry": "0x2000",
+            "local": [
+              16,
+              16,
+              1
+            ],
+            "opcode": "kernel_dispatch",
+            "private_bytes_per_thread": 16,
+            "queue_id": 0,
+            "required_fp_mode": "fp32",
+            "sequence": 3,
+            "sgpr_count": 24,
+            "shared_bytes": 0,
+            "submit_tag": "gemm-ndrange",
+            "ventus_metadata": {
+              "buffer_allocsize": [
+                16384,
+                16384,
+                16384
+              ],
+              "buffer_base": [
+                2165309440,
+                2165374976,
+                2165440512
+              ],
+              "buffer_size": [
+                16384,
+                16384,
+                16384
+              ],
+              "kernel_id": 2,
+              "kernel_size": [
+                64,
+                64,
+                1
+              ],
+              "ldsSize": 0,
+              "metaDataBaseAddr": 2147614720,
+              "name": "gemm",
+              "num_buffer": 3,
+              "pdsBaseAddr": 0,
+              "pdsSize": 16,
+              "sgprUsage": 24,
+              "startaddr": 8192,
+              "vgprUsage": 32,
+              "wf_size": 32,
+              "wg_size": 8
+            },
+            "vgpr_count": 32
+          },
+          {
+            "byte_count": 16384,
+            "opcode": "read_buffer",
+            "queue_id": 0,
+            "sequence": 4,
+            "src_addr": "0x81120000",
+            "submit_tag": "gemm-read-c"
+          }
+        ],
+        "schema": "celviz.gpgpu.runtime_commands.v1",
+        "summary": {
+          "commands_completed": 4,
+          "commands_failed": 0,
+          "commands_submitted": 4,
+          "completion_count": 4,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "source_sha256": "7bc83988abd2ec9e449bd69ab900de0ede610ed0af9e5f23b478fde0fd64c9a5",
+      "status": "pass",
+      "work_items": 4096
+    },
+    {
+      "abi": {
+        "address_spaces": [
+          "global",
+          "private"
+        ],
+        "arg_count": 5,
+        "buffer_count": 3,
+        "kernel_id": 3,
+        "precision": "fp32",
+        "schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1"
+      },
+      "buffer_io": {
+        "read_count": 1,
+        "reads": [
+          {
+            "access": "write_only",
+            "arg": "output",
+            "device_address": "0x81230000",
+            "id": "conv_output",
+            "size_bytes": 65536
+          }
+        ],
+        "write_count": 2,
+        "writes": [
+          {
+            "access": "read_only",
+            "arg": "input",
+            "device_address": "0x81200000",
+            "id": "conv_input",
+            "size_bytes": 65536
+          },
+          {
+            "access": "read_only",
+            "arg": "filter",
+            "device_address": "0x81220000",
+            "id": "conv_filter",
+            "size_bytes": 36
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "host_api_lifecycle_complete",
+          "observed": [
+            "clBuildProgram",
+            "clCreateBuffer",
+            "clCreateCommandQueueWithProperties",
+            "clCreateContext",
+            "clCreateKernel",
+            "clCreateProgramWithSource",
+            "clEnqueueNDRangeKernel",
+            "clEnqueueReadBuffer",
+            "clEnqueueWriteBuffer",
+            "clFinish",
+            "clGetDeviceIDs",
+            "clGetPlatformIDs",
+            "clReleaseBuffer",
+            "clReleaseContext",
+            "clReleaseDevice",
+            "clReleaseEvent",
+            "clReleaseKernel",
+            "clReleasePlatform",
+            "clReleaseProgram",
+            "clReleaseQueue",
+            "clSetKernelArg",
+            "clWaitForEvents"
+          ],
+          "pass": true
+        },
+        {
+          "name": "host_api_released_handles",
+          "pass": true
+        },
+        {
+          "name": "buffer_write_path_executed",
+          "pass": true
+        },
+        {
+          "name": "buffer_read_path_executed",
+          "pass": true
+        },
+        {
+          "name": "ndrange_path_executed",
+          "pass": true
+        },
+        {
+          "name": "runtime_proxy_completed_all_commands",
+          "pass": true
+        },
+        {
+          "name": "runtime_proxy_no_failed_commands",
+          "pass": true
+        },
+        {
+          "name": "microop_status_pass",
+          "pass": true
+        },
+        {
+          "name": "microop_oracle_hash_present",
+          "pass": true
+        },
+        {
+          "name": "microop_global_load_store_present",
+          "pass": true
+        }
+      ],
+      "description": "Direct FP32 3x3 convolution subset kernel over NCHW-like linear buffers.",
+      "global_size": [
+        128,
+        128,
+        1
+      ],
+      "host_api": {
+        "api_call_count": 34,
+        "api_call_trace": [
+          {
+            "api": "clGetPlatformIDs",
+            "error_code": 0,
+            "handle": "platform_1",
+            "index": 1,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clGetDeviceIDs",
+            "error_code": 0,
+            "handle": "device_2",
+            "index": 2,
+            "platform": "platform_1",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateContext",
+            "device": "device_2",
+            "error_code": 0,
+            "handle": "context_3",
+            "index": 3,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateCommandQueueWithProperties",
+            "context": "context_3",
+            "device": "device_2",
+            "error_code": 0,
+            "handle": "queue_4",
+            "index": 4,
+            "properties": {
+              "CL_QUEUE_PROFILING_ENABLE": false
+            },
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "read_only",
+            "handle": "buffer_5",
+            "index": 5,
+            "name": "conv_input",
+            "result": "CL_SUCCESS",
+            "size_bytes": 65536
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "read_only",
+            "handle": "buffer_6",
+            "index": 6,
+            "name": "conv_filter",
+            "result": "CL_SUCCESS",
+            "size_bytes": 36
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "write_only",
+            "handle": "buffer_7",
+            "index": 7,
+            "name": "conv_output",
+            "result": "CL_SUCCESS",
+            "size_bytes": 65536
+          },
+          {
+            "api": "clEnqueueWriteBuffer",
+            "buffer": "buffer_5",
+            "error_code": 0,
+            "handle": "event_8",
+            "index": 8,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "size_bytes": 65536
+          },
+          {
+            "api": "clEnqueueWriteBuffer",
+            "buffer": "buffer_6",
+            "error_code": 0,
+            "handle": "event_9",
+            "index": 9,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "size_bytes": 36
+          },
+          {
+            "api": "clCreateProgramWithSource",
+            "context": "context_3",
+            "error_code": 0,
+            "handle": "program_10",
+            "index": 10,
+            "result": "CL_SUCCESS",
+            "source_sha256": "42867db7ad1b0aa8277caf5cc481bb67fd753927bebc56f77f4a2255b528aeb3"
+          },
+          {
+            "abi_schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+            "api": "clBuildProgram",
+            "error_code": 0,
+            "index": 11,
+            "kernel": "conv2d",
+            "program": "program_10",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateKernel",
+            "error_code": 0,
+            "handle": "kernel_11",
+            "index": 12,
+            "kernel_name": "conv2d",
+            "program": "program_10",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 0,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "buffer_5"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 1,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "buffer_6"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 2,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "buffer_7"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 3,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "128"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 4,
+            "kernel": "kernel_11",
+            "result": "CL_SUCCESS",
+            "value": "128"
+          },
+          {
+            "api": "clEnqueueNDRangeKernel",
+            "error_code": 0,
+            "handle": "event_12",
+            "index": 18,
+            "kernel": "kernel_11",
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "runtime_status": "pass"
+          },
+          {
+            "api": "clEnqueueReadBuffer",
+            "buffer": "buffer_7",
+            "error_code": 0,
+            "handle": "event_13",
+            "index": 19,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "wait_for": [
+              "event_12"
+            ]
+          },
+          {
+            "api": "clWaitForEvents",
+            "error_code": 0,
+            "event_count": 4,
+            "events": [
+              "event_8",
+              "event_9",
+              "event_12",
+              "event_13"
+            ],
+            "index": 20,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clFinish",
+            "error_code": 0,
+            "index": 21,
+            "pending_count": 0,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_13",
+            "index": 22,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_12",
+            "index": 23,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_8",
+            "index": 24,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_9",
+            "index": 25,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseKernel",
+            "error_code": 0,
+            "handle": "kernel_11",
+            "index": 26,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseProgram",
+            "error_code": 0,
+            "handle": "program_10",
+            "index": 27,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_5",
+            "index": 28,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_6",
+            "index": 29,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_7",
+            "index": 30,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseQueue",
+            "error_code": 0,
+            "handle": "queue_4",
+            "index": 31,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseContext",
+            "error_code": 0,
+            "handle": "context_3",
+            "index": 32,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseDevice",
+            "error_code": 0,
+            "handle": "device_2",
+            "index": 33,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleasePlatform",
+            "error_code": 0,
+            "handle": "platform_1",
+            "index": 34,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          }
+        ],
+        "events": [
+          {
+            "buffer": "buffer_5",
+            "command": "write_buffer",
+            "event": "event_8",
+            "profiling": {
+              "duration": 7,
+              "end": 121,
+              "queued": 100,
+              "start": 114,
+              "submit": 107
+            },
+            "queue": "queue_4",
+            "size_bytes": 65536,
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "buffer": "buffer_6",
+            "command": "write_buffer",
+            "event": "event_9",
+            "profiling": {
+              "duration": 7,
+              "end": 149,
+              "queued": 128,
+              "start": 142,
+              "submit": 135
+            },
+            "queue": "queue_4",
+            "size_bytes": 36,
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "command": "ndrange_kernel",
+            "event": "event_12",
+            "kernel": "kernel_11",
+            "profiling": {
+              "duration": 7,
+              "end": 177,
+              "queued": 156,
+              "start": 170,
+              "submit": 163
+            },
+            "queue": "queue_4",
+            "runtime_status": "pass",
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "buffer": "buffer_7",
+            "command": "read_buffer",
+            "event": "event_13",
+            "profiling": {
+              "duration": 7,
+              "end": 205,
+              "queued": 184,
+              "start": 198,
+              "submit": 191
+            },
+            "queue": "queue_4",
+            "status": "complete",
+            "wait_for": [
+              "event_12"
+            ]
+          }
+        ],
+        "live_handles_after_release": {},
+        "runtime_proxy_summary": {
+          "commands_completed": 1,
+          "commands_failed": 0,
+          "commands_submitted": 1,
+          "completion_count": 1,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "local_size": [
+        16,
+        16,
+        1
+      ],
+      "microop_evidence": {
+        "completion_written": true,
+        "kernel": "conv2d",
+        "memory_counts": {
+          "load": 450,
+          "store": 25
+        },
+        "memory_event_count": 475,
+        "oracle_workload": "convolution_proxy",
+        "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
+        "schema": "celviz.gpgpu.microop_interpreter.kernel.v1",
+        "sha256": "eca6cf7f6504cf658b8da0616a0beee1a9aa01aeac42dfb7a484ccc190b71d03",
+        "status": "pass",
+        "uops_executed": 17
+      },
+      "name": "conv2d",
+      "runtime_proxy": {
+        "command_summary": {
+          "command_count": 4,
+          "ndrange_count": 1,
+          "read_buffer_count": 1,
+          "write_buffer_count": 2
+        },
+        "commands": [
+          {
+            "byte_count": 65536,
+            "data_pattern": "deterministic_sample_fixture",
+            "dst_addr": "0x81200000",
+            "opcode": "write_buffer",
+            "queue_id": 0,
+            "sequence": 1,
+            "submit_tag": "conv2d-write-input"
+          },
+          {
+            "byte_count": 36,
+            "data_pattern": "deterministic_sample_fixture",
+            "dst_addr": "0x81220000",
+            "opcode": "write_buffer",
+            "queue_id": 0,
+            "sequence": 2,
+            "submit_tag": "conv2d-write-filter"
+          },
+          {
+            "arg_buffer": "0x80030000",
+            "arg_bytes": 32,
+            "completion_addr": "0x90000000",
+            "flags": [
+              "INT_ON_COMPLETE",
+              "CAPTURE_COUNTERS"
+            ],
+            "grid": [
+              128,
+              128,
+              1
+            ],
+            "kernel": "conv2d",
+            "kernel_entry": "0x3000",
+            "local": [
+              16,
+              16,
+              1
+            ],
+            "opcode": "kernel_dispatch",
+            "private_bytes_per_thread": 24,
+            "queue_id": 0,
+            "required_fp_mode": "fp32",
+            "sequence": 3,
+            "sgpr_count": 24,
+            "shared_bytes": 0,
+            "submit_tag": "conv2d-ndrange",
+            "ventus_metadata": {
+              "buffer_allocsize": [
+                65536,
+                64,
+                65536
+              ],
+              "buffer_base": [
+                2166358016,
+                2166489088,
+                2166554624
+              ],
+              "buffer_size": [
+                65536,
+                36,
+                65536
+              ],
+              "kernel_id": 3,
+              "kernel_size": [
+                128,
+                128,
+                1
+              ],
+              "ldsSize": 0,
+              "metaDataBaseAddr": 2147680256,
+              "name": "conv2d",
+              "num_buffer": 3,
+              "pdsBaseAddr": 0,
+              "pdsSize": 24,
+              "sgprUsage": 24,
+              "startaddr": 12288,
+              "vgprUsage": 36,
+              "wf_size": 32,
+              "wg_size": 8
+            },
+            "vgpr_count": 36
+          },
+          {
+            "byte_count": 65536,
+            "opcode": "read_buffer",
+            "queue_id": 0,
+            "sequence": 4,
+            "src_addr": "0x81230000",
+            "submit_tag": "conv2d-read-output"
+          }
+        ],
+        "schema": "celviz.gpgpu.runtime_commands.v1",
+        "summary": {
+          "commands_completed": 4,
+          "commands_failed": 0,
+          "commands_submitted": 4,
+          "completion_count": 4,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "source_sha256": "42867db7ad1b0aa8277caf5cc481bb67fd753927bebc56f77f4a2255b528aeb3",
+      "status": "pass",
+      "work_items": 16384
+    },
+    {
+      "abi": {
+        "address_spaces": [
+          "global",
+          "private"
+        ],
+        "arg_count": 5,
+        "buffer_count": 2,
+        "kernel_id": 4,
+        "precision": "fp32",
+        "schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1"
+      },
+      "buffer_io": {
+        "read_count": 1,
+        "reads": [
+          {
+            "access": "write_only",
+            "arg": "dst",
+            "device_address": "0x81340000",
+            "id": "filter_dst_rgba",
+            "size_bytes": 131072
+          }
+        ],
+        "write_count": 1,
+        "writes": [
+          {
+            "access": "read_only",
+            "arg": "src",
+            "device_address": "0x81300000",
+            "id": "filter_src_rgba",
+            "size_bytes": 131072
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "host_api_lifecycle_complete",
+          "observed": [
+            "clBuildProgram",
+            "clCreateBuffer",
+            "clCreateCommandQueueWithProperties",
+            "clCreateContext",
+            "clCreateKernel",
+            "clCreateProgramWithSource",
+            "clEnqueueNDRangeKernel",
+            "clEnqueueReadBuffer",
+            "clEnqueueWriteBuffer",
+            "clFinish",
+            "clGetDeviceIDs",
+            "clGetPlatformIDs",
+            "clReleaseBuffer",
+            "clReleaseContext",
+            "clReleaseDevice",
+            "clReleaseEvent",
+            "clReleaseKernel",
+            "clReleasePlatform",
+            "clReleaseProgram",
+            "clReleaseQueue",
+            "clSetKernelArg",
+            "clWaitForEvents"
+          ],
+          "pass": true
+        },
+        {
+          "name": "host_api_released_handles",
+          "pass": true
+        },
+        {
+          "name": "buffer_write_path_executed",
+          "pass": true
+        },
+        {
+          "name": "buffer_read_path_executed",
+          "pass": true
+        },
+        {
+          "name": "ndrange_path_executed",
+          "pass": true
+        },
+        {
+          "name": "runtime_proxy_completed_all_commands",
+          "pass": true
+        },
+        {
+          "name": "runtime_proxy_no_failed_commands",
+          "pass": true
+        },
+        {
+          "name": "microop_status_pass",
+          "pass": true
+        },
+        {
+          "name": "microop_oracle_hash_present",
+          "pass": true
+        },
+        {
+          "name": "microop_global_load_store_present",
+          "pass": true
+        }
+      ],
+      "description": "Image-filter subset expressed as buffer math, not OpenCL image objects/samplers.",
+      "global_size": [
+        256,
+        128,
+        1
+      ],
+      "host_api": {
+        "api_call_count": 30,
+        "api_call_trace": [
+          {
+            "api": "clGetPlatformIDs",
+            "error_code": 0,
+            "handle": "platform_1",
+            "index": 1,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clGetDeviceIDs",
+            "error_code": 0,
+            "handle": "device_2",
+            "index": 2,
+            "platform": "platform_1",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateContext",
+            "device": "device_2",
+            "error_code": 0,
+            "handle": "context_3",
+            "index": 3,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateCommandQueueWithProperties",
+            "context": "context_3",
+            "device": "device_2",
+            "error_code": 0,
+            "handle": "queue_4",
+            "index": 4,
+            "properties": {
+              "CL_QUEUE_PROFILING_ENABLE": false
+            },
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "read_only",
+            "handle": "buffer_5",
+            "index": 5,
+            "name": "filter_src_rgba",
+            "result": "CL_SUCCESS",
+            "size_bytes": 131072
+          },
+          {
+            "api": "clCreateBuffer",
+            "context": "context_3",
+            "error_code": 0,
+            "flags": "write_only",
+            "handle": "buffer_6",
+            "index": 6,
+            "name": "filter_dst_rgba",
+            "result": "CL_SUCCESS",
+            "size_bytes": 131072
+          },
+          {
+            "api": "clEnqueueWriteBuffer",
+            "buffer": "buffer_5",
+            "error_code": 0,
+            "handle": "event_7",
+            "index": 7,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "size_bytes": 131072
+          },
+          {
+            "api": "clCreateProgramWithSource",
+            "context": "context_3",
+            "error_code": 0,
+            "handle": "program_8",
+            "index": 8,
+            "result": "CL_SUCCESS",
+            "source_sha256": "85325e697f04a9268613256b71faeec2951e3bbd2cfc6c0ce4671634727d9c13"
+          },
+          {
+            "abi_schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+            "api": "clBuildProgram",
+            "error_code": 0,
+            "index": 9,
+            "kernel": "image_filter",
+            "program": "program_8",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clCreateKernel",
+            "error_code": 0,
+            "handle": "kernel_9",
+            "index": 10,
+            "kernel_name": "image_filter",
+            "program": "program_8",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 0,
+            "kernel": "kernel_9",
+            "result": "CL_SUCCESS",
+            "value": "buffer_5"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 1,
+            "kernel": "kernel_9",
+            "result": "CL_SUCCESS",
+            "value": "buffer_6"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 2,
+            "kernel": "kernel_9",
+            "result": "CL_SUCCESS",
+            "value": "256"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 3,
+            "kernel": "kernel_9",
+            "result": "CL_SUCCESS",
+            "value": "128"
+          },
+          {
+            "api": "clSetKernelArg",
+            "error_code": 0,
+            "index": 4,
+            "kernel": "kernel_9",
+            "result": "CL_SUCCESS",
+            "value": "1.25"
+          },
+          {
+            "api": "clEnqueueNDRangeKernel",
+            "error_code": 0,
+            "handle": "event_10",
+            "index": 16,
+            "kernel": "kernel_9",
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "runtime_status": "pass"
+          },
+          {
+            "api": "clEnqueueReadBuffer",
+            "buffer": "buffer_6",
+            "error_code": 0,
+            "handle": "event_11",
+            "index": 17,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS",
+            "wait_for": [
+              "event_10"
+            ]
+          },
+          {
+            "api": "clWaitForEvents",
+            "error_code": 0,
+            "event_count": 3,
+            "events": [
+              "event_7",
+              "event_10",
+              "event_11"
+            ],
+            "index": 18,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clFinish",
+            "error_code": 0,
+            "index": 19,
+            "pending_count": 0,
+            "queue": "queue_4",
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_11",
+            "index": 20,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_10",
+            "index": 21,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseEvent",
+            "error_code": 0,
+            "handle": "event_7",
+            "index": 22,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseKernel",
+            "error_code": 0,
+            "handle": "kernel_9",
+            "index": 23,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseProgram",
+            "error_code": 0,
+            "handle": "program_8",
+            "index": 24,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_5",
+            "index": 25,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseBuffer",
+            "error_code": 0,
+            "handle": "buffer_6",
+            "index": 26,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseQueue",
+            "error_code": 0,
+            "handle": "queue_4",
+            "index": 27,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseContext",
+            "error_code": 0,
+            "handle": "context_3",
+            "index": 28,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleaseDevice",
+            "error_code": 0,
+            "handle": "device_2",
+            "index": 29,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          },
+          {
+            "api": "clReleasePlatform",
+            "error_code": 0,
+            "handle": "platform_1",
+            "index": 30,
+            "refcount": 0,
+            "result": "CL_SUCCESS"
+          }
+        ],
+        "events": [
+          {
+            "buffer": "buffer_5",
+            "command": "write_buffer",
+            "event": "event_7",
+            "profiling": {
+              "duration": 7,
+              "end": 121,
+              "queued": 100,
+              "start": 114,
+              "submit": 107
+            },
+            "queue": "queue_4",
+            "size_bytes": 131072,
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "command": "ndrange_kernel",
+            "event": "event_10",
+            "kernel": "kernel_9",
+            "profiling": {
+              "duration": 7,
+              "end": 149,
+              "queued": 128,
+              "start": 142,
+              "submit": 135
+            },
+            "queue": "queue_4",
+            "runtime_status": "pass",
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "buffer": "buffer_6",
+            "command": "read_buffer",
+            "event": "event_11",
+            "profiling": {
+              "duration": 7,
+              "end": 177,
+              "queued": 156,
+              "start": 170,
+              "submit": 163
+            },
+            "queue": "queue_4",
+            "status": "complete",
+            "wait_for": [
+              "event_10"
+            ]
+          }
+        ],
+        "live_handles_after_release": {},
+        "runtime_proxy_summary": {
+          "commands_completed": 1,
+          "commands_failed": 0,
+          "commands_submitted": 1,
+          "completion_count": 1,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "local_size": [
+        16,
+        16,
+        1
+      ],
+      "microop_evidence": {
+        "completion_written": true,
+        "kernel": "image_filter",
+        "memory_counts": {
+          "load": 484,
+          "store": 64
+        },
+        "memory_event_count": 548,
+        "oracle_workload": "image_filter",
+        "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
+        "schema": "celviz.gpgpu.microop_interpreter.kernel.v1",
+        "sha256": "a2864d4e2fa426e8055229a48dd110e86020279379315b8eaccf8ed4dd9af284",
+        "status": "pass",
+        "uops_executed": 15
+      },
+      "name": "image_filter",
+      "runtime_proxy": {
+        "command_summary": {
+          "command_count": 3,
+          "ndrange_count": 1,
+          "read_buffer_count": 1,
+          "write_buffer_count": 1
+        },
+        "commands": [
+          {
+            "byte_count": 131072,
+            "data_pattern": "deterministic_sample_fixture",
+            "dst_addr": "0x81300000",
+            "opcode": "write_buffer",
+            "queue_id": 0,
+            "sequence": 1,
+            "submit_tag": "image_filter-write-src"
+          },
+          {
+            "arg_buffer": "0x80040000",
+            "arg_bytes": 32,
+            "completion_addr": "0x90000000",
+            "flags": [
+              "INT_ON_COMPLETE",
+              "CAPTURE_COUNTERS"
+            ],
+            "grid": [
+              256,
+              128,
+              1
+            ],
+            "kernel": "image_filter",
+            "kernel_entry": "0x4000",
+            "local": [
+              16,
+              16,
+              1
+            ],
+            "opcode": "kernel_dispatch",
+            "private_bytes_per_thread": 8,
+            "queue_id": 0,
+            "required_fp_mode": "fp32",
+            "sequence": 2,
+            "sgpr_count": 18,
+            "shared_bytes": 0,
+            "submit_tag": "image_filter-ndrange",
+            "ventus_metadata": {
+              "buffer_allocsize": [
+                131072,
+                131072
+              ],
+              "buffer_base": [
+                2167406592,
+                2167668736
+              ],
+              "buffer_size": [
+                131072,
+                131072
+              ],
+              "kernel_id": 4,
+              "kernel_size": [
+                256,
+                128,
+                1
+              ],
+              "ldsSize": 0,
+              "metaDataBaseAddr": 2147745792,
+              "name": "image_filter",
+              "num_buffer": 2,
+              "pdsBaseAddr": 0,
+              "pdsSize": 8,
+              "sgprUsage": 18,
+              "startaddr": 16384,
+              "vgprUsage": 28,
+              "wf_size": 32,
+              "wg_size": 8
+            },
+            "vgpr_count": 28
+          },
+          {
+            "byte_count": 131072,
+            "opcode": "read_buffer",
+            "queue_id": 0,
+            "sequence": 3,
+            "src_addr": "0x81340000",
+            "submit_tag": "image_filter-read-dst"
+          }
+        ],
+        "schema": "celviz.gpgpu.runtime_commands.v1",
+        "summary": {
+          "commands_completed": 3,
+          "commands_failed": 0,
+          "commands_submitted": 3,
+          "completion_count": 3,
+          "dry_run": true,
+          "last_event_source": "control_plane",
+          "pending_count": 0,
+          "queue_count": 1,
+          "rtlsim_library_bound": false
+        }
+      },
+      "source_sha256": "85325e697f04a9268613256b71faeec2951e3bbd2cfc6c0ce4671634727d9c13",
+      "status": "pass",
+      "work_items": 32768
+    }
+  ],
+  "schema": "celviz.gpgpu.opencl_userspace_samples.v1",
+  "status": "pass"
+}

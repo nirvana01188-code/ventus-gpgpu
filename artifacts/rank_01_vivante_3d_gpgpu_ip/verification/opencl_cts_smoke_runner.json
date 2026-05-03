@@ -1,0 +1,316 @@
+{
+  "category_summary": {
+    "buffer_flags": {
+      "fail": 0,
+      "pass": 1
+    },
+    "build_errors": {
+      "fail": 0,
+      "pass": 1
+    },
+    "device_info": {
+      "fail": 0,
+      "pass": 1
+    },
+    "events": {
+      "fail": 0,
+      "pass": 1
+    },
+    "kernels": {
+      "fail": 0,
+      "pass": 1
+    },
+    "queue": {
+      "fail": 0,
+      "pass": 1
+    }
+  },
+  "clean_room_scope": "CTS-oriented smoke manifest only; this runner does not execute Khronos OpenCL CTS, does not produce official OpenCL conformance evidence, does not claim a production ICD/runtime, and does not claim Vivante-compatible compiler, firmware, SDK, or command-stream behavior.",
+  "generated_at": "2026-05-03T06:13:05+00:00",
+  "items": [
+    {
+      "category": "device_info",
+      "claim_boundary": "CTS-oriented smoke manifest only; official CTS pass remains false",
+      "cts_orientation": "clGetDeviceInfo smoke coverage for profile/version/limits/memory/queue capability rows",
+      "details": {},
+      "evidence": [
+        {
+          "exists": true,
+          "expected_schema": "celviz.gpgpu.opencl_device_info_table.v1",
+          "json_error": null,
+          "observed_schema": "celviz.gpgpu.opencl_device_info_table.v1",
+          "observed_status": "pass",
+          "pass": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/opencl_conformance/opencl_device_info_table.json",
+          "schema_ok": true,
+          "status_key": "status",
+          "status_ok": true
+        }
+      ],
+      "fail": false,
+      "gate_binding": "verify_celviz_gpgpu_opencl_device_info_table.sh / opencl_device_info_table.py",
+      "id": "cts_smoke_device_info",
+      "pass": true,
+      "requirement": "device info",
+      "smoke_check": "Existing CL_DEVICE_* readiness table is present, schema-valid, and passing."
+    },
+    {
+      "category": "build_errors",
+      "claim_boundary": "CTS-oriented smoke manifest only; official CTS pass remains false",
+      "cts_orientation": "clCreateProgramWithSource, clBuildProgram, clCreateKernel, clSetKernelArg, and NDRange negative-path smoke",
+      "details": {},
+      "evidence": [
+        {
+          "exists": true,
+          "expected_schema": "celviz.gpgpu.opencl_build_error_code_matrix.v1",
+          "json_error": null,
+          "observed_schema": "celviz.gpgpu.opencl_build_error_code_matrix.v1",
+          "observed_status": "pass",
+          "pass": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_build_error_code_matrix.json",
+          "schema_ok": true,
+          "status_key": "status",
+          "status_ok": true
+        }
+      ],
+      "fail": false,
+      "gate_binding": "verify_celviz_gpgpu_opencl_build_error_code_matrix.sh / opencl_build_error_code_matrix.py",
+      "id": "cts_smoke_build_errors",
+      "pass": true,
+      "requirement": "build errors",
+      "smoke_check": "Existing build/error-code matrix is present, schema-valid, and passing."
+    },
+    {
+      "category": "buffer_flags",
+      "claim_boundary": "CTS-oriented smoke manifest only; official CTS pass remains false",
+      "cts_orientation": "CL_MEM_READ_WRITE/READ_ONLY/WRITE_ONLY/COPY_HOST_PTR/USE_HOST_PTR plus map/unmap/sub-buffer smoke",
+      "details": {},
+      "evidence": [
+        {
+          "exists": true,
+          "expected_schema": "celviz.gpgpu.phase9_memory_object_flags_gate.v1",
+          "json_error": null,
+          "observed_schema": "celviz.gpgpu.phase9_memory_object_flags_gate.v1",
+          "observed_status": "pass",
+          "pass": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_object_flags_map_gate.json",
+          "schema_ok": true,
+          "status_key": "status",
+          "status_ok": true
+        }
+      ],
+      "fail": false,
+      "gate_binding": "verify_celviz_gpgpu_phase9_memory_object_flags.sh / phase9_memory_object_flags_gate.py",
+      "id": "cts_smoke_buffer_flags",
+      "pass": true,
+      "requirement": "buffer flags",
+      "smoke_check": "Existing memory-object flags/map gate is present, schema-valid, and passing."
+    },
+    {
+      "category": "events",
+      "claim_boundary": "CTS-oriented smoke manifest only; official CTS pass remains false",
+      "cts_orientation": "event wait-list validation, dependency failure propagation, and profiling timestamp ordering smoke",
+      "details": {},
+      "evidence": [
+        {
+          "exists": true,
+          "expected_schema": "celviz.gpgpu.opencl_event_waitlist_profiling_gate.v1",
+          "json_error": null,
+          "observed_schema": "celviz.gpgpu.opencl_event_waitlist_profiling_gate.v1",
+          "observed_status": "pass",
+          "pass": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_event_waitlist_profiling_report.json",
+          "schema_ok": true,
+          "status_key": "status",
+          "status_ok": true
+        }
+      ],
+      "fail": false,
+      "gate_binding": "verify_celviz_gpgpu_opencl_event_waitlist_profiling.sh / opencl_event_waitlist_profiling_gate.py",
+      "id": "cts_smoke_events",
+      "pass": true,
+      "requirement": "events",
+      "smoke_check": "Existing event wait-list/profiling gate is present, schema-valid, and passing."
+    },
+    {
+      "category": "queue",
+      "claim_boundary": "CTS-oriented smoke manifest only; official CTS pass remains false",
+      "cts_orientation": "in-order queue, unsupported out-of-order queue, and queue gap rows smoke",
+      "details": {},
+      "evidence": [
+        {
+          "exists": true,
+          "expected_schema": "celviz.gpgpu.runtime_queue_semantics_gate.v1",
+          "json_error": null,
+          "observed_schema": "celviz.gpgpu.runtime_queue_semantics_gate.v1",
+          "observed_status": "pass",
+          "pass": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/runtime_queue_semantics_gate.json",
+          "schema_ok": true,
+          "status_key": "status",
+          "status_ok": true
+        }
+      ],
+      "fail": false,
+      "gate_binding": "verify_celviz_gpgpu_runtime_queue_semantics.sh / runtime_queue_semantics_gate.py",
+      "id": "cts_smoke_queue",
+      "pass": true,
+      "requirement": "queue",
+      "smoke_check": "Existing runtime queue semantics gate is present, schema-valid, and passing."
+    },
+    {
+      "category": "kernels",
+      "claim_boundary": "CTS-oriented smoke manifest only; official CTS pass remains false",
+      "cts_orientation": "CTS-shaped kernel manifest smoke for vector add, GEMM, convolution, and buffer-backed image filter",
+      "details": {
+        "kernels": [
+          {
+            "arg_count": 4,
+            "buffer_count": 3,
+            "description": "1D FP32 vector add using global buffers and scalar element count.",
+            "global_size": [
+              1024,
+              1,
+              1
+            ],
+            "local_size": [
+              64,
+              1,
+              1
+            ],
+            "name": "vector_add",
+            "pass": true,
+            "pointer_arg_count": 3,
+            "precision": "fp32",
+            "source_sha256": "4919ba7bd0791b57603e89c0195b4adfb33a0a0b8d23dcf0b6ea720276feb57d"
+          },
+          {
+            "arg_count": 6,
+            "buffer_count": 3,
+            "description": "Tiled FP32 GEMM subset kernel with global matrices and scalar dimensions.",
+            "global_size": [
+              64,
+              64,
+              1
+            ],
+            "local_size": [
+              16,
+              16,
+              1
+            ],
+            "name": "gemm",
+            "pass": true,
+            "pointer_arg_count": 3,
+            "precision": "fp32",
+            "source_sha256": "7bc83988abd2ec9e449bd69ab900de0ede610ed0af9e5f23b478fde0fd64c9a5"
+          },
+          {
+            "arg_count": 5,
+            "buffer_count": 3,
+            "description": "Direct FP32 3x3 convolution subset kernel over NCHW-like linear buffers.",
+            "global_size": [
+              128,
+              128,
+              1
+            ],
+            "local_size": [
+              16,
+              16,
+              1
+            ],
+            "name": "conv2d",
+            "pass": true,
+            "pointer_arg_count": 3,
+            "precision": "fp32",
+            "source_sha256": "42867db7ad1b0aa8277caf5cc481bb67fd753927bebc56f77f4a2255b528aeb3"
+          },
+          {
+            "arg_count": 5,
+            "buffer_count": 2,
+            "description": "Image-filter subset expressed as buffer math, not OpenCL image objects/samplers.",
+            "global_size": [
+              256,
+              128,
+              1
+            ],
+            "local_size": [
+              16,
+              16,
+              1
+            ],
+            "name": "image_filter",
+            "pass": true,
+            "pointer_arg_count": 2,
+            "precision": "fp32",
+            "source_sha256": "85325e697f04a9268613256b71faeec2951e3bbd2cfc6c0ce4671634727d9c13"
+          }
+        ],
+        "observed_kernel_names": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ],
+        "required_kernel_names": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "evidence": [
+        {
+          "exists": true,
+          "expected_schema": "celviz.gpgpu.opencl_subset.evidence.v1",
+          "json_error": null,
+          "observed_schema": "celviz.gpgpu.opencl_subset.evidence.v1",
+          "observed_status": "pass",
+          "pass": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json",
+          "schema_ok": true,
+          "status_key": "status",
+          "status_ok": true
+        },
+        {
+          "exists": true,
+          "expected_schema": "celviz.gpgpu.microop_interpreter.v1",
+          "json_error": null,
+          "observed_schema": "celviz.gpgpu.microop_interpreter.v1",
+          "observed_status": "pass",
+          "pass": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/microop_execution_report.json",
+          "schema_ok": true,
+          "status_key": "status",
+          "status_ok": true
+        }
+      ],
+      "fail": false,
+      "gate_binding": "verify_celviz_gpgpu_opencl_host_api_shim.sh, verify_celviz_gpgpu_microop_execution.sh, opencl_subset.py",
+      "id": "cts_smoke_four_kernels",
+      "pass": true,
+      "requirement": "four kernels",
+      "smoke_check": "All four built-in OpenCL subset kernels compile to ABI metadata and are backed by subset plus micro-op evidence."
+    }
+  ],
+  "khronos_cts_executed": false,
+  "official_cts_pass": false,
+  "official_opencl_conformance_claimed": false,
+  "runner_kind": "cts_oriented_smoke_manifest",
+  "schema": "celviz.gpgpu.opencl_cts_smoke_runner.v1",
+  "status": "pass",
+  "summary": {
+    "fail_count": 0,
+    "item_count": 6,
+    "kernel_count": 4,
+    "official_cts_pass": false,
+    "pass_count": 6,
+    "required_categories": [
+      "device_info",
+      "build_errors",
+      "buffer_flags",
+      "events",
+      "queue",
+      "kernels"
+    ]
+  }
+}

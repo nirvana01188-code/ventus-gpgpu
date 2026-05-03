@@ -73,6 +73,11 @@ fail() {
 [[ -x scripts/verify_celviz_gpgpu_phase9_memory_object_flags.sh || -f scripts/verify_celviz_gpgpu_phase9_memory_object_flags.sh ]] || fail "missing phase-9 memory object flags verification script"
 [[ -x scripts/verify_celviz_gpgpu_runtime_queue_semantics.sh || -f scripts/verify_celviz_gpgpu_runtime_queue_semantics.sh ]] || fail "missing runtime queue semantics verification script"
 [[ -x scripts/verify_celviz_gpgpu_opencl_rtl_cts_cross_check.sh || -f scripts/verify_celviz_gpgpu_opencl_rtl_cts_cross_check.sh ]] || fail "missing OpenCL RTL/CTS cross-check verification script"
+[[ -x scripts/verify_celviz_gpgpu_opencl_c_abi.sh || -f scripts/verify_celviz_gpgpu_opencl_c_abi.sh ]] || fail "missing OpenCL C ABI smoke verification script"
+[[ -x scripts/verify_celviz_gpgpu_opencl_userspace_samples.sh || -f scripts/verify_celviz_gpgpu_opencl_userspace_samples.sh ]] || fail "missing OpenCL userspace samples verification script"
+[[ -x scripts/verify_celviz_gpgpu_opencl_cts_smoke.sh || -f scripts/verify_celviz_gpgpu_opencl_cts_smoke.sh ]] || fail "missing OpenCL CTS smoke verification script"
+[[ -x scripts/verify_celviz_gpgpu_opencl_product_gap_closure.sh || -f scripts/verify_celviz_gpgpu_opencl_product_gap_closure.sh ]] || fail "missing OpenCL product gap closure verification script"
+[[ -x scripts/verify_celviz_gpgpu_opencl_kernel_abi_edges.sh || -f scripts/verify_celviz_gpgpu_opencl_kernel_abi_edges.sh ]] || fail "missing OpenCL kernel ABI edge verification script"
 [[ -x scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh || -f scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh ]] || fail "missing phase-9 OpenCL conformance-readiness verification script"
 [[ -x scripts/verify_celviz_gpgpu_phase9_memory_conformance.sh || -f scripts/verify_celviz_gpgpu_phase9_memory_conformance.sh ]] || fail "missing phase-9 memory conformance-readiness verification script"
 [[ -x scripts/verify_celviz_gpgpu_phase9_driver_os.sh || -f scripts/verify_celviz_gpgpu_phase9_driver_os.sh ]] || fail "missing phase-9 driver/OS conformance-readiness verification script"
@@ -159,6 +164,21 @@ bash scripts/verify_celviz_gpgpu_runtime_queue_semantics.sh
 
 log "gate: verify OpenCL host-to-RTL CTS-readiness cross-check"
 bash scripts/verify_celviz_gpgpu_opencl_rtl_cts_cross_check.sh
+
+log "gate: verify OpenCL C ABI vector-add smoke"
+bash scripts/verify_celviz_gpgpu_opencl_c_abi.sh
+
+log "gate: verify executable OpenCL userspace samples"
+bash scripts/verify_celviz_gpgpu_opencl_userspace_samples.sh
+
+log "gate: verify OpenCL CTS-oriented smoke manifest"
+bash scripts/verify_celviz_gpgpu_opencl_cts_smoke.sh
+
+log "gate: verify OpenCL product gap closure ledger"
+bash scripts/verify_celviz_gpgpu_opencl_product_gap_closure.sh
+
+log "gate: verify OpenCL kernel ABI edge cases"
+bash scripts/verify_celviz_gpgpu_opencl_kernel_abi_edges.sh
 
 log "gate: verify phase-9 OpenCL conformance-readiness artifacts"
 bash scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh

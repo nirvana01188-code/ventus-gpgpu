@@ -231,6 +231,11 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "phase9_memory_object_flags_completion": verification_dir / "phase9_memory_object_flags_completion_columns.json",
         "runtime_queue_semantics_gate": verification_dir / "runtime_queue_semantics_gate.json",
         "opencl_rtl_cts_cross_check": verification_dir / "opencl_rtl_cts_cross_check.json",
+        "opencl_c_abi_smoke": verification_dir / "opencl_c_abi_smoke.json",
+        "opencl_userspace_samples": verification_dir / "opencl_userspace_samples.json",
+        "opencl_cts_smoke_runner": verification_dir / "opencl_cts_smoke_runner.json",
+        "opencl_product_gap_closure": verification_dir / "opencl_product_gap_closure.json",
+        "opencl_kernel_abi_edges": verification_dir / "opencl_kernel_abi_edges.json",
         "phase9_opencl_conformance_readiness_report": verification_dir / "phase9_opencl_conformance_readiness_report.json",
         "phase9_opencl_subset_conformance_tests": verification_dir / "opencl_subset_conformance_tests.json",
         "phase9_opencl_icd_runtime_contract": verification_dir / "opencl_icd_runtime_contract.json",
@@ -291,6 +296,11 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
     phase9_memory_object_flags_completion = load_json(files["phase9_memory_object_flags_completion"])
     runtime_queue_semantics = load_json(files["runtime_queue_semantics_gate"])
     opencl_rtl_cts = load_json(files["opencl_rtl_cts_cross_check"])
+    opencl_c_abi = load_json(files["opencl_c_abi_smoke"])
+    opencl_userspace_samples = load_json(files["opencl_userspace_samples"])
+    opencl_cts_smoke = load_json(files["opencl_cts_smoke_runner"])
+    opencl_product_gap = load_json(files["opencl_product_gap_closure"])
+    opencl_kernel_abi_edges = load_json(files["opencl_kernel_abi_edges"])
     phase9_opencl = load_json(files["phase9_opencl_conformance_readiness_report"])
     phase9_subset_tests = load_json(files["phase9_opencl_subset_conformance_tests"])
     phase9_icd_contract = load_json(files["phase9_opencl_icd_runtime_contract"])
@@ -522,6 +532,11 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "phase9_memory_object_flags_gate": phase9_memory_object_flags,
         "runtime_queue_semantics_gate": runtime_queue_semantics,
         "opencl_rtl_cts_cross_check": opencl_rtl_cts,
+        "opencl_c_abi_smoke": opencl_c_abi,
+        "opencl_userspace_samples": opencl_userspace_samples,
+        "opencl_cts_smoke_runner": opencl_cts_smoke,
+        "opencl_product_gap_closure": opencl_product_gap,
+        "opencl_kernel_abi_edges": opencl_kernel_abi_edges,
         "phase9_opencl_conformance_readiness": phase9_opencl,
         "phase9_opencl_subset_conformance_tests": phase9_subset_tests,
         "phase9_opencl_icd_runtime_contract": phase9_icd_contract,
@@ -790,6 +805,143 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
             key,
             rtl_boundaries.get(key) is False,
             rtl_boundaries,
+        )
+
+    c_abi_symbols = opencl_c_abi.get("symbols", opencl_c_abi.get("exported_symbols", []))
+    c_abi_smoke = opencl_c_abi.get("smoke", {})
+    builder.add(
+        "opencl_c_abi_smoke",
+        "status_pass",
+        opencl_c_abi.get("status") == "pass",
+        {"status": opencl_c_abi.get("status")},
+    )
+    builder.add(
+        "opencl_c_abi_smoke",
+        "symbol_depth",
+        len(c_abi_symbols) >= 19 or as_int(opencl_c_abi.get("symbol_count")) >= 19,
+        {"symbol_count": len(c_abi_symbols) or opencl_c_abi.get("symbol_count")},
+    )
+    builder.add(
+        "opencl_c_abi_smoke",
+        "vector_add_smoke",
+        str(c_abi_smoke.get("kernel", opencl_c_abi.get("kernel", ""))) in {"vector_add", ""}
+        and as_int(c_abi_smoke.get("elements", opencl_c_abi.get("elements"))) >= 256
+        and float(c_abi_smoke.get("max_abs_error", opencl_c_abi.get("max_abs_error", 0.0))) == 0.0,
+        c_abi_smoke if isinstance(c_abi_smoke, dict) else {},
+    )
+    c_abi_boundary = opencl_c_abi.get("claim_boundary", opencl_c_abi.get("conformance_boundary", {}))
+    for key in ("official_opencl_conformance", "khronos_cts", "libopencl", "khronos_icd"):
+        builder.add(
+            "opencl_c_abi_boundaries",
+            key,
+            c_abi_boundary.get(key, False) is False,
+            c_abi_boundary,
+        )
+
+    builder.add(
+        "opencl_userspace_samples",
+        "sample_depth",
+        opencl_userspace_samples.get("status") == "pass" and as_int(opencl_userspace_samples.get("sample_count")) == 4,
+        {"sample_count": opencl_userspace_samples.get("sample_count")},
+    )
+    for sample in opencl_userspace_samples.get("samples", []):
+        sample_name = str(sample.get("name", sample.get("kernel", "<unnamed>")))
+        builder.add(
+            "opencl_userspace_sample_kernels",
+            sample_name,
+            sample.get("status") == "pass" and all(check.get("pass") is True for check in sample.get("checks", [])),
+            {"check_count": len(sample.get("checks", []))},
+        )
+    builder.add(
+        "opencl_userspace_samples",
+        "negative_paths",
+        len(opencl_userspace_samples.get("negative_tests", [])) >= 3
+        and all(case.get("pass") is True for case in opencl_userspace_samples.get("negative_tests", [])),
+        {"negative_count": len(opencl_userspace_samples.get("negative_tests", []))},
+    )
+    userspace_boundary = opencl_userspace_samples.get("conformance_boundary", opencl_userspace_samples.get("claim_boundary", {}))
+    for key in ("official_opencl_conformance", "khronos_cts", "khronos_icd", "libopencl"):
+        builder.add(
+            "opencl_userspace_samples_boundaries",
+            key,
+            userspace_boundary.get(key) is False,
+            userspace_boundary,
+        )
+
+    builder.add(
+        "opencl_cts_smoke_runner",
+        "status_pass_without_official_cts",
+        opencl_cts_smoke.get("status") == "pass"
+        and opencl_cts_smoke.get("official_cts_pass") is False
+        and opencl_cts_smoke.get("khronos_cts_executed") is False,
+        {
+            "official_cts_pass": opencl_cts_smoke.get("official_cts_pass"),
+            "khronos_cts_executed": opencl_cts_smoke.get("khronos_cts_executed"),
+        },
+    )
+    smoke_items = opencl_cts_smoke.get("items", opencl_cts_smoke.get("smoke_items", []))
+    builder.add(
+        "opencl_cts_smoke_runner",
+        "item_depth",
+        len(smoke_items) >= 6 and all(item.get("pass") is True for item in smoke_items),
+        {"item_count": len(smoke_items)},
+    )
+    for item_name in ("device_info", "build_errors", "buffer_flags", "events", "queue", "kernels"):
+        builder.add(
+            "opencl_cts_smoke_items",
+            item_name,
+            any(
+                item.get("name", item.get("id")) == item_name
+                or item.get("category") == item_name
+                for item in smoke_items
+                if item.get("pass") is True
+            ),
+            {"item_count": len(smoke_items)},
+        )
+
+    gap_summary = opencl_product_gap.get("summary", {})
+    builder.add(
+        "opencl_product_gap_closure",
+        "status_pass_with_blockers",
+        opencl_product_gap.get("status") == "pass"
+        and as_int(gap_summary.get("done")) >= 3
+        and as_int(gap_summary.get("partial")) >= 1
+        and as_int(gap_summary.get("blocked")) >= 8,
+        gap_summary,
+    )
+    gap_boundaries = opencl_product_gap.get("claim_boundary", opencl_product_gap.get("boundaries", gap_summary))
+    for key in ("official_opencl_conformance", "khronos_cts_pass", "product_icd_loader", "libopencl_abi", "production_kernel_driver"):
+        builder.add(
+            "opencl_product_gap_boundaries",
+            key,
+            gap_boundaries.get(key) is False,
+            gap_boundaries,
+        )
+
+    builder.add(
+        "opencl_kernel_abi_edges",
+        "status_pass",
+        opencl_kernel_abi_edges.get("status") == "pass",
+        {"status": opencl_kernel_abi_edges.get("status")},
+    )
+    edge_cases = opencl_kernel_abi_edges.get("cases", opencl_kernel_abi_edges.get("matrix", []))
+    builder.add(
+        "opencl_kernel_abi_edges",
+        "case_depth",
+        len(edge_cases) >= 14 and all(case.get("pass") is True for case in edge_cases),
+        {"case_count": len(edge_cases)},
+    )
+    edge_categories = {
+        str(case.get("category"))
+        for case in edge_cases
+        if isinstance(case, dict)
+    }
+    for category in ("arg size/index/type", "global/local size", "unsupported address spaces/builtins/double", "buffer access mismatch"):
+        builder.add(
+            "opencl_kernel_abi_edge_categories",
+            category,
+            category in edge_categories,
+            {"categories": sorted(edge_categories)},
         )
 
     builder.add(

@@ -1,0 +1,424 @@
+{
+  "case_count": 14,
+  "cases": [
+    {
+      "capability": "opencl_subset.compile_kernel",
+      "category": "arg size/index/type",
+      "details": {
+        "abi_excerpt": {
+          "arg_size_bytes": 32,
+          "args": [
+            {
+              "abi_offset": 0,
+              "access": "read_only",
+              "address_space": "global",
+              "name": "a",
+              "pointer": true,
+              "size_bytes": 8,
+              "type": "float4"
+            },
+            {
+              "abi_offset": 8,
+              "access": "read_only",
+              "address_space": "global",
+              "name": "b",
+              "pointer": true,
+              "size_bytes": 8,
+              "type": "float4"
+            },
+            {
+              "abi_offset": 16,
+              "access": "read_write",
+              "address_space": "global",
+              "name": "c",
+              "pointer": true,
+              "size_bytes": 8,
+              "type": "float4"
+            },
+            {
+              "abi_offset": 24,
+              "access": "by_value",
+              "address_space": "private",
+              "name": "n",
+              "pointer": false,
+              "size_bytes": 4,
+              "type": "uint"
+            },
+            {
+              "abi_offset": 28,
+              "access": "by_value",
+              "address_space": "private",
+              "name": "gain",
+              "pointer": false,
+              "size_bytes": 4,
+              "type": "float"
+            }
+          ],
+          "global_size": [
+            1024,
+            1,
+            1
+          ],
+          "local_size": [
+            64,
+            1,
+            1
+          ],
+          "name": "vector_add",
+          "workgroup_count": [
+            16,
+            1,
+            1
+          ]
+        }
+      },
+      "expected_error_code": 0,
+      "expected_status": "CL_SUCCESS",
+      "message": "compiled kernel=vector_add args=5",
+      "name": "abi_arg_layout_vector_scalar_edges",
+      "observed_error_code": 0,
+      "observed_status": "CL_SUCCESS",
+      "pass": true,
+      "requirement": "Emit ABI offsets and sizes for pointer, vector, uint, and float kernel args."
+    },
+    {
+      "capability": "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clSetKernelArg",
+      "category": "arg size/index/type",
+      "details": {},
+      "expected_error_code": -49,
+      "expected_status": "CL_INVALID_ARG_INDEX",
+      "message": "argument index 99 out of range",
+      "name": "set_arg_reject_bad_index",
+      "observed_error_code": -49,
+      "observed_status": "CL_INVALID_ARG_INDEX",
+      "pass": true,
+      "requirement": "Reject a clSetKernelArg index outside the compiled ABI argument list."
+    },
+    {
+      "capability": "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clSetKernelArg",
+      "category": "arg size/index/type",
+      "details": {},
+      "expected_error_code": -51,
+      "expected_status": "CL_INVALID_ARG_SIZE",
+      "message": "argument 3 expects 4 bytes, got 8",
+      "name": "set_arg_reject_bad_size",
+      "observed_error_code": -51,
+      "observed_status": "CL_INVALID_ARG_SIZE",
+      "pass": true,
+      "requirement": "Reject an argument byte size that does not match the compiled ABI entry."
+    },
+    {
+      "capability": "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clSetKernelArg",
+      "category": "arg size/index/type",
+      "details": {},
+      "expected_error_code": -38,
+      "expected_status": "CL_INVALID_MEM_OBJECT",
+      "message": "argument 0 expects a valid buffer object",
+      "name": "set_arg_reject_pointer_type_mismatch",
+      "observed_error_code": -38,
+      "observed_status": "CL_INVALID_MEM_OBJECT",
+      "pass": true,
+      "requirement": "Reject non-buffer values for pointer ABI entries."
+    },
+    {
+      "capability": "opencl_subset.compile_kernel",
+      "category": "buffer access mismatch",
+      "details": {},
+      "expected_error_code": -11,
+      "expected_status": "CL_BUILD_PROGRAM_FAILURE",
+      "message": "missing buffer metadata for pointer argument extra",
+      "name": "compile_reject_missing_pointer_buffer_metadata",
+      "observed_error_code": -11,
+      "observed_status": "CL_BUILD_PROGRAM_FAILURE",
+      "pass": true,
+      "requirement": "Reject pointer ABI entries that lack matching buffer metadata."
+    },
+    {
+      "capability": "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clSetKernelArg",
+      "category": "buffer access mismatch",
+      "details": {},
+      "expected_error_code": -50,
+      "expected_status": "CL_INVALID_ARG_VALUE",
+      "message": "read-only kernel argument cannot bind write-only buffer",
+      "name": "set_arg_reject_buffer_access_mismatch",
+      "observed_error_code": -50,
+      "observed_status": "CL_INVALID_ARG_VALUE",
+      "pass": true,
+      "requirement": "Reject binding a write-only buffer to a read-only kernel pointer argument."
+    },
+    {
+      "capability": "opencl_subset.compile_kernel",
+      "category": "global/local size",
+      "details": {
+        "abi_excerpt": {
+          "arg_size_bytes": 32,
+          "args": [
+            {
+              "abi_offset": 0,
+              "access": "read_only",
+              "address_space": "global",
+              "name": "a",
+              "pointer": true,
+              "size_bytes": 8,
+              "type": "float"
+            },
+            {
+              "abi_offset": 8,
+              "access": "read_only",
+              "address_space": "global",
+              "name": "b",
+              "pointer": true,
+              "size_bytes": 8,
+              "type": "float"
+            },
+            {
+              "abi_offset": 16,
+              "access": "read_write",
+              "address_space": "global",
+              "name": "c",
+              "pointer": true,
+              "size_bytes": 8,
+              "type": "float"
+            },
+            {
+              "abi_offset": 24,
+              "access": "by_value",
+              "address_space": "private",
+              "name": "n",
+              "pointer": false,
+              "size_bytes": 4,
+              "type": "uint"
+            }
+          ],
+          "global_size": [
+            64,
+            8,
+            2
+          ],
+          "local_size": [
+            16,
+            2,
+            1
+          ],
+          "name": "vector_add",
+          "workgroup_count": [
+            4,
+            4,
+            2
+          ]
+        }
+      },
+      "expected_error_code": 0,
+      "expected_status": "CL_SUCCESS",
+      "message": "compiled kernel=vector_add args=4",
+      "name": "compile_accept_3d_global_local_edge",
+      "observed_error_code": 0,
+      "observed_status": "CL_SUCCESS",
+      "pass": true,
+      "requirement": "Accept a 3D launch whose global dimensions are divisible by local dimensions."
+    },
+    {
+      "capability": "opencl_subset.compile_kernel",
+      "category": "global/local size",
+      "details": {},
+      "expected_error_code": -11,
+      "expected_status": "CL_BUILD_PROGRAM_FAILURE",
+      "message": "global_size and local_size dimensions must be positive",
+      "name": "compile_reject_zero_global_size",
+      "observed_error_code": -11,
+      "observed_status": "CL_BUILD_PROGRAM_FAILURE",
+      "pass": true,
+      "requirement": "Reject zero global dimensions before ABI emission."
+    },
+    {
+      "capability": "opencl_subset.compile_kernel",
+      "category": "global/local size",
+      "details": {},
+      "expected_error_code": -11,
+      "expected_status": "CL_BUILD_PROGRAM_FAILURE",
+      "message": "vector_add: global_size must be divisible by local_size",
+      "name": "compile_reject_non_divisible_local_size",
+      "observed_error_code": -11,
+      "observed_status": "CL_BUILD_PROGRAM_FAILURE",
+      "pass": true,
+      "requirement": "Reject global/local geometry that cannot form integral workgroups."
+    },
+    {
+      "capability": "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clEnqueueNDRangeKernel",
+      "category": "global/local size",
+      "details": {},
+      "expected_error_code": -54,
+      "expected_status": "CL_INVALID_WORK_GROUP_SIZE",
+      "message": "local workgroup size exceeds first-stage limit 256",
+      "name": "enqueue_reject_local_workgroup_too_large",
+      "observed_error_code": -54,
+      "observed_status": "CL_INVALID_WORK_GROUP_SIZE",
+      "pass": true,
+      "requirement": "Reject local workgroup sizes beyond the first-stage limit."
+    },
+    {
+      "capability": "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clBuildProgram",
+      "category": "unsupported address spaces/builtins/double",
+      "details": {},
+      "expected_error_code": -11,
+      "expected_status": "CL_BUILD_PROGRAM_FAILURE",
+      "message": "build failed: pointer argument a must declare an address space",
+      "name": "build_reject_generic_address_space",
+      "observed_error_code": -11,
+      "observed_status": "CL_BUILD_PROGRAM_FAILURE",
+      "pass": true,
+      "requirement": "Reject unsupported pointer address spaces such as __generic."
+    },
+    {
+      "capability": "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clBuildProgram",
+      "category": "unsupported address spaces/builtins/double",
+      "details": {},
+      "expected_error_code": -11,
+      "expected_status": "CL_BUILD_PROGRAM_FAILURE",
+      "message": "build failed: unsupported OpenCL feature token: image2d_t",
+      "name": "build_reject_image_address_object",
+      "observed_error_code": -11,
+      "observed_status": "CL_BUILD_PROGRAM_FAILURE",
+      "pass": true,
+      "requirement": "Reject unsupported OpenCL image object/addressing surface."
+    },
+    {
+      "capability": "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clBuildProgram",
+      "category": "unsupported address spaces/builtins/double",
+      "details": {},
+      "expected_error_code": -11,
+      "expected_status": "CL_BUILD_PROGRAM_FAILURE",
+      "message": "build failed: unsupported OpenCL feature token: work_group_reduce",
+      "name": "build_reject_unsupported_builtin",
+      "observed_error_code": -11,
+      "observed_status": "CL_BUILD_PROGRAM_FAILURE",
+      "pass": true,
+      "requirement": "Reject unsupported work-group/subgroup-style builtins."
+    },
+    {
+      "capability": "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clBuildProgram",
+      "category": "unsupported address spaces/builtins/double",
+      "details": {},
+      "expected_error_code": -11,
+      "expected_status": "CL_BUILD_PROGRAM_FAILURE",
+      "message": "build failed: unsupported OpenCL feature token: double",
+      "name": "build_reject_double_precision",
+      "observed_error_code": -11,
+      "observed_status": "CL_BUILD_PROGRAM_FAILURE",
+      "pass": true,
+      "requirement": "Reject double precision in the current subset."
+    }
+  ],
+  "category_summary": {
+    "arg size/index/type": {
+      "capabilities": [
+        "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clSetKernelArg",
+        "opencl_subset.compile_kernel"
+      ],
+      "passed": 4,
+      "status": "pass",
+      "statuses": [
+        "CL_INVALID_ARG_INDEX",
+        "CL_INVALID_ARG_SIZE",
+        "CL_INVALID_MEM_OBJECT",
+        "CL_SUCCESS"
+      ],
+      "total": 4
+    },
+    "buffer access mismatch": {
+      "capabilities": [
+        "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clSetKernelArg",
+        "opencl_subset.compile_kernel"
+      ],
+      "passed": 2,
+      "status": "pass",
+      "statuses": [
+        "CL_BUILD_PROGRAM_FAILURE",
+        "CL_INVALID_ARG_VALUE"
+      ],
+      "total": 2
+    },
+    "global/local size": {
+      "capabilities": [
+        "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clEnqueueNDRangeKernel",
+        "opencl_subset.compile_kernel"
+      ],
+      "passed": 4,
+      "status": "pass",
+      "statuses": [
+        "CL_BUILD_PROGRAM_FAILURE",
+        "CL_INVALID_WORK_GROUP_SIZE",
+        "CL_SUCCESS"
+      ],
+      "total": 4
+    },
+    "unsupported address spaces/builtins/double": {
+      "capabilities": [
+        "opencl_build_error_code_matrix.OpenCLSubsetMatrixShim.clBuildProgram"
+      ],
+      "passed": 4,
+      "status": "pass",
+      "statuses": [
+        "CL_BUILD_PROGRAM_FAILURE"
+      ],
+      "total": 4
+    }
+  },
+  "checks": [
+    {
+      "name": "required_categories_present",
+      "observed": [
+        "arg size/index/type",
+        "buffer access mismatch",
+        "global/local size",
+        "unsupported address spaces/builtins/double"
+      ],
+      "pass": true,
+      "required": [
+        "arg size/index/type",
+        "buffer access mismatch",
+        "global/local size",
+        "unsupported address spaces/builtins/double"
+      ]
+    },
+    {
+      "case_count": 14,
+      "name": "all_edge_cases_pass",
+      "pass": true
+    },
+    {
+      "name": "existing_capabilities_invoked",
+      "pass": true,
+      "required": [
+        "opencl_build_error_code_matrix",
+        "opencl_subset"
+      ]
+    },
+    {
+      "name": "negative_and_edge_mix_present",
+      "pass": true
+    },
+    {
+      "name": "clean_room_boundary_present",
+      "pass": true
+    }
+  ],
+  "claim_boundary": {
+    "allowed": "local OpenCL-like kernel ABI negative/edge evidence generated from existing subset and error-matrix capabilities",
+    "not_claimed": [
+      "Khronos CTS pass",
+      "official OpenCL conformance",
+      "full OpenCL C compiler coverage",
+      "full libOpenCL or ICD behavior",
+      "proprietary Vivante compiler/runtime/driver compatibility"
+    ]
+  },
+  "clean_room_scope": "OpenCL kernel ABI negative/edge evidence for the local clean-room Celviz GPGPU IP subset only; not Khronos CTS, not official OpenCL conformance, not libOpenCL/ICD behavior, and not proprietary Vivante compiler/runtime/driver/firmware/command-stream compatibility",
+  "generated_at": "2026-05-03T06:13:06+00:00",
+  "schema": "celviz.gpgpu.opencl_kernel_abi_edges.v1",
+  "source_capabilities": [
+    "tools/celviz_gpgpu_ip/opencl_subset.py",
+    "tools/celviz_gpgpu_ip/opencl_build_error_code_matrix.py"
+  ],
+  "status": "pass"
+}

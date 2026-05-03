@@ -1,0 +1,56 @@
+{
+  "artifact_inputs": [
+    "runtime/opencl/celviz_opencl.h",
+    "runtime/opencl/celviz_opencl.c",
+    "runtime/opencl/vector_add_smoke.c"
+  ],
+  "build": {
+    "mode": "local c99 object plus smoke binary",
+    "warnings": "compiled with -Wall -Wextra -Werror -pedantic"
+  },
+  "compiler": "cc",
+  "exported_symbols": [
+    "clGetPlatformIDs",
+    "clGetDeviceIDs",
+    "clCreateContext",
+    "clCreateCommandQueueWithProperties",
+    "clCreateBuffer",
+    "clCreateProgramWithSource",
+    "clBuildProgram",
+    "clCreateKernel",
+    "clSetKernelArg",
+    "clEnqueueWriteBuffer",
+    "clEnqueueNDRangeKernel",
+    "clEnqueueReadBuffer",
+    "clFinish",
+    "clReleaseMemObject",
+    "clReleaseKernel",
+    "clReleaseProgram",
+    "clReleaseCommandQueue",
+    "clReleaseContext",
+    "clReleaseEvent"
+  ],
+  "generated_at": "2026-05-03T06:13:05+00:00",
+  "host": {
+    "machine": "arm64",
+    "system": "Darwin"
+  },
+  "release_coverage": [
+    "clReleaseMemObject",
+    "clReleaseKernel",
+    "clReleaseProgram",
+    "clReleaseCommandQueue",
+    "clReleaseContext",
+    "clReleaseEvent"
+  ],
+  "schema": "celviz.gpgpu.opencl_c_abi_smoke.v1",
+  "scope": "Clean-room userspace OpenCL-like C ABI shim for Celviz GPGPU IP smoke testing only; not Khronos ICD, not libOpenCL, not Khronos CTS, not official OpenCL conformance, not a production driver, and not Vivante proprietary compatibility.",
+  "smoke": {
+    "binary": "temporary local smoke binary",
+    "elements": 256,
+    "name": "vector_add",
+    "result": "pass",
+    "stdout": "vector_add_smoke: pass elements=256 max_abs_error=0.00000000"
+  },
+  "status": "pass"
+}

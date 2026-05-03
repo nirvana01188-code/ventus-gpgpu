@@ -1,0 +1,348 @@
+{
+  "checks": [
+    {
+      "name": "required_gap_items_present",
+      "pass": true
+    },
+    {
+      "name": "subset_evidence_read",
+      "pass": true
+    },
+    {
+      "name": "host_api_evidence_read",
+      "pass": true
+    },
+    {
+      "name": "event_proxy_not_overpromoted",
+      "pass": true
+    },
+    {
+      "name": "official_surfaces_remain_blocked",
+      "pass": true
+    },
+    {
+      "name": "unsupported_features_remain_blocked",
+      "pass": true
+    },
+    {
+      "name": "claim_boundary_declared",
+      "pass": true
+    },
+    {
+      "name": "phase9_categories_read",
+      "pass": true
+    }
+  ],
+  "classification_vocabulary": {
+    "blocked": "Current evidence is absent or explicitly negative; claiming support would overstate the stack.",
+    "done": "Executable subset behavior is demonstrated by current local evidence, with explicit non-official boundaries.",
+    "partial": "Some executable proxy/readiness evidence exists, but product or official semantics are incomplete."
+  },
+  "clean_room_scope": "executable OpenCL product gap-closure ledger for the clean-room Celviz GPGPU IP proxy; not an official OpenCL conformance claim, not Khronos CTS pass evidence, not a Khronos ICD loader integration, not a libOpenCL ABI implementation, not a production Linux kernel/DRM driver, and not proprietary Vivante compatibility",
+  "evidence_inputs": {
+    "coverage": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verification_coverage_100.json",
+    "cts_matrix": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_cts_readiness_matrix.json",
+    "cts_readiness": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_conformance_readiness_report.json",
+    "device_info": "artifacts/rank_01_vivante_3d_gpgpu_ip/opencl_conformance/opencl_device_info_table.json",
+    "driver_os": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_driver_os_conformance_readiness.json",
+    "driver_submission": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+    "event_waitlist": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_event_waitlist_profiling_report.json",
+    "host_shim": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+    "icd_contract": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json",
+    "rtl_cts_cross_check": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_rtl_cts_cross_check.json",
+    "runtime_commands": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json",
+    "runtime_metrics": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy/runtime_metrics.json",
+    "subset": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+  },
+  "generated_at": "2026-05-03T06:13:05+00:00",
+  "ledger": [
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "done",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "positive/negative subset conformance-readiness fixtures",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json",
+          "status": "pass"
+        }
+      ],
+      "id": "executable_opencl_c_subset",
+      "next_executable_step": "Extend one feature at a time from CTS-shaped fixtures while keeping unsupported features rejected.",
+      "official_blocker": "",
+      "rationale": "Current evidence compiles and rejects the local subset fixtures; this is only the repository-defined subset.",
+      "title": "Executable OpenCL C subset"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "done",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "local host API shim trace",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+          "status": "pass"
+        }
+      ],
+      "id": "host_api_runtime_proxy_subset",
+      "next_executable_step": "Keep growing API lifecycle/error-code coverage behind explicit non-ICD boundary text.",
+      "official_blocker": "",
+      "rationale": "The host API shim exercises a local object lifecycle and NDRange/buffer dispatch path, but it is a proxy surface.",
+      "title": "Host API runtime proxy subset"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "done",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "OpenCL subset runtime command trace",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json",
+          "status": null
+        },
+        {
+          "exists": true,
+          "note": "runtime proxy metrics",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy/runtime_metrics.json",
+          "status": "pass"
+        },
+        {
+          "exists": true,
+          "note": "functional acceptance coverage, not structural closure",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verification_coverage_100.json",
+          "status": "pass"
+        }
+      ],
+      "id": "runtime_kernel_dispatch_and_buffers",
+      "next_executable_step": "Add more dispatch, memory, and fault cases without redefining the main coverage gate.",
+      "official_blocker": "",
+      "rationale": "Runtime commands, metrics, and functional acceptance coverage exist for the subset execution path.",
+      "title": "Runtime kernel dispatch and buffer path"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "partial",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "event wait-list/profiling proxy report",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_event_waitlist_profiling_report.json",
+          "status": "pass"
+        }
+      ],
+      "id": "event_waitlist_and_profiling_proxy",
+      "next_executable_step": "Add callback, event status query, multi-queue, and unsupported-property negative tests.",
+      "official_blocker": "",
+      "rationale": "Wait-list DAG validation, profiling timestamps, and failure propagation are present, but callbacks and full queue properties are not complete.",
+      "title": "Event wait-list and profiling proxy"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "blocked",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "host API contract explicitly scoped as non-ICD",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json",
+          "status": "pass"
+        }
+      ],
+      "id": "icd_loader",
+      "next_executable_step": "Introduce an executable mock vendor-library/ICD-loader fixture before claiming any ICD integration.",
+      "official_blocker": "No Khronos ICD loader vendor-library integration is implemented.",
+      "rationale": "Current evidence explicitly says the stack is not a Khronos ICD loader integration.",
+      "title": "Khronos ICD loader integration"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "blocked",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "contract says not a stable public ABI",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json",
+          "status": "pass"
+        },
+        {
+          "exists": true,
+          "note": "scope says not libOpenCL",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_event_waitlist_profiling_report.json",
+          "status": "pass"
+        }
+      ],
+      "id": "libopencl_abi",
+      "next_executable_step": "Define handle layout, ABI symbols, reference counting, and loader-facing entry points in an executable shim test.",
+      "official_blocker": "No stable libOpenCL ABI, vendor ICD library, or loader-facing symbol surface is present.",
+      "rationale": "The repository has a host API contract/proxy, not a stable libOpenCL ABI implementation.",
+      "title": "libOpenCL ABI and stable host handles"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "blocked",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "driver/OS conformance-readiness gate",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_driver_os_conformance_readiness.json",
+          "status": "pass"
+        },
+        {
+          "exists": true,
+          "note": "driver submission proxy report",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+          "status": "pass"
+        }
+      ],
+      "id": "kernel_driver",
+      "next_executable_step": "Promote DRM-like queue, BO, ioctl, sync, scheduler, and hang-recovery fixtures before kernel implementation.",
+      "official_blocker": "No production kernel DRM driver, GEM/BO model, ioctl ABI, scheduler, or hang recovery.",
+      "rationale": "Driver submission and OS runtime artifacts are readiness/proxy evidence, not a production kernel driver.",
+      "title": "Production Linux kernel/DRM driver"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "blocked",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "Phase-9 CTS-oriented readiness report",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_conformance_readiness_report.json",
+          "status": "pass"
+        },
+        {
+          "exists": true,
+          "note": "CTS readiness matrix",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_cts_readiness_matrix.json",
+          "status": "pass"
+        },
+        {
+          "exists": true,
+          "note": "host-to-RTL CTS-readiness cross-check",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_rtl_cts_cross_check.json",
+          "status": "pass"
+        }
+      ],
+      "id": "khronos_cts",
+      "next_executable_step": "Add an actual OpenCL-CTS harness lane only after ICD/libOpenCL/runtime/driver prerequisites exist.",
+      "official_blocker": "No Khronos CTS run, adopter submission, or official conformance package is present.",
+      "rationale": "CTS-oriented readiness and RTL cross-check evidence exists, but the scope explicitly excludes Khronos CTS pass evidence.",
+      "title": "Khronos CTS execution and official conformance"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "blocked",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "reject_image_object passes",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json",
+          "status": "pass"
+        },
+        {
+          "exists": true,
+          "note": "device information table",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/opencl_conformance/opencl_device_info_table.json",
+          "status": "pass"
+        }
+      ],
+      "id": "images",
+      "next_executable_step": "Keep image negative tests green until image object storage, formats, addressing, and read/write builtins exist.",
+      "official_blocker": "image*_t storage, formats, addressing, filtering, and CTS image groups are absent.",
+      "rationale": "Negative tests currently prove image objects are rejected; device-info/readiness materials do not claim image support.",
+      "title": "Images"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "blocked",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "reject_sampler_object passes",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json",
+          "status": "pass"
+        }
+      ],
+      "id": "samplers",
+      "next_executable_step": "Add sampler_t semantics only after image memory object support exists.",
+      "official_blocker": "sampler_t addressing/filtering semantics are absent.",
+      "rationale": "Negative tests currently prove sampler objects are rejected.",
+      "title": "Samplers"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "blocked",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "CL_DEVICE_SVM_CAPABILITIES evidence boundary",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/opencl_conformance/opencl_device_info_table.json",
+          "status": "pass"
+        }
+      ],
+      "id": "svm",
+      "next_executable_step": "Add explicit SVM allocation/map/coherence negative tests, then implement only behind a feature flag.",
+      "official_blocker": "SVM allocation, host/device shared pointers, and coherence semantics are absent.",
+      "rationale": "Device-info evidence is allowed to report SVM capability queries, but no SVM allocation, sharing, or coherence path is implemented.",
+      "title": "Shared Virtual Memory"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "blocked",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "reject_atomic_builtin passes",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json",
+          "status": "pass"
+        },
+        {
+          "exists": true,
+          "note": "atomic capability query boundary",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/opencl_conformance/opencl_device_info_table.json",
+          "status": "pass"
+        }
+      ],
+      "id": "atomics",
+      "next_executable_step": "Add feature-flagged local/global atomic micro-tests before exposing atomic capability bits.",
+      "official_blocker": "OpenCL atomic operations, memory orders, scopes, and CTS atomics groups are absent.",
+      "rationale": "The local compiler intentionally rejects atomic builtins; memory-order/scope semantics are not modeled.",
+      "title": "Atomics and OpenCL memory model"
+    },
+    {
+      "claim_boundary": "local executable gap evidence only; not official OpenCL conformance",
+      "classification": "blocked",
+      "evidence": [
+        {
+          "exists": true,
+          "note": "wait-list DAG proxy",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_event_waitlist_profiling_report.json",
+          "status": "pass"
+        },
+        {
+          "exists": true,
+          "note": "events/fences/queue readiness item",
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_conformance_readiness_report.json",
+          "status": "pass"
+        }
+      ],
+      "id": "out_of_order_queues",
+      "next_executable_step": "Add a queue-property negative test that rejects out-of-order queues, then implement scheduling semantics if enabled.",
+      "official_blocker": "CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE scheduling and ordering semantics are absent.",
+      "rationale": "The event DAG proxy validates wait lists, but the ICD contract/readiness evidence says out-of-order queue properties are absent.",
+      "title": "Out-of-order queues"
+    }
+  ],
+  "schema": "celviz.gpgpu.opencl_product_gap_closure.v1",
+  "status": "pass",
+  "summary": {
+    "blocked": 9,
+    "done": 3,
+    "khronos_cts_pass": false,
+    "ledger_items": 13,
+    "libopencl_abi": false,
+    "official_opencl_conformance": false,
+    "partial": 1,
+    "product_icd_loader": false,
+    "production_kernel_driver": false
+  }
+}

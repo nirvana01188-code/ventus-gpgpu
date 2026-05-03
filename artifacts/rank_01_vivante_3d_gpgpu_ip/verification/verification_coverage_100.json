@@ -162,11 +162,23 @@
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_build_error_code_matrix.json",
       "size_bytes": 12613
     },
+    "opencl_c_abi_smoke": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_c_abi_smoke.json",
+      "size_bytes": 1623
+    },
     "opencl_conformance_gap_map": {
       "exists": true,
       "non_empty": true,
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
       "size_bytes": 2998
+    },
+    "opencl_cts_smoke_runner": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_cts_smoke_runner.json",
+      "size_bytes": 11241
     },
     "opencl_device_info_table": {
       "exists": true,
@@ -186,11 +198,29 @@
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
       "size_bytes": 24614
     },
+    "opencl_kernel_abi_edges": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_kernel_abi_edges.json",
+      "size_bytes": 14172
+    },
+    "opencl_product_gap_closure": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_product_gap_closure.json",
+      "size_bytes": 16212
+    },
     "opencl_rtl_cts_cross_check": {
       "exists": true,
       "non_empty": true,
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_rtl_cts_cross_check.json",
       "size_bytes": 13966
+    },
+    "opencl_userspace_samples": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_userspace_samples.json",
+      "size_bytes": 70111
     },
     "phase2_integration_report": {
       "exists": true,
@@ -917,6 +947,61 @@
       "group": "artifacts",
       "hit": true,
       "name": "opencl_rtl_cts_cross_check"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_c_abi_smoke.json",
+        "size_bytes": 1623
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_c_abi_smoke"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_userspace_samples.json",
+        "size_bytes": 70111
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_userspace_samples"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_cts_smoke_runner.json",
+        "size_bytes": 11241
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_cts_smoke_runner"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_product_gap_closure.json",
+        "size_bytes": 16212
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_product_gap_closure"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_kernel_abi_edges.json",
+        "size_bytes": 14172
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_kernel_abi_edges"
     },
     {
       "evidence": {
@@ -3146,7 +3231,7 @@
         "memory_event_count": 96,
         "oracle_workload": "vector_add",
         "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
-        "sha256": "e877f5f8caa200f8518a384fcaa65cc857c4d3068cfba2c0559be05e441e1428",
+        "sha256": "06dde01574c43e94945fe5f6630974af7312c3b60f68a82fa5e98cfef433ff39",
         "status": "pass",
         "uops_executed": 13
       },
@@ -3160,7 +3245,7 @@
         "memory_event_count": 260,
         "oracle_workload": "gemm_proxy",
         "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
-        "sha256": "10775765d8e668f3565f280b387529539929bac488840304f889a83c520f147a",
+        "sha256": "fce72522042abba970bab01a2546a5d06c4fda773a74745b21e37311b8fb41da",
         "status": "pass",
         "uops_executed": 18
       },
@@ -3174,7 +3259,7 @@
         "memory_event_count": 475,
         "oracle_workload": "convolution_proxy",
         "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
-        "sha256": "be347a04e0b9cfecbce98a6c719b793b5e9f6e04cf0e80699e6757fb3d4a5be6",
+        "sha256": "eca6cf7f6504cf658b8da0616a0beee1a9aa01aeac42dfb7a484ccc190b71d03",
         "status": "pass",
         "uops_executed": 17
       },
@@ -3188,7 +3273,7 @@
         "memory_event_count": 548,
         "oracle_workload": "image_filter",
         "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
-        "sha256": "fbb4af9498165cbe79f849dd188b7e777995cc6fafcd3ecad1d1b71b184bb09b",
+        "sha256": "a2864d4e2fa426e8055229a48dd110e86020279379315b8eaccf8ed4dd9af284",
         "status": "pass",
         "uops_executed": 15
       },
@@ -3877,27 +3962,27 @@
     {
       "evidence": {
         "conv2d": {
-          "aggregate_report_sha256": "be347a04e0b9cfecbce98a6c719b793b5e9f6e04cf0e80699e6757fb3d4a5be6",
+          "aggregate_report_sha256": "eca6cf7f6504cf658b8da0616a0beee1a9aa01aeac42dfb7a484ccc190b71d03",
           "aggregate_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
-          "per_kernel_report_sha256": "be347a04e0b9cfecbce98a6c719b793b5e9f6e04cf0e80699e6757fb3d4a5be6",
+          "per_kernel_report_sha256": "eca6cf7f6504cf658b8da0616a0beee1a9aa01aeac42dfb7a484ccc190b71d03",
           "per_kernel_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a"
         },
         "gemm": {
-          "aggregate_report_sha256": "10775765d8e668f3565f280b387529539929bac488840304f889a83c520f147a",
+          "aggregate_report_sha256": "fce72522042abba970bab01a2546a5d06c4fda773a74745b21e37311b8fb41da",
           "aggregate_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
-          "per_kernel_report_sha256": "10775765d8e668f3565f280b387529539929bac488840304f889a83c520f147a",
+          "per_kernel_report_sha256": "fce72522042abba970bab01a2546a5d06c4fda773a74745b21e37311b8fb41da",
           "per_kernel_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0"
         },
         "image_filter": {
-          "aggregate_report_sha256": "fbb4af9498165cbe79f849dd188b7e777995cc6fafcd3ecad1d1b71b184bb09b",
+          "aggregate_report_sha256": "a2864d4e2fa426e8055229a48dd110e86020279379315b8eaccf8ed4dd9af284",
           "aggregate_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
-          "per_kernel_report_sha256": "fbb4af9498165cbe79f849dd188b7e777995cc6fafcd3ecad1d1b71b184bb09b",
+          "per_kernel_report_sha256": "a2864d4e2fa426e8055229a48dd110e86020279379315b8eaccf8ed4dd9af284",
           "per_kernel_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101"
         },
         "vector_add": {
-          "aggregate_report_sha256": "e877f5f8caa200f8518a384fcaa65cc857c4d3068cfba2c0559be05e441e1428",
+          "aggregate_report_sha256": "06dde01574c43e94945fe5f6630974af7312c3b60f68a82fa5e98cfef433ff39",
           "aggregate_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
-          "per_kernel_report_sha256": "e877f5f8caa200f8518a384fcaa65cc857c4d3068cfba2c0559be05e441e1428",
+          "per_kernel_report_sha256": "06dde01574c43e94945fe5f6630974af7312c3b60f68a82fa5e98cfef433ff39",
           "per_kernel_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f"
         }
       },
@@ -5657,6 +5742,215 @@
     },
     {
       "evidence": {},
+      "group": "opencl_c_abi_smoke",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_userspace_samples",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "required_samples_present",
+        "pass": true
+      },
+      "group": "opencl_userspace_samples_checks",
+      "hit": true,
+      "name": "required_samples_present"
+    },
+    {
+      "evidence": {
+        "name": "all_samples_pass",
+        "pass": true
+      },
+      "group": "opencl_userspace_samples_checks",
+      "hit": true,
+      "name": "all_samples_pass"
+    },
+    {
+      "evidence": {
+        "name": "negative_error_paths_pass",
+        "pass": true
+      },
+      "group": "opencl_userspace_samples_checks",
+      "hit": true,
+      "name": "negative_error_paths_pass"
+    },
+    {
+      "evidence": {
+        "name": "microop_summary_pass",
+        "pass": true
+      },
+      "group": "opencl_userspace_samples_checks",
+      "hit": true,
+      "name": "microop_summary_pass"
+    },
+    {
+      "evidence": {
+        "name": "not_official_conformance_or_cts",
+        "pass": true
+      },
+      "group": "opencl_userspace_samples_checks",
+      "hit": true,
+      "name": "not_official_conformance_or_cts"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_cts_smoke_runner",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_product_gap_closure",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "required_gap_items_present",
+        "pass": true
+      },
+      "group": "opencl_product_gap_closure_checks",
+      "hit": true,
+      "name": "required_gap_items_present"
+    },
+    {
+      "evidence": {
+        "name": "subset_evidence_read",
+        "pass": true
+      },
+      "group": "opencl_product_gap_closure_checks",
+      "hit": true,
+      "name": "subset_evidence_read"
+    },
+    {
+      "evidence": {
+        "name": "host_api_evidence_read",
+        "pass": true
+      },
+      "group": "opencl_product_gap_closure_checks",
+      "hit": true,
+      "name": "host_api_evidence_read"
+    },
+    {
+      "evidence": {
+        "name": "event_proxy_not_overpromoted",
+        "pass": true
+      },
+      "group": "opencl_product_gap_closure_checks",
+      "hit": true,
+      "name": "event_proxy_not_overpromoted"
+    },
+    {
+      "evidence": {
+        "name": "official_surfaces_remain_blocked",
+        "pass": true
+      },
+      "group": "opencl_product_gap_closure_checks",
+      "hit": true,
+      "name": "official_surfaces_remain_blocked"
+    },
+    {
+      "evidence": {
+        "name": "unsupported_features_remain_blocked",
+        "pass": true
+      },
+      "group": "opencl_product_gap_closure_checks",
+      "hit": true,
+      "name": "unsupported_features_remain_blocked"
+    },
+    {
+      "evidence": {
+        "name": "claim_boundary_declared",
+        "pass": true
+      },
+      "group": "opencl_product_gap_closure_checks",
+      "hit": true,
+      "name": "claim_boundary_declared"
+    },
+    {
+      "evidence": {
+        "name": "phase9_categories_read",
+        "pass": true
+      },
+      "group": "opencl_product_gap_closure_checks",
+      "hit": true,
+      "name": "phase9_categories_read"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_kernel_abi_edges",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "required_categories_present",
+        "observed": [
+          "arg size/index/type",
+          "buffer access mismatch",
+          "global/local size",
+          "unsupported address spaces/builtins/double"
+        ],
+        "pass": true,
+        "required": [
+          "arg size/index/type",
+          "buffer access mismatch",
+          "global/local size",
+          "unsupported address spaces/builtins/double"
+        ]
+      },
+      "group": "opencl_kernel_abi_edges_checks",
+      "hit": true,
+      "name": "required_categories_present"
+    },
+    {
+      "evidence": {
+        "case_count": 14,
+        "name": "all_edge_cases_pass",
+        "pass": true
+      },
+      "group": "opencl_kernel_abi_edges_checks",
+      "hit": true,
+      "name": "all_edge_cases_pass"
+    },
+    {
+      "evidence": {
+        "name": "existing_capabilities_invoked",
+        "pass": true,
+        "required": [
+          "opencl_build_error_code_matrix",
+          "opencl_subset"
+        ]
+      },
+      "group": "opencl_kernel_abi_edges_checks",
+      "hit": true,
+      "name": "existing_capabilities_invoked"
+    },
+    {
+      "evidence": {
+        "name": "negative_and_edge_mix_present",
+        "pass": true
+      },
+      "group": "opencl_kernel_abi_edges_checks",
+      "hit": true,
+      "name": "negative_and_edge_mix_present"
+    },
+    {
+      "evidence": {
+        "name": "clean_room_boundary_present",
+        "pass": true
+      },
+      "group": "opencl_kernel_abi_edges_checks",
+      "hit": true,
+      "name": "clean_room_boundary_present"
+    },
+    {
+      "evidence": {},
       "group": "phase9_opencl_conformance_readiness",
       "hit": true,
       "name": "status_pass"
@@ -7133,6 +7427,379 @@
     },
     {
       "evidence": {
+        "status": "pass"
+      },
+      "group": "opencl_c_abi_smoke",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "symbol_count": 19
+      },
+      "group": "opencl_c_abi_smoke",
+      "hit": true,
+      "name": "symbol_depth"
+    },
+    {
+      "evidence": {
+        "binary": "temporary local smoke binary",
+        "elements": 256,
+        "name": "vector_add",
+        "result": "pass",
+        "stdout": "vector_add_smoke: pass elements=256 max_abs_error=0.00000000"
+      },
+      "group": "opencl_c_abi_smoke",
+      "hit": true,
+      "name": "vector_add_smoke"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_c_abi_boundaries",
+      "hit": true,
+      "name": "official_opencl_conformance"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_c_abi_boundaries",
+      "hit": true,
+      "name": "khronos_cts"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_c_abi_boundaries",
+      "hit": true,
+      "name": "libopencl"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_c_abi_boundaries",
+      "hit": true,
+      "name": "khronos_icd"
+    },
+    {
+      "evidence": {
+        "sample_count": 4
+      },
+      "group": "opencl_userspace_samples",
+      "hit": true,
+      "name": "sample_depth"
+    },
+    {
+      "evidence": {
+        "check_count": 10
+      },
+      "group": "opencl_userspace_sample_kernels",
+      "hit": true,
+      "name": "vector_add"
+    },
+    {
+      "evidence": {
+        "check_count": 10
+      },
+      "group": "opencl_userspace_sample_kernels",
+      "hit": true,
+      "name": "gemm"
+    },
+    {
+      "evidence": {
+        "check_count": 10
+      },
+      "group": "opencl_userspace_sample_kernels",
+      "hit": true,
+      "name": "conv2d"
+    },
+    {
+      "evidence": {
+        "check_count": 10
+      },
+      "group": "opencl_userspace_sample_kernels",
+      "hit": true,
+      "name": "image_filter"
+    },
+    {
+      "evidence": {
+        "negative_count": 3
+      },
+      "group": "opencl_userspace_samples",
+      "hit": true,
+      "name": "negative_paths"
+    },
+    {
+      "evidence": {
+        "khronos_cts": false,
+        "khronos_icd": false,
+        "libopencl": false,
+        "official_opencl_conformance": false
+      },
+      "group": "opencl_userspace_samples_boundaries",
+      "hit": true,
+      "name": "official_opencl_conformance"
+    },
+    {
+      "evidence": {
+        "khronos_cts": false,
+        "khronos_icd": false,
+        "libopencl": false,
+        "official_opencl_conformance": false
+      },
+      "group": "opencl_userspace_samples_boundaries",
+      "hit": true,
+      "name": "khronos_cts"
+    },
+    {
+      "evidence": {
+        "khronos_cts": false,
+        "khronos_icd": false,
+        "libopencl": false,
+        "official_opencl_conformance": false
+      },
+      "group": "opencl_userspace_samples_boundaries",
+      "hit": true,
+      "name": "khronos_icd"
+    },
+    {
+      "evidence": {
+        "khronos_cts": false,
+        "khronos_icd": false,
+        "libopencl": false,
+        "official_opencl_conformance": false
+      },
+      "group": "opencl_userspace_samples_boundaries",
+      "hit": true,
+      "name": "libopencl"
+    },
+    {
+      "evidence": {
+        "khronos_cts_executed": false,
+        "official_cts_pass": false
+      },
+      "group": "opencl_cts_smoke_runner",
+      "hit": true,
+      "name": "status_pass_without_official_cts"
+    },
+    {
+      "evidence": {
+        "item_count": 6
+      },
+      "group": "opencl_cts_smoke_runner",
+      "hit": true,
+      "name": "item_depth"
+    },
+    {
+      "evidence": {
+        "item_count": 6
+      },
+      "group": "opencl_cts_smoke_items",
+      "hit": true,
+      "name": "device_info"
+    },
+    {
+      "evidence": {
+        "item_count": 6
+      },
+      "group": "opencl_cts_smoke_items",
+      "hit": true,
+      "name": "build_errors"
+    },
+    {
+      "evidence": {
+        "item_count": 6
+      },
+      "group": "opencl_cts_smoke_items",
+      "hit": true,
+      "name": "buffer_flags"
+    },
+    {
+      "evidence": {
+        "item_count": 6
+      },
+      "group": "opencl_cts_smoke_items",
+      "hit": true,
+      "name": "events"
+    },
+    {
+      "evidence": {
+        "item_count": 6
+      },
+      "group": "opencl_cts_smoke_items",
+      "hit": true,
+      "name": "queue"
+    },
+    {
+      "evidence": {
+        "item_count": 6
+      },
+      "group": "opencl_cts_smoke_items",
+      "hit": true,
+      "name": "kernels"
+    },
+    {
+      "evidence": {
+        "blocked": 9,
+        "done": 3,
+        "khronos_cts_pass": false,
+        "ledger_items": 13,
+        "libopencl_abi": false,
+        "official_opencl_conformance": false,
+        "partial": 1,
+        "product_icd_loader": false,
+        "production_kernel_driver": false
+      },
+      "group": "opencl_product_gap_closure",
+      "hit": true,
+      "name": "status_pass_with_blockers"
+    },
+    {
+      "evidence": {
+        "blocked": 9,
+        "done": 3,
+        "khronos_cts_pass": false,
+        "ledger_items": 13,
+        "libopencl_abi": false,
+        "official_opencl_conformance": false,
+        "partial": 1,
+        "product_icd_loader": false,
+        "production_kernel_driver": false
+      },
+      "group": "opencl_product_gap_boundaries",
+      "hit": true,
+      "name": "official_opencl_conformance"
+    },
+    {
+      "evidence": {
+        "blocked": 9,
+        "done": 3,
+        "khronos_cts_pass": false,
+        "ledger_items": 13,
+        "libopencl_abi": false,
+        "official_opencl_conformance": false,
+        "partial": 1,
+        "product_icd_loader": false,
+        "production_kernel_driver": false
+      },
+      "group": "opencl_product_gap_boundaries",
+      "hit": true,
+      "name": "khronos_cts_pass"
+    },
+    {
+      "evidence": {
+        "blocked": 9,
+        "done": 3,
+        "khronos_cts_pass": false,
+        "ledger_items": 13,
+        "libopencl_abi": false,
+        "official_opencl_conformance": false,
+        "partial": 1,
+        "product_icd_loader": false,
+        "production_kernel_driver": false
+      },
+      "group": "opencl_product_gap_boundaries",
+      "hit": true,
+      "name": "product_icd_loader"
+    },
+    {
+      "evidence": {
+        "blocked": 9,
+        "done": 3,
+        "khronos_cts_pass": false,
+        "ledger_items": 13,
+        "libopencl_abi": false,
+        "official_opencl_conformance": false,
+        "partial": 1,
+        "product_icd_loader": false,
+        "production_kernel_driver": false
+      },
+      "group": "opencl_product_gap_boundaries",
+      "hit": true,
+      "name": "libopencl_abi"
+    },
+    {
+      "evidence": {
+        "blocked": 9,
+        "done": 3,
+        "khronos_cts_pass": false,
+        "ledger_items": 13,
+        "libopencl_abi": false,
+        "official_opencl_conformance": false,
+        "partial": 1,
+        "product_icd_loader": false,
+        "production_kernel_driver": false
+      },
+      "group": "opencl_product_gap_boundaries",
+      "hit": true,
+      "name": "production_kernel_driver"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "opencl_kernel_abi_edges",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "case_count": 14
+      },
+      "group": "opencl_kernel_abi_edges",
+      "hit": true,
+      "name": "case_depth"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "arg size/index/type",
+          "buffer access mismatch",
+          "global/local size",
+          "unsupported address spaces/builtins/double"
+        ]
+      },
+      "group": "opencl_kernel_abi_edge_categories",
+      "hit": true,
+      "name": "arg size/index/type"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "arg size/index/type",
+          "buffer access mismatch",
+          "global/local size",
+          "unsupported address spaces/builtins/double"
+        ]
+      },
+      "group": "opencl_kernel_abi_edge_categories",
+      "hit": true,
+      "name": "global/local size"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "arg size/index/type",
+          "buffer access mismatch",
+          "global/local size",
+          "unsupported address spaces/builtins/double"
+        ]
+      },
+      "group": "opencl_kernel_abi_edge_categories",
+      "hit": true,
+      "name": "unsupported address spaces/builtins/double"
+    },
+    {
+      "evidence": {
+        "categories": [
+          "arg size/index/type",
+          "buffer access mismatch",
+          "global/local size",
+          "unsupported address spaces/builtins/double"
+        ]
+      },
+      "group": "opencl_kernel_abi_edge_categories",
+      "hit": true,
+      "name": "buffer access mismatch"
+    },
+    {
+      "evidence": {
         "schema": "celviz.gpgpu.phase9_opencl_conformance_readiness.v1"
       },
       "group": "phase9_opencl_conformance_readiness",
@@ -7572,13 +8239,13 @@
   "clean_room_scope": "clean-room functional and acceptance verification coverage for the Ventus-based Celviz GPGPU IP proxy only; no proprietary Vivante compatibility, proprietary command stream/driver/firmware/SDK claim, official OpenCL/OpenCV conformance claim, RTL timing closure, PPA, safety certification, silicon signoff, or production-readiness claim",
   "coverage_kind": "functional_acceptance_verification_bins",
   "coverage_percent": 100.0,
-  "generated_at": "2026-05-03T05:51:17+00:00",
+  "generated_at": "2026-05-03T06:13:06+00:00",
   "groups": {
     "artifacts": {
       "coverage_percent": 100.0,
-      "hit": 61,
+      "hit": 66,
       "missed_bins": [],
-      "total": 61
+      "total": 66
     },
     "celviz_eda_methodology": {
       "coverage_percent": 100.0,
@@ -7784,11 +8451,35 @@
       "missed_bins": [],
       "total": 5
     },
+    "opencl_c_abi_boundaries": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "opencl_c_abi_smoke": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
     "opencl_conformance_gap_map": {
       "coverage_percent": 100.0,
       "hit": 1,
       "missed_bins": [],
       "total": 1
+    },
+    "opencl_cts_smoke_items": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "opencl_cts_smoke_runner": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
     },
     "opencl_device_info_table": {
       "coverage_percent": 100.0,
@@ -7838,6 +8529,42 @@
       "missed_bins": [],
       "total": 11
     },
+    "opencl_kernel_abi_edge_categories": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "opencl_kernel_abi_edges": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "opencl_kernel_abi_edges_checks": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "opencl_product_gap_boundaries": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "opencl_product_gap_closure": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "opencl_product_gap_closure_checks": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
+    },
     "opencl_rtl_cts_cross_check": {
       "coverage_percent": 100.0,
       "hit": 2,
@@ -7861,6 +8588,30 @@
       "hit": 4,
       "missed_bins": [],
       "total": 4
+    },
+    "opencl_userspace_sample_kernels": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "opencl_userspace_samples": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "opencl_userspace_samples_boundaries": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "opencl_userspace_samples_checks": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
     },
     "phase2_integration": {
       "coverage_percent": 100.0,
@@ -8217,7 +8968,7 @@
       "total": 1
     }
   },
-  "hit_bins": 566,
+  "hit_bins": 631,
   "missed_bins": [],
   "rtl_structural_coverage_observation": {
     "lcov_info": {
@@ -8265,5 +9016,5 @@
   },
   "schema": "celviz.gpgpu.verification_coverage_100.v1",
   "status": "pass",
-  "total_bins": 566
+  "total_bins": 631
 }
