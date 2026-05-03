@@ -92,6 +92,96 @@ class MshrTag extends Bundle{  // AddrCalculate向MSHR添加记录并获取Tag�
   val spike_info = if (SPIKE_OUTPUT) Some(new InstWriteBack) else None
 }
 
+class CelvizAddrCalculateDebug extends Bundle{
+  val state = UInt(3.W)
+  val from_fifo_valid = Bool()
+  val from_fifo_ready = Bool()
+  val from_fifo_fire = Bool()
+  val from_fifo_stall = Bool()
+  val to_mshr_valid = Bool()
+  val to_mshr_ready = Bool()
+  val to_mshr_fire = Bool()
+  val to_mshr_stall = Bool()
+  val to_dcache_valid = Bool()
+  val to_dcache_ready = Bool()
+  val to_dcache_fire = Bool()
+  val to_dcache_stall = Bool()
+  val to_shared_valid = Bool()
+  val to_shared_ready = Bool()
+  val to_shared_fire = Bool()
+  val to_shared_stall = Bool()
+  val saved_wid = UInt(depth_warp.W)
+  val saved_is_vec = Bool()
+  val saved_is_load = Bool()
+  val saved_is_store = Bool()
+  val shared_selected = Bool()
+  val dcache_selected = Bool()
+  val flush_active = Bool()
+  val active_lane_mask = UInt(num_thread.W)
+  val from_fifo_fire_count = UInt(32.W)
+  val mshr_fire_count = UInt(32.W)
+  val mshr_stall_cycle_count = UInt(32.W)
+  val dcache_req_fire_count = UInt(32.W)
+  val dcache_stall_cycle_count = UInt(32.W)
+  val shared_req_fire_count = UInt(32.W)
+  val shared_stall_cycle_count = UInt(32.W)
+  val flush_request_count = UInt(32.W)
+}
+
+class CelvizLsuDebug extends Bundle{
+  val req_valid = Bool()
+  val req_ready = Bool()
+  val req_fire = Bool()
+  val req_stall = Bool()
+  val req_shiftboard_full = Bool()
+  val input_fifo_valid = Bool()
+  val input_fifo_ready = Bool()
+  val input_fifo_fire = Bool()
+  val input_fifo_stall = Bool()
+  val load_issue_fire = Bool()
+  val store_issue_fire = Bool()
+  val dcache_req_valid = Bool()
+  val dcache_req_ready = Bool()
+  val dcache_req_fire = Bool()
+  val dcache_req_stall = Bool()
+  val shared_req_valid = Bool()
+  val shared_req_ready = Bool()
+  val shared_req_fire = Bool()
+  val shared_req_stall = Bool()
+  val dcache_rsp_valid = Bool()
+  val dcache_rsp_ready = Bool()
+  val dcache_rsp_fire = Bool()
+  val dcache_rsp_stall = Bool()
+  val shared_rsp_valid = Bool()
+  val shared_rsp_ready = Bool()
+  val shared_rsp_fire = Bool()
+  val shared_rsp_stall = Bool()
+  val lsu_rsp_valid = Bool()
+  val lsu_rsp_ready = Bool()
+  val lsu_rsp_fire = Bool()
+  val lsu_rsp_stall = Bool()
+  val memory_hazard = Bool()
+  val fence_end_mask = UInt(num_warp.W)
+  val req_fire_count = UInt(32.W)
+  val req_stall_cycle_count = UInt(32.W)
+  val input_fifo_fire_count = UInt(32.W)
+  val input_fifo_stall_cycle_count = UInt(32.W)
+  val shiftboard_hazard_cycle_count = UInt(32.W)
+  val load_issue_count = UInt(32.W)
+  val store_issue_count = UInt(32.W)
+  val dcache_req_count = UInt(32.W)
+  val dcache_req_stall_cycle_count = UInt(32.W)
+  val shared_req_count = UInt(32.W)
+  val shared_req_stall_cycle_count = UInt(32.W)
+  val dcache_rsp_count = UInt(32.W)
+  val dcache_rsp_stall_cycle_count = UInt(32.W)
+  val shared_rsp_count = UInt(32.W)
+  val shared_rsp_stall_cycle_count = UInt(32.W)
+  val lsu_rsp_count = UInt(32.W)
+  val lsu_rsp_stall_cycle_count = UInt(32.W)
+  val addr = new CelvizAddrCalculateDebug
+}
+
 object ByteExtract{
   def apply(isUInt: Bool = true.B, in: UInt = 0.U(xLen.W), sel: UInt = "hf".U(4.W)): UInt = {
     val result = Wire(UInt(32.W))
@@ -124,7 +214,16 @@ class AddrCalculate(val sharedmemory_maxsize: UInt = 4096.U(32.W)) extends Modul
     val flush_dcache = Flipped(DecoupledIO(Bool()))
     val to_dcache = DecoupledIO(new DCacheCoreReq_np)
     val to_shared = DecoupledIO(new ShareMemCoreReq_np)
+    val celviz_debug = Output(new CelvizAddrCalculateDebug)
   })
+  dontTouch(io.celviz_debug)
+
+  private def eventCounter(en: Bool): UInt = {
+    val count = RegInit(0.U(32.W))
+    when(en) { count := count + 1.U }
+    count
+  }
+
   val s_idle :: s_save :: s_shared :: s_dcache ::s_dcache_1::s_dcache_2:: Nil = Enum(6)
   val cnt = new Counter(n = num_thread)
   val state = RegInit(init = s_idle)
@@ -420,6 +519,55 @@ class AddrCalculate(val sharedmemory_maxsize: UInt = 4096.U(32.W)) extends Modul
     }
   }
 
+  val celvizFromFifoFire = io.from_fifo.valid && io.from_fifo.ready
+  val celvizFromFifoStall = io.from_fifo.valid && !io.from_fifo.ready
+  val celvizMshrFire = io.to_mshr.valid && io.to_mshr.ready
+  val celvizMshrStall = io.to_mshr.valid && !io.to_mshr.ready
+  val celvizDcacheFire = io.to_dcache.valid && io.to_dcache.ready
+  val celvizDcacheStall = io.to_dcache.valid && !io.to_dcache.ready
+  val celvizSharedFire = io.to_shared.valid && io.to_shared.ready
+  val celvizSharedStall = io.to_shared.valid && !io.to_shared.ready
+  val celvizSharedSelected = state === s_save && reg_save.ctrl.mem_cmd.orR && all_shared && !is_flush
+  val celvizDcacheSelected = state === s_save && reg_save.ctrl.mem_cmd.orR && (!all_shared || is_flush)
+  dontTouch(celvizFromFifoFire)
+  dontTouch(celvizMshrStall)
+  dontTouch(celvizDcacheStall)
+  dontTouch(celvizSharedStall)
+
+  io.celviz_debug.state := state.asUInt
+  io.celviz_debug.from_fifo_valid := io.from_fifo.valid
+  io.celviz_debug.from_fifo_ready := io.from_fifo.ready
+  io.celviz_debug.from_fifo_fire := celvizFromFifoFire
+  io.celviz_debug.from_fifo_stall := celvizFromFifoStall
+  io.celviz_debug.to_mshr_valid := io.to_mshr.valid
+  io.celviz_debug.to_mshr_ready := io.to_mshr.ready
+  io.celviz_debug.to_mshr_fire := celvizMshrFire
+  io.celviz_debug.to_mshr_stall := celvizMshrStall
+  io.celviz_debug.to_dcache_valid := io.to_dcache.valid
+  io.celviz_debug.to_dcache_ready := io.to_dcache.ready
+  io.celviz_debug.to_dcache_fire := celvizDcacheFire
+  io.celviz_debug.to_dcache_stall := celvizDcacheStall
+  io.celviz_debug.to_shared_valid := io.to_shared.valid
+  io.celviz_debug.to_shared_ready := io.to_shared.ready
+  io.celviz_debug.to_shared_fire := celvizSharedFire
+  io.celviz_debug.to_shared_stall := celvizSharedStall
+  io.celviz_debug.saved_wid := reg_save.ctrl.wid
+  io.celviz_debug.saved_is_vec := reg_save.ctrl.isvec
+  io.celviz_debug.saved_is_load := reg_save.ctrl.mem_cmd(0)
+  io.celviz_debug.saved_is_store := reg_save.ctrl.mem_cmd(1)
+  io.celviz_debug.shared_selected := celvizSharedSelected
+  io.celviz_debug.dcache_selected := celvizDcacheSelected
+  io.celviz_debug.flush_active := is_flush
+  io.celviz_debug.active_lane_mask := reg_save.mask.asUInt
+  io.celviz_debug.from_fifo_fire_count := eventCounter(celvizFromFifoFire)
+  io.celviz_debug.mshr_fire_count := eventCounter(celvizMshrFire)
+  io.celviz_debug.mshr_stall_cycle_count := eventCounter(celvizMshrStall)
+  io.celviz_debug.dcache_req_fire_count := eventCounter(celvizDcacheFire)
+  io.celviz_debug.dcache_stall_cycle_count := eventCounter(celvizDcacheStall)
+  io.celviz_debug.shared_req_fire_count := eventCounter(celvizSharedFire)
+  io.celviz_debug.shared_stall_cycle_count := eventCounter(celvizSharedStall)
+  io.celviz_debug.flush_request_count := eventCounter(io.flush_dcache.fire)
+
   if (SPIKE_OUTPUT) {
   when(state === s_save && io.to_mshr.fire && reg_save.ctrl.mem) {
     val common_prefix = p"sm ${reg_save.ctrl.spike_info.get.sm_id} warp ${Decimal(reg_save.ctrl.wid)} 0x${Hexadecimal(reg_save.ctrl.spike_info.get.pc)} 0x${Hexadecimal(reg_save.ctrl.spike_info.get.inst)} "
@@ -544,7 +692,16 @@ class LSUexe() extends Module{
     val csr_pds = Input(UInt(xLen.W))
     val csr_numw = Input(UInt(xLen.W))
     val csr_tid = Input(UInt(xLen.W))
+    val celviz_debug = Output(new CelvizLsuDebug)
   })
+  dontTouch(io.celviz_debug)
+
+  private def eventCounter(en: Bool): UInt = {
+    val count = RegInit(0.U(32.W))
+    when(en) { count := count + 1.U }
+    count
+  }
+
   val sharedmemory_addr_max = sharemem_size.U(32.W)
   //val sharedmemory = Module(new SharedMemoryV2(nSharedMemoryEntry, num_thread, xLen, lsu_nMshrEntry)) // default: 128
 
@@ -582,6 +739,87 @@ class LSUexe() extends Module{
   AddrCalc.io.csr_tid:=io.csr_tid
   AddrCalc.io.csr_pds:=io.csr_pds
   AddrCalc.io.csr_numw:=io.csr_numw
+
+  val celvizReqShiftboardFull = shiftBoard(io.lsu_req.bits.ctrl.wid).full
+  val celvizReqFire = io.lsu_req.valid && io.lsu_req.ready
+  val celvizReqStall = io.lsu_req.valid && !io.lsu_req.ready
+  val celvizInputFifoFire = InputFIFO.io.enq.valid && InputFIFO.io.enq.ready
+  val celvizInputFifoStall = InputFIFO.io.enq.valid && !InputFIFO.io.enq.ready
+  val celvizLoadIssueFire = celvizReqFire && io.lsu_req.bits.ctrl.mem_cmd(0)
+  val celvizStoreIssueFire = celvizReqFire && io.lsu_req.bits.ctrl.mem_cmd(1)
+  val celvizDcacheReqFire = io.dcache_req.valid && io.dcache_req.ready
+  val celvizDcacheReqStall = io.dcache_req.valid && !io.dcache_req.ready
+  val celvizSharedReqFire = io.shared_req.valid && io.shared_req.ready
+  val celvizSharedReqStall = io.shared_req.valid && !io.shared_req.ready
+  val celvizDcacheRspFire = io.dcache_rsp.valid && io.dcache_rsp.ready
+  val celvizDcacheRspStall = io.dcache_rsp.valid && !io.dcache_rsp.ready
+  val celvizSharedRspFire = io.shared_rsp.valid && io.shared_rsp.ready
+  val celvizSharedRspStall = io.shared_rsp.valid && !io.shared_rsp.ready
+  val celvizLsuRspFire = io.lsu_rsp.valid && io.lsu_rsp.ready
+  val celvizLsuRspStall = io.lsu_rsp.valid && !io.lsu_rsp.ready
+  val celvizMemoryHazard = celvizReqStall && celvizReqShiftboardFull
+  dontTouch(celvizReqStall)
+  dontTouch(celvizInputFifoStall)
+  dontTouch(celvizDcacheReqFire)
+  dontTouch(celvizDcacheReqStall)
+  dontTouch(celvizSharedReqFire)
+  dontTouch(celvizSharedReqStall)
+  dontTouch(celvizDcacheRspStall)
+  dontTouch(celvizSharedRspStall)
+  dontTouch(celvizLsuRspStall)
+  dontTouch(celvizMemoryHazard)
+
+  io.celviz_debug.req_valid := io.lsu_req.valid
+  io.celviz_debug.req_ready := io.lsu_req.ready
+  io.celviz_debug.req_fire := celvizReqFire
+  io.celviz_debug.req_stall := celvizReqStall
+  io.celviz_debug.req_shiftboard_full := celvizReqShiftboardFull
+  io.celviz_debug.input_fifo_valid := InputFIFO.io.enq.valid
+  io.celviz_debug.input_fifo_ready := InputFIFO.io.enq.ready
+  io.celviz_debug.input_fifo_fire := celvizInputFifoFire
+  io.celviz_debug.input_fifo_stall := celvizInputFifoStall
+  io.celviz_debug.load_issue_fire := celvizLoadIssueFire
+  io.celviz_debug.store_issue_fire := celvizStoreIssueFire
+  io.celviz_debug.dcache_req_valid := io.dcache_req.valid
+  io.celviz_debug.dcache_req_ready := io.dcache_req.ready
+  io.celviz_debug.dcache_req_fire := celvizDcacheReqFire
+  io.celviz_debug.dcache_req_stall := celvizDcacheReqStall
+  io.celviz_debug.shared_req_valid := io.shared_req.valid
+  io.celviz_debug.shared_req_ready := io.shared_req.ready
+  io.celviz_debug.shared_req_fire := celvizSharedReqFire
+  io.celviz_debug.shared_req_stall := celvizSharedReqStall
+  io.celviz_debug.dcache_rsp_valid := io.dcache_rsp.valid
+  io.celviz_debug.dcache_rsp_ready := io.dcache_rsp.ready
+  io.celviz_debug.dcache_rsp_fire := celvizDcacheRspFire
+  io.celviz_debug.dcache_rsp_stall := celvizDcacheRspStall
+  io.celviz_debug.shared_rsp_valid := io.shared_rsp.valid
+  io.celviz_debug.shared_rsp_ready := io.shared_rsp.ready
+  io.celviz_debug.shared_rsp_fire := celvizSharedRspFire
+  io.celviz_debug.shared_rsp_stall := celvizSharedRspStall
+  io.celviz_debug.lsu_rsp_valid := io.lsu_rsp.valid
+  io.celviz_debug.lsu_rsp_ready := io.lsu_rsp.ready
+  io.celviz_debug.lsu_rsp_fire := celvizLsuRspFire
+  io.celviz_debug.lsu_rsp_stall := celvizLsuRspStall
+  io.celviz_debug.memory_hazard := celvizMemoryHazard
+  io.celviz_debug.fence_end_mask := io.fence_end
+  io.celviz_debug.req_fire_count := eventCounter(celvizReqFire)
+  io.celviz_debug.req_stall_cycle_count := eventCounter(celvizReqStall)
+  io.celviz_debug.input_fifo_fire_count := eventCounter(celvizInputFifoFire)
+  io.celviz_debug.input_fifo_stall_cycle_count := eventCounter(celvizInputFifoStall)
+  io.celviz_debug.shiftboard_hazard_cycle_count := eventCounter(celvizMemoryHazard)
+  io.celviz_debug.load_issue_count := eventCounter(celvizLoadIssueFire)
+  io.celviz_debug.store_issue_count := eventCounter(celvizStoreIssueFire)
+  io.celviz_debug.dcache_req_count := eventCounter(celvizDcacheReqFire)
+  io.celviz_debug.dcache_req_stall_cycle_count := eventCounter(celvizDcacheReqStall)
+  io.celviz_debug.shared_req_count := eventCounter(celvizSharedReqFire)
+  io.celviz_debug.shared_req_stall_cycle_count := eventCounter(celvizSharedReqStall)
+  io.celviz_debug.dcache_rsp_count := eventCounter(celvizDcacheRspFire)
+  io.celviz_debug.dcache_rsp_stall_cycle_count := eventCounter(celvizDcacheRspStall)
+  io.celviz_debug.shared_rsp_count := eventCounter(celvizSharedRspFire)
+  io.celviz_debug.shared_rsp_stall_cycle_count := eventCounter(celvizSharedRspStall)
+  io.celviz_debug.lsu_rsp_count := eventCounter(celvizLsuRspFire)
+  io.celviz_debug.lsu_rsp_stall_cycle_count := eventCounter(celvizLsuRspStall)
+  io.celviz_debug.addr := AddrCalc.io.celviz_debug
 }
 
 class ShiftBoard(val depth:Int) extends Module{

@@ -15,6 +15,52 @@ import chisel3.util._
 import top.parameters._
 import gvm._
 
+class CelvizWarpSchedulerDebug extends Bundle{
+  val warp_accepted = Bool()
+  val warp_ended = Bool()
+  val warp_dispatch = Bool()
+  val warp_dispatch_stalled = Bool()
+  val warp_dispatch_wid = UInt(depth_warp.W)
+  val branch_stalled = Bool()
+  val warp_control_stalled = Bool()
+  val barrier_wait_event = Bool()
+  val branch_flush_event = Bool()
+  val icache_flush_event = Bool()
+  val dcache_flush_request = Bool()
+  val dcache_flush_stalled = Bool()
+  val scoreboard_blocked_ready_mask = UInt(num_warp.W)
+  val exe_blocked_mask = UInt(num_warp.W)
+  val ibuffer_blocked_mask = UInt(num_warp.W)
+  val barrier_blocked_mask = UInt(num_warp.W)
+  val active_mask = UInt(num_warp.W)
+  val ready_mask = UInt(num_warp.W)
+  val active_warp_count = UInt(log2Ceil(num_warp + 1).W)
+  val ready_warp_count = UInt(log2Ceil(num_warp + 1).W)
+  val scoreboard_blocked_warp_count = UInt(log2Ceil(num_warp + 1).W)
+  val exe_blocked_warp_count = UInt(log2Ceil(num_warp + 1).W)
+  val ibuffer_blocked_warp_count = UInt(log2Ceil(num_warp + 1).W)
+  val barrier_blocked_warp_count = UInt(log2Ceil(num_warp + 1).W)
+  val warp_accepted_count = UInt(64.W)
+  val warp_ended_count = UInt(64.W)
+  val warp_dispatch_count = UInt(64.W)
+  val warp_dispatch_stalled_cycle_count = UInt(64.W)
+  val branch_stalled_cycle_count = UInt(64.W)
+  val warp_control_stalled_cycle_count = UInt(64.W)
+  val barrier_wait_event_count = UInt(64.W)
+  val branch_flush_count = UInt(64.W)
+  val icache_flush_event_count = UInt(64.W)
+  val dcache_flush_request_count = UInt(64.W)
+  val dcache_flush_stalled_cycle_count = UInt(64.W)
+  val scoreboard_blocked_ready_mask_cycles = UInt(64.W)
+  val scoreboard_blocked_warp_cycle_count = UInt(64.W)
+  val exe_blocked_cycles = UInt(64.W)
+  val exe_blocked_warp_cycle_count = UInt(64.W)
+  val ibuffer_blocked_cycles = UInt(64.W)
+  val ibuffer_blocked_warp_cycle_count = UInt(64.W)
+  val barrier_blocked_cycles = UInt(64.W)
+  val barrier_blocked_warp_cycle_count = UInt(64.W)
+}
+
 class warp_scheduler extends Module{
   val io = IO(new Bundle{
     val pc_reset = Input(Bool())
@@ -39,13 +85,19 @@ class warp_scheduler extends Module{
     //val ldst = Input(new warp_schedule_ldst_io()) // assume finish l2cache request
     //val switch = Input(Bool()) // assume coming from LDST unit (or other unit)
     val flushDCache = Decoupled(Bool())
+    val celviz_debug = Output(new CelvizWarpSchedulerDebug)
     // val inquire_csr_wid = Output(UInt(depth_warp.W))
     // val inquire_csr_addr = Output(UInt(12.W))
     // val inquire_csr_data = Input(UInt(xLen.W))
   })
+  dontTouch(io.celviz_debug)
 
   val warp_end=io.warp_control.fire&io.warp_control.bits.ctrl.simt_stack_op
   val warp_end_id=io.warp_control.bits.ctrl.wid
+  val warp_accept_event = io.warpReq.fire
+  val warp_end_event = warp_end
+  val barrier_wait_event = io.warp_control.fire&(!io.warp_control.bits.ctrl.simt_stack_op)
+  val branch_flush_event = io.branch.fire&io.branch.bits.jump
   val current_warp=RegInit(0.U(depth_warp.W))
   val next_warp=WireInit(current_warp)
   io.branch.ready:= !io.flushCache.valid
@@ -74,6 +126,7 @@ class warp_scheduler extends Module{
   io.flush.bits:=Mux((io.branch.fire&io.branch.bits.jump),io.branch.bits.wid,warp_end_id)
   io.flushCache.valid:=io.pc_rsp.valid&io.pc_rsp.bits.status(0)
   io.flushCache.bits:=io.pc_rsp.bits.warpid
+  val icache_flush_event = io.flushCache.valid
 
   val pcControl=VecInit(Seq.fill(num_warp)(Module(new PCcontrol()).io))
   //val pcReplay=VecInit(pcControl.map(x=>RegEnable(x.PC_next,(x.PC_src===2.U)&(!x.PC_replay))))
@@ -171,6 +224,7 @@ class warp_scheduler extends Module{
   }
   io.flushDCache.valid := need_flush
   io.flushDCache.bits := need_flush
+  val dcache_flush_request_event = io.flushDCache.fire
 
 
   val warp_active=RegInit(0.U(num_warp.W))
@@ -180,11 +234,112 @@ class warp_scheduler extends Module{
   warp_active:=(warp_active | ((1.U<<io.warpReq.bits.wid).asUInt&Fill(num_warp,io.warpReq.fire))) & (~( Fill(num_warp,warp_end)&(1.U<<warp_end_id).asUInt )).asUInt
   val warp_ready=(~(warp_bar_data | io.scoreboard_busy | io.exe_busy | (~warp_active).asUInt)).asUInt
   io.warp_ready:=warp_ready
+  val pc_ibuffer_ready_mask = Wire(UInt(num_warp.W))
+  pc_ibuffer_ready_mask := VecInit(io.pc_ibuffer_ready.map(_.orR)).asUInt
   for (i<- num_warp-1 to 0 by -1){
-    pc_ready(i):= io.pc_ibuffer_ready(i) & warp_active(i) 
+    pc_ready(i):= io.pc_ibuffer_ready(i) & warp_active(i)
     when(pc_ready(i)){next_warp:=i.asUInt}
   }
   io.pc_req.valid:=pc_ready(next_warp)
+  val warp_dispatch_event = io.pc_req.fire
+  val warp_dispatch_stalled = io.pc_req.valid && !io.pc_req.ready
+  val branch_stalled = io.branch.valid && !io.branch.ready
+  val warp_control_stalled = io.warp_control.valid && !io.warp_control.ready
+  val dcache_flush_stalled = io.flushDCache.valid && !io.flushDCache.ready
+  val scoreboard_blocked_ready_mask = warp_active & io.scoreboard_busy & (~warp_bar_data).asUInt
+  val exe_blocked_mask = warp_active & io.exe_busy & (~warp_bar_data).asUInt
+  val ibuffer_blocked_mask = warp_ready & (~pc_ibuffer_ready_mask).asUInt
+  val barrier_blocked_mask = warp_active & warp_bar_data
+  val active_warp_count = PopCount(warp_active)
+  val ready_warp_count = PopCount(warp_ready)
+  val scoreboard_blocked_warp_count = PopCount(scoreboard_blocked_ready_mask)
+  val exe_blocked_warp_count = PopCount(exe_blocked_mask)
+  val ibuffer_blocked_warp_count = PopCount(ibuffer_blocked_mask)
+  val barrier_blocked_warp_count = PopCount(barrier_blocked_mask)
+
+  val warp_accepted_count = RegInit(0.U(64.W))
+  val warp_ended_count = RegInit(0.U(64.W))
+  val warp_dispatch_count = RegInit(0.U(64.W))
+  val warp_dispatch_stalled_cycle_count = RegInit(0.U(64.W))
+  val branch_stalled_cycle_count = RegInit(0.U(64.W))
+  val warp_control_stalled_cycle_count = RegInit(0.U(64.W))
+  val barrier_wait_event_count = RegInit(0.U(64.W))
+  val branch_flush_count = RegInit(0.U(64.W))
+  val icache_flush_event_count = RegInit(0.U(64.W))
+  val dcache_flush_request_count = RegInit(0.U(64.W))
+  val dcache_flush_stalled_cycle_count = RegInit(0.U(64.W))
+  val scoreboard_blocked_ready_mask_cycles = RegInit(0.U(64.W))
+  val scoreboard_blocked_warp_cycle_count = RegInit(0.U(64.W))
+  val exe_blocked_cycles = RegInit(0.U(64.W))
+  val exe_blocked_warp_cycle_count = RegInit(0.U(64.W))
+  val ibuffer_blocked_cycles = RegInit(0.U(64.W))
+  val ibuffer_blocked_warp_cycle_count = RegInit(0.U(64.W))
+  val barrier_blocked_cycles = RegInit(0.U(64.W))
+  val barrier_blocked_warp_cycle_count = RegInit(0.U(64.W))
+
+  when(warp_accept_event){ warp_accepted_count := warp_accepted_count + 1.U }
+  when(warp_end_event){ warp_ended_count := warp_ended_count + 1.U }
+  when(warp_dispatch_event){ warp_dispatch_count := warp_dispatch_count + 1.U }
+  when(warp_dispatch_stalled){ warp_dispatch_stalled_cycle_count := warp_dispatch_stalled_cycle_count + 1.U }
+  when(branch_stalled){ branch_stalled_cycle_count := branch_stalled_cycle_count + 1.U }
+  when(warp_control_stalled){ warp_control_stalled_cycle_count := warp_control_stalled_cycle_count + 1.U }
+  when(barrier_wait_event){ barrier_wait_event_count := barrier_wait_event_count + 1.U }
+  when(branch_flush_event){ branch_flush_count := branch_flush_count + 1.U }
+  when(icache_flush_event){ icache_flush_event_count := icache_flush_event_count + 1.U }
+  when(dcache_flush_request_event){ dcache_flush_request_count := dcache_flush_request_count + 1.U }
+  when(dcache_flush_stalled){ dcache_flush_stalled_cycle_count := dcache_flush_stalled_cycle_count + 1.U }
+  when(scoreboard_blocked_ready_mask.orR){ scoreboard_blocked_ready_mask_cycles := scoreboard_blocked_ready_mask_cycles + 1.U }
+  when(scoreboard_blocked_ready_mask.orR){ scoreboard_blocked_warp_cycle_count := scoreboard_blocked_warp_cycle_count + scoreboard_blocked_warp_count }
+  when(exe_blocked_mask.orR){ exe_blocked_cycles := exe_blocked_cycles + 1.U }
+  when(exe_blocked_mask.orR){ exe_blocked_warp_cycle_count := exe_blocked_warp_cycle_count + exe_blocked_warp_count }
+  when(ibuffer_blocked_mask.orR){ ibuffer_blocked_cycles := ibuffer_blocked_cycles + 1.U }
+  when(ibuffer_blocked_mask.orR){ ibuffer_blocked_warp_cycle_count := ibuffer_blocked_warp_cycle_count + ibuffer_blocked_warp_count }
+  when(barrier_blocked_mask.orR){ barrier_blocked_cycles := barrier_blocked_cycles + 1.U }
+  when(barrier_blocked_mask.orR){ barrier_blocked_warp_cycle_count := barrier_blocked_warp_cycle_count + barrier_blocked_warp_count }
+
+  io.celviz_debug.warp_accepted := warp_accept_event
+  io.celviz_debug.warp_ended := warp_end_event
+  io.celviz_debug.warp_dispatch := warp_dispatch_event
+  io.celviz_debug.warp_dispatch_stalled := warp_dispatch_stalled
+  io.celviz_debug.warp_dispatch_wid := next_warp
+  io.celviz_debug.branch_stalled := branch_stalled
+  io.celviz_debug.warp_control_stalled := warp_control_stalled
+  io.celviz_debug.barrier_wait_event := barrier_wait_event
+  io.celviz_debug.branch_flush_event := branch_flush_event
+  io.celviz_debug.icache_flush_event := icache_flush_event
+  io.celviz_debug.dcache_flush_request := dcache_flush_request_event
+  io.celviz_debug.dcache_flush_stalled := dcache_flush_stalled
+  io.celviz_debug.scoreboard_blocked_ready_mask := scoreboard_blocked_ready_mask
+  io.celviz_debug.exe_blocked_mask := exe_blocked_mask
+  io.celviz_debug.ibuffer_blocked_mask := ibuffer_blocked_mask
+  io.celviz_debug.barrier_blocked_mask := barrier_blocked_mask
+  io.celviz_debug.active_mask := warp_active
+  io.celviz_debug.ready_mask := warp_ready
+  io.celviz_debug.active_warp_count := active_warp_count
+  io.celviz_debug.ready_warp_count := ready_warp_count
+  io.celviz_debug.scoreboard_blocked_warp_count := scoreboard_blocked_warp_count
+  io.celviz_debug.exe_blocked_warp_count := exe_blocked_warp_count
+  io.celviz_debug.ibuffer_blocked_warp_count := ibuffer_blocked_warp_count
+  io.celviz_debug.barrier_blocked_warp_count := barrier_blocked_warp_count
+  io.celviz_debug.warp_accepted_count := warp_accepted_count
+  io.celviz_debug.warp_ended_count := warp_ended_count
+  io.celviz_debug.warp_dispatch_count := warp_dispatch_count
+  io.celviz_debug.warp_dispatch_stalled_cycle_count := warp_dispatch_stalled_cycle_count
+  io.celviz_debug.branch_stalled_cycle_count := branch_stalled_cycle_count
+  io.celviz_debug.warp_control_stalled_cycle_count := warp_control_stalled_cycle_count
+  io.celviz_debug.barrier_wait_event_count := barrier_wait_event_count
+  io.celviz_debug.branch_flush_count := branch_flush_count
+  io.celviz_debug.icache_flush_event_count := icache_flush_event_count
+  io.celviz_debug.dcache_flush_request_count := dcache_flush_request_count
+  io.celviz_debug.dcache_flush_stalled_cycle_count := dcache_flush_stalled_cycle_count
+  io.celviz_debug.scoreboard_blocked_ready_mask_cycles := scoreboard_blocked_ready_mask_cycles
+  io.celviz_debug.scoreboard_blocked_warp_cycle_count := scoreboard_blocked_warp_cycle_count
+  io.celviz_debug.exe_blocked_cycles := exe_blocked_cycles
+  io.celviz_debug.exe_blocked_warp_cycle_count := exe_blocked_warp_cycle_count
+  io.celviz_debug.ibuffer_blocked_cycles := ibuffer_blocked_cycles
+  io.celviz_debug.ibuffer_blocked_warp_cycle_count := ibuffer_blocked_warp_cycle_count
+  io.celviz_debug.barrier_blocked_cycles := barrier_blocked_cycles
+  io.celviz_debug.barrier_blocked_warp_cycle_count := barrier_blocked_warp_cycle_count
   //lock one warp to execute
   //next_warp:=0.U
   if(SINGLE_INST) next_warp:=0.U

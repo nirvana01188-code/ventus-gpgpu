@@ -22,7 +22,7 @@ import config.config._
 import pipeline._
 import L2cache._
 //import CTA._
-import cta.cta_scheduler_top
+import cta.{cta_scheduler_top, io_cta_scheduler_celviz_debug}
 import axi._
 import freechips.rocketchip.amba.axi4._
 import mmu.{AsidLookup, L1TLB, L1TlbAutoReflect, L1ToL2TlbXBar, L2TLB, L2TlbReq, L2TlbRsp, L2TlbToL2CacheXBar}
@@ -51,14 +51,49 @@ class host2CTA_data extends Bundle{
 class CTA2host_data extends Bundle{
   val inflight_wg_buffer_host_wf_done_wg_id = (UInt(WG_ID_WIDTH.W))
 }
+
+class CelvizGPGPUControlDebug(numSms: Int) extends Bundle {
+  val host_req_valid = Bool()
+  val host_req_ready = Bool()
+  val host_req_fire = Bool()
+  val host_req_stall = Bool()
+  val host_rsp_valid = Bool()
+  val host_rsp_ready = Bool()
+  val host_rsp_fire = Bool()
+  val host_rsp_stall = Bool()
+  val cta_dispatch_valid_mask = UInt(NUMBER_CU.W)
+  val cta_dispatch_ready_mask = UInt(NUMBER_CU.W)
+  val cta_dispatch_fire_mask = UInt(NUMBER_CU.W)
+  val cta_done_valid_mask = UInt(NUMBER_CU.W)
+  val cta_done_ready_mask = UInt(NUMBER_CU.W)
+  val cta_done_fire_mask = UInt(NUMBER_CU.W)
+  val sm_active_any_mask = UInt(numSms.W)
+  val sm_ready_any_mask = UInt(numSms.W)
+  val sm_scoreboard_blocked_any_mask = UInt(numSms.W)
+  val sm_exe_blocked_any_mask = UInt(numSms.W)
+  val sm_ibuffer_blocked_any_mask = UInt(numSms.W)
+  val sm_issue_stall_mask = UInt(numSms.W)
+  val sm_fetch_stall_mask = UInt(numSms.W)
+}
+
+class CelvizGPGPUDebug(numSms: Int) extends Bundle {
+  val cta_scheduler = new io_cta_scheduler_celviz_debug(NUMBER_CU)
+  val control = new CelvizGPGPUControlDebug(numSms)
+  val warp_scheduler = Vec(numSms, new CelvizWarpSchedulerDebug)
+  val pipe = Vec(numSms, new CelvizPipeDebug)
+}
+
 class CTAinterface extends Module{
   val io=IO(new Bundle{
     val host2CTA = Flipped(DecoupledIO(new host2CTA_data))
     val CTA2host = DecoupledIO(new CTA2host_data)
     val CTA2warp = Vec(NUMBER_CU,DecoupledIO(new CTAreqData))
     val warp2CTA = Vec(NUMBER_CU,Flipped(DecoupledIO(new CTArspData)))
+    val celviz_debug = Output(new io_cta_scheduler_celviz_debug(NUMBER_CU))
   })
   val cta_sche = Module(new cta_scheduler_top)
+  io.celviz_debug := cta_sche.io.celviz_debug
+  dontTouch(io.celviz_debug)
   cta_sche.io.host_wg_new.valid <> io.host2CTA.valid
   cta_sche.io.host_wg_new.ready <> io.host2CTA.ready
   cta_sche.io.host_wg_new.bits.wg_id              := io.host2CTA.bits.host_wg_id
@@ -160,6 +195,7 @@ class GPGPU_top(implicit p: Parameters, FakeCache: Boolean = false, SV: Option[m
     val cycle_cnt = Input(UInt(20.W))
     val asid_fill = if(MMU_ENABLED) Some(Input(Flipped(ValidIO(new mmu.AsidLookupEntry(SV.get))))) else None
     val icache_invalidate = Input(Bool())
+    val celviz_debug = Output(new CelvizGPGPUDebug(NSms))
   })
   val cta = Module(new CTAinterface)
   val sm_wrapper=VecInit((0 until NSms).map(i => Module(new SM_wrapper(FakeCache, i, SV)).io))
@@ -309,6 +345,38 @@ class GPGPU_top(implicit p: Parameters, FakeCache: Boolean = false, SV: Option[m
 
   io.host_rsp<>cta.io.CTA2host
   io.host_req<>cta.io.host2CTA
+
+  io.celviz_debug.cta_scheduler := cta.io.celviz_debug
+  io.celviz_debug.control.host_req_valid := io.host_req.valid
+  io.celviz_debug.control.host_req_ready := io.host_req.ready
+  io.celviz_debug.control.host_req_fire := io.host_req.fire
+  io.celviz_debug.control.host_req_stall := io.host_req.valid && !io.host_req.ready
+  io.celviz_debug.control.host_rsp_valid := io.host_rsp.valid
+  io.celviz_debug.control.host_rsp_ready := io.host_rsp.ready
+  io.celviz_debug.control.host_rsp_fire := io.host_rsp.fire
+  io.celviz_debug.control.host_rsp_stall := io.host_rsp.valid && !io.host_rsp.ready
+  io.celviz_debug.control.cta_dispatch_valid_mask := VecInit((0 until NUMBER_CU).map(i => cta.io.CTA2warp(i).valid)).asUInt
+  io.celviz_debug.control.cta_dispatch_ready_mask := VecInit((0 until NUMBER_CU).map(i => cta.io.CTA2warp(i).ready)).asUInt
+  io.celviz_debug.control.cta_dispatch_fire_mask := VecInit((0 until NUMBER_CU).map(i => cta.io.CTA2warp(i).fire)).asUInt
+  io.celviz_debug.control.cta_done_valid_mask := VecInit((0 until NUMBER_CU).map(i => cta.io.warp2CTA(i).valid)).asUInt
+  io.celviz_debug.control.cta_done_ready_mask := VecInit((0 until NUMBER_CU).map(i => cta.io.warp2CTA(i).ready)).asUInt
+  io.celviz_debug.control.cta_done_fire_mask := VecInit((0 until NUMBER_CU).map(i => cta.io.warp2CTA(i).fire)).asUInt
+  io.celviz_debug.control.sm_active_any_mask := VecInit((0 until NSms).map(i => sm_wrapper(i).celviz_debug.warp_scheduler.active_mask.orR)).asUInt
+  io.celviz_debug.control.sm_ready_any_mask := VecInit((0 until NSms).map(i => sm_wrapper(i).celviz_debug.warp_scheduler.ready_mask.orR)).asUInt
+  io.celviz_debug.control.sm_scoreboard_blocked_any_mask := VecInit((0 until NSms).map(i => sm_wrapper(i).celviz_debug.warp_scheduler.scoreboard_blocked_ready_mask.orR)).asUInt
+  io.celviz_debug.control.sm_exe_blocked_any_mask := VecInit((0 until NSms).map(i => sm_wrapper(i).celviz_debug.warp_scheduler.exe_blocked_mask.orR)).asUInt
+  io.celviz_debug.control.sm_ibuffer_blocked_any_mask := VecInit((0 until NSms).map(i => sm_wrapper(i).celviz_debug.warp_scheduler.ibuffer_blocked_mask.orR)).asUInt
+  io.celviz_debug.control.sm_issue_stall_mask := VecInit((0 until NSms).map(i => sm_wrapper(i).celviz_debug.control.issue_stall)).asUInt
+  io.celviz_debug.control.sm_fetch_stall_mask := VecInit((0 until NSms).map { i =>
+    val control = sm_wrapper(i).celviz_debug.control
+    (control.icache_req_valid && !control.icache_req_ready) || (control.icache_rsp_valid && !control.icache_rsp_ready)
+  }).asUInt
+  for (i <- 0 until NSms) {
+    io.celviz_debug.warp_scheduler(i) := sm_wrapper(i).celviz_debug.warp_scheduler
+    io.celviz_debug.pipe(i) := sm_wrapper(i).celviz_debug
+  }
+  dontTouch(io.celviz_debug)
+
   io.inst_cnt.foreach(_.zipWithIndex.foreach{case (l,r) => l := sm_wrapper(r).inst_cnt.getOrElse(0.U)})
   io.inst_cnt2.foreach(_.zipWithIndex.foreach{case (l,r) => l := sm_wrapper(r).inst_cnt2.getOrElse(0.U)})
 
@@ -347,11 +415,14 @@ class SM_wrapper(FakeCache: Boolean = false, sm_id: Int = 0, SV: Option[mmu.SVPa
     val icache_invalidate = Input(Bool())
     //val inst_cnt = if(INST_CNT) Some(Output(UInt(32.W))) else None
     val inst_cnt2 = if(INST_CNT_2) Some(Output(Vec(2, UInt(32.W)))) else None
+    val celviz_debug = Output(new CelvizPipeDebug)
   })
   val cta2warp=Module(new CTA2warp)
   cta2warp.io.CTAreq<>io.CTAreq
   cta2warp.io.CTArsp<>io.CTArsp
   val pipe=Module(new pipe(sm_id))
+  io.celviz_debug := pipe.io.celviz_debug
+  dontTouch(io.celviz_debug)
   pipe.io.pc_reset:=true.B
   io.inst_cnt.foreach(_ := pipe.io.inst_cnt.getOrElse(0.U))
   io.inst_cnt2.foreach( _ := pipe.io.inst_cnt2.getOrElse(0.U))

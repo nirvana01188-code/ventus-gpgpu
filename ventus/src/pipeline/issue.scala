@@ -37,6 +37,56 @@ class csrExeData extends Bundle{
   val in1=UInt(xLen.W)
 }
 
+class CelvizIssueDebug extends Bundle{
+  val in_valid = Bool()
+  val in_ready = Bool()
+  val in_fire = Bool()
+  val in_stall = Bool()
+  val out_valid_mask = UInt(10.W)
+  val out_ready_mask = UInt(10.W)
+  val out_fire_mask = UInt(10.W)
+  val out_stall_mask = UInt(10.W)
+  val compute_issue_fire = Bool()
+  val memory_issue_fire = Bool()
+  val simt_issue_fire = Bool()
+  val scheduler_issue_fire = Bool()
+  val csr_issue_fire = Bool()
+  val output_fire_count = UInt(32.W)
+  val output_stall_cycle_count = UInt(32.W)
+  val compute_issue_count = UInt(32.W)
+  val memory_issue_count = UInt(32.W)
+  val simt_issue_count = UInt(32.W)
+  val scheduler_issue_count = UInt(32.W)
+  val csr_issue_count = UInt(32.W)
+  val input_fire_count = UInt(32.W)
+  val input_stall_cycle_count = UInt(32.W)
+}
+
+class CelvizIssueV2Debug extends Bundle{
+  val in_valid_mask = UInt(num_issue.W)
+  val in_ready_mask = UInt(num_issue.W)
+  val in_fire_mask = UInt(num_issue.W)
+  val in_stall_mask = UInt(num_issue.W)
+  val out_valid_mask = UInt(10.W)
+  val out_ready_mask = UInt(10.W)
+  val out_fire_mask = UInt(10.W)
+  val out_stall_mask = UInt(10.W)
+  val compute_issue_fire = Bool()
+  val memory_issue_fire = Bool()
+  val simt_issue_fire = Bool()
+  val scheduler_issue_fire = Bool()
+  val csr_issue_fire = Bool()
+  val output_fire_count = UInt(32.W)
+  val output_stall_cycle_count = UInt(32.W)
+  val compute_issue_count = UInt(32.W)
+  val memory_issue_count = UInt(32.W)
+  val simt_issue_count = UInt(32.W)
+  val scheduler_issue_count = UInt(32.W)
+  val csr_issue_count = UInt(32.W)
+  val input_fire_count = UInt(32.W)
+  val input_stall_cycle_count = UInt(32.W)
+}
+
 class Issue extends Module{
   val io = IO(new Bundle{
     val in=Flipped(DecoupledIO(new vExeData))
@@ -50,7 +100,16 @@ class Issue extends Module{
     val out_CSR=DecoupledIO(new csrExeData())
     val out_MUL=DecoupledIO(new vExeData)
     val out_TC=DecoupledIO(new vExeData)
+    val celviz_debug = Output(new CelvizIssueDebug)
   })
+  dontTouch(io.celviz_debug)
+
+  private def eventCounter(en: Bool): UInt = {
+    val count = RegInit(0.U(32.W))
+    when(en) { count := count + 1.U }
+    count
+  }
+
   val inputBuf=Queue.apply(io.in,0)//Module(new Queue(new vExeData,entries = 1,pipe=true))
 
 
@@ -140,6 +199,92 @@ class Issue extends Module{
   when(io.in.fire&io.in.bits.ctrl.wid===0.U){
     //printf(p"wid=${io.in.bits.ctrl.wid},pc=0x${Hexadecimal(io.in.bits.ctrl.pc)},inst=0x${Hexadecimal(io.in.bits.ctrl.inst)}\n")
   }
+
+  val celvizInFire = inputBuf.valid && inputBuf.ready
+  val celvizInStall = inputBuf.valid && !inputBuf.ready
+  val celvizComputeIssueFire = io.out_sALU.fire || io.out_vALU.fire || io.out_vFPU.fire ||
+    io.out_SFU.fire || io.out_MUL.fire || io.out_TC.fire
+  val celvizMemoryIssueFire = io.out_LSU.fire
+  val celvizSimtIssueFire = io.out_SIMT.fire
+  val celvizSchedulerIssueFire = io.out_warpscheduler.fire
+  val celvizCsrIssueFire = io.out_CSR.fire
+  val celvizOutValidMask = Cat(
+    io.out_TC.valid,
+    io.out_MUL.valid,
+    io.out_CSR.valid,
+    io.out_warpscheduler.valid,
+    io.out_SIMT.valid,
+    io.out_SFU.valid,
+    io.out_LSU.valid,
+    io.out_vFPU.valid,
+    io.out_vALU.valid,
+    io.out_sALU.valid
+  )
+  val celvizOutReadyMask = Cat(
+    io.out_TC.ready,
+    io.out_MUL.ready,
+    io.out_CSR.ready,
+    io.out_warpscheduler.ready,
+    io.out_SIMT.ready,
+    io.out_SFU.ready,
+    io.out_LSU.ready,
+    io.out_vFPU.ready,
+    io.out_vALU.ready,
+    io.out_sALU.ready
+  )
+  val celvizOutFireMask = Cat(
+    io.out_TC.fire,
+    io.out_MUL.fire,
+    io.out_CSR.fire,
+    io.out_warpscheduler.fire,
+    io.out_SIMT.fire,
+    io.out_SFU.fire,
+    io.out_LSU.fire,
+    io.out_vFPU.fire,
+    io.out_vALU.fire,
+    io.out_sALU.fire
+  )
+  val celvizOutStallMask = Cat(
+    io.out_TC.valid && !io.out_TC.ready,
+    io.out_MUL.valid && !io.out_MUL.ready,
+    io.out_CSR.valid && !io.out_CSR.ready,
+    io.out_warpscheduler.valid && !io.out_warpscheduler.ready,
+    io.out_SIMT.valid && !io.out_SIMT.ready,
+    io.out_SFU.valid && !io.out_SFU.ready,
+    io.out_LSU.valid && !io.out_LSU.ready,
+    io.out_vFPU.valid && !io.out_vFPU.ready,
+    io.out_vALU.valid && !io.out_vALU.ready,
+    io.out_sALU.valid && !io.out_sALU.ready
+  )
+  dontTouch(celvizInFire)
+  dontTouch(celvizInStall)
+  dontTouch(celvizOutValidMask)
+  dontTouch(celvizOutReadyMask)
+  dontTouch(celvizOutFireMask)
+  dontTouch(celvizOutStallMask)
+
+  io.celviz_debug.in_valid := inputBuf.valid
+  io.celviz_debug.in_ready := inputBuf.ready
+  io.celviz_debug.in_fire := celvizInFire
+  io.celviz_debug.in_stall := celvizInStall
+  io.celviz_debug.out_valid_mask := celvizOutValidMask
+  io.celviz_debug.out_ready_mask := celvizOutReadyMask
+  io.celviz_debug.out_fire_mask := celvizOutFireMask
+  io.celviz_debug.out_stall_mask := celvizOutStallMask
+  io.celviz_debug.compute_issue_fire := celvizComputeIssueFire
+  io.celviz_debug.memory_issue_fire := celvizMemoryIssueFire
+  io.celviz_debug.simt_issue_fire := celvizSimtIssueFire
+  io.celviz_debug.scheduler_issue_fire := celvizSchedulerIssueFire
+  io.celviz_debug.csr_issue_fire := celvizCsrIssueFire
+  io.celviz_debug.output_fire_count := eventCounter(PopCount(celvizOutFireMask) =/= 0.U)
+  io.celviz_debug.output_stall_cycle_count := eventCounter(celvizOutStallMask.orR)
+  io.celviz_debug.compute_issue_count := eventCounter(celvizComputeIssueFire)
+  io.celviz_debug.memory_issue_count := eventCounter(celvizMemoryIssueFire)
+  io.celviz_debug.simt_issue_count := eventCounter(celvizSimtIssueFire)
+  io.celviz_debug.scheduler_issue_count := eventCounter(celvizSchedulerIssueFire)
+  io.celviz_debug.csr_issue_count := eventCounter(celvizCsrIssueFire)
+  io.celviz_debug.input_fire_count := eventCounter(celvizInFire)
+  io.celviz_debug.input_stall_cycle_count := eventCounter(celvizInStall)
 }
 
 // archive one to mux arbiter
@@ -215,7 +360,22 @@ class IssueV2 extends Module {
     val out_CSR = DecoupledIO(new csrExeData())
     val out_MUL = DecoupledIO(new vExeData)
     val out_TC = DecoupledIO(new vExeData)
+    val celviz_debug = Output(new CelvizIssueV2Debug)
   })
+  dontTouch(io.celviz_debug)
+
+  private def eventCounter(en: Bool): UInt = {
+    val count = RegInit(0.U(32.W))
+    when(en) { count := count + 1.U }
+    count
+  }
+
+  private def eventCounterBy(inc: UInt): UInt = {
+    val count = RegInit(0.U(32.W))
+    when(inc =/= 0.U) { count := count + inc }
+    count
+  }
+
   class vALU_SIMT_Comb extends Bundle{
     val en = UInt(2.W) // high: SIMT, low: vALU
     val vALU = new vExeData
@@ -313,4 +473,92 @@ class IssueV2 extends Module {
   io.out_SIMT.valid := arb_vALU.io.out.valid && arb_vALU.io.out.bits.en(1)
   io.out_SIMT.bits := arb_vALU.io.out.bits.SIMT
   arb_vALU.io.out.ready := io.out_vALU.ready && io.out_SIMT.ready
+
+  val celvizInValidMask = VecInit(inputBuf.map(_.valid)).asUInt
+  val celvizInReadyMask = VecInit(inputBuf.map(_.ready)).asUInt
+  val celvizInFireMask = VecInit(inputBuf.map(x => x.valid && x.ready)).asUInt
+  val celvizInStallMask = VecInit(inputBuf.map(x => x.valid && !x.ready)).asUInt
+  val celvizComputeIssueFire = io.out_sALU.fire || io.out_vALU.fire || io.out_vFPU.fire ||
+    io.out_SFU.fire || io.out_MUL.fire || io.out_TC.fire
+  val celvizMemoryIssueFire = io.out_LSU.fire
+  val celvizSimtIssueFire = io.out_SIMT.fire
+  val celvizSchedulerIssueFire = io.out_warpscheduler.fire
+  val celvizCsrIssueFire = io.out_CSR.fire
+  val celvizOutValidMask = Cat(
+    io.out_TC.valid,
+    io.out_MUL.valid,
+    io.out_CSR.valid,
+    io.out_warpscheduler.valid,
+    io.out_SIMT.valid,
+    io.out_SFU.valid,
+    io.out_LSU.valid,
+    io.out_vFPU.valid,
+    io.out_vALU.valid,
+    io.out_sALU.valid
+  )
+  val celvizOutReadyMask = Cat(
+    io.out_TC.ready,
+    io.out_MUL.ready,
+    io.out_CSR.ready,
+    io.out_warpscheduler.ready,
+    io.out_SIMT.ready,
+    io.out_SFU.ready,
+    io.out_LSU.ready,
+    io.out_vFPU.ready,
+    io.out_vALU.ready,
+    io.out_sALU.ready
+  )
+  val celvizOutFireMask = Cat(
+    io.out_TC.fire,
+    io.out_MUL.fire,
+    io.out_CSR.fire,
+    io.out_warpscheduler.fire,
+    io.out_SIMT.fire,
+    io.out_SFU.fire,
+    io.out_LSU.fire,
+    io.out_vFPU.fire,
+    io.out_vALU.fire,
+    io.out_sALU.fire
+  )
+  val celvizOutStallMask = Cat(
+    io.out_TC.valid && !io.out_TC.ready,
+    io.out_MUL.valid && !io.out_MUL.ready,
+    io.out_CSR.valid && !io.out_CSR.ready,
+    io.out_warpscheduler.valid && !io.out_warpscheduler.ready,
+    io.out_SIMT.valid && !io.out_SIMT.ready,
+    io.out_SFU.valid && !io.out_SFU.ready,
+    io.out_LSU.valid && !io.out_LSU.ready,
+    io.out_vFPU.valid && !io.out_vFPU.ready,
+    io.out_vALU.valid && !io.out_vALU.ready,
+    io.out_sALU.valid && !io.out_sALU.ready
+  )
+  dontTouch(celvizInFireMask)
+  dontTouch(celvizInStallMask)
+  dontTouch(celvizOutValidMask)
+  dontTouch(celvizOutReadyMask)
+  dontTouch(celvizOutFireMask)
+  dontTouch(celvizOutStallMask)
+
+  io.celviz_debug.in_valid_mask := celvizInValidMask
+  io.celviz_debug.in_ready_mask := celvizInReadyMask
+  io.celviz_debug.in_fire_mask := celvizInFireMask
+  io.celviz_debug.in_stall_mask := celvizInStallMask
+  io.celviz_debug.out_valid_mask := celvizOutValidMask
+  io.celviz_debug.out_ready_mask := celvizOutReadyMask
+  io.celviz_debug.out_fire_mask := celvizOutFireMask
+  io.celviz_debug.out_stall_mask := celvizOutStallMask
+  io.celviz_debug.compute_issue_fire := celvizComputeIssueFire
+  io.celviz_debug.memory_issue_fire := celvizMemoryIssueFire
+  io.celviz_debug.simt_issue_fire := celvizSimtIssueFire
+  io.celviz_debug.scheduler_issue_fire := celvizSchedulerIssueFire
+  io.celviz_debug.csr_issue_fire := celvizCsrIssueFire
+  io.celviz_debug.output_fire_count := eventCounterBy(PopCount(celvizOutFireMask))
+  io.celviz_debug.output_stall_cycle_count := eventCounter(celvizOutStallMask.orR)
+  io.celviz_debug.compute_issue_count := eventCounter(celvizComputeIssueFire)
+  io.celviz_debug.memory_issue_count := eventCounter(celvizMemoryIssueFire)
+  io.celviz_debug.simt_issue_count := eventCounter(celvizSimtIssueFire)
+  io.celviz_debug.scheduler_issue_count := eventCounter(celvizSchedulerIssueFire)
+  io.celviz_debug.csr_issue_count := eventCounter(celvizCsrIssueFire)
+  io.celviz_debug.input_fire_count := eventCounterBy(PopCount(celvizInFireMask))
+  io.celviz_debug.input_stall_cycle_count := eventCounter(celvizInStallMask.orR)
 }

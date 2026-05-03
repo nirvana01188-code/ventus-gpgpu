@@ -30,6 +30,37 @@ class ICachePipeRsp_np extends Bundle{
   val status = UInt(2.W)
 }
 
+class CelvizPipeControlDebug extends Bundle{
+  val pc_reset = Bool()
+  val icache_req_valid = Bool()
+  val icache_req_ready = Bool()
+  val icache_req_fire = Bool()
+  val icache_rsp_valid = Bool()
+  val icache_rsp_ready = Bool()
+  val icache_rsp_fire = Bool()
+  val warp_req_valid = Bool()
+  val warp_req_ready = Bool()
+  val warp_req_fire = Bool()
+  val warp_rsp_valid = Bool()
+  val warp_rsp_ready = Bool()
+  val warp_rsp_fire = Bool()
+  val ibuffer_ready_mask = UInt(num_warp.W)
+  val issue_x_valid = Bool()
+  val issue_x_ready = Bool()
+  val issue_x_fire = Bool()
+  val issue_v_valid = Bool()
+  val issue_v_ready = Bool()
+  val issue_v_fire = Bool()
+  val issue_stall = Bool()
+  val flush_valid = Bool()
+  val flush_cache_valid = Bool()
+}
+
+class CelvizPipeDebug extends Bundle{
+  val warp_scheduler = new CelvizWarpSchedulerDebug
+  val control = new CelvizPipeControlDebug
+}
+
 class pipe(val sm_id: Int = 0) extends Module{
   val io = IO(new Bundle{
     val icache_req = (DecoupledIO(new ICachePipeReq_np))
@@ -47,12 +78,15 @@ class pipe(val sm_id: Int = 0) extends Module{
     val inst = if (SINGLE_INST) Some(Flipped(DecoupledIO(UInt(32.W)))) else None
     val inst_cnt = if(INST_CNT) Some(Output(UInt(32.W))) else if(INST_CNT_2) Some(Output(Vec(2, UInt(32.W)))) else None
     val inst_cnt2 = if(INST_CNT_2) Some(Output(Vec(2, UInt(32.W)))) else None
+    val celviz_debug = Output(new CelvizPipeDebug)
   })
   val issue_stall=Wire(Bool())
   val flush=Wire(Bool())
 
 
   val warp_sche=Module(new warp_scheduler)
+  io.celviz_debug.warp_scheduler := warp_sche.io.celviz_debug
+  dontTouch(io.celviz_debug)
   //val pcfifo=Module(new PCfifo)
   val control=Module(new InstrDecodeV2)
   control.io.sm_id := sm_id.U
@@ -427,4 +461,28 @@ class pipe(val sm_id: Int = 0) extends Module{
   wb.io.in_v(5)<>tensorcore.io.out_v
 
   issue_stall:=(~issueX.io.in.ready).asBool | (~issueV.io.in.ready).asBool//scoreb.io.delay | issue.io.in.ready
+
+  io.celviz_debug.control.pc_reset := io.pc_reset
+  io.celviz_debug.control.icache_req_valid := io.icache_req.valid
+  io.celviz_debug.control.icache_req_ready := io.icache_req.ready
+  io.celviz_debug.control.icache_req_fire := io.icache_req.fire
+  io.celviz_debug.control.icache_rsp_valid := io.icache_rsp.valid
+  io.celviz_debug.control.icache_rsp_ready := io.icache_rsp.ready
+  io.celviz_debug.control.icache_rsp_fire := io.icache_rsp.fire
+  io.celviz_debug.control.warp_req_valid := io.warpReq.valid
+  io.celviz_debug.control.warp_req_ready := io.warpReq.ready
+  io.celviz_debug.control.warp_req_fire := io.warpReq.fire
+  io.celviz_debug.control.warp_rsp_valid := io.warpRsp.valid
+  io.celviz_debug.control.warp_rsp_ready := io.warpRsp.ready
+  io.celviz_debug.control.warp_rsp_fire := io.warpRsp.fire
+  io.celviz_debug.control.ibuffer_ready_mask := ibuffer.io.ibuffer_ready.asUInt
+  io.celviz_debug.control.issue_x_valid := issueX.io.in.valid
+  io.celviz_debug.control.issue_x_ready := issueX.io.in.ready
+  io.celviz_debug.control.issue_x_fire := issueX.io.in.fire
+  io.celviz_debug.control.issue_v_valid := issueV.io.in.valid
+  io.celviz_debug.control.issue_v_ready := issueV.io.in.ready
+  io.celviz_debug.control.issue_v_fire := issueV.io.in.fire
+  io.celviz_debug.control.issue_stall := issue_stall
+  io.celviz_debug.control.flush_valid := warp_sche.io.flush.valid
+  io.celviz_debug.control.flush_cache_valid := warp_sche.io.flushCache.valid
 }

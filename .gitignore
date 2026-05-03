@@ -24,3 +24,13 @@ GPGPU_top.anno.json
 sim-verilator/verilog-out/
 
 gen_fpga_verilog/
+
+# Python/tool caches
+__pycache__/
+*.py[cod]
+
+# Large regenerable Celviz Verilator/Yosys coverage artifacts.
+artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.dat
+artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.info
+artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/
+artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v
