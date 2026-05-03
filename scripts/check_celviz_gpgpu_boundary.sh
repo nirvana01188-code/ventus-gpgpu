@@ -57,6 +57,7 @@ ALLOWED_EVIDENCE_PREFIXES = (
     "scripts/verify_celviz_gpgpu_opencl_conformance_gap_map.sh",
     "scripts/verify_celviz_gpgpu_phase8_claim_closure.sh",
     "scripts/verify_celviz_gpgpu_phase8_work_packages.sh",
+    "scripts/verify_celviz_gpgpu_opencl_host_api_shim.sh",
     "scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh",
     "scripts/verify_celviz_gpgpu_phase9_memory_conformance.sh",
     "scripts/verify_celviz_gpgpu_phase9_driver_os.sh",

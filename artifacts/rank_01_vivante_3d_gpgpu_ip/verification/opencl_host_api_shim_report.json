@@ -1,0 +1,510 @@
+{
+  "api_call_count": 35,
+  "api_call_trace": [
+    {
+      "api": "clGetPlatformIDs",
+      "error_code": 0,
+      "handle": "platform_1",
+      "index": 1,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clGetDeviceIDs",
+      "error_code": 0,
+      "handle": "device_2",
+      "index": 2,
+      "platform": "platform_1",
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clGetDeviceInfo",
+      "device": "device_2",
+      "error_code": 0,
+      "index": 3,
+      "param": "CL_DEVICE_TYPE",
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clGetDeviceInfo",
+      "device": "device_2",
+      "error_code": 0,
+      "index": 4,
+      "param": "CL_DEVICE_MAX_WORK_GROUP_SIZE",
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clCreateContext",
+      "device": "device_2",
+      "error_code": 0,
+      "handle": "context_3",
+      "index": 5,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clCreateCommandQueueWithProperties",
+      "context": "context_3",
+      "device": "device_2",
+      "error_code": 0,
+      "handle": "queue_4",
+      "index": 6,
+      "properties": {
+        "CL_QUEUE_PROFILING_ENABLE": false
+      },
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clCreateBuffer",
+      "context": "context_3",
+      "error_code": 0,
+      "flags": "read_only",
+      "handle": "buffer_5",
+      "index": 7,
+      "name": "vadd_a",
+      "result": "CL_SUCCESS",
+      "size_bytes": 4096
+    },
+    {
+      "api": "clCreateBuffer",
+      "context": "context_3",
+      "error_code": 0,
+      "flags": "read_only",
+      "handle": "buffer_6",
+      "index": 8,
+      "name": "vadd_b",
+      "result": "CL_SUCCESS",
+      "size_bytes": 4096
+    },
+    {
+      "api": "clCreateBuffer",
+      "context": "context_3",
+      "error_code": 0,
+      "flags": "write_only",
+      "handle": "buffer_7",
+      "index": 9,
+      "name": "vadd_c",
+      "result": "CL_SUCCESS",
+      "size_bytes": 4096
+    },
+    {
+      "api": "clEnqueueWriteBuffer",
+      "buffer": "buffer_5",
+      "error_code": 0,
+      "handle": "event_8",
+      "index": 10,
+      "queue": "queue_4",
+      "result": "CL_SUCCESS",
+      "size_bytes": 4096
+    },
+    {
+      "api": "clEnqueueWriteBuffer",
+      "buffer": "buffer_6",
+      "error_code": 0,
+      "handle": "event_9",
+      "index": 11,
+      "queue": "queue_4",
+      "result": "CL_SUCCESS",
+      "size_bytes": 4096
+    },
+    {
+      "api": "clCreateProgramWithSource",
+      "context": "context_3",
+      "error_code": 0,
+      "handle": "program_10",
+      "index": 12,
+      "result": "CL_SUCCESS",
+      "source_sha256": "4919ba7bd0791b57603e89c0195b4adfb33a0a0b8d23dcf0b6ea720276feb57d"
+    },
+    {
+      "abi_schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+      "api": "clBuildProgram",
+      "error_code": 0,
+      "index": 13,
+      "kernel": "vector_add",
+      "program": "program_10",
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clCreateKernel",
+      "error_code": 0,
+      "handle": "kernel_11",
+      "index": 14,
+      "kernel_name": "vector_add",
+      "program": "program_10",
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clSetKernelArg",
+      "error_code": 0,
+      "index": 0,
+      "kernel": "kernel_11",
+      "result": "CL_SUCCESS",
+      "value": "buffer_5"
+    },
+    {
+      "api": "clSetKernelArg",
+      "error_code": 0,
+      "index": 1,
+      "kernel": "kernel_11",
+      "result": "CL_SUCCESS",
+      "value": "buffer_6"
+    },
+    {
+      "api": "clSetKernelArg",
+      "error_code": 0,
+      "index": 2,
+      "kernel": "kernel_11",
+      "result": "CL_SUCCESS",
+      "value": "buffer_7"
+    },
+    {
+      "api": "clSetKernelArg",
+      "error_code": 0,
+      "index": 3,
+      "kernel": "kernel_11",
+      "result": "CL_SUCCESS",
+      "value": "1024"
+    },
+    {
+      "api": "clEnqueueNDRangeKernel",
+      "error_code": 0,
+      "handle": "event_12",
+      "index": 19,
+      "kernel": "kernel_11",
+      "queue": "queue_4",
+      "result": "CL_SUCCESS",
+      "runtime_status": "pass"
+    },
+    {
+      "api": "clEnqueueReadBuffer",
+      "buffer": "buffer_7",
+      "error_code": 0,
+      "handle": "event_13",
+      "index": 20,
+      "queue": "queue_4",
+      "result": "CL_SUCCESS",
+      "wait_for": [
+        "event_12"
+      ]
+    },
+    {
+      "api": "clWaitForEvents",
+      "error_code": 0,
+      "event_count": 4,
+      "events": [
+        "event_8",
+        "event_9",
+        "event_12",
+        "event_13"
+      ],
+      "index": 21,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clFinish",
+      "error_code": 0,
+      "index": 22,
+      "pending_count": 0,
+      "queue": "queue_4",
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseEvent",
+      "error_code": 0,
+      "handle": "event_13",
+      "index": 23,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseEvent",
+      "error_code": 0,
+      "handle": "event_12",
+      "index": 24,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseEvent",
+      "error_code": 0,
+      "handle": "event_8",
+      "index": 25,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseEvent",
+      "error_code": 0,
+      "handle": "event_9",
+      "index": 26,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseKernel",
+      "error_code": 0,
+      "handle": "kernel_11",
+      "index": 27,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseProgram",
+      "error_code": 0,
+      "handle": "program_10",
+      "index": 28,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseBuffer",
+      "error_code": 0,
+      "handle": "buffer_5",
+      "index": 29,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseBuffer",
+      "error_code": 0,
+      "handle": "buffer_6",
+      "index": 30,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseBuffer",
+      "error_code": 0,
+      "handle": "buffer_7",
+      "index": 31,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseQueue",
+      "error_code": 0,
+      "handle": "queue_4",
+      "index": 32,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseContext",
+      "error_code": 0,
+      "handle": "context_3",
+      "index": 33,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleaseDevice",
+      "error_code": 0,
+      "handle": "device_2",
+      "index": 34,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    },
+    {
+      "api": "clReleasePlatform",
+      "error_code": 0,
+      "handle": "platform_1",
+      "index": 35,
+      "refcount": 0,
+      "result": "CL_SUCCESS"
+    }
+  ],
+  "checks": [
+    {
+      "name": "required_host_api_lifecycle_executed",
+      "observed": [
+        "clBuildProgram",
+        "clCreateBuffer",
+        "clCreateCommandQueueWithProperties",
+        "clCreateContext",
+        "clCreateKernel",
+        "clCreateProgramWithSource",
+        "clEnqueueNDRangeKernel",
+        "clEnqueueReadBuffer",
+        "clEnqueueWriteBuffer",
+        "clFinish",
+        "clGetDeviceIDs",
+        "clGetDeviceInfo",
+        "clGetPlatformIDs",
+        "clReleaseBuffer",
+        "clReleaseContext",
+        "clReleaseDevice",
+        "clReleaseEvent",
+        "clReleaseKernel",
+        "clReleasePlatform",
+        "clReleaseProgram",
+        "clReleaseQueue",
+        "clSetKernelArg",
+        "clWaitForEvents"
+      ],
+      "pass": true
+    },
+    {
+      "name": "runtime_proxy_dispatch_pass",
+      "pass": true,
+      "runtime_summary": {
+        "commands_completed": 1,
+        "commands_failed": 0,
+        "commands_submitted": 1,
+        "dry_run": true,
+        "pending_count": 0,
+        "status": "pass"
+      }
+    },
+    {
+      "name": "runtime_proxy_completed_dispatch",
+      "pass": true,
+      "runtime_summary": {
+        "commands_completed": 1,
+        "commands_failed": 0,
+        "commands_submitted": 1,
+        "dry_run": true,
+        "pending_count": 0,
+        "status": "pass"
+      }
+    },
+    {
+      "name": "runtime_proxy_no_failures",
+      "pass": true,
+      "runtime_summary": {
+        "commands_completed": 1,
+        "commands_failed": 0,
+        "commands_submitted": 1,
+        "dry_run": true,
+        "pending_count": 0,
+        "status": "pass"
+      }
+    },
+    {
+      "name": "runtime_proxy_pending_zero",
+      "pass": true,
+      "runtime_summary": {
+        "commands_completed": 1,
+        "commands_failed": 0,
+        "commands_submitted": 1,
+        "dry_run": true,
+        "pending_count": 0,
+        "status": "pass"
+      }
+    },
+    {
+      "live_handles": {},
+      "name": "handles_released",
+      "pass": true
+    },
+    {
+      "name": "negative_error_code_tests_pass",
+      "negative_count": 5,
+      "pass": true
+    },
+    {
+      "name": "no_official_conformance_overclaim",
+      "pass": true,
+      "scope": "clean-room OpenCL host API shim for Celviz GPGPU IP readiness; executes a local subset lifecycle through the compiler ABI and runtime proxy. Not a Khronos ICD, not libOpenCL, not official OpenCL conformance, not CTS pass evidence, not a production Linux driver, and not Vivante proprietary compatibility."
+    }
+  ],
+  "clean_room_scope": "clean-room OpenCL host API shim for Celviz GPGPU IP readiness; executes a local subset lifecycle through the compiler ABI and runtime proxy. Not a Khronos ICD, not libOpenCL, not official OpenCL conformance, not CTS pass evidence, not a production Linux driver, and not Vivante proprietary compatibility.",
+  "error_codes": {
+    "CL_BUILD_PROGRAM_FAILURE": -11,
+    "CL_INVALID_ARG_INDEX": -49,
+    "CL_INVALID_COMMAND_QUEUE": -36,
+    "CL_INVALID_CONTEXT": -34,
+    "CL_INVALID_DEVICE": -33,
+    "CL_INVALID_KERNEL": -48,
+    "CL_INVALID_KERNEL_NAME": -46,
+    "CL_INVALID_MEM_OBJECT": -38,
+    "CL_INVALID_PROGRAM": -44,
+    "CL_INVALID_QUEUE_PROPERTIES": -35,
+    "CL_INVALID_VALUE": -30,
+    "CL_INVALID_WORK_GROUP_SIZE": -54,
+    "CL_SUCCESS": 0
+  },
+  "event_trace": [
+    {
+      "buffer": "buffer_5",
+      "command": "write_buffer",
+      "event": "event_8",
+      "status": "complete"
+    },
+    {
+      "buffer": "buffer_6",
+      "command": "write_buffer",
+      "event": "event_9",
+      "status": "complete"
+    },
+    {
+      "command": "ndrange_kernel",
+      "event": "event_12",
+      "kernel": "kernel_11",
+      "status": "complete"
+    },
+    {
+      "command": "read_buffer",
+      "event": "event_13",
+      "status": "complete",
+      "wait_for": [
+        "event_12"
+      ]
+    }
+  ],
+  "generated_at": "2026-05-03T05:37:47+00:00",
+  "handle_lifecycle": {
+    "live_after_release": {}
+  },
+  "kernel_abi_summary": {
+    "arg_count": 4,
+    "name": "vector_add",
+    "schema": "celviz.gpgpu.opencl_subset.kernel_abi.v1",
+    "work_items": 1024
+  },
+  "negative_tests": [
+    {
+      "api": "clGetDeviceInfo",
+      "expected_error": "CL_INVALID_VALUE",
+      "name": "unsupported_device_info_query",
+      "observed_error": "CL_INVALID_VALUE",
+      "pass": true
+    },
+    {
+      "api": "clCreateCommandQueueWithProperties",
+      "expected_error": "CL_INVALID_QUEUE_PROPERTIES",
+      "name": "reject_out_of_order_queue_property",
+      "observed_error": "CL_INVALID_QUEUE_PROPERTIES",
+      "pass": true
+    },
+    {
+      "api": "clCreateKernel",
+      "expected_error": "CL_INVALID_KERNEL_NAME",
+      "name": "reject_missing_kernel_name",
+      "observed_error": "CL_INVALID_KERNEL_NAME",
+      "pass": true
+    },
+    {
+      "api": "clSetKernelArg",
+      "expected_error": "CL_INVALID_ARG_INDEX",
+      "name": "reject_bad_kernel_arg_index",
+      "observed_error": "CL_INVALID_ARG_INDEX",
+      "pass": true
+    },
+    {
+      "api": "clCreateBuffer",
+      "expected_error": "CL_INVALID_VALUE",
+      "name": "reject_zero_size_buffer",
+      "observed_error": "CL_INVALID_VALUE",
+      "pass": true
+    }
+  ],
+  "runtime_proxy_summary": {
+    "commands_completed": 1,
+    "commands_failed": 0,
+    "commands_submitted": 1,
+    "dry_run": true,
+    "pending_count": 0,
+    "status": "pass"
+  },
+  "schema": "celviz.gpgpu.opencl_host_api_shim.v1",
+  "status": "pass"
+}

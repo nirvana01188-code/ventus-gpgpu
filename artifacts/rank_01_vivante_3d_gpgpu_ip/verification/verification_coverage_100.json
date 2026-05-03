@@ -162,6 +162,12 @@
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
       "size_bytes": 2998
     },
+    "opencl_host_api_shim_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+      "size_bytes": 12326
+    },
     "phase2_integration_report": {
       "exists": true,
       "non_empty": true,
@@ -781,6 +787,17 @@
       "group": "artifacts",
       "hit": true,
       "name": "phase8_work_package_artifacts_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+        "size_bytes": 12326
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_host_api_shim_report"
     },
     {
       "evidence": {
@@ -3010,7 +3027,7 @@
         "memory_event_count": 96,
         "oracle_workload": "vector_add",
         "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
-        "sha256": "964c5c443453e825385d5d9eea6542dd6df890e5f9c27212ff4d1378f4db8200",
+        "sha256": "0a0e47871efb5a672166e73d5afd86d1c47a0a6bb36a22c4b0611b8da46e8f0d",
         "status": "pass",
         "uops_executed": 13
       },
@@ -3024,7 +3041,7 @@
         "memory_event_count": 260,
         "oracle_workload": "gemm_proxy",
         "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
-        "sha256": "1ac4cd6d42c5c2623d98d1da149b71d62e7d78226c6c2d593eb625ce0b0b6904",
+        "sha256": "474ee0249174d7c4c33981aa837208b10ba22400179880c03e018fda8ba5788a",
         "status": "pass",
         "uops_executed": 18
       },
@@ -3038,7 +3055,7 @@
         "memory_event_count": 475,
         "oracle_workload": "convolution_proxy",
         "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
-        "sha256": "dcc7bc058224b88f87ec042e0c7471a5911375b20467bfc70ae871f00e87daef",
+        "sha256": "2d158d8822055891c5d7359664fc32c8c1811b1957951933c3917d66e3f03d12",
         "status": "pass",
         "uops_executed": 17
       },
@@ -3052,7 +3069,7 @@
         "memory_event_count": 548,
         "oracle_workload": "image_filter",
         "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
-        "sha256": "63fcac34bfd5ee4b8a4d026d32a284d774b48f9a60d7f94f17dd09723920b8e8",
+        "sha256": "ca3448188b9185a3c390889e54e37f75944cea7f5cbf2edc7e34475a9e5b9073",
         "status": "pass",
         "uops_executed": 15
       },
@@ -3741,27 +3758,27 @@
     {
       "evidence": {
         "conv2d": {
-          "aggregate_report_sha256": "dcc7bc058224b88f87ec042e0c7471a5911375b20467bfc70ae871f00e87daef",
+          "aggregate_report_sha256": "2d158d8822055891c5d7359664fc32c8c1811b1957951933c3917d66e3f03d12",
           "aggregate_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
-          "per_kernel_report_sha256": "dcc7bc058224b88f87ec042e0c7471a5911375b20467bfc70ae871f00e87daef",
+          "per_kernel_report_sha256": "2d158d8822055891c5d7359664fc32c8c1811b1957951933c3917d66e3f03d12",
           "per_kernel_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a"
         },
         "gemm": {
-          "aggregate_report_sha256": "1ac4cd6d42c5c2623d98d1da149b71d62e7d78226c6c2d593eb625ce0b0b6904",
+          "aggregate_report_sha256": "474ee0249174d7c4c33981aa837208b10ba22400179880c03e018fda8ba5788a",
           "aggregate_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
-          "per_kernel_report_sha256": "1ac4cd6d42c5c2623d98d1da149b71d62e7d78226c6c2d593eb625ce0b0b6904",
+          "per_kernel_report_sha256": "474ee0249174d7c4c33981aa837208b10ba22400179880c03e018fda8ba5788a",
           "per_kernel_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0"
         },
         "image_filter": {
-          "aggregate_report_sha256": "63fcac34bfd5ee4b8a4d026d32a284d774b48f9a60d7f94f17dd09723920b8e8",
+          "aggregate_report_sha256": "ca3448188b9185a3c390889e54e37f75944cea7f5cbf2edc7e34475a9e5b9073",
           "aggregate_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
-          "per_kernel_report_sha256": "63fcac34bfd5ee4b8a4d026d32a284d774b48f9a60d7f94f17dd09723920b8e8",
+          "per_kernel_report_sha256": "ca3448188b9185a3c390889e54e37f75944cea7f5cbf2edc7e34475a9e5b9073",
           "per_kernel_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101"
         },
         "vector_add": {
-          "aggregate_report_sha256": "964c5c443453e825385d5d9eea6542dd6df890e5f9c27212ff4d1378f4db8200",
+          "aggregate_report_sha256": "0a0e47871efb5a672166e73d5afd86d1c47a0a6bb36a22c4b0611b8da46e8f0d",
           "aggregate_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
-          "per_kernel_report_sha256": "964c5c443453e825385d5d9eea6542dd6df890e5f9c27212ff4d1378f4db8200",
+          "per_kernel_report_sha256": "0a0e47871efb5a672166e73d5afd86d1c47a0a6bb36a22c4b0611b8da46e8f0d",
           "per_kernel_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f"
         }
       },
@@ -4566,6 +4583,144 @@
     },
     {
       "evidence": {},
+      "group": "opencl_host_api_shim",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "required_host_api_lifecycle_executed",
+        "observed": [
+          "clBuildProgram",
+          "clCreateBuffer",
+          "clCreateCommandQueueWithProperties",
+          "clCreateContext",
+          "clCreateKernel",
+          "clCreateProgramWithSource",
+          "clEnqueueNDRangeKernel",
+          "clEnqueueReadBuffer",
+          "clEnqueueWriteBuffer",
+          "clFinish",
+          "clGetDeviceIDs",
+          "clGetDeviceInfo",
+          "clGetPlatformIDs",
+          "clReleaseBuffer",
+          "clReleaseContext",
+          "clReleaseDevice",
+          "clReleaseEvent",
+          "clReleaseKernel",
+          "clReleasePlatform",
+          "clReleaseProgram",
+          "clReleaseQueue",
+          "clSetKernelArg",
+          "clWaitForEvents"
+        ],
+        "pass": true
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "required_host_api_lifecycle_executed"
+    },
+    {
+      "evidence": {
+        "name": "runtime_proxy_dispatch_pass",
+        "pass": true,
+        "runtime_summary": {
+          "commands_completed": 1,
+          "commands_failed": 0,
+          "commands_submitted": 1,
+          "dry_run": true,
+          "pending_count": 0,
+          "status": "pass"
+        }
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "runtime_proxy_dispatch_pass"
+    },
+    {
+      "evidence": {
+        "name": "runtime_proxy_completed_dispatch",
+        "pass": true,
+        "runtime_summary": {
+          "commands_completed": 1,
+          "commands_failed": 0,
+          "commands_submitted": 1,
+          "dry_run": true,
+          "pending_count": 0,
+          "status": "pass"
+        }
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "runtime_proxy_completed_dispatch"
+    },
+    {
+      "evidence": {
+        "name": "runtime_proxy_no_failures",
+        "pass": true,
+        "runtime_summary": {
+          "commands_completed": 1,
+          "commands_failed": 0,
+          "commands_submitted": 1,
+          "dry_run": true,
+          "pending_count": 0,
+          "status": "pass"
+        }
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "runtime_proxy_no_failures"
+    },
+    {
+      "evidence": {
+        "name": "runtime_proxy_pending_zero",
+        "pass": true,
+        "runtime_summary": {
+          "commands_completed": 1,
+          "commands_failed": 0,
+          "commands_submitted": 1,
+          "dry_run": true,
+          "pending_count": 0,
+          "status": "pass"
+        }
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "runtime_proxy_pending_zero"
+    },
+    {
+      "evidence": {
+        "live_handles": {},
+        "name": "handles_released",
+        "pass": true
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "handles_released"
+    },
+    {
+      "evidence": {
+        "name": "negative_error_code_tests_pass",
+        "negative_count": 5,
+        "pass": true
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "negative_error_code_tests_pass"
+    },
+    {
+      "evidence": {
+        "name": "no_official_conformance_overclaim",
+        "pass": true,
+        "scope": "clean-room OpenCL host API shim for Celviz GPGPU IP readiness; executes a local subset lifecycle through the compiler ABI and runtime proxy. Not a Khronos ICD, not libOpenCL, not official OpenCL conformance, not CTS pass evidence, not a production Linux driver, and not Vivante proprietary compatibility."
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "no_official_conformance_overclaim"
+    },
+    {
+      "evidence": {},
       "group": "phase9_opencl_conformance_readiness",
       "hit": true,
       "name": "status_pass"
@@ -5115,6 +5270,51 @@
     },
     {
       "evidence": {
+        "schema": "celviz.gpgpu.opencl_host_api_shim.v1"
+      },
+      "group": "opencl_host_api_shim",
+      "hit": true,
+      "name": "schema"
+    },
+    {
+      "evidence": {
+        "api_call_count": 35
+      },
+      "group": "opencl_host_api_shim",
+      "hit": true,
+      "name": "api_call_depth"
+    },
+    {
+      "evidence": {
+        "commands_completed": 1,
+        "commands_failed": 0,
+        "commands_submitted": 1,
+        "dry_run": true,
+        "pending_count": 0,
+        "status": "pass"
+      },
+      "group": "opencl_host_api_shim",
+      "hit": true,
+      "name": "runtime_dispatch_completed"
+    },
+    {
+      "evidence": {
+        "negative_count": 5
+      },
+      "group": "opencl_host_api_shim",
+      "hit": true,
+      "name": "negative_error_code_depth"
+    },
+    {
+      "evidence": {
+        "live_after_release": {}
+      },
+      "group": "opencl_host_api_shim",
+      "hit": true,
+      "name": "handles_released"
+    },
+    {
+      "evidence": {
         "schema": "celviz.gpgpu.phase9_opencl_conformance_readiness.v1"
       },
       "group": "phase9_opencl_conformance_readiness",
@@ -5554,13 +5754,13 @@
   "clean_room_scope": "clean-room functional and acceptance verification coverage for the Ventus-based Celviz GPGPU IP proxy only; no proprietary Vivante compatibility, proprietary command stream/driver/firmware/SDK claim, official OpenCL/OpenCV conformance claim, RTL timing closure, PPA, safety certification, silicon signoff, or production-readiness claim",
   "coverage_kind": "functional_acceptance_verification_bins",
   "coverage_percent": 100.0,
-  "generated_at": "2026-05-03T05:05:49+00:00",
+  "generated_at": "2026-05-03T05:37:48+00:00",
   "groups": {
     "artifacts": {
       "coverage_percent": 100.0,
-      "hit": 53,
+      "hit": 54,
       "missed_bins": [],
-      "total": 53
+      "total": 54
     },
     "celviz_eda_methodology": {
       "coverage_percent": 100.0,
@@ -5753,6 +5953,18 @@
       "hit": 1,
       "missed_bins": [],
       "total": 1
+    },
+    "opencl_host_api_shim": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "opencl_host_api_shim_checks": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
     },
     "phase2_integration": {
       "coverage_percent": 100.0,
@@ -6061,7 +6273,7 @@
       "total": 1
     }
   },
-  "hit_bins": 431,
+  "hit_bins": 446,
   "missed_bins": [],
   "rtl_structural_coverage_observation": {
     "lcov_info": {
@@ -6109,5 +6321,5 @@
   },
   "schema": "celviz.gpgpu.verification_coverage_100.v1",
   "status": "pass",
-  "total_bins": 431
+  "total_bins": 446
 }

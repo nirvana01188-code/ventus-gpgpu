@@ -1229,6 +1229,16 @@ script_checks = {
             r"does not claim completion",
         ],
     ),
+    "opencl_host_api_shim_script": (
+        root / "scripts/verify_celviz_gpgpu_opencl_host_api_shim.sh",
+        [
+            r"opencl_host_api_shim\.py",
+            r"clGetPlatformIDs",
+            r"clEnqueueNDRangeKernel",
+            r"Negative Error-Code Tests",
+            r"not official OpenCL conformance",
+        ],
+    ),
     "phase9_opencl_conformance_readiness_script": (
         root / "scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh",
         [

@@ -223,6 +223,7 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "phase8_claim_closure_report": verification_dir / "phase8_claim_closure_report.json",
         "phase8_work_packages": verification_dir / "phase8_work_packages.json",
         "phase8_work_package_artifacts_report": verification_dir / "phase8_work_package_artifacts" / "phase8_work_package_artifacts_report.json",
+        "opencl_host_api_shim_report": verification_dir / "opencl_host_api_shim_report.json",
         "phase9_opencl_conformance_readiness_report": verification_dir / "phase9_opencl_conformance_readiness_report.json",
         "phase9_opencl_subset_conformance_tests": verification_dir / "opencl_subset_conformance_tests.json",
         "phase9_opencl_icd_runtime_contract": verification_dir / "opencl_icd_runtime_contract.json",
@@ -275,6 +276,7 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
     phase8_claim_closure = load_json(files["phase8_claim_closure_report"])
     phase8_work_packages = load_json(files["phase8_work_packages"])
     phase8_work_package_artifacts = load_json(files["phase8_work_package_artifacts_report"])
+    opencl_host_api_shim = load_json(files["opencl_host_api_shim_report"])
     phase9_opencl = load_json(files["phase9_opencl_conformance_readiness_report"])
     phase9_subset_tests = load_json(files["phase9_opencl_subset_conformance_tests"])
     phase9_icd_contract = load_json(files["phase9_opencl_icd_runtime_contract"])
@@ -499,6 +501,7 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "opencl_conformance_gap_map": opencl_conformance_gap_map,
         "phase8_claim_closure": phase8_claim_closure,
         "phase8_work_package_artifacts": phase8_work_package_artifacts,
+        "opencl_host_api_shim": opencl_host_api_shim,
         "phase9_opencl_conformance_readiness": phase9_opencl,
         "phase9_opencl_subset_conformance_tests": phase9_subset_tests,
         "phase9_opencl_icd_runtime_contract": phase9_icd_contract,
@@ -542,6 +545,42 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "artifact_path_count",
         isinstance(artifact_paths, dict) and len(artifact_paths) >= 6,
         {"artifact_count": len(artifact_paths) if isinstance(artifact_paths, dict) else 0},
+    )
+
+    builder.add(
+        "opencl_host_api_shim",
+        "schema",
+        opencl_host_api_shim.get("schema") == "celviz.gpgpu.opencl_host_api_shim.v1",
+        {"schema": opencl_host_api_shim.get("schema")},
+    )
+    builder.add(
+        "opencl_host_api_shim",
+        "api_call_depth",
+        as_int(opencl_host_api_shim.get("api_call_count")) >= 30,
+        {"api_call_count": opencl_host_api_shim.get("api_call_count")},
+    )
+    shim_summary = opencl_host_api_shim.get("runtime_proxy_summary", {})
+    builder.add(
+        "opencl_host_api_shim",
+        "runtime_dispatch_completed",
+        shim_summary.get("status") == "pass"
+        and as_int(shim_summary.get("commands_completed")) == 1
+        and as_int(shim_summary.get("commands_failed")) == 0
+        and as_int(shim_summary.get("pending_count")) == 0,
+        shim_summary if isinstance(shim_summary, dict) else {},
+    )
+    builder.add(
+        "opencl_host_api_shim",
+        "negative_error_code_depth",
+        len(opencl_host_api_shim.get("negative_tests", [])) >= 5
+        and all(item.get("pass") is True for item in opencl_host_api_shim.get("negative_tests", [])),
+        {"negative_count": len(opencl_host_api_shim.get("negative_tests", []))},
+    )
+    builder.add(
+        "opencl_host_api_shim",
+        "handles_released",
+        opencl_host_api_shim.get("handle_lifecycle", {}).get("live_after_release") == {},
+        opencl_host_api_shim.get("handle_lifecycle", {}),
     )
 
     builder.add(
