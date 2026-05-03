@@ -1,0 +1,101 @@
+# Phase 8 Signoff Requirements
+
+Status: `pass`
+
+input requirements only; not completed synthesis/STA/power/DFT/physical/silicon signoff
+
+```json
+{
+  "checks": [
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "synthesis_readiness_proxy_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "classification": "synthesis_probe_blocked_by_generated_verilog"
+      },
+      "name": "yosys_probe_records_blocker_or_stats",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "ppa_proxy_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "requirement_count": 7
+      },
+      "name": "external_requirements_named",
+      "pass": true
+    }
+  ],
+  "claim_boundary": "input requirements only; not completed synthesis/STA/power/DFT/physical/silicon signoff",
+  "requirements": [
+    {
+      "name": "target_library",
+      "required_inputs": [
+        "standard-cell Liberty",
+        "memory macros",
+        "IO libraries"
+      ]
+    },
+    {
+      "name": "constraints",
+      "required_inputs": [
+        "clock definitions",
+        "IO delays",
+        "false/multicycle paths"
+      ]
+    },
+    {
+      "name": "sta",
+      "required_inputs": [
+        "corner list",
+        "timing reports",
+        "constraint lint"
+      ]
+    },
+    {
+      "name": "power",
+      "required_inputs": [
+        "activity SAIF/VCD",
+        "voltage domains",
+        "power intent if used"
+      ]
+    },
+    {
+      "name": "dft",
+      "required_inputs": [
+        "scan strategy",
+        "test clocks",
+        "coverage reports"
+      ]
+    },
+    {
+      "name": "physical",
+      "required_inputs": [
+        "floorplan",
+        "P&R logs",
+        "DRC/LVS/antenna reports"
+      ]
+    },
+    {
+      "name": "silicon",
+      "required_inputs": [
+        "bring-up plan",
+        "validation logs",
+        "measured PPA"
+      ]
+    }
+  ],
+  "schema": "celviz.gpgpu.phase8.signoff_requirements.v1",
+  "status": "pass"
+}
+```

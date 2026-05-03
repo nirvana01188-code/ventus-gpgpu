@@ -1,0 +1,76 @@
+{
+  "schema": "celviz.eda_methodology.gpgpu_ip.v1",
+  "status": "active",
+  "name": "Celviz GPGPU IP EDA Methodology",
+  "scope": "Reusable clean-room blueprint-to-acceptance methodology for GPGPU IP work",
+  "required_sections": [
+    "Blueprint Boundary",
+    "Architecture Decomposition",
+    "Source Hooks",
+    "Acceptance Matrix",
+    "Functional Coverage vs Structural Coverage",
+    "Verilator Supplemental Lane",
+    "Runtime ABI Lane",
+    "Micro-op Execution Lane",
+    "Worker Decomposition",
+    "Artifact Gates",
+    "No-overclaim Wording",
+    "Reuse Checklist",
+    "Bootstrap Package",
+    "Template Library"
+  ],
+  "reusable_gate_templates": [
+    "boundary_check",
+    "source_hook_check",
+    "acceptance_matrix_json_check",
+    "oracle_workload_check",
+    "runtime_abi_check",
+    "rtl_observability_check",
+    "negative_contract_check",
+    "verilator_supplemental_check",
+    "cross_layer_integration_check",
+    "kernel_lowering_check",
+    "microop_execution_check",
+    "compiler_ir_check",
+    "memory_trace_integration_check",
+    "driver_submission_check",
+    "synthesis_readiness_check",
+    "yosys_probe_check",
+    "performance_projection_check",
+    "functional_coverage_100_check",
+    "full_acceptance_check",
+    "methodology_bootstrap_check"
+  ],
+  "methodology_assets": {
+    "method_document": "docs/celviz-methodology/GPGPU_IP_EDA_METHOD.md",
+    "acceptance_template": "docs/celviz-methodology/templates/gpgpu_acceptance_template.json",
+    "boundary_check_template": "docs/celviz-methodology/templates/boundary_check_template.sh",
+    "source_check_template": "docs/celviz-methodology/templates/source_check_template.py",
+    "coverage_100_template": "docs/celviz-methodology/templates/coverage_100_template.py",
+    "phase_gate_template": "docs/celviz-methodology/templates/phase_gate_template.py",
+    "bootstrap_tool": "tools/celviz_eda_methodology/bootstrap_gpgpu_methodology.py",
+    "verification_tool": "tools/celviz_eda_methodology/verify_methodology_manifest.py",
+    "verification_script": "scripts/verify_celviz_eda_methodology.sh"
+  },
+  "bootstrap_contract": {
+    "template_schema": "celviz.eda_methodology.gpgpu_acceptance_template.v1",
+    "bootstrap_schema": "celviz.gpgpu.acceptance_matrix.bootstrap.v1",
+    "minimum_phase_count": 12,
+    "minimum_gate_count": 16,
+    "required_report_fields": [
+      "schema",
+      "generated_at",
+      "clean_room_scope",
+      "status",
+      "checks",
+      "summary"
+    ]
+  },
+  "claim_boundaries": [
+    "no proprietary vendor compatibility claim",
+    "no official API conformance claim",
+    "no structural RTL 100 percent claim unless actually closed",
+    "no synthesis, timing, power, physical, or silicon signoff claim without real tool evidence"
+  ],
+  "output_report": "artifacts/celviz-methodology/methodology_verification_report.json"
+}

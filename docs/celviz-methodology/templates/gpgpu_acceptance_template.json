@@ -1,0 +1,223 @@
+{
+  "schema": "celviz.eda_methodology.gpgpu_acceptance_template.v1",
+  "description": "Reusable clean-room GPGPU/IP acceptance skeleton for Celviz projects.",
+  "variables": {
+    "ip_slug": "example_gpgpu_ip",
+    "artifact_root": "artifacts/example_gpgpu_ip",
+    "docs_root": "docs/example-gpgpu-ip",
+    "tool_root": "tools/example_gpgpu_ip"
+  },
+  "required_phase_sequence": [
+    "boundary",
+    "source_hooks",
+    "oracle_workloads",
+    "runtime_abi",
+    "rtl_observability",
+    "negative_contracts",
+    "verilator_supplemental",
+    "cross_layer_integration",
+    "kernel_lowering",
+    "microop_execution",
+    "compiler_ir",
+    "memory_trace_integration",
+    "driver_submission",
+    "synthesis_readiness",
+    "yosys_probe",
+    "performance_projection",
+    "coverage_aggregation"
+  ],
+  "gate_templates": [
+    {
+      "id": "boundary_check",
+      "command": "bash scripts/check_${ip_slug}_boundary.sh",
+      "required_evidence": [
+        "${artifact_root}/verification/acceptance_matrix.json",
+        "${artifact_root}/criteria_to_evidence.csv",
+        "${docs_root}/README.md"
+      ],
+      "pass_condition": "Active evidence roots are allowlisted and forbidden/superseded roots are absent from active evidence."
+    },
+    {
+      "id": "source_hook_check",
+      "command": "bash scripts/check_${ip_slug}_sources.sh",
+      "required_evidence": [
+        "${tool_root}",
+        "RTL or source hook files"
+      ],
+      "pass_condition": "Implementation hooks are present in source, not only in generated artifacts."
+    },
+    {
+      "id": "acceptance_matrix_json_check",
+      "command": "python3 ${tool_root}/verify_acceptance_matrix.py",
+      "required_evidence": [
+        "${artifact_root}/verification/acceptance_matrix.json"
+      ],
+      "pass_condition": "Acceptance matrix has schema, phase gates, evidence paths, pass conditions, and explicit non-goals."
+    },
+    {
+      "id": "oracle_workload_check",
+      "command": "python3 ${tool_root}/verify_oracle_workloads.py",
+      "required_evidence": [
+        "${artifact_root}/demo/outputs/golden_comparison.json",
+        "${artifact_root}/demo/outputs/compute_model/metrics.json"
+      ],
+      "pass_condition": "Representative kernels have deterministic golden outputs and result hashes before RTL or runtime claims are made."
+    },
+    {
+      "id": "runtime_abi_check",
+      "command": "bash scripts/verify_${ip_slug}_runtime_abi.sh",
+      "required_evidence": [
+        "${artifact_root}/rtl/control_plane_demo.json",
+        "${artifact_root}/rtl/e3_native_runtime_evidence.json"
+      ],
+      "pass_condition": "Queues, command submission, fences, events, error paths, and native ABI symbols are checked."
+    },
+    {
+      "id": "rtl_observability_check",
+      "command": "bash scripts/check_${ip_slug}_sources.sh",
+      "required_evidence": [
+        "RTL debug hooks",
+        "scoreboard, warp, LSU, and control-plane counters"
+      ],
+      "pass_condition": "Observable RTL hooks exist in source for the claims made by generated reports."
+    },
+    {
+      "id": "negative_contract_check",
+      "command": "python3 ${tool_root}/verify_negative_contracts.py",
+      "required_evidence": [
+        "${artifact_root}/rtl/e5_outputs/negative_boundary_evidence.json"
+      ],
+      "pass_condition": "Invalid descriptors, DMA bounds/alignment, reset-pending behavior, and error records are covered."
+    },
+    {
+      "id": "verilator_supplemental_check",
+      "command": "bash scripts/verify_${ip_slug}_verilator_coverage.sh",
+      "required_evidence": [
+        "${artifact_root}/verification/verilator_coverage/verilator_coverage_report.json",
+        "${artifact_root}/verification/verilator_coverage/coverage.dat"
+      ],
+      "pass_condition": "Directed, random, fault, and stress runs hit declared functional bins; structural metrics stay separate."
+    },
+    {
+      "id": "cross_layer_integration_check",
+      "command": "bash scripts/verify_${ip_slug}_phase3.sh",
+      "required_evidence": [
+        "${artifact_root}/verification/phase3_cross_layer_report.json"
+      ],
+      "pass_condition": "Runtime, RTL observability, workload, and negative-contract evidence agree across layers."
+    },
+    {
+      "id": "kernel_lowering_check",
+      "command": "bash scripts/verify_${ip_slug}_kernel_lowering.sh",
+      "required_evidence": [
+        "${artifact_root}/lowering/kernel_lowering_report.json"
+      ],
+      "pass_condition": "OpenCL-like subset kernels lower into an explicit instruction or micro-op representation."
+    },
+    {
+      "id": "microop_execution_check",
+      "command": "bash scripts/verify_${ip_slug}_microop_execution.sh",
+      "required_evidence": [
+        "${artifact_root}/microop_execution/microop_execution_report.json"
+      ],
+      "pass_condition": "Lowered kernels execute through a deterministic interpreter and match golden result hashes."
+    },
+    {
+      "id": "compiler_ir_check",
+      "command": "bash scripts/verify_${ip_slug}_compiler_ir.sh",
+      "required_evidence": [
+        "${artifact_root}/compiler_ir/compiler_ir_report.json"
+      ],
+      "pass_condition": "IR exposes basic blocks, CFG edges, registers, predicates, and kernel metadata for downstream checks."
+    },
+    {
+      "id": "memory_trace_integration_check",
+      "command": "bash scripts/verify_${ip_slug}_phase6_memory.sh",
+      "required_evidence": [
+        "${artifact_root}/verification/phase6_memory_trace_integration_report.json"
+      ],
+      "pass_condition": "Micro-op memory events reconcile with global/local/constant/DMA memory-model evidence."
+    },
+    {
+      "id": "driver_submission_check",
+      "command": "bash scripts/verify_${ip_slug}_driver_submission.sh",
+      "required_evidence": [
+        "${artifact_root}/driver_submission/driver_submission_report.json"
+      ],
+      "pass_condition": "Userspace runtime and DRM-like submission proxy agree on queue, fence, event, and error semantics."
+    },
+    {
+      "id": "synthesis_readiness_check",
+      "command": "bash scripts/verify_${ip_slug}_synthesis_readiness.sh",
+      "required_evidence": [
+        "${artifact_root}/synthesis/synthesis_readiness_report.json"
+      ],
+      "pass_condition": "Tool availability, source inventory, debug hooks, and generated evidence are classified before signoff claims."
+    },
+    {
+      "id": "yosys_probe_check",
+      "command": "bash scripts/verify_${ip_slug}_yosys_synthesis_probe.sh",
+      "required_evidence": [
+        "${artifact_root}/synthesis/yosys_synthesis_probe_report.json"
+      ],
+      "pass_condition": "Yosys probe is run or blockers are recorded as evidence without claiming successful target synthesis."
+    },
+    {
+      "id": "performance_projection_check",
+      "command": "bash scripts/verify_${ip_slug}_phase7_coalescing.sh",
+      "required_evidence": [
+        "${artifact_root}/verification/phase7_coalescing_score_report.json"
+      ],
+      "pass_condition": "Performance projections are tied to measured trace evidence and classified as proxy evidence."
+    },
+    {
+      "id": "functional_coverage_100_check",
+      "command": "bash scripts/verify_${ip_slug}_coverage_100.sh",
+      "required_evidence": [
+        "${artifact_root}/verification/verification_coverage_100.json"
+      ],
+      "pass_condition": "Every declared functional/acceptance bin is hit; structural RTL metrics remain separate observations."
+    },
+    {
+      "id": "full_acceptance_check",
+      "command": "bash scripts/accept_${ip_slug}_full.sh",
+      "required_evidence": [
+        "${artifact_root}/verification/acceptance_matrix.json",
+        "${artifact_root}/verification/verification_coverage_100.json"
+      ],
+      "pass_condition": "All phase gates pass and final coverage aggregation reports 100 percent functional/acceptance coverage."
+    },
+    {
+      "id": "methodology_bootstrap_check",
+      "command": "bash scripts/verify_celviz_eda_methodology.sh",
+      "required_evidence": [
+        "artifacts/celviz-methodology/methodology_verification_report.json",
+        "artifacts/celviz-methodology/bootstrap_acceptance_matrix.json"
+      ],
+      "pass_condition": "Celviz methodology docs, manifest, templates, bootstrap output, and no-overclaim boundaries are machine-checked."
+    }
+  ],
+  "required_report_fields": [
+    "schema",
+    "generated_at",
+    "clean_room_scope",
+    "status",
+    "checks",
+    "summary"
+  ],
+  "claim_boundary_template": {
+    "allowed": [
+      "clean-room proxy evidence",
+      "functional/acceptance bins",
+      "supplemental structural observations",
+      "synthesis readiness proxy"
+    ],
+    "forbidden_without_evidence": [
+      "proprietary vendor compatibility",
+      "official API conformance",
+      "RTL structural coverage closure",
+      "target-library synthesis signoff",
+      "timing/power/physical/silicon signoff"
+    ]
+  }
+}
