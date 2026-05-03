@@ -1,0 +1,677 @@
+{
+  "checks": [
+    {
+      "event_count": 7,
+      "name": "event_dag_has_expected_nodes",
+      "pass": true
+    },
+    {
+      "edge_count": 7,
+      "edges": [
+        {
+          "from": "event_1",
+          "kind": "wait_list",
+          "to": "event_3"
+        },
+        {
+          "from": "event_2",
+          "kind": "wait_list",
+          "to": "event_3"
+        },
+        {
+          "from": "event_1",
+          "kind": "wait_list",
+          "to": "event_4"
+        },
+        {
+          "from": "event_2",
+          "kind": "wait_list",
+          "to": "event_4"
+        },
+        {
+          "from": "event_4",
+          "kind": "wait_list",
+          "to": "event_5"
+        },
+        {
+          "from": "event_3",
+          "kind": "wait_list",
+          "to": "event_6"
+        },
+        {
+          "from": "event_6",
+          "kind": "wait_list",
+          "to": "event_7"
+        }
+      ],
+      "name": "event_dag_has_wait_list_edges",
+      "pass": true
+    },
+    {
+      "name": "event_dag_topological_order_covers_all_events",
+      "pass": true,
+      "topological_order": [
+        "event_1",
+        "event_2",
+        "event_3",
+        "event_4",
+        "event_5",
+        "event_6",
+        "event_7"
+      ]
+    },
+    {
+      "name": "profiling_timestamps_monotonic",
+      "pass": true
+    },
+    {
+      "name": "dependency_submit_after_wait_end",
+      "pass": true
+    },
+    {
+      "name": "wait_list_validation_rejects_bad_inputs",
+      "pass": true,
+      "validation_cases": [
+        {
+          "api": "clEnqueueReadBuffer",
+          "error_code": -57,
+          "message": "unknown event missing_event",
+          "pass": true,
+          "result": "CL_INVALID_EVENT_WAIT_LIST",
+          "wait_for": [
+            "missing_event"
+          ]
+        },
+        {
+          "api": "clEnqueueReadBuffer",
+          "error_code": -57,
+          "message": "duplicate event event_1",
+          "pass": true,
+          "result": "CL_INVALID_EVENT_WAIT_LIST",
+          "wait_for": [
+            "event_1",
+            "event_1"
+          ]
+        },
+        {
+          "api": "clEnqueueReadBuffer",
+          "error_code": -34,
+          "message": "event foreign_event_1 belongs to context context_foreign",
+          "pass": true,
+          "result": "CL_INVALID_CONTEXT",
+          "wait_for": [
+            "foreign_event_1"
+          ]
+        }
+      ]
+    },
+    {
+      "failed_events": [
+        {
+          "command": "NDRangeKernel",
+          "context": "context_1",
+          "error_code": -5,
+          "failure_reason": "injected proxy resource fault",
+          "handle": "event_6",
+          "profiling": {
+            "end": 1240,
+            "queued": 1210,
+            "start": 1230,
+            "submit": 1220
+          },
+          "queue": "queue_1",
+          "result": "CL_OUT_OF_RESOURCES",
+          "status": -5,
+          "wait_for": [
+            "event_3"
+          ]
+        },
+        {
+          "command": "ReadBuffer",
+          "context": "context_1",
+          "error_code": -14,
+          "failure_reason": "dependency failure propagated from event_6",
+          "handle": "event_7",
+          "profiling": {
+            "end": 1260,
+            "queued": 1250,
+            "start": 1260,
+            "submit": 1260
+          },
+          "queue": "queue_1",
+          "result": "CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST",
+          "status": -14,
+          "wait_for": [
+            "event_6"
+          ]
+        }
+      ],
+      "name": "failure_propagates_to_dependent_event",
+      "pass": true
+    },
+    {
+      "completed_events": [
+        "event_1",
+        "event_2",
+        "event_3",
+        "event_4",
+        "event_5"
+      ],
+      "name": "completed_events_remain_complete",
+      "pass": true
+    },
+    {
+      "name": "non_official_icd_boundary_preserved",
+      "pass": true,
+      "scope": "clean-room OpenCL event wait-list/profiling semantics proxy for the Celviz host API shim; not a Khronos ICD, not libOpenCL, not official OpenCL conformance, not CTS evidence, not a production Linux driver, and not proprietary Vivante compatibility"
+    }
+  ],
+  "claim_boundary": {
+    "cts_evidence": false,
+    "khronos_conformance": false,
+    "linux_kernel_driver": false,
+    "official_opencl_icd": false,
+    "vivante_compatibility": false
+  },
+  "clean_room_scope": "clean-room OpenCL event wait-list/profiling semantics proxy for the Celviz host API shim; not a Khronos ICD, not libOpenCL, not official OpenCL conformance, not CTS evidence, not a production Linux driver, and not proprietary Vivante compatibility",
+  "dag_paths": {
+    "failure_path": {
+      "fault": "event_6",
+      "propagated": "event_7"
+    },
+    "success_path": {
+      "kernel": "event_4",
+      "marker_join": "event_3",
+      "readback": "event_5",
+      "write_a": "event_1",
+      "write_b": "event_2"
+    }
+  },
+  "event_dag": {
+    "edges": [
+      {
+        "from": "event_1",
+        "kind": "wait_list",
+        "to": "event_3"
+      },
+      {
+        "from": "event_2",
+        "kind": "wait_list",
+        "to": "event_3"
+      },
+      {
+        "from": "event_1",
+        "kind": "wait_list",
+        "to": "event_4"
+      },
+      {
+        "from": "event_2",
+        "kind": "wait_list",
+        "to": "event_4"
+      },
+      {
+        "from": "event_4",
+        "kind": "wait_list",
+        "to": "event_5"
+      },
+      {
+        "from": "event_3",
+        "kind": "wait_list",
+        "to": "event_6"
+      },
+      {
+        "from": "event_6",
+        "kind": "wait_list",
+        "to": "event_7"
+      }
+    ],
+    "nodes": [
+      {
+        "command": "WriteBuffer",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_1",
+        "profiling": {
+          "end": 1040,
+          "queued": 1010,
+          "start": 1030,
+          "submit": 1020
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": []
+      },
+      {
+        "command": "WriteBuffer",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_2",
+        "profiling": {
+          "end": 1080,
+          "queued": 1050,
+          "start": 1070,
+          "submit": 1060
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": []
+      },
+      {
+        "command": "MarkerWithWaitList",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_3",
+        "profiling": {
+          "end": 1120,
+          "queued": 1090,
+          "start": 1110,
+          "submit": 1100
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": [
+          "event_1",
+          "event_2"
+        ]
+      },
+      {
+        "command": "NDRangeKernel",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_4",
+        "profiling": {
+          "end": 1160,
+          "queued": 1130,
+          "start": 1150,
+          "submit": 1140
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": [
+          "event_1",
+          "event_2"
+        ]
+      },
+      {
+        "command": "ReadBuffer",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_5",
+        "profiling": {
+          "end": 1200,
+          "queued": 1170,
+          "start": 1190,
+          "submit": 1180
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": [
+          "event_4"
+        ]
+      },
+      {
+        "command": "NDRangeKernel",
+        "context": "context_1",
+        "error_code": -5,
+        "failure_reason": "injected proxy resource fault",
+        "handle": "event_6",
+        "profiling": {
+          "end": 1240,
+          "queued": 1210,
+          "start": 1230,
+          "submit": 1220
+        },
+        "queue": "queue_1",
+        "result": "CL_OUT_OF_RESOURCES",
+        "status": -5,
+        "wait_for": [
+          "event_3"
+        ]
+      },
+      {
+        "command": "ReadBuffer",
+        "context": "context_1",
+        "error_code": -14,
+        "failure_reason": "dependency failure propagated from event_6",
+        "handle": "event_7",
+        "profiling": {
+          "end": 1260,
+          "queued": 1250,
+          "start": 1260,
+          "submit": 1260
+        },
+        "queue": "queue_1",
+        "result": "CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST",
+        "status": -14,
+        "wait_for": [
+          "event_6"
+        ]
+      }
+    ],
+    "topological_order": [
+      "event_1",
+      "event_2",
+      "event_3",
+      "event_4",
+      "event_5",
+      "event_6",
+      "event_7"
+    ]
+  },
+  "failure_propagation": [
+    {
+      "command": "NDRangeKernel",
+      "context": "context_1",
+      "error_code": -5,
+      "failure_reason": "injected proxy resource fault",
+      "handle": "event_6",
+      "profiling": {
+        "end": 1240,
+        "queued": 1210,
+        "start": 1230,
+        "submit": 1220
+      },
+      "queue": "queue_1",
+      "result": "CL_OUT_OF_RESOURCES",
+      "status": -5,
+      "wait_for": [
+        "event_3"
+      ]
+    },
+    {
+      "command": "ReadBuffer",
+      "context": "context_1",
+      "error_code": -14,
+      "failure_reason": "dependency failure propagated from event_6",
+      "handle": "event_7",
+      "profiling": {
+        "end": 1260,
+        "queued": 1250,
+        "start": 1260,
+        "submit": 1260
+      },
+      "queue": "queue_1",
+      "result": "CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST",
+      "status": -14,
+      "wait_for": [
+        "event_6"
+      ]
+    }
+  ],
+  "generated_at": "2026-05-03T05:51:17+00:00",
+  "metrics": {
+    "completed_events": 5,
+    "edges": 7,
+    "events": 7,
+    "failed_events": 2,
+    "profiling_records": 7,
+    "validation_rejections": 3
+  },
+  "modeled_api_surface": [
+    "clEnqueueWriteBuffer",
+    "clEnqueueMarkerWithWaitList",
+    "clEnqueueNDRangeKernel",
+    "clEnqueueReadBuffer",
+    "clWaitForEvents",
+    "clGetEventProfilingInfo"
+  ],
+  "profiling_semantics": {
+    "rule": "queued <= submit <= start <= end and dependent submit occurs after completed wait event end",
+    "timebase": "deterministic proxy nanoseconds",
+    "timestamp_fields": [
+      "queued",
+      "submit",
+      "start",
+      "end"
+    ]
+  },
+  "schema": "celviz.gpgpu.opencl_event_waitlist_profiling_gate.v1",
+  "status": "pass",
+  "trace": [
+    {
+      "detail": {
+        "command": "WriteBuffer",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_1",
+        "profiling": {
+          "end": 1040,
+          "queued": 1010,
+          "start": 1030,
+          "submit": 1020
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": []
+      },
+      "index": 1,
+      "op": "enqueue_complete"
+    },
+    {
+      "detail": {
+        "command": "WriteBuffer",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_2",
+        "profiling": {
+          "end": 1080,
+          "queued": 1050,
+          "start": 1070,
+          "submit": 1060
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": []
+      },
+      "index": 2,
+      "op": "enqueue_complete"
+    },
+    {
+      "detail": {
+        "command": "MarkerWithWaitList",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_3",
+        "profiling": {
+          "end": 1120,
+          "queued": 1090,
+          "start": 1110,
+          "submit": 1100
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": [
+          "event_1",
+          "event_2"
+        ]
+      },
+      "index": 3,
+      "op": "enqueue_complete"
+    },
+    {
+      "detail": {
+        "command": "NDRangeKernel",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_4",
+        "profiling": {
+          "end": 1160,
+          "queued": 1130,
+          "start": 1150,
+          "submit": 1140
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": [
+          "event_1",
+          "event_2"
+        ]
+      },
+      "index": 4,
+      "op": "enqueue_complete"
+    },
+    {
+      "detail": {
+        "command": "ReadBuffer",
+        "context": "context_1",
+        "error_code": 0,
+        "failure_reason": null,
+        "handle": "event_5",
+        "profiling": {
+          "end": 1200,
+          "queued": 1170,
+          "start": 1190,
+          "submit": 1180
+        },
+        "queue": "queue_1",
+        "result": "CL_COMPLETE",
+        "status": 0,
+        "wait_for": [
+          "event_4"
+        ]
+      },
+      "index": 5,
+      "op": "enqueue_complete"
+    },
+    {
+      "detail": {
+        "command": "NDRangeKernel",
+        "context": "context_1",
+        "error_code": -5,
+        "failure_reason": "injected proxy resource fault",
+        "handle": "event_6",
+        "profiling": {
+          "end": 1240,
+          "queued": 1210,
+          "start": 1230,
+          "submit": 1220
+        },
+        "queue": "queue_1",
+        "result": "CL_OUT_OF_RESOURCES",
+        "status": -5,
+        "wait_for": [
+          "event_3"
+        ]
+      },
+      "index": 6,
+      "op": "enqueue_error"
+    },
+    {
+      "detail": {
+        "command": "ReadBuffer",
+        "context": "context_1",
+        "error_code": -14,
+        "failure_reason": "dependency failure propagated from event_6",
+        "handle": "event_7",
+        "profiling": {
+          "end": 1260,
+          "queued": 1250,
+          "start": 1260,
+          "submit": 1260
+        },
+        "queue": "queue_1",
+        "result": "CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST",
+        "status": -14,
+        "wait_for": [
+          "event_6"
+        ]
+      },
+      "index": 7,
+      "op": "propagate_dependency_failure"
+    },
+    {
+      "detail": {
+        "api": "clEnqueueReadBuffer",
+        "error_code": -57,
+        "message": "unknown event missing_event",
+        "pass": true,
+        "result": "CL_INVALID_EVENT_WAIT_LIST",
+        "wait_for": [
+          "missing_event"
+        ]
+      },
+      "index": 8,
+      "op": "reject_wait_list"
+    },
+    {
+      "detail": {
+        "api": "clEnqueueReadBuffer",
+        "error_code": -57,
+        "message": "duplicate event event_1",
+        "pass": true,
+        "result": "CL_INVALID_EVENT_WAIT_LIST",
+        "wait_for": [
+          "event_1",
+          "event_1"
+        ]
+      },
+      "index": 9,
+      "op": "reject_wait_list"
+    },
+    {
+      "detail": {
+        "api": "clEnqueueReadBuffer",
+        "error_code": -34,
+        "message": "event foreign_event_1 belongs to context context_foreign",
+        "pass": true,
+        "result": "CL_INVALID_CONTEXT",
+        "wait_for": [
+          "foreign_event_1"
+        ]
+      },
+      "index": 10,
+      "op": "reject_wait_list"
+    }
+  ],
+  "wait_list_validation": [
+    {
+      "api": "clEnqueueReadBuffer",
+      "error_code": -57,
+      "message": "unknown event missing_event",
+      "pass": true,
+      "result": "CL_INVALID_EVENT_WAIT_LIST",
+      "wait_for": [
+        "missing_event"
+      ]
+    },
+    {
+      "api": "clEnqueueReadBuffer",
+      "error_code": -57,
+      "message": "duplicate event event_1",
+      "pass": true,
+      "result": "CL_INVALID_EVENT_WAIT_LIST",
+      "wait_for": [
+        "event_1",
+        "event_1"
+      ]
+    },
+    {
+      "api": "clEnqueueReadBuffer",
+      "error_code": -34,
+      "message": "event foreign_event_1 belongs to context context_foreign",
+      "pass": true,
+      "result": "CL_INVALID_CONTEXT",
+      "wait_for": [
+        "foreign_event_1"
+      ]
+    }
+  ]
+}

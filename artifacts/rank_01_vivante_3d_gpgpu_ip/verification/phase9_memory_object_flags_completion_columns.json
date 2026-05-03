@@ -1,0 +1,133 @@
+{
+  "columns": [
+    "kind",
+    "name",
+    "readiness",
+    "completion",
+    "covered_by",
+    "blockers",
+    "next_actions"
+  ],
+  "generated_at": "2026-05-03T05:51:17+00:00",
+  "rows": [
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        0,
+        3,
+        12
+      ],
+      "kind": "flag",
+      "name": "CL_MEM_READ_WRITE",
+      "next_actions": [
+        "map proxy behavior to OpenCL error-code table and CTS-shaped API fixtures"
+      ],
+      "readiness": "ready_proxy"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        1
+      ],
+      "kind": "flag",
+      "name": "CL_MEM_READ_ONLY",
+      "next_actions": [
+        "map proxy behavior to OpenCL error-code table and CTS-shaped API fixtures"
+      ],
+      "readiness": "ready_proxy"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        2
+      ],
+      "kind": "flag",
+      "name": "CL_MEM_WRITE_ONLY",
+      "next_actions": [
+        "map proxy behavior to OpenCL error-code table and CTS-shaped API fixtures"
+      ],
+      "readiness": "ready_proxy"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        1
+      ],
+      "kind": "flag",
+      "name": "CL_MEM_COPY_HOST_PTR",
+      "next_actions": [
+        "map proxy behavior to OpenCL error-code table and CTS-shaped API fixtures"
+      ],
+      "readiness": "ready_proxy"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        3
+      ],
+      "kind": "flag",
+      "name": "CL_MEM_USE_HOST_PTR",
+      "next_actions": [
+        "map proxy behavior to OpenCL error-code table and CTS-shaped API fixtures"
+      ],
+      "readiness": "ready_proxy"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        10,
+        11,
+        20,
+        21
+      ],
+      "kind": "operation",
+      "name": "map/unmap",
+      "next_actions": [
+        "connect runtime API event wait-list and blocking/non-blocking semantics before conformance claims"
+      ],
+      "readiness": "ready_proxy"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        12,
+        22,
+        23
+      ],
+      "kind": "operation",
+      "name": "sub-buffer",
+      "next_actions": [
+        "connect runtime API event wait-list and blocking/non-blocking semantics before conformance claims"
+      ],
+      "readiness": "ready_proxy"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        20,
+        22
+      ],
+      "kind": "operation",
+      "name": "bounds negative tests",
+      "next_actions": [
+        "connect runtime API event wait-list and blocking/non-blocking semantics before conformance claims"
+      ],
+      "readiness": "ready_proxy"
+    }
+  ],
+  "schema": "celviz.gpgpu.phase9_memory_object_completion_columns.v1",
+  "status": "pass",
+  "summary": {
+    "complete_for_proxy_gate": 8,
+    "official_conformance_claim": false,
+    "row_count": 8
+  }
+}

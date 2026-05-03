@@ -1,0 +1,908 @@
+{
+  "artifact_root": "artifacts/rank_01_vivante_3d_gpgpu_ip",
+  "checks": [
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "name": "minimum_device_info_query_count",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "observed": [
+          "atomics_svm",
+          "execution",
+          "extensions",
+          "fp_numeric",
+          "images",
+          "limits",
+          "memory",
+          "profile_version",
+          "queue"
+        ]
+      },
+      "name": "required_categories_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "observed": [
+          "reported_not_claimed",
+          "supported_proxy",
+          "unsupported_optional",
+          "unsupported_required_gap"
+        ]
+      },
+      "name": "status_vocabulary_valid",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "clean_room_scope": "OpenCL CL_DEVICE_* device-info readiness table for a clean-room Celviz GPGPU proxy. Values are explicit support taxonomy entries and local proxy evidence, not Khronos CTS results, not official OpenCL conformance, not a product ICD, not a Vivante-compatible OpenCL stack, and not a claim that the device passes clGetDeviceInfo CTS."
+      },
+      "name": "no_conformance_overclaim",
+      "pass": true
+    },
+    {
+      "name": "all_rows_have_cts_orientation",
+      "pass": true
+    },
+    {
+      "name": "unsupported_optional_not_advertised",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "OpenCL CL_DEVICE_* device-info readiness table for a clean-room Celviz GPGPU proxy. Values are explicit support taxonomy entries and local proxy evidence, not Khronos CTS results, not official OpenCL conformance, not a product ICD, not a Vivante-compatible OpenCL stack, and not a claim that the device passes clGetDeviceInfo CTS.",
+  "generated_at": "2026-05-03T05:51:17+00:00",
+  "official_sources": [
+    {
+      "name": "Khronos OpenCL 3.0 unified API specification",
+      "scope": "CL_DEVICE_* query semantics, device types, profiles, versions, extensions, limits, memory, image, atomic, and SVM fields",
+      "url": "https://registry.khronos.org/OpenCL/specs/3.0-unified/html/OpenCL_API.html"
+    },
+    {
+      "name": "Khronos OpenCL CTS",
+      "scope": "official open-source CTS repository; this report only prepares a device-info table and does not run CTS",
+      "url": "https://github.com/KhronosGroup/OpenCL-CTS"
+    },
+    {
+      "name": "Khronos OpenCL conformant products/adopters",
+      "scope": "public conformance publication path; no Celviz product listing is claimed here",
+      "url": "https://www.khronos.org/conformance/adopters/conformant-products/opencl"
+    }
+  ],
+  "queries": [
+    {
+      "category": "profile_version",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "device_info type query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_TYPE",
+      "rationale": "The target is modeled as a GPGPU proxy.",
+      "reported_value": "CL_DEVICE_TYPE_GPU",
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "proxy device taxonomy"
+    },
+    {
+      "category": "profile_version",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "device_info vendor query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_VENDOR_ID",
+      "rationale": "No Khronos/vendor product identity is claimed.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "not assigned"
+    },
+    {
+      "category": "profile_version",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "device_info string query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_NAME",
+      "rationale": "Uses local clean-room proxy device id.",
+      "reported_value": "celviz-full-proxy",
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "device_tiers best proxy"
+    },
+    {
+      "category": "profile_version",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "device_info string query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_VENDOR",
+      "rationale": "Vendor string must not imply Khronos or proprietary Vivante compatibility.",
+      "reported_value": "Celviz clean-room proxy",
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "claim boundary"
+    },
+    {
+      "category": "profile_version",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "profile query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      ],
+      "name": "CL_DEVICE_PROFILE",
+      "rationale": "FULL_PROFILE/EMBEDDED_PROFILE is not claimed until CTS and Adopter steps exist.",
+      "reported_value": "not_claimed",
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "conformance boundary"
+    },
+    {
+      "category": "profile_version",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "version query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      ],
+      "name": "CL_DEVICE_VERSION",
+      "rationale": "No official OpenCL implementation version is advertised.",
+      "reported_value": "OpenCL readiness taxonomy only",
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "conformance boundary"
+    },
+    {
+      "category": "profile_version",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "driver version query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json"
+      ],
+      "name": "CL_DRIVER_VERSION",
+      "rationale": "No production OpenCL driver is claimed.",
+      "reported_value": "celviz-proxy-not-product-driver",
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "conformance boundary"
+    },
+    {
+      "category": "profile_version",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "OpenCL C version query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_OPENCL_C_VERSION",
+      "rationale": "The current parser/lowering covers an OpenCL-like subset only.",
+      "reported_value": "OpenCL C subset only",
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "subset evidence"
+    },
+    {
+      "category": "extensions",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "extension string query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      ],
+      "name": "CL_DEVICE_EXTENSIONS",
+      "rationale": "No cl_khr_* extension is advertised by default.",
+      "reported_value": "",
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "extension boundary"
+    },
+    {
+      "category": "extensions",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "extension version query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      ],
+      "name": "CL_DEVICE_EXTENSIONS_WITH_VERSION",
+      "rationale": "No versioned extension list is claimed.",
+      "reported_value": [],
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "extension boundary"
+    },
+    {
+      "category": "profile_version",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "numeric version query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      ],
+      "name": "CL_DEVICE_NUMERIC_VERSION",
+      "rationale": "No OpenCL numeric version is advertised.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "conformance boundary"
+    },
+    {
+      "category": "limits",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "compute unit limit query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_MAX_COMPUTE_UNITS",
+      "rationale": "Derived conservatively from local proxy shader unit tiers.",
+      "reported_value": 16,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "device_tiers shader_units_vec1"
+    },
+    {
+      "category": "limits",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "work item dimension query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS",
+      "rationale": "Existing subset artifacts use 3D global/local size arrays.",
+      "reported_value": 3,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "subset NDRange model"
+    },
+    {
+      "category": "limits",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "work group size query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_MAX_WORK_GROUP_SIZE",
+      "rationale": "Proxy value chosen from current local-size evidence; not CTS proven.",
+      "reported_value": 256,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "proxy tier heuristic"
+    },
+    {
+      "category": "limits",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "work item size query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_MAX_WORK_ITEM_SIZES",
+      "rationale": "Matches current 2D/1D proxy workload shapes.",
+      "reported_value": [
+        256,
+        256,
+        1
+      ],
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "proxy tier heuristic"
+    },
+    {
+      "category": "limits",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "clock query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json"
+      ],
+      "name": "CL_DEVICE_MAX_CLOCK_FREQUENCY",
+      "rationale": "No signed-off frequency exists.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "no silicon timing evidence"
+    },
+    {
+      "category": "limits",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "address bits query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_ADDRESS_BITS",
+      "rationale": "Taken from local proxy tier metadata.",
+      "reported_value": 40,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "device_tiers address_bits"
+    },
+    {
+      "category": "limits",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "parameter size query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_MAX_PARAMETER_SIZE",
+      "rationale": "Sufficient for current kernel ABI fixtures only.",
+      "reported_value": 1024,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "ABI proxy convention"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "alignment query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_MEM_BASE_ADDR_ALIGN",
+      "rationale": "Conservative alignment for buffer-style accesses.",
+      "reported_value": 128,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "proxy alignment policy"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "data alignment query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE",
+      "rationale": "Conservative minimum data-type alignment policy.",
+      "reported_value": 128,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "proxy alignment policy"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "global memory size query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_GLOBAL_MEM_SIZE",
+      "rationale": "Proxy memory aperture, not measured product memory.",
+      "reported_value": 1073741824,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "address_bits proxy size"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "max allocation query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_MAX_MEM_ALLOC_SIZE",
+      "rationale": "Conservative quarter-aperture allocation limit.",
+      "reported_value": 268435456,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "global_mem_size policy"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "cache query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_GLOBAL_MEM_CACHE_TYPE",
+      "rationale": "Cache behavior is not CTS-ready.",
+      "reported_value": "CL_NONE",
+      "required_for_readiness": true,
+      "support_status": "unsupported_required_gap",
+      "value_source": "cache model not complete"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "cacheline query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE",
+      "rationale": "No product cacheline is claimed.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "cache model not complete"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "cache size query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_GLOBAL_MEM_CACHE_SIZE",
+      "rationale": "No product cache size is claimed.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "cache model not complete"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "local memory query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_LOCAL_MEM_TYPE",
+      "rationale": "Local memory needs CTS-shaped lifetime/barrier evidence.",
+      "reported_value": "CL_LOCAL",
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "local memory readiness placeholder"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "local memory size query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_LOCAL_MEM_SIZE",
+      "rationale": "Proxy size, not product signoff.",
+      "reported_value": 32768,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "proxy local memory policy"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "ECC query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_ERROR_CORRECTION_SUPPORT",
+      "rationale": "ECC is not implemented or claimed.",
+      "reported_value": false,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "no ECC evidence"
+    },
+    {
+      "category": "memory",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "unified memory query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/summary.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_HOST_UNIFIED_MEMORY",
+      "rationale": "Unified host memory is not claimed.",
+      "reported_value": false,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "discrete proxy boundary"
+    },
+    {
+      "category": "images",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "image support query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+      ],
+      "name": "CL_DEVICE_IMAGE_SUPPORT",
+      "rationale": "Current subset keeps image/sampler support unclaimed.",
+      "reported_value": false,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "image features not implemented"
+    },
+    {
+      "category": "images",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "image arg limit query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_MAX_READ_IMAGE_ARGS",
+      "rationale": "Image support is false.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "image support false"
+    },
+    {
+      "category": "images",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "image arg limit query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_MAX_WRITE_IMAGE_ARGS",
+      "rationale": "Image support is false.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "image support false"
+    },
+    {
+      "category": "images",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "image dimension query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_IMAGE2D_MAX_WIDTH",
+      "rationale": "Image support is false.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "image support false"
+    },
+    {
+      "category": "images",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "image dimension query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_IMAGE2D_MAX_HEIGHT",
+      "rationale": "Image support is false.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "image support false"
+    },
+    {
+      "category": "images",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "image dimension query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_IMAGE3D_MAX_WIDTH",
+      "rationale": "Image support is false.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "image support false"
+    },
+    {
+      "category": "images",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "image dimension query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_IMAGE3D_MAX_HEIGHT",
+      "rationale": "Image support is false.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "image support false"
+    },
+    {
+      "category": "images",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "image dimension query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_IMAGE3D_MAX_DEPTH",
+      "rationale": "Image support is false.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "image support false"
+    },
+    {
+      "category": "images",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "sampler query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_MAX_SAMPLERS",
+      "rationale": "Sampler support is not claimed.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "sampler support false"
+    },
+    {
+      "category": "fp_numeric",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "evidence_paths": "single fp config query",
+      "name": "CL_DEVICE_SINGLE_FP_CONFIG",
+      "rationale": "Only a minimal FP32 proxy mode is recorded; full numeric conformance is not claimed.",
+      "reported_value": [
+        "CL_FP_ROUND_TO_NEAREST"
+      ],
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "fp32 proxy evidence"
+    },
+    {
+      "category": "fp_numeric",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "half fp config query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_HALF_FP_CONFIG",
+      "rationale": "FP16 proxy throughput exists but OpenCL cl_khr_fp16/half semantics are not claimed.",
+      "reported_value": [],
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "fp16 is proxy-only"
+    },
+    {
+      "category": "fp_numeric",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "double fp config query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_DOUBLE_FP_CONFIG",
+      "rationale": "FP64 is not implemented or claimed.",
+      "reported_value": [],
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "no fp64 evidence"
+    },
+    {
+      "category": "fp_numeric",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "endianness query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json"
+      ],
+      "name": "CL_DEVICE_ENDIAN_LITTLE",
+      "rationale": "Little-endian proxy assumption.",
+      "reported_value": true,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "RISC-V/proxy convention"
+    },
+    {
+      "category": "execution",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "availability query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      ],
+      "name": "CL_DEVICE_AVAILABLE",
+      "rationale": "The proxy is available for local evidence generation.",
+      "reported_value": true,
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "local proxy available"
+    },
+    {
+      "category": "execution",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "compiler availability query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_COMPILER_AVAILABLE",
+      "rationale": "The subset lowerer is not a product OpenCL compiler.",
+      "reported_value": false,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "no OpenCL C compiler"
+    },
+    {
+      "category": "execution",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "linker availability query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json"
+      ],
+      "name": "CL_DEVICE_LINKER_AVAILABLE",
+      "rationale": "No OpenCL linker is implemented.",
+      "reported_value": false,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "no OpenCL linker"
+    },
+    {
+      "category": "execution",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "execution capabilities query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/microop_execution/microop_execution_report.json"
+      ],
+      "name": "CL_DEVICE_EXECUTION_CAPABILITIES",
+      "rationale": "Kernel execution exists as clean-room micro-op proxy evidence.",
+      "reported_value": [
+        "CL_EXEC_KERNEL"
+      ],
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "kernel execution proxy"
+    },
+    {
+      "category": "queue",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "queue properties query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json"
+      ],
+      "name": "CL_DEVICE_QUEUE_PROPERTIES",
+      "rationale": "In-order/profiling-like proxy evidence only.",
+      "reported_value": [
+        "CL_QUEUE_PROFILING_ENABLE"
+      ],
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "driver submission proxy"
+    },
+    {
+      "category": "queue",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "host queue properties query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json"
+      ],
+      "name": "CL_DEVICE_QUEUE_ON_HOST_PROPERTIES",
+      "rationale": "Host queue properties are proxy-scoped.",
+      "reported_value": [
+        "CL_QUEUE_PROFILING_ENABLE"
+      ],
+      "required_for_readiness": true,
+      "support_status": "supported_proxy",
+      "value_source": "driver submission proxy"
+    },
+    {
+      "category": "queue",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "device queue properties query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json"
+      ],
+      "name": "CL_DEVICE_QUEUE_ON_DEVICE_PROPERTIES",
+      "rationale": "OpenCL 2.x device-side enqueue is not claimed.",
+      "reported_value": [],
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "device-side queues unsupported"
+    },
+    {
+      "category": "queue",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "device queue limit query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json"
+      ],
+      "name": "CL_DEVICE_MAX_ON_DEVICE_QUEUES",
+      "rationale": "Device-side queues are not claimed.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "device-side queues unsupported"
+    },
+    {
+      "category": "queue",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "device event limit query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json"
+      ],
+      "name": "CL_DEVICE_MAX_ON_DEVICE_EVENTS",
+      "rationale": "Device-side events are not claimed.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "device-side queues unsupported"
+    },
+    {
+      "category": "atomics_svm",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "atomic capability query",
+      "evidence_paths": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+      ],
+      "name": "CL_DEVICE_ATOMIC_MEMORY_CAPABILITIES",
+      "rationale": "OpenCL atomics are not supported in the current subset.",
+      "reported_value": [],
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "atomics not modeled"
+    },
+    {
+      "category": "atomics_svm",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "atomic fence query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_ATOMIC_FENCE_CAPABILITIES",
+      "rationale": "OpenCL atomic fences are not claimed.",
+      "reported_value": [],
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "atomics not modeled"
+    },
+    {
+      "category": "atomics_svm",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "SVM capability query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_SVM_CAPABILITIES",
+      "rationale": "Shared virtual memory is not claimed.",
+      "reported_value": [],
+      "required_for_readiness": true,
+      "support_status": "unsupported_optional",
+      "value_source": "SVM unsupported"
+    },
+    {
+      "category": "atomics_svm",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "atomic alignment query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_PREFERRED_PLATFORM_ATOMIC_ALIGNMENT",
+      "rationale": "Atomics are unsupported.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "atomics unsupported"
+    },
+    {
+      "category": "atomics_svm",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "atomic alignment query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_PREFERRED_GLOBAL_ATOMIC_ALIGNMENT",
+      "rationale": "Atomics are unsupported.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "atomics unsupported"
+    },
+    {
+      "category": "atomics_svm",
+      "claim_boundary": "device-info readiness only; not official OpenCL conformance or CTS pass",
+      "cts_orientation": "atomic alignment query",
+      "evidence_paths": [],
+      "name": "CL_DEVICE_PREFERRED_LOCAL_ATOMIC_ALIGNMENT",
+      "rationale": "Atomics are unsupported.",
+      "reported_value": 0,
+      "required_for_readiness": true,
+      "support_status": "reported_not_claimed",
+      "value_source": "atomics unsupported"
+    }
+  ],
+  "schema": "celviz.gpgpu.opencl_device_info_table.v1",
+  "status": "pass",
+  "status_vocabulary": {
+    "not_applicable": "The query does not apply to the selected clean-room proxy scope.",
+    "reported_not_claimed": "A conservative query value is defined to avoid overclaiming optional functionality.",
+    "supported_proxy": "Local proxy evidence reports a deterministic value, but this is not an OpenCL conformance result.",
+    "unsupported_optional": "The feature is optional or extension-scoped and is not advertised by the proxy.",
+    "unsupported_required_gap": "The query is important for CTS/device-info readiness but lacks enough implementation evidence."
+  },
+  "summary": {
+    "categories": {
+      "atomics_svm": 6,
+      "execution": 4,
+      "extensions": 2,
+      "fp_numeric": 4,
+      "images": 9,
+      "limits": 7,
+      "memory": 11,
+      "profile_version": 9,
+      "queue": 5
+    },
+    "overclaim_safe": true,
+    "query_count": 57,
+    "support_status": {
+      "reported_not_claimed": 20,
+      "supported_proxy": 19,
+      "unsupported_optional": 17,
+      "unsupported_required_gap": 1
+    }
+  }
+}

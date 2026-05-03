@@ -67,6 +67,12 @@ fail() {
 [[ -x scripts/verify_celviz_gpgpu_phase8_claim_closure.sh || -f scripts/verify_celviz_gpgpu_phase8_claim_closure.sh ]] || fail "missing phase-8 claim closure verification script"
 [[ -x scripts/verify_celviz_gpgpu_phase8_work_packages.sh || -f scripts/verify_celviz_gpgpu_phase8_work_packages.sh ]] || fail "missing phase-8 work package verification script"
 [[ -x scripts/verify_celviz_gpgpu_opencl_host_api_shim.sh || -f scripts/verify_celviz_gpgpu_opencl_host_api_shim.sh ]] || fail "missing OpenCL host API shim verification script"
+[[ -x scripts/verify_celviz_gpgpu_opencl_device_info_table.sh || -f scripts/verify_celviz_gpgpu_opencl_device_info_table.sh ]] || fail "missing OpenCL device-info table verification script"
+[[ -x scripts/verify_celviz_gpgpu_opencl_build_error_code_matrix.sh || -f scripts/verify_celviz_gpgpu_opencl_build_error_code_matrix.sh ]] || fail "missing OpenCL build/error-code matrix verification script"
+[[ -x scripts/verify_celviz_gpgpu_opencl_event_waitlist_profiling.sh || -f scripts/verify_celviz_gpgpu_opencl_event_waitlist_profiling.sh ]] || fail "missing OpenCL event wait-list/profiling verification script"
+[[ -x scripts/verify_celviz_gpgpu_phase9_memory_object_flags.sh || -f scripts/verify_celviz_gpgpu_phase9_memory_object_flags.sh ]] || fail "missing phase-9 memory object flags verification script"
+[[ -x scripts/verify_celviz_gpgpu_runtime_queue_semantics.sh || -f scripts/verify_celviz_gpgpu_runtime_queue_semantics.sh ]] || fail "missing runtime queue semantics verification script"
+[[ -x scripts/verify_celviz_gpgpu_opencl_rtl_cts_cross_check.sh || -f scripts/verify_celviz_gpgpu_opencl_rtl_cts_cross_check.sh ]] || fail "missing OpenCL RTL/CTS cross-check verification script"
 [[ -x scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh || -f scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh ]] || fail "missing phase-9 OpenCL conformance-readiness verification script"
 [[ -x scripts/verify_celviz_gpgpu_phase9_memory_conformance.sh || -f scripts/verify_celviz_gpgpu_phase9_memory_conformance.sh ]] || fail "missing phase-9 memory conformance-readiness verification script"
 [[ -x scripts/verify_celviz_gpgpu_phase9_driver_os.sh || -f scripts/verify_celviz_gpgpu_phase9_driver_os.sh ]] || fail "missing phase-9 driver/OS conformance-readiness verification script"
@@ -135,6 +141,24 @@ bash scripts/verify_celviz_gpgpu_phase8_work_packages.sh
 
 log "gate: verify executable OpenCL host API shim"
 bash scripts/verify_celviz_gpgpu_opencl_host_api_shim.sh
+
+log "gate: verify OpenCL device-info table"
+bash scripts/verify_celviz_gpgpu_opencl_device_info_table.sh
+
+log "gate: verify OpenCL build/error-code matrix"
+bash scripts/verify_celviz_gpgpu_opencl_build_error_code_matrix.sh
+
+log "gate: verify OpenCL event wait-list/profiling semantics"
+bash scripts/verify_celviz_gpgpu_opencl_event_waitlist_profiling.sh
+
+log "gate: verify phase-9 memory object flags/map/sub-buffer semantics"
+bash scripts/verify_celviz_gpgpu_phase9_memory_object_flags.sh
+
+log "gate: verify runtime queue semantics"
+bash scripts/verify_celviz_gpgpu_runtime_queue_semantics.sh
+
+log "gate: verify OpenCL host-to-RTL CTS-readiness cross-check"
+bash scripts/verify_celviz_gpgpu_opencl_rtl_cts_cross_check.sh
 
 log "gate: verify phase-9 OpenCL conformance-readiness artifacts"
 bash scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh

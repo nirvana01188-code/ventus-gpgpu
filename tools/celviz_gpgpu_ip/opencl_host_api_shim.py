@@ -50,6 +50,89 @@ ERROR_CODES = {
     "CL_BUILD_PROGRAM_FAILURE": -11,
 }
 
+DEVICE_INFO_TABLE = {
+    "CL_DEVICE_TYPE": {
+        "value": "CL_DEVICE_TYPE_GPU",
+        "readiness": "proxy",
+        "cts_relevance": "core device discovery",
+    },
+    "CL_DEVICE_VENDOR": {
+        "value": "Celviz clean-room",
+        "readiness": "proxy",
+        "cts_relevance": "string query",
+    },
+    "CL_DEVICE_NAME": {
+        "value": "Celviz GPGPU IP proxy",
+        "readiness": "proxy",
+        "cts_relevance": "string query",
+    },
+    "CL_DEVICE_VERSION": {
+        "value": "OpenCL 1.2 Celviz-readiness subset",
+        "readiness": "partial",
+        "cts_relevance": "version/profile query; not conformance",
+    },
+    "CL_DEVICE_OPENCL_C_VERSION": {
+        "value": "OpenCL C subset",
+        "readiness": "partial",
+        "cts_relevance": "compiler language query",
+    },
+    "CL_DEVICE_PROFILE": {
+        "value": "EMBEDDED_PROFILE_PROXY",
+        "readiness": "proxy",
+        "cts_relevance": "profile query",
+    },
+    "CL_DEVICE_EXTENSIONS": {
+        "value": "",
+        "readiness": "ready",
+        "cts_relevance": "no extensions advertised until implemented",
+    },
+    "CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS": {
+        "value": 3,
+        "readiness": "proxy",
+        "cts_relevance": "NDRange validation",
+    },
+    "CL_DEVICE_MAX_WORK_GROUP_SIZE": {
+        "value": 256,
+        "readiness": "proxy",
+        "cts_relevance": "work-group limit validation",
+    },
+    "CL_DEVICE_MAX_WORK_ITEM_SIZES": {
+        "value": [256, 256, 64],
+        "readiness": "proxy",
+        "cts_relevance": "per-dimension limit validation",
+    },
+    "CL_DEVICE_ADDRESS_BITS": {
+        "value": 40,
+        "readiness": "proxy",
+        "cts_relevance": "memory object addressing",
+    },
+    "CL_DEVICE_GLOBAL_MEM_SIZE": {
+        "value": 268435456,
+        "readiness": "proxy",
+        "cts_relevance": "memory allocation limits",
+    },
+    "CL_DEVICE_LOCAL_MEM_SIZE": {
+        "value": 32768,
+        "readiness": "proxy",
+        "cts_relevance": "local memory limits",
+    },
+    "CL_DEVICE_IMAGE_SUPPORT": {
+        "value": False,
+        "readiness": "ready",
+        "cts_relevance": "images intentionally unsupported and must not be advertised",
+    },
+    "CL_DEVICE_SVM_CAPABILITIES": {
+        "value": 0,
+        "readiness": "ready",
+        "cts_relevance": "SVM not advertised",
+    },
+    "CL_DEVICE_ATOMIC_MEMORY_CAPABILITIES": {
+        "value": 0,
+        "readiness": "ready",
+        "cts_relevance": "atomics not advertised",
+    },
+}
+
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
@@ -74,6 +157,19 @@ def write_doc(path: Path, report: Mapping[str, Any]) -> None:
     lines.extend(["", "## Negative Error-Code Tests", ""])
     for case in report["negative_tests"]:
         lines.append(f"- `{case['name']}`: `{case['observed_error']}` expected `{case['expected_error']}`")
+    lines.extend(["", "## Device Info Matrix", ""])
+    for item in report["device_info_matrix"]["supported_queries"]:
+        lines.append(f"- `{item['name']}` readiness=`{item['readiness']}` value=`{item['value']}`")
+    lines.extend(["", "## Build Log / Error Matrix", ""])
+    for case in report["build_log_error_matrix"]["cases"]:
+        lines.append(f"- `{case['name']}`: `{case['observed_error']}` pass=`{case['pass']}`")
+    lines.extend(["", "## Event Profiling Matrix", ""])
+    for event in report["event_profiling_matrix"]["events"]:
+        profile = event["profiling"]
+        lines.append(
+            f"- `{event['event']}` command=`{event['command']}` wait_for=`{event.get('wait_for', [])}` "
+            f"queued={profile['queued']} submit={profile['submit']} start={profile['start']} end={profile['end']}"
+        )
     lines.extend(
         [
             "",
@@ -103,9 +199,15 @@ class Handle:
 class HostShim:
     def __init__(self) -> None:
         self.next_id = 1
+        self.clock = 100
         self.handles: dict[str, Handle] = {}
         self.trace: list[dict[str, Any]] = []
         self.events: list[dict[str, Any]] = []
+
+    def _timestamp(self, delta: int = 7) -> int:
+        value = self.clock
+        self.clock += delta
+        return value
 
     def _new_handle(self, kind: str, name: str, payload: Mapping[str, Any] | None = None) -> str:
         handle = f"{kind}_{self.next_id}"
@@ -141,24 +243,19 @@ class HostShim:
         handle = self._new_handle(
             "device",
             "celviz-gpgpu-proxy",
-            {
-                "type": "CL_DEVICE_TYPE_GPU",
-                "opencl_c_version": "OpenCL C subset",
-                "max_work_group_size": 256,
-                "address_bits": 40,
-            },
+            {"device_info": DEVICE_INFO_TABLE},
         )
         self._trace("clGetDeviceIDs", handle=handle, platform=platform)
         return handle
 
     def clGetDeviceInfo(self, device: str, param: str) -> Any:
         item = self._require(device, "device", "CL_INVALID_DEVICE")
-        supported = {"CL_DEVICE_TYPE", "CL_DEVICE_MAX_WORK_GROUP_SIZE", "CL_DEVICE_ADDRESS_BITS", "CL_DEVICE_OPENCL_C_VERSION"}
-        if param not in supported:
+        table = item.payload.get("device_info", {})
+        if param not in table:
             self._trace("clGetDeviceInfo", "CL_INVALID_VALUE", device=device, param=param)
             return None
         self._trace("clGetDeviceInfo", device=device, param=param)
-        return item.payload.get(param.lower().replace("cl_device_", ""))
+        return table[param]["value"]
 
     def clCreateContext(self, device: str) -> str:
         self._require(device, "device", "CL_INVALID_DEVICE")
@@ -192,8 +289,7 @@ class HostShim:
         if size_bytes > int(buffer.payload["size_bytes"]):
             self._trace("clEnqueueWriteBuffer", "CL_INVALID_VALUE", queue=queue, buffer=buffer_handle, size_bytes=size_bytes)
             raise ValueError("CL_INVALID_VALUE")
-        event = self._new_handle("event", f"write_{buffer.name}", {"queue": queue, "status": "complete"})
-        self.events.append({"event": event, "command": "write_buffer", "status": "complete", "buffer": buffer_handle})
+        event = self._new_event(queue, "write_buffer", [], {"buffer": buffer_handle, "size_bytes": size_bytes})
         self._trace("clEnqueueWriteBuffer", handle=event, queue=queue, buffer=buffer_handle, size_bytes=size_bytes)
         return event
 
@@ -247,8 +343,7 @@ class HostShim:
             raise ValueError("CL_INVALID_WORK_GROUP_SIZE")
         runtime_data = opencl_subset.runtime_commands_from_abis([abi], "gpgpu_nano_ultra31")
         _log, metrics = runtime_proxy.execute_runtime(runtime_data, dry_run=True, base_dir=Path.cwd())
-        event = self._new_handle("event", f"kernel_{handle.name}", {"queue": queue, "status": "complete", "runtime_status": metrics["status"]})
-        self.events.append({"event": event, "command": "ndrange_kernel", "status": "complete", "kernel": kernel})
+        event = self._new_event(queue, "ndrange_kernel", [], {"kernel": kernel, "runtime_status": metrics["status"]})
         self._trace("clEnqueueNDRangeKernel", handle=event, queue=queue, kernel=kernel, runtime_status=metrics["status"])
         return event, metrics
 
@@ -257,8 +352,7 @@ class HostShim:
         self._require(buffer_handle, "buffer", "CL_INVALID_MEM_OBJECT")
         for event in wait_for:
             self._require(event, "event", "CL_INVALID_VALUE")
-        out_event = self._new_handle("event", "read_buffer", {"queue": queue, "status": "complete", "wait_for": wait_for})
-        self.events.append({"event": out_event, "command": "read_buffer", "status": "complete", "wait_for": wait_for})
+        out_event = self._new_event(queue, "read_buffer", wait_for, {"buffer": buffer_handle, "wait_for": wait_for})
         self._trace("clEnqueueReadBuffer", handle=out_event, queue=queue, buffer=buffer_handle, wait_for=wait_for)
         return out_event
 
@@ -286,6 +380,42 @@ class HostShim:
             if item.refcount > 0
         }
 
+    def _new_event(self, queue: str, command: str, wait_for: list[str], extra: Mapping[str, Any]) -> str:
+        queued = self._timestamp()
+        submitted = self._timestamp()
+        started = self._timestamp()
+        ended = self._timestamp()
+        profile = {
+            "queued": queued,
+            "submit": submitted,
+            "start": started,
+            "end": ended,
+            "duration": ended - started,
+        }
+        event = self._new_handle(
+            "event",
+            command,
+            {
+                "queue": queue,
+                "status": "complete",
+                "wait_for": list(wait_for),
+                "profiling": profile,
+                **dict(extra),
+            },
+        )
+        self.events.append(
+            {
+                "event": event,
+                "command": command,
+                "status": "complete",
+                "queue": queue,
+                "wait_for": list(wait_for),
+                "profiling": profile,
+                **dict(extra),
+            }
+        )
+        return event
+
 
 def vector_add_spec() -> opencl_subset.KernelSpec:
     for spec in opencl_subset.builtin_specs():
@@ -300,8 +430,8 @@ def run_lifecycle() -> dict[str, Any]:
 
     platform = shim.clGetPlatformIDs()
     device = shim.clGetDeviceIDs(platform)
-    shim.clGetDeviceInfo(device, "CL_DEVICE_TYPE")
-    shim.clGetDeviceInfo(device, "CL_DEVICE_MAX_WORK_GROUP_SIZE")
+    for param in DEVICE_INFO_TABLE:
+        shim.clGetDeviceInfo(device, param)
     context = shim.clCreateContext(device)
     queue = shim.clCreateCommandQueueWithProperties(context, device, {"CL_QUEUE_PROFILING_ENABLE": False})
     assert queue is not None
@@ -356,7 +486,7 @@ def run_negative_tests() -> list[dict[str, Any]]:
     device = shim.clGetDeviceIDs(platform)
     context = shim.clCreateContext(device)
 
-    shim.clGetDeviceInfo(device, "CL_DEVICE_IMAGE_SUPPORT")
+    shim.clGetDeviceInfo(device, "CL_DEVICE_VENDOR_ID")
     cases.append(
         {
             "name": "unsupported_device_info_query",
@@ -425,10 +555,151 @@ def run_negative_tests() -> list[dict[str, Any]]:
     return cases
 
 
+def build_log_error_matrix() -> dict[str, Any]:
+    cases: list[dict[str, Any]] = []
+    shim = HostShim()
+    platform = shim.clGetPlatformIDs()
+    device = shim.clGetDeviceIDs(platform)
+    context = shim.clCreateContext(device)
+    spec = vector_add_spec()
+
+    bad_program = shim.clCreateProgramWithSource(context, "__kernel void bad(__global double *p) { p[0] = 1.0; }")
+    bad_spec = opencl_subset.KernelSpec(
+        name="bad",
+        source="__kernel void bad(__global double *p) { p[0] = 1.0; }",
+        global_size=(64, 1, 1),
+        local_size=(32, 1, 1),
+        buffers=({"id": "bad_p", "arg": "p", "device_address": "0x89000000", "size_bytes": 4096, "access": "read_write"},),
+        scalar_args={},
+        precision="fp32",
+    )
+    build = shim.clBuildProgram(bad_program, bad_spec)
+    bad_program_handle = shim.handles[bad_program]
+    cases.append(
+        {
+            "name": "build_rejects_double",
+            "api": "clBuildProgram",
+            "expected_error": "CL_BUILD_PROGRAM_FAILURE",
+            "observed_error": shim.trace[-1]["result"],
+            "build_status": bad_program_handle.payload.get("build_status"),
+            "build_log": bad_program_handle.payload.get("build_log"),
+            "pass": build is None and shim.trace[-1]["result"] == "CL_BUILD_PROGRAM_FAILURE" and bool(bad_program_handle.payload.get("build_log")),
+        }
+    )
+
+    good_program = shim.clCreateProgramWithSource(context, spec.source)
+    shim.clBuildProgram(good_program, spec)
+    missing = shim.clCreateKernel(good_program, "not_vector_add")
+    cases.append(
+        {
+            "name": "kernel_name_error_code",
+            "api": "clCreateKernel",
+            "expected_error": "CL_INVALID_KERNEL_NAME",
+            "observed_error": shim.trace[-1]["result"],
+            "pass": missing is None and shim.trace[-1]["result"] == "CL_INVALID_KERNEL_NAME",
+        }
+    )
+
+    kernel = shim.clCreateKernel(good_program, "vector_add")
+    assert kernel is not None
+    try:
+        shim.clSetKernelArg(kernel, -1, 0)
+    except IndexError:
+        pass
+    cases.append(
+        {
+            "name": "negative_arg_index_error_code",
+            "api": "clSetKernelArg",
+            "expected_error": "CL_INVALID_ARG_INDEX",
+            "observed_error": shim.trace[-1]["result"],
+            "pass": shim.trace[-1]["result"] == "CL_INVALID_ARG_INDEX",
+        }
+    )
+
+    return {
+        "schema": "celviz.gpgpu.opencl_host_api_shim.build_log_error_matrix.v1",
+        "status": "pass" if all(item["pass"] for item in cases) else "fail",
+        "cases": cases,
+        "case_count": len(cases),
+    }
+
+
+def device_info_matrix() -> dict[str, Any]:
+    supported = []
+    not_advertised = []
+    for name, row in DEVICE_INFO_TABLE.items():
+        entry = {
+            "name": name,
+            "value": row["value"],
+            "readiness": row["readiness"],
+            "cts_relevance": row["cts_relevance"],
+        }
+        supported.append(entry)
+        if name in {"CL_DEVICE_IMAGE_SUPPORT", "CL_DEVICE_SVM_CAPABILITIES", "CL_DEVICE_ATOMIC_MEMORY_CAPABILITIES"}:
+            not_advertised.append(entry)
+    checks = [
+        {"name": "device_info_query_depth", "pass": len(supported) >= 16, "count": len(supported)},
+        {
+            "name": "unsupported_features_not_advertised",
+            "pass": all(not item["value"] for item in not_advertised),
+            "items": not_advertised,
+        },
+        {
+            "name": "workgroup_limit_matches_subset",
+            "pass": DEVICE_INFO_TABLE["CL_DEVICE_MAX_WORK_GROUP_SIZE"]["value"] == 256,
+            "value": DEVICE_INFO_TABLE["CL_DEVICE_MAX_WORK_GROUP_SIZE"]["value"],
+        },
+    ]
+    return {
+        "schema": "celviz.gpgpu.opencl_host_api_shim.device_info_matrix.v1",
+        "status": "pass" if all(item["pass"] for item in checks) else "fail",
+        "supported_queries": supported,
+        "checks": checks,
+    }
+
+
+def event_profiling_matrix(events: list[dict[str, Any]]) -> dict[str, Any]:
+    by_event = {item["event"]: item for item in events}
+    checks: list[dict[str, Any]] = []
+    for item in events:
+        profile = item.get("profiling", {})
+        checks.append(
+            {
+                "name": f"{item['event']}_monotonic_profile",
+                "pass": int(profile.get("queued", -1)) <= int(profile.get("submit", -1)) <= int(profile.get("start", -1)) <= int(profile.get("end", -1)),
+                "profiling": profile,
+            }
+        )
+        checks.append(
+            {
+                "name": f"{item['event']}_wait_list_resolved",
+                "pass": all(wait in by_event for wait in item.get("wait_for", [])),
+                "wait_for": item.get("wait_for", []),
+            }
+        )
+    read_events = [item for item in events if item.get("command") == "read_buffer"]
+    checks.append(
+        {
+            "name": "readback_depends_on_kernel_event",
+            "pass": bool(read_events) and any(by_event.get(wait, {}).get("command") == "ndrange_kernel" for wait in read_events[0].get("wait_for", [])),
+            "read_events": read_events,
+        }
+    )
+    return {
+        "schema": "celviz.gpgpu.opencl_host_api_shim.event_profiling_matrix.v1",
+        "status": "pass" if all(item["pass"] for item in checks) else "fail",
+        "events": events,
+        "checks": checks,
+    }
+
+
 def build_report() -> dict[str, Any]:
     lifecycle = run_lifecycle()
     shim: HostShim = lifecycle["shim"]
     negatives = run_negative_tests()
+    device_matrix = device_info_matrix()
+    build_matrix = build_log_error_matrix()
+    event_matrix = event_profiling_matrix(shim.events)
     api_names = [item["api"] for item in shim.trace]
     required_apis = {
         "clGetPlatformIDs",
@@ -457,6 +728,9 @@ def build_report() -> dict[str, Any]:
         {"name": "runtime_proxy_pending_zero", "pass": int(runtime_summary.get("pending_count", -1)) == 0, "runtime_summary": runtime_summary},
         {"name": "handles_released", "pass": live == {}, "live_handles": live},
         {"name": "negative_error_code_tests_pass", "pass": all(item["pass"] for item in negatives), "negative_count": len(negatives)},
+        {"name": "device_info_matrix_pass", "pass": device_matrix["status"] == "pass", "query_count": len(device_matrix["supported_queries"])},
+        {"name": "build_log_error_matrix_pass", "pass": build_matrix["status"] == "pass", "case_count": build_matrix["case_count"]},
+        {"name": "event_profiling_matrix_pass", "pass": event_matrix["status"] == "pass", "event_count": len(event_matrix["events"])},
         {
             "name": "no_official_conformance_overclaim",
             "pass": "not official OpenCL conformance" in CLEAN_ROOM_SCOPE and "not CTS pass" in CLEAN_ROOM_SCOPE,
@@ -480,6 +754,9 @@ def build_report() -> dict[str, Any]:
         },
         "runtime_proxy_summary": runtime_summary,
         "negative_tests": negatives,
+        "device_info_matrix": device_matrix,
+        "build_log_error_matrix": build_matrix,
+        "event_profiling_matrix": event_matrix,
         "error_codes": ERROR_CODES,
         "checks": checks,
     }

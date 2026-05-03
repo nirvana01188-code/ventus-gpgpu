@@ -1,0 +1,234 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "schema": "celviz.gpgpu.runtime_commands.v1"
+      },
+      "name": "runtime_commands_schema",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "opencl_subset_evidence_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "linux_runtime_evidence_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "driver_submission_evidence_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "phase9_driver_os_input_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "dispatch_count": 4,
+        "queue_count": 1,
+        "queue_ids": [
+          0
+        ]
+      },
+      "name": "in_order_single_queue_sequences",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "fence_waits": 2,
+        "readable_events": 4
+      },
+      "name": "linux_events_and_fences_observed",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "out_of_order_rejection_present",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "barrier_marker_user_event_gap_present",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "callbacks_profiling_wait_list_gap_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "opencl_gap_map_pass",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "clean_room_no_conformance_claim",
+      "pass": true
+    }
+  ],
+  "claim_boundary": {
+    "current_claim": "runtime in-order queue semantics and unsupported/gap readiness rows",
+    "not_claimed": [
+      "official OpenCL conformance",
+      "production ICD/runtime",
+      "out-of-order queue support",
+      "complete barrier/marker/user event support",
+      "complete callbacks/profiling/wait-list support",
+      "Linux kernel DRM driver"
+    ]
+  },
+  "clean_room_scope": "clean-room runtime queue semantics gate; covers current in-order queue proxy evidence and explicit unsupported/gap rows only. Not official OpenCL conformance, not a production ICD/runtime, not a Linux kernel DRM driver, not GEM/syncobj ABI compatibility, and not proprietary Vivante compatibility.",
+  "generated_at": "2026-05-03T05:51:17+00:00",
+  "inputs": {
+    "driver_submission_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_evidence.json",
+    "linux_runtime_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+    "opencl_conformance_gap_map": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
+    "opencl_subset_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json",
+    "phase9_driver_os": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_driver_os_conformance_readiness.json",
+    "runtime_commands": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json"
+  },
+  "rejection_tests": [
+    {
+      "errno_name": "ENOTSUP",
+      "id": "reject_out_of_order_queue",
+      "input": {
+        "queue_properties": [
+          "OUT_OF_ORDER_EXEC_MODE_ENABLE"
+        ]
+      },
+      "reason": "runtime queue evidence is single in-order queue only",
+      "requested_feature": "CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE",
+      "status": "rejected"
+    },
+    {
+      "errno_name": "ENOTSUP",
+      "id": "reject_event_wait_list_dependency",
+      "input": {
+        "event_wait_list": [
+          "event_from_other_queue"
+        ]
+      },
+      "reason": "explicit wait-list dependency semantics are not implemented",
+      "requested_feature": "cl_event wait list",
+      "status": "gap_recorded"
+    },
+    {
+      "errno_name": "ENOTSUP",
+      "id": "reject_callback_registration",
+      "input": {
+        "callback": "completion_callback"
+      },
+      "reason": "callbacks are not modeled beyond pollable events",
+      "requested_feature": "clSetEventCallback",
+      "status": "gap_recorded"
+    },
+    {
+      "errno_name": "ENOTSUP",
+      "id": "reject_profiling_timestamps",
+      "input": {
+        "queue_properties": [
+          "PROFILING_ENABLE"
+        ]
+      },
+      "reason": "submit/start/end timestamp profiling is not productized",
+      "requested_feature": "CL_QUEUE_PROFILING_ENABLE",
+      "status": "gap_recorded"
+    },
+    {
+      "errno_name": "ENOTSUP",
+      "id": "reject_marker_barrier_user_event",
+      "input": {
+        "commands": [
+          "clEnqueueMarker",
+          "clEnqueueBarrierWithWaitList",
+          "clCreateUserEvent"
+        ]
+      },
+      "reason": "marker/barrier/user-event queue objects are documented as gaps",
+      "requested_feature": "marker, barrier, user event",
+      "status": "gap_recorded"
+    }
+  ],
+  "schema": "celviz.gpgpu.runtime_queue_semantics_gate.v1",
+  "semantics_rows": [
+    {
+      "evidence": [
+        "queue_count=1",
+        "queue_ids=[0]",
+        "ordered_sequences=True",
+        "driver_pending=0"
+      ],
+      "gap": [
+        "multi-queue in-order ordering is not covered",
+        "cross-queue dependencies require future wait-list or timeline semantics"
+      ],
+      "id": "in_order_queue",
+      "status": "covered"
+    },
+    {
+      "evidence": [
+        "reject_out_of_order_queue test row has ENOTSUP"
+      ],
+      "gap": [
+        "out-of-order scheduling, dependency graph execution, and command reordering are not implemented"
+      ],
+      "id": "unsupported_out_of_order_rejection",
+      "status": "rejected"
+    },
+    {
+      "evidence": [
+        "reject_marker_barrier_user_event test row has ENOTSUP"
+      ],
+      "gap": [
+        "OpenCL marker objects are not modeled",
+        "OpenCL barrier wait-list semantics are not modeled",
+        "OpenCL user-created events are not modeled"
+      ],
+      "id": "barrier_marker_user_event_gap",
+      "status": "gap_recorded"
+    },
+    {
+      "evidence": [
+        "reject_callback_registration test row has ENOTSUP",
+        "reject_profiling_timestamps test row has ENOTSUP",
+        "reject_event_wait_list_dependency test row has ENOTSUP"
+      ],
+      "gap": [
+        "event callbacks are not implemented",
+        "profiling timestamps are not productized",
+        "explicit wait-list dependencies are not implemented"
+      ],
+      "id": "callbacks_profiling_wait_list_gap",
+      "status": "gap_recorded"
+    }
+  ],
+  "status": "pass",
+  "summary": {
+    "gap_rows": 4,
+    "kernel_dispatches": 4,
+    "linux_events_readable": 4,
+    "linux_fence_waits": 2,
+    "queue_count": 1,
+    "queue_ids": [
+      0
+    ],
+    "semantics_rows": 4,
+    "unsupported_rejections": 1
+  }
+}

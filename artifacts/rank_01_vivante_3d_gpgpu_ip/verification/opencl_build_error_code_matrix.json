@@ -1,0 +1,418 @@
+{
+  "case_count": 22,
+  "category_summary": {
+    "NDRange geometry": {
+      "apis": [
+        "clEnqueueNDRangeKernel"
+      ],
+      "error_codes": [
+        "CL_INVALID_GLOBAL_WORK_SIZE",
+        "CL_INVALID_VALUE",
+        "CL_INVALID_WORK_DIMENSION",
+        "CL_INVALID_WORK_GROUP_SIZE",
+        "CL_SUCCESS"
+      ],
+      "passed": 6,
+      "status": "pass",
+      "total": 6
+    },
+    "buffer errors": {
+      "apis": [
+        "clCreateBuffer"
+      ],
+      "error_codes": [
+        "CL_INVALID_VALUE",
+        "CL_SUCCESS"
+      ],
+      "passed": 3,
+      "status": "pass",
+      "total": 3
+    },
+    "clBuildProgram": {
+      "apis": [
+        "clBuildProgram"
+      ],
+      "error_codes": [
+        "CL_BUILD_PROGRAM_FAILURE",
+        "CL_INVALID_BUILD_OPTIONS",
+        "CL_INVALID_PROGRAM",
+        "CL_SUCCESS"
+      ],
+      "passed": 5,
+      "status": "pass",
+      "total": 5
+    },
+    "clCreateKernel": {
+      "apis": [
+        "clCreateKernel"
+      ],
+      "error_codes": [
+        "CL_INVALID_KERNEL_NAME",
+        "CL_INVALID_PROGRAM_EXECUTABLE",
+        "CL_SUCCESS"
+      ],
+      "passed": 3,
+      "status": "pass",
+      "total": 3
+    },
+    "clSetKernelArg": {
+      "apis": [
+        "clSetKernelArg"
+      ],
+      "error_codes": [
+        "CL_INVALID_ARG_INDEX",
+        "CL_INVALID_ARG_SIZE",
+        "CL_INVALID_ARG_VALUE",
+        "CL_INVALID_MEM_OBJECT",
+        "CL_SUCCESS"
+      ],
+      "passed": 5,
+      "status": "pass",
+      "total": 5
+    }
+  },
+  "checks": [
+    {
+      "name": "required_categories_present",
+      "observed": [
+        "NDRange geometry",
+        "buffer errors",
+        "clBuildProgram",
+        "clCreateKernel",
+        "clSetKernelArg"
+      ],
+      "pass": true,
+      "required": [
+        "NDRange geometry",
+        "buffer errors",
+        "clBuildProgram",
+        "clCreateKernel",
+        "clSetKernelArg"
+      ]
+    },
+    {
+      "name": "required_error_codes_present",
+      "observed": [
+        "CL_BUILD_PROGRAM_FAILURE",
+        "CL_INVALID_ARG_INDEX",
+        "CL_INVALID_ARG_SIZE",
+        "CL_INVALID_ARG_VALUE",
+        "CL_INVALID_BUILD_OPTIONS",
+        "CL_INVALID_GLOBAL_WORK_SIZE",
+        "CL_INVALID_KERNEL_NAME",
+        "CL_INVALID_MEM_OBJECT",
+        "CL_INVALID_PROGRAM",
+        "CL_INVALID_PROGRAM_EXECUTABLE",
+        "CL_INVALID_VALUE",
+        "CL_INVALID_WORK_DIMENSION",
+        "CL_INVALID_WORK_GROUP_SIZE",
+        "CL_SUCCESS"
+      ],
+      "pass": true,
+      "required": [
+        "CL_BUILD_PROGRAM_FAILURE",
+        "CL_INVALID_ARG_INDEX",
+        "CL_INVALID_ARG_SIZE",
+        "CL_INVALID_ARG_VALUE",
+        "CL_INVALID_BUILD_OPTIONS",
+        "CL_INVALID_GLOBAL_WORK_SIZE",
+        "CL_INVALID_KERNEL_NAME",
+        "CL_INVALID_MEM_OBJECT",
+        "CL_INVALID_PROGRAM",
+        "CL_INVALID_PROGRAM_EXECUTABLE",
+        "CL_INVALID_VALUE",
+        "CL_INVALID_WORK_DIMENSION",
+        "CL_INVALID_WORK_GROUP_SIZE",
+        "CL_SUCCESS"
+      ]
+    },
+    {
+      "case_count": 22,
+      "name": "all_matrix_cases_pass",
+      "pass": true
+    },
+    {
+      "name": "build_logs_present",
+      "pass": true
+    },
+    {
+      "name": "clean_room_boundary_present",
+      "pass": true
+    }
+  ],
+  "claim_boundary": {
+    "allowed": "OpenCL-style error-code matrix for the local clean-room subset",
+    "not_claimed": [
+      "Khronos CTS pass",
+      "official OpenCL conformance",
+      "full libOpenCL or ICD behavior",
+      "proprietary Vivante compiler/runtime/driver compatibility"
+    ]
+  },
+  "clean_room_scope": "clean-room OpenCL-style build log/error-code matrix for Celviz GPGPU IP subset evidence only; not Khronos CTS, not official OpenCL conformance, not libOpenCL/ICD, and not proprietary Vivante compiler/SDK/firmware/driver/command-stream compatibility",
+  "error_codes": {
+    "CL_BUILD_PROGRAM_FAILURE": -11,
+    "CL_INVALID_ARG_INDEX": -49,
+    "CL_INVALID_ARG_SIZE": -51,
+    "CL_INVALID_ARG_VALUE": -50,
+    "CL_INVALID_BUILD_OPTIONS": -43,
+    "CL_INVALID_CONTEXT": -34,
+    "CL_INVALID_GLOBAL_WORK_SIZE": -63,
+    "CL_INVALID_KERNEL": -48,
+    "CL_INVALID_KERNEL_NAME": -46,
+    "CL_INVALID_MEM_OBJECT": -38,
+    "CL_INVALID_PROGRAM": -44,
+    "CL_INVALID_PROGRAM_EXECUTABLE": -45,
+    "CL_INVALID_VALUE": -30,
+    "CL_INVALID_WORK_DIMENSION": -53,
+    "CL_INVALID_WORK_GROUP_SIZE": -54,
+    "CL_SUCCESS": 0
+  },
+  "generated_at": "2026-05-03T05:51:17+00:00",
+  "matrix": [
+    {
+      "api": "clBuildProgram",
+      "build_log": "build succeeded via clean-room subset compiler",
+      "category": "clBuildProgram",
+      "expected_error": "CL_SUCCESS",
+      "expected_error_code": 0,
+      "name": "build_success_vector_add",
+      "observed_error": "CL_SUCCESS",
+      "observed_error_code": 0,
+      "pass": true
+    },
+    {
+      "api": "clBuildProgram",
+      "build_log": "build failed: unsupported OpenCL feature token: double",
+      "category": "clBuildProgram",
+      "expected_error": "CL_BUILD_PROGRAM_FAILURE",
+      "expected_error_code": -11,
+      "name": "build_reject_unsupported_double",
+      "observed_error": "CL_BUILD_PROGRAM_FAILURE",
+      "observed_error_code": -11,
+      "pass": true
+    },
+    {
+      "api": "clBuildProgram",
+      "build_log": "build failed: exactly one kernel per source is supported",
+      "category": "clBuildProgram",
+      "expected_error": "CL_BUILD_PROGRAM_FAILURE",
+      "expected_error_code": -11,
+      "name": "build_reject_multi_kernel_source",
+      "observed_error": "CL_BUILD_PROGRAM_FAILURE",
+      "observed_error_code": -11,
+      "pass": true
+    },
+    {
+      "api": "clBuildProgram",
+      "build_log": "unsupported build options: -cl-fast-relaxed-math",
+      "category": "clBuildProgram",
+      "expected_error": "CL_INVALID_BUILD_OPTIONS",
+      "expected_error_code": -43,
+      "name": "build_reject_options",
+      "observed_error": "CL_INVALID_BUILD_OPTIONS",
+      "observed_error_code": -43,
+      "pass": true
+    },
+    {
+      "api": "clBuildProgram",
+      "build_log": "program handle is invalid",
+      "category": "clBuildProgram",
+      "expected_error": "CL_INVALID_PROGRAM",
+      "expected_error_code": -44,
+      "name": "build_invalid_program_handle",
+      "observed_error": "CL_INVALID_PROGRAM",
+      "observed_error_code": -44,
+      "pass": true
+    },
+    {
+      "api": "clCreateKernel",
+      "build_log": "kernel created: vector_add",
+      "category": "clCreateKernel",
+      "expected_error": "CL_SUCCESS",
+      "expected_error_code": 0,
+      "name": "create_kernel_success",
+      "observed_error": "CL_SUCCESS",
+      "observed_error_code": 0,
+      "pass": true
+    },
+    {
+      "api": "clCreateKernel",
+      "build_log": "kernel 'missing_kernel' not found",
+      "category": "clCreateKernel",
+      "expected_error": "CL_INVALID_KERNEL_NAME",
+      "expected_error_code": -46,
+      "name": "create_kernel_missing_symbol",
+      "observed_error": "CL_INVALID_KERNEL_NAME",
+      "observed_error_code": -46,
+      "pass": true
+    },
+    {
+      "api": "clCreateKernel",
+      "build_log": "program has no successful executable build",
+      "category": "clCreateKernel",
+      "expected_error": "CL_INVALID_PROGRAM_EXECUTABLE",
+      "expected_error_code": -45,
+      "name": "create_kernel_unbuilt_program",
+      "observed_error": "CL_INVALID_PROGRAM_EXECUTABLE",
+      "observed_error_code": -45,
+      "pass": true
+    },
+    {
+      "api": "clSetKernelArg",
+      "build_log": "all vector_add arguments accepted",
+      "category": "clSetKernelArg",
+      "expected_error": "CL_SUCCESS",
+      "expected_error_code": 0,
+      "name": "set_arg_success_all_vector_add_args",
+      "observed_error": "CL_SUCCESS",
+      "observed_error_code": 0,
+      "pass": true
+    },
+    {
+      "api": "clSetKernelArg",
+      "build_log": "argument index 99 out of range",
+      "category": "clSetKernelArg",
+      "expected_error": "CL_INVALID_ARG_INDEX",
+      "expected_error_code": -49,
+      "name": "set_arg_bad_index",
+      "observed_error": "CL_INVALID_ARG_INDEX",
+      "observed_error_code": -49,
+      "pass": true
+    },
+    {
+      "api": "clSetKernelArg",
+      "build_log": "argument 3 expects 4 bytes, got 8",
+      "category": "clSetKernelArg",
+      "expected_error": "CL_INVALID_ARG_SIZE",
+      "expected_error_code": -51,
+      "name": "set_arg_bad_size",
+      "observed_error": "CL_INVALID_ARG_SIZE",
+      "observed_error_code": -51,
+      "pass": true
+    },
+    {
+      "api": "clSetKernelArg",
+      "build_log": "argument 0 expects a valid buffer object",
+      "category": "clSetKernelArg",
+      "expected_error": "CL_INVALID_MEM_OBJECT",
+      "expected_error_code": -38,
+      "name": "set_arg_invalid_mem_object",
+      "observed_error": "CL_INVALID_MEM_OBJECT",
+      "observed_error_code": -38,
+      "pass": true
+    },
+    {
+      "api": "clSetKernelArg",
+      "build_log": "read-only kernel argument cannot bind write-only buffer",
+      "category": "clSetKernelArg",
+      "expected_error": "CL_INVALID_ARG_VALUE",
+      "expected_error_code": -50,
+      "name": "set_arg_wrong_buffer_access",
+      "observed_error": "CL_INVALID_ARG_VALUE",
+      "observed_error_code": -50,
+      "pass": true
+    },
+    {
+      "api": "clEnqueueNDRangeKernel",
+      "build_log": "NDRange geometry accepted",
+      "category": "NDRange geometry",
+      "expected_error": "CL_SUCCESS",
+      "expected_error_code": 0,
+      "name": "ndrange_success",
+      "observed_error": "CL_SUCCESS",
+      "observed_error_code": 0,
+      "pass": true
+    },
+    {
+      "api": "clEnqueueNDRangeKernel",
+      "build_log": "unsupported work_dim=4",
+      "category": "NDRange geometry",
+      "expected_error": "CL_INVALID_WORK_DIMENSION",
+      "expected_error_code": -53,
+      "name": "ndrange_bad_work_dim",
+      "observed_error": "CL_INVALID_WORK_DIMENSION",
+      "observed_error_code": -53,
+      "pass": true
+    },
+    {
+      "api": "clEnqueueNDRangeKernel",
+      "build_log": "global size must be positive for 1D launch",
+      "category": "NDRange geometry",
+      "expected_error": "CL_INVALID_GLOBAL_WORK_SIZE",
+      "expected_error_code": -63,
+      "name": "ndrange_zero_global_size",
+      "observed_error": "CL_INVALID_GLOBAL_WORK_SIZE",
+      "observed_error_code": -63,
+      "pass": true
+    },
+    {
+      "api": "clEnqueueNDRangeKernel",
+      "build_log": "global size must be divisible by local size",
+      "category": "NDRange geometry",
+      "expected_error": "CL_INVALID_WORK_GROUP_SIZE",
+      "expected_error_code": -54,
+      "name": "ndrange_non_divisible_local",
+      "observed_error": "CL_INVALID_WORK_GROUP_SIZE",
+      "observed_error_code": -54,
+      "pass": true
+    },
+    {
+      "api": "clEnqueueNDRangeKernel",
+      "build_log": "local workgroup size exceeds first-stage limit 256",
+      "category": "NDRange geometry",
+      "expected_error": "CL_INVALID_WORK_GROUP_SIZE",
+      "expected_error_code": -54,
+      "name": "ndrange_local_wg_too_large",
+      "observed_error": "CL_INVALID_WORK_GROUP_SIZE",
+      "observed_error_code": -54,
+      "pass": true
+    },
+    {
+      "api": "clEnqueueNDRangeKernel",
+      "build_log": "non-zero global work offset is not supported by this subset",
+      "category": "NDRange geometry",
+      "expected_error": "CL_INVALID_VALUE",
+      "expected_error_code": -30,
+      "name": "ndrange_nonzero_global_offset",
+      "observed_error": "CL_INVALID_VALUE",
+      "observed_error_code": -30,
+      "pass": true
+    },
+    {
+      "api": "clCreateBuffer",
+      "build_log": "buffer created bytes=4096 flags=read_write",
+      "category": "buffer errors",
+      "expected_error": "CL_SUCCESS",
+      "expected_error_code": 0,
+      "name": "buffer_success_read_write",
+      "observed_error": "CL_SUCCESS",
+      "observed_error_code": 0,
+      "pass": true
+    },
+    {
+      "api": "clCreateBuffer",
+      "build_log": "buffer size must be positive",
+      "category": "buffer errors",
+      "expected_error": "CL_INVALID_VALUE",
+      "expected_error_code": -30,
+      "name": "buffer_zero_size",
+      "observed_error": "CL_INVALID_VALUE",
+      "observed_error_code": -30,
+      "pass": true
+    },
+    {
+      "api": "clCreateBuffer",
+      "build_log": "unsupported buffer flags: use_host_ptr",
+      "category": "buffer errors",
+      "expected_error": "CL_INVALID_VALUE",
+      "expected_error_code": -30,
+      "name": "buffer_bad_flags",
+      "observed_error": "CL_INVALID_VALUE",
+      "observed_error_code": -30,
+      "pass": true
+    }
+  ],
+  "schema": "celviz.gpgpu.opencl_build_error_code_matrix.v1",
+  "status": "pass"
+}

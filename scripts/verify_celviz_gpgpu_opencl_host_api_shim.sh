@@ -54,11 +54,26 @@ require(report.get("handle_lifecycle", {}).get("live_after_release") == {}, "han
 require(len(report.get("negative_tests", [])) >= 5, "negative tests too shallow")
 for case in report.get("negative_tests", []):
     require(case.get("pass") is True, f"negative case failed: {case.get('name')}")
+device_info = report.get("device_info_matrix", {})
+require(device_info.get("status") == "pass", "device info matrix did not pass")
+require(len(device_info.get("supported_queries", [])) >= 16, "device info query depth too shallow")
+build_matrix = report.get("build_log_error_matrix", {})
+require(build_matrix.get("status") == "pass", "build log error matrix did not pass")
+require(len(build_matrix.get("cases", [])) >= 3, "build log error matrix too shallow")
+event_matrix = report.get("event_profiling_matrix", {})
+require(event_matrix.get("status") == "pass", "event profiling matrix did not pass")
+require(len(event_matrix.get("events", [])) >= 4, "event profiling events too shallow")
+for event in event_matrix.get("events", []):
+    profile = event.get("profiling", {})
+    require(
+        int(profile.get("queued", -1)) <= int(profile.get("submit", -1)) <= int(profile.get("start", -1)) <= int(profile.get("end", -1)),
+        f"event profile not monotonic: {event.get('event')}",
+    )
 scope = report.get("clean_room_scope", "")
 scope_lower = scope.lower()
 for token in ("not a Khronos ICD", "not official OpenCL conformance", "not CTS pass evidence"):
     require(token.lower() in scope_lower, f"scope token missing: {token}")
-for token in ("OpenCL Host API Shim", "Runtime Evidence", "Negative Error-Code Tests"):
+for token in ("OpenCL Host API Shim", "Runtime Evidence", "Negative Error-Code Tests", "Device Info Matrix", "Build Log / Error Matrix", "Event Profiling Matrix"):
     require(token in doc, f"doc token missing: {token}")
 
 if errors:
@@ -69,6 +84,8 @@ if errors:
 print(
     "celviz_gpgpu_opencl_host_api_shim_verify: pass "
     f"calls={report.get('api_call_count')} negative={len(report.get('negative_tests', []))} "
+    f"device_info={len(device_info.get('supported_queries', []))} "
+    f"events={len(event_matrix.get('events', []))} "
     f"completed={summary.get('commands_completed')}"
 )
 PY

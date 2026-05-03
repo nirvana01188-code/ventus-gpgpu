@@ -224,6 +224,13 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "phase8_work_packages": verification_dir / "phase8_work_packages.json",
         "phase8_work_package_artifacts_report": verification_dir / "phase8_work_package_artifacts" / "phase8_work_package_artifacts_report.json",
         "opencl_host_api_shim_report": verification_dir / "opencl_host_api_shim_report.json",
+        "opencl_device_info_table": artifact_root / "opencl_conformance" / "opencl_device_info_table.json",
+        "opencl_build_error_code_matrix": verification_dir / "opencl_build_error_code_matrix.json",
+        "opencl_event_waitlist_profiling": verification_dir / "opencl_event_waitlist_profiling_report.json",
+        "phase9_memory_object_flags_gate": verification_dir / "phase9_memory_object_flags_map_gate.json",
+        "phase9_memory_object_flags_completion": verification_dir / "phase9_memory_object_flags_completion_columns.json",
+        "runtime_queue_semantics_gate": verification_dir / "runtime_queue_semantics_gate.json",
+        "opencl_rtl_cts_cross_check": verification_dir / "opencl_rtl_cts_cross_check.json",
         "phase9_opencl_conformance_readiness_report": verification_dir / "phase9_opencl_conformance_readiness_report.json",
         "phase9_opencl_subset_conformance_tests": verification_dir / "opencl_subset_conformance_tests.json",
         "phase9_opencl_icd_runtime_contract": verification_dir / "opencl_icd_runtime_contract.json",
@@ -277,6 +284,13 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
     phase8_work_packages = load_json(files["phase8_work_packages"])
     phase8_work_package_artifacts = load_json(files["phase8_work_package_artifacts_report"])
     opencl_host_api_shim = load_json(files["opencl_host_api_shim_report"])
+    opencl_device_info = load_json(files["opencl_device_info_table"])
+    opencl_build_errors = load_json(files["opencl_build_error_code_matrix"])
+    opencl_event_waitlist = load_json(files["opencl_event_waitlist_profiling"])
+    phase9_memory_object_flags = load_json(files["phase9_memory_object_flags_gate"])
+    phase9_memory_object_flags_completion = load_json(files["phase9_memory_object_flags_completion"])
+    runtime_queue_semantics = load_json(files["runtime_queue_semantics_gate"])
+    opencl_rtl_cts = load_json(files["opencl_rtl_cts_cross_check"])
     phase9_opencl = load_json(files["phase9_opencl_conformance_readiness_report"])
     phase9_subset_tests = load_json(files["phase9_opencl_subset_conformance_tests"])
     phase9_icd_contract = load_json(files["phase9_opencl_icd_runtime_contract"])
@@ -502,6 +516,12 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "phase8_claim_closure": phase8_claim_closure,
         "phase8_work_package_artifacts": phase8_work_package_artifacts,
         "opencl_host_api_shim": opencl_host_api_shim,
+        "opencl_device_info_table": opencl_device_info,
+        "opencl_build_error_code_matrix": opencl_build_errors,
+        "opencl_event_waitlist_profiling": opencl_event_waitlist,
+        "phase9_memory_object_flags_gate": phase9_memory_object_flags,
+        "runtime_queue_semantics_gate": runtime_queue_semantics,
+        "opencl_rtl_cts_cross_check": opencl_rtl_cts,
         "phase9_opencl_conformance_readiness": phase9_opencl,
         "phase9_opencl_subset_conformance_tests": phase9_subset_tests,
         "phase9_opencl_icd_runtime_contract": phase9_icd_contract,
@@ -582,6 +602,195 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         opencl_host_api_shim.get("handle_lifecycle", {}).get("live_after_release") == {},
         opencl_host_api_shim.get("handle_lifecycle", {}),
     )
+    builder.add(
+        "opencl_host_api_shim",
+        "device_info_matrix_depth",
+        opencl_host_api_shim.get("device_info_matrix", {}).get("status") == "pass"
+        and (
+            as_int(opencl_host_api_shim.get("device_info_matrix", {}).get("query_count")) >= 16
+            or len(opencl_host_api_shim.get("device_info_matrix", {}).get("supported_queries", [])) >= 16
+        ),
+        opencl_host_api_shim.get("device_info_matrix", {}),
+    )
+    builder.add(
+        "opencl_host_api_shim",
+        "build_log_matrix_depth",
+        opencl_host_api_shim.get("build_log_error_matrix", {}).get("status") == "pass"
+        and as_int(opencl_host_api_shim.get("build_log_error_matrix", {}).get("case_count")) >= 3,
+        opencl_host_api_shim.get("build_log_error_matrix", {}),
+    )
+    builder.add(
+        "opencl_host_api_shim",
+        "event_profiling_matrix_depth",
+        opencl_host_api_shim.get("event_profiling_matrix", {}).get("status") == "pass"
+        and (
+            as_int(opencl_host_api_shim.get("event_profiling_matrix", {}).get("event_count")) >= 4
+            or len(opencl_host_api_shim.get("event_profiling_matrix", {}).get("events", [])) >= 4
+        ),
+        opencl_host_api_shim.get("event_profiling_matrix", {}),
+    )
+
+    device_queries = opencl_device_info.get("queries", [])
+    device_summary = opencl_device_info.get("summary", {})
+    builder.add(
+        "opencl_device_info_table",
+        "query_depth",
+        len(device_queries) >= 50 and as_int(device_summary.get("query_count")) >= 50,
+        {"query_count": device_summary.get("query_count")},
+    )
+    for required_name in (
+        "CL_DEVICE_PROFILE",
+        "CL_DEVICE_VERSION",
+        "CL_DEVICE_EXTENSIONS",
+        "CL_DEVICE_MAX_COMPUTE_UNITS",
+        "CL_DEVICE_GLOBAL_MEM_SIZE",
+        "CL_DEVICE_IMAGE_SUPPORT",
+        "CL_DEVICE_ATOMIC_MEMORY_CAPABILITIES",
+        "CL_DEVICE_SVM_CAPABILITIES",
+    ):
+        builder.add(
+            "opencl_device_info_table_rows",
+            required_name,
+            any(row.get("name") == required_name for row in device_queries),
+            {"query_count": len(device_queries)},
+        )
+    builder.add(
+        "opencl_device_info_table",
+        "claim_boundary",
+        all("not official OpenCL conformance" in str(row.get("claim_boundary", "")) for row in device_queries),
+        {"query_count": len(device_queries)},
+    )
+
+    build_cases = opencl_build_errors.get("matrix", [])
+    build_categories = opencl_build_errors.get("category_summary", {})
+    builder.add(
+        "opencl_build_error_code_matrix",
+        "case_depth",
+        len(build_cases) >= 22 and as_int(opencl_build_errors.get("case_count")) >= 22,
+        {"case_count": opencl_build_errors.get("case_count")},
+    )
+    for category in ("clBuildProgram", "clCreateKernel", "clSetKernelArg", "NDRange geometry", "buffer errors"):
+        builder.add(
+            "opencl_build_error_code_matrix_categories",
+            category,
+            build_categories.get(category, {}).get("status") == "pass",
+            build_categories.get(category, {}),
+        )
+    builder.add(
+        "opencl_build_error_code_matrix",
+        "all_cases_pass",
+        all(case.get("pass") is True and case.get("expected_error") == case.get("observed_error") for case in build_cases),
+        {"case_count": len(build_cases)},
+    )
+    builder.add(
+        "opencl_build_error_code_matrix",
+        "claim_boundary",
+        "not official OpenCL conformance" in str(opencl_build_errors.get("clean_room_scope", ""))
+        and "not Khronos CTS" in str(opencl_build_errors.get("clean_room_scope", "")),
+        {"clean_room_scope": opencl_build_errors.get("clean_room_scope")},
+    )
+
+    event_metrics = opencl_event_waitlist.get("metrics", {})
+    builder.add(
+        "opencl_event_waitlist_profiling",
+        "dag_and_profiling_depth",
+        as_int(event_metrics.get("events")) >= 7
+        and as_int(event_metrics.get("edges")) >= 6
+        and as_int(event_metrics.get("profiling_records")) == as_int(event_metrics.get("events")),
+        event_metrics,
+    )
+    builder.add(
+        "opencl_event_waitlist_profiling",
+        "negative_wait_list_validation",
+        as_int(event_metrics.get("validation_rejections")) >= 3
+        and as_int(event_metrics.get("failed_events")) >= 2,
+        event_metrics,
+    )
+    event_boundary = opencl_event_waitlist.get("claim_boundary", {})
+    for key in ("official_opencl_icd", "khronos_conformance", "cts_evidence"):
+        builder.add(
+            "opencl_event_waitlist_profiling_boundaries",
+            key,
+            event_boundary.get(key) is False,
+            event_boundary,
+        )
+
+    flags_summary = phase9_memory_object_flags.get("summary", {})
+    builder.add(
+        "phase9_memory_object_flags_gate",
+        "flag_and_operation_depth",
+        as_int(flags_summary.get("flag_count")) >= 5
+        and as_int(flags_summary.get("operation_gate_count")) >= 3
+        and as_int(flags_summary.get("negative_case_count")) >= 8,
+        flags_summary,
+    )
+    for flag in ("CL_MEM_READ_WRITE", "CL_MEM_READ_ONLY", "CL_MEM_WRITE_ONLY", "CL_MEM_COPY_HOST_PTR", "CL_MEM_USE_HOST_PTR"):
+        builder.add(
+            "phase9_memory_object_flags",
+            flag,
+            any(row.get("flag") == flag and row.get("completion") == "complete_for_proxy_gate" for row in phase9_memory_object_flags.get("flag_gates", [])),
+            {"flag_count": flags_summary.get("flag_count")},
+        )
+    for operation in ("map/unmap", "sub-buffer", "bounds negative tests"):
+        builder.add(
+            "phase9_memory_object_operations",
+            operation,
+            any(row.get("operation") == operation and row.get("completion") == "complete_for_proxy_gate" for row in phase9_memory_object_flags.get("operation_gates", [])),
+            {"operation_gate_count": flags_summary.get("operation_gate_count")},
+        )
+    builder.add(
+        "phase9_memory_object_flags_completion",
+        "row_depth",
+        len(phase9_memory_object_flags_completion.get("rows", [])) >= 8,
+        {"row_count": len(phase9_memory_object_flags_completion.get("rows", []))},
+    )
+
+    queue_semantics = {
+        row.get("id", row.get("name")): row
+        for row in runtime_queue_semantics.get("semantic_rows", runtime_queue_semantics.get("semantics_rows", []))
+    }
+    for name in ("in_order_queue", "unsupported_out_of_order_rejection", "barrier_marker_user_event_gap", "callbacks_profiling_wait_list_gap"):
+        builder.add(
+            "runtime_queue_semantics_rows",
+            name,
+            name in queue_semantics and str(queue_semantics[name].get("status")) in {"covered", "rejected", "gap_recorded"},
+            queue_semantics.get(name, {}),
+        )
+    builder.add(
+        "runtime_queue_semantics_gate",
+        "gap_boundaries_recorded",
+        as_int(runtime_queue_semantics.get("summary", {}).get("gap_rows")) >= 2,
+        runtime_queue_semantics.get("summary", {}),
+    )
+
+    rtl_boundaries = opencl_rtl_cts.get("claim_boundaries", {})
+    builder.add(
+        "opencl_rtl_cts_cross_check",
+        "status_without_overclaim",
+        opencl_rtl_cts.get("status") == "pass"
+        and opencl_rtl_cts.get("cts_ready") is False
+        and opencl_rtl_cts.get("structural_coverage_closed") is False,
+        {"cts_ready": opencl_rtl_cts.get("cts_ready"), "structural_coverage_closed": opencl_rtl_cts.get("structural_coverage_closed")},
+    )
+    for path_id in (
+        "host_dispatch_to_kernel_dispatch",
+        "host_events_to_interrupt_fence_paths",
+        "host_buffers_to_dma_and_axi_paths",
+        "host_negative_api_to_fault_bins",
+    ):
+        builder.add(
+            "opencl_rtl_cts_cross_check_paths",
+            path_id,
+            any(item.get("path_id") == path_id and item.get("pass") is True for item in opencl_rtl_cts.get("path_mappings", [])),
+            {"mapping_count": len(opencl_rtl_cts.get("path_mappings", []))},
+        )
+    for key in ("khronos_cts_pass", "official_opencl_conformance", "product_icd", "rtl_structural_coverage_100", "silicon_signoff"):
+        builder.add(
+            "opencl_rtl_cts_cross_check_boundaries",
+            key,
+            rtl_boundaries.get(key) is False,
+            rtl_boundaries,
+        )
 
     builder.add(
         "phase9_opencl_conformance_readiness",

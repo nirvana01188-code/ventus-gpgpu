@@ -156,17 +156,41 @@
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/model/outputs/shader_unit_scaling.json",
       "size_bytes": 3334
     },
+    "opencl_build_error_code_matrix": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_build_error_code_matrix.json",
+      "size_bytes": 12613
+    },
     "opencl_conformance_gap_map": {
       "exists": true,
       "non_empty": true,
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
       "size_bytes": 2998
     },
+    "opencl_device_info_table": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/opencl_conformance/opencl_device_info_table.json",
+      "size_bytes": 37752
+    },
+    "opencl_event_waitlist_profiling": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_event_waitlist_profiling_report.json",
+      "size_bytes": 16199
+    },
     "opencl_host_api_shim_report": {
       "exists": true,
       "non_empty": true,
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
-      "size_bytes": 12326
+      "size_bytes": 24614
+    },
+    "opencl_rtl_cts_cross_check": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_rtl_cts_cross_check.json",
+      "size_bytes": 13966
     },
     "phase2_integration_report": {
       "exists": true,
@@ -270,6 +294,18 @@
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_conformance_readiness_gate.json",
       "size_bytes": 10751
     },
+    "phase9_memory_object_flags_completion": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_object_flags_completion_columns.json",
+      "size_bytes": 3221
+    },
+    "phase9_memory_object_flags_gate": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_object_flags_map_gate.json",
+      "size_bytes": 13692
+    },
     "phase9_opencl_conformance_readiness_report": {
       "exists": true,
       "non_empty": true,
@@ -305,6 +341,12 @@
       "non_empty": true,
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_productization_gates.json",
       "size_bytes": 22562
+    },
+    "runtime_queue_semantics_gate": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/runtime_queue_semantics_gate.json",
+      "size_bytes": 6806
     },
     "synthesis_readiness_report": {
       "exists": true,
@@ -793,11 +835,88 @@
         "exists": true,
         "non_empty": true,
         "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
-        "size_bytes": 12326
+        "size_bytes": 24614
       },
       "group": "artifacts",
       "hit": true,
       "name": "opencl_host_api_shim_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/opencl_conformance/opencl_device_info_table.json",
+        "size_bytes": 37752
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_device_info_table"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_build_error_code_matrix.json",
+        "size_bytes": 12613
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_build_error_code_matrix"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_event_waitlist_profiling_report.json",
+        "size_bytes": 16199
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_event_waitlist_profiling"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_object_flags_map_gate.json",
+        "size_bytes": 13692
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_memory_object_flags_gate"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_object_flags_completion_columns.json",
+        "size_bytes": 3221
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_memory_object_flags_completion"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/runtime_queue_semantics_gate.json",
+        "size_bytes": 6806
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "runtime_queue_semantics_gate"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_rtl_cts_cross_check.json",
+        "size_bytes": 13966
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "opencl_rtl_cts_cross_check"
     },
     {
       "evidence": {
@@ -3027,7 +3146,7 @@
         "memory_event_count": 96,
         "oracle_workload": "vector_add",
         "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
-        "sha256": "0a0e47871efb5a672166e73d5afd86d1c47a0a6bb36a22c4b0611b8da46e8f0d",
+        "sha256": "e877f5f8caa200f8518a384fcaa65cc857c4d3068cfba2c0559be05e441e1428",
         "status": "pass",
         "uops_executed": 13
       },
@@ -3041,7 +3160,7 @@
         "memory_event_count": 260,
         "oracle_workload": "gemm_proxy",
         "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
-        "sha256": "474ee0249174d7c4c33981aa837208b10ba22400179880c03e018fda8ba5788a",
+        "sha256": "10775765d8e668f3565f280b387529539929bac488840304f889a83c520f147a",
         "status": "pass",
         "uops_executed": 18
       },
@@ -3055,7 +3174,7 @@
         "memory_event_count": 475,
         "oracle_workload": "convolution_proxy",
         "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
-        "sha256": "2d158d8822055891c5d7359664fc32c8c1811b1957951933c3917d66e3f03d12",
+        "sha256": "be347a04e0b9cfecbce98a6c719b793b5e9f6e04cf0e80699e6757fb3d4a5be6",
         "status": "pass",
         "uops_executed": 17
       },
@@ -3069,7 +3188,7 @@
         "memory_event_count": 548,
         "oracle_workload": "image_filter",
         "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
-        "sha256": "ca3448188b9185a3c390889e54e37f75944cea7f5cbf2edc7e34475a9e5b9073",
+        "sha256": "fbb4af9498165cbe79f849dd188b7e777995cc6fafcd3ecad1d1b71b184bb09b",
         "status": "pass",
         "uops_executed": 15
       },
@@ -3758,27 +3877,27 @@
     {
       "evidence": {
         "conv2d": {
-          "aggregate_report_sha256": "2d158d8822055891c5d7359664fc32c8c1811b1957951933c3917d66e3f03d12",
+          "aggregate_report_sha256": "be347a04e0b9cfecbce98a6c719b793b5e9f6e04cf0e80699e6757fb3d4a5be6",
           "aggregate_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
-          "per_kernel_report_sha256": "2d158d8822055891c5d7359664fc32c8c1811b1957951933c3917d66e3f03d12",
+          "per_kernel_report_sha256": "be347a04e0b9cfecbce98a6c719b793b5e9f6e04cf0e80699e6757fb3d4a5be6",
           "per_kernel_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a"
         },
         "gemm": {
-          "aggregate_report_sha256": "474ee0249174d7c4c33981aa837208b10ba22400179880c03e018fda8ba5788a",
+          "aggregate_report_sha256": "10775765d8e668f3565f280b387529539929bac488840304f889a83c520f147a",
           "aggregate_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
-          "per_kernel_report_sha256": "474ee0249174d7c4c33981aa837208b10ba22400179880c03e018fda8ba5788a",
+          "per_kernel_report_sha256": "10775765d8e668f3565f280b387529539929bac488840304f889a83c520f147a",
           "per_kernel_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0"
         },
         "image_filter": {
-          "aggregate_report_sha256": "ca3448188b9185a3c390889e54e37f75944cea7f5cbf2edc7e34475a9e5b9073",
+          "aggregate_report_sha256": "fbb4af9498165cbe79f849dd188b7e777995cc6fafcd3ecad1d1b71b184bb09b",
           "aggregate_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
-          "per_kernel_report_sha256": "ca3448188b9185a3c390889e54e37f75944cea7f5cbf2edc7e34475a9e5b9073",
+          "per_kernel_report_sha256": "fbb4af9498165cbe79f849dd188b7e777995cc6fafcd3ecad1d1b71b184bb09b",
           "per_kernel_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101"
         },
         "vector_add": {
-          "aggregate_report_sha256": "0a0e47871efb5a672166e73d5afd86d1c47a0a6bb36a22c4b0611b8da46e8f0d",
+          "aggregate_report_sha256": "e877f5f8caa200f8518a384fcaa65cc857c4d3068cfba2c0559be05e441e1428",
           "aggregate_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
-          "per_kernel_report_sha256": "0a0e47871efb5a672166e73d5afd86d1c47a0a6bb36a22c4b0611b8da46e8f0d",
+          "per_kernel_report_sha256": "e877f5f8caa200f8518a384fcaa65cc857c4d3068cfba2c0559be05e441e1428",
           "per_kernel_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f"
         }
       },
@@ -4711,6 +4830,36 @@
     },
     {
       "evidence": {
+        "name": "device_info_matrix_pass",
+        "pass": true,
+        "query_count": 16
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "device_info_matrix_pass"
+    },
+    {
+      "evidence": {
+        "case_count": 3,
+        "name": "build_log_error_matrix_pass",
+        "pass": true
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "build_log_error_matrix_pass"
+    },
+    {
+      "evidence": {
+        "event_count": 4,
+        "name": "event_profiling_matrix_pass",
+        "pass": true
+      },
+      "group": "opencl_host_api_shim_checks",
+      "hit": true,
+      "name": "event_profiling_matrix_pass"
+    },
+    {
+      "evidence": {
         "name": "no_official_conformance_overclaim",
         "pass": true,
         "scope": "clean-room OpenCL host API shim for Celviz GPGPU IP readiness; executes a local subset lifecycle through the compiler ABI and runtime proxy. Not a Khronos ICD, not libOpenCL, not official OpenCL conformance, not CTS pass evidence, not a production Linux driver, and not Vivante proprietary compatibility."
@@ -4718,6 +4867,793 @@
       "group": "opencl_host_api_shim_checks",
       "hit": true,
       "name": "no_official_conformance_overclaim"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_device_info_table",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table_checks",
+      "hit": true,
+      "name": "minimum_device_info_query_count"
+    },
+    {
+      "evidence": {
+        "observed": [
+          "atomics_svm",
+          "execution",
+          "extensions",
+          "fp_numeric",
+          "images",
+          "limits",
+          "memory",
+          "profile_version",
+          "queue"
+        ]
+      },
+      "group": "opencl_device_info_table_checks",
+      "hit": true,
+      "name": "required_categories_present"
+    },
+    {
+      "evidence": {
+        "observed": [
+          "reported_not_claimed",
+          "supported_proxy",
+          "unsupported_optional",
+          "unsupported_required_gap"
+        ]
+      },
+      "group": "opencl_device_info_table_checks",
+      "hit": true,
+      "name": "status_vocabulary_valid"
+    },
+    {
+      "evidence": {
+        "clean_room_scope": "OpenCL CL_DEVICE_* device-info readiness table for a clean-room Celviz GPGPU proxy. Values are explicit support taxonomy entries and local proxy evidence, not Khronos CTS results, not official OpenCL conformance, not a product ICD, not a Vivante-compatible OpenCL stack, and not a claim that the device passes clGetDeviceInfo CTS."
+      },
+      "group": "opencl_device_info_table_checks",
+      "hit": true,
+      "name": "no_conformance_overclaim"
+    },
+    {
+      "evidence": {
+        "name": "all_rows_have_cts_orientation",
+        "pass": true
+      },
+      "group": "opencl_device_info_table_checks",
+      "hit": true,
+      "name": "all_rows_have_cts_orientation"
+    },
+    {
+      "evidence": {
+        "name": "unsupported_optional_not_advertised",
+        "pass": true
+      },
+      "group": "opencl_device_info_table_checks",
+      "hit": true,
+      "name": "unsupported_optional_not_advertised"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_build_error_code_matrix",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "required_categories_present",
+        "observed": [
+          "NDRange geometry",
+          "buffer errors",
+          "clBuildProgram",
+          "clCreateKernel",
+          "clSetKernelArg"
+        ],
+        "pass": true,
+        "required": [
+          "NDRange geometry",
+          "buffer errors",
+          "clBuildProgram",
+          "clCreateKernel",
+          "clSetKernelArg"
+        ]
+      },
+      "group": "opencl_build_error_code_matrix_checks",
+      "hit": true,
+      "name": "required_categories_present"
+    },
+    {
+      "evidence": {
+        "name": "required_error_codes_present",
+        "observed": [
+          "CL_BUILD_PROGRAM_FAILURE",
+          "CL_INVALID_ARG_INDEX",
+          "CL_INVALID_ARG_SIZE",
+          "CL_INVALID_ARG_VALUE",
+          "CL_INVALID_BUILD_OPTIONS",
+          "CL_INVALID_GLOBAL_WORK_SIZE",
+          "CL_INVALID_KERNEL_NAME",
+          "CL_INVALID_MEM_OBJECT",
+          "CL_INVALID_PROGRAM",
+          "CL_INVALID_PROGRAM_EXECUTABLE",
+          "CL_INVALID_VALUE",
+          "CL_INVALID_WORK_DIMENSION",
+          "CL_INVALID_WORK_GROUP_SIZE",
+          "CL_SUCCESS"
+        ],
+        "pass": true,
+        "required": [
+          "CL_BUILD_PROGRAM_FAILURE",
+          "CL_INVALID_ARG_INDEX",
+          "CL_INVALID_ARG_SIZE",
+          "CL_INVALID_ARG_VALUE",
+          "CL_INVALID_BUILD_OPTIONS",
+          "CL_INVALID_GLOBAL_WORK_SIZE",
+          "CL_INVALID_KERNEL_NAME",
+          "CL_INVALID_MEM_OBJECT",
+          "CL_INVALID_PROGRAM",
+          "CL_INVALID_PROGRAM_EXECUTABLE",
+          "CL_INVALID_VALUE",
+          "CL_INVALID_WORK_DIMENSION",
+          "CL_INVALID_WORK_GROUP_SIZE",
+          "CL_SUCCESS"
+        ]
+      },
+      "group": "opencl_build_error_code_matrix_checks",
+      "hit": true,
+      "name": "required_error_codes_present"
+    },
+    {
+      "evidence": {
+        "case_count": 22,
+        "name": "all_matrix_cases_pass",
+        "pass": true
+      },
+      "group": "opencl_build_error_code_matrix_checks",
+      "hit": true,
+      "name": "all_matrix_cases_pass"
+    },
+    {
+      "evidence": {
+        "name": "build_logs_present",
+        "pass": true
+      },
+      "group": "opencl_build_error_code_matrix_checks",
+      "hit": true,
+      "name": "build_logs_present"
+    },
+    {
+      "evidence": {
+        "name": "clean_room_boundary_present",
+        "pass": true
+      },
+      "group": "opencl_build_error_code_matrix_checks",
+      "hit": true,
+      "name": "clean_room_boundary_present"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_event_waitlist_profiling",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "event_count": 7,
+        "name": "event_dag_has_expected_nodes",
+        "pass": true
+      },
+      "group": "opencl_event_waitlist_profiling_checks",
+      "hit": true,
+      "name": "event_dag_has_expected_nodes"
+    },
+    {
+      "evidence": {
+        "edge_count": 7,
+        "edges": [
+          {
+            "from": "event_1",
+            "kind": "wait_list",
+            "to": "event_3"
+          },
+          {
+            "from": "event_2",
+            "kind": "wait_list",
+            "to": "event_3"
+          },
+          {
+            "from": "event_1",
+            "kind": "wait_list",
+            "to": "event_4"
+          },
+          {
+            "from": "event_2",
+            "kind": "wait_list",
+            "to": "event_4"
+          },
+          {
+            "from": "event_4",
+            "kind": "wait_list",
+            "to": "event_5"
+          },
+          {
+            "from": "event_3",
+            "kind": "wait_list",
+            "to": "event_6"
+          },
+          {
+            "from": "event_6",
+            "kind": "wait_list",
+            "to": "event_7"
+          }
+        ],
+        "name": "event_dag_has_wait_list_edges",
+        "pass": true
+      },
+      "group": "opencl_event_waitlist_profiling_checks",
+      "hit": true,
+      "name": "event_dag_has_wait_list_edges"
+    },
+    {
+      "evidence": {
+        "name": "event_dag_topological_order_covers_all_events",
+        "pass": true,
+        "topological_order": [
+          "event_1",
+          "event_2",
+          "event_3",
+          "event_4",
+          "event_5",
+          "event_6",
+          "event_7"
+        ]
+      },
+      "group": "opencl_event_waitlist_profiling_checks",
+      "hit": true,
+      "name": "event_dag_topological_order_covers_all_events"
+    },
+    {
+      "evidence": {
+        "name": "profiling_timestamps_monotonic",
+        "pass": true
+      },
+      "group": "opencl_event_waitlist_profiling_checks",
+      "hit": true,
+      "name": "profiling_timestamps_monotonic"
+    },
+    {
+      "evidence": {
+        "name": "dependency_submit_after_wait_end",
+        "pass": true
+      },
+      "group": "opencl_event_waitlist_profiling_checks",
+      "hit": true,
+      "name": "dependency_submit_after_wait_end"
+    },
+    {
+      "evidence": {
+        "name": "wait_list_validation_rejects_bad_inputs",
+        "pass": true,
+        "validation_cases": [
+          {
+            "api": "clEnqueueReadBuffer",
+            "error_code": -57,
+            "message": "unknown event missing_event",
+            "pass": true,
+            "result": "CL_INVALID_EVENT_WAIT_LIST",
+            "wait_for": [
+              "missing_event"
+            ]
+          },
+          {
+            "api": "clEnqueueReadBuffer",
+            "error_code": -57,
+            "message": "duplicate event event_1",
+            "pass": true,
+            "result": "CL_INVALID_EVENT_WAIT_LIST",
+            "wait_for": [
+              "event_1",
+              "event_1"
+            ]
+          },
+          {
+            "api": "clEnqueueReadBuffer",
+            "error_code": -34,
+            "message": "event foreign_event_1 belongs to context context_foreign",
+            "pass": true,
+            "result": "CL_INVALID_CONTEXT",
+            "wait_for": [
+              "foreign_event_1"
+            ]
+          }
+        ]
+      },
+      "group": "opencl_event_waitlist_profiling_checks",
+      "hit": true,
+      "name": "wait_list_validation_rejects_bad_inputs"
+    },
+    {
+      "evidence": {
+        "failed_events": [
+          {
+            "command": "NDRangeKernel",
+            "context": "context_1",
+            "error_code": -5,
+            "failure_reason": "injected proxy resource fault",
+            "handle": "event_6",
+            "profiling": {
+              "end": 1240,
+              "queued": 1210,
+              "start": 1230,
+              "submit": 1220
+            },
+            "queue": "queue_1",
+            "result": "CL_OUT_OF_RESOURCES",
+            "status": -5,
+            "wait_for": [
+              "event_3"
+            ]
+          },
+          {
+            "command": "ReadBuffer",
+            "context": "context_1",
+            "error_code": -14,
+            "failure_reason": "dependency failure propagated from event_6",
+            "handle": "event_7",
+            "profiling": {
+              "end": 1260,
+              "queued": 1250,
+              "start": 1260,
+              "submit": 1260
+            },
+            "queue": "queue_1",
+            "result": "CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST",
+            "status": -14,
+            "wait_for": [
+              "event_6"
+            ]
+          }
+        ],
+        "name": "failure_propagates_to_dependent_event",
+        "pass": true
+      },
+      "group": "opencl_event_waitlist_profiling_checks",
+      "hit": true,
+      "name": "failure_propagates_to_dependent_event"
+    },
+    {
+      "evidence": {
+        "completed_events": [
+          "event_1",
+          "event_2",
+          "event_3",
+          "event_4",
+          "event_5"
+        ],
+        "name": "completed_events_remain_complete",
+        "pass": true
+      },
+      "group": "opencl_event_waitlist_profiling_checks",
+      "hit": true,
+      "name": "completed_events_remain_complete"
+    },
+    {
+      "evidence": {
+        "name": "non_official_icd_boundary_preserved",
+        "pass": true,
+        "scope": "clean-room OpenCL event wait-list/profiling semantics proxy for the Celviz host API shim; not a Khronos ICD, not libOpenCL, not official OpenCL conformance, not CTS evidence, not a production Linux driver, and not proprietary Vivante compatibility"
+      },
+      "group": "opencl_event_waitlist_profiling_checks",
+      "hit": true,
+      "name": "non_official_icd_boundary_preserved"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_memory_object_flags_gate",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "all_requested_flags_covered",
+        "pass": true
+      },
+      "group": "phase9_memory_object_flags_gate_checks",
+      "hit": true,
+      "name": "all_requested_flags_covered"
+    },
+    {
+      "evidence": {
+        "name": "read_write_kernel_roundtrip",
+        "pass": true
+      },
+      "group": "phase9_memory_object_flags_gate_checks",
+      "hit": true,
+      "name": "read_write_kernel_roundtrip"
+    },
+    {
+      "evidence": {
+        "name": "read_only_copy_host_ptr_snapshot",
+        "pass": true
+      },
+      "group": "phase9_memory_object_flags_gate_checks",
+      "hit": true,
+      "name": "read_only_copy_host_ptr_snapshot"
+    },
+    {
+      "evidence": {
+        "name": "write_only_rejects_kernel_read",
+        "pass": true
+      },
+      "group": "phase9_memory_object_flags_gate_checks",
+      "hit": true,
+      "name": "write_only_rejects_kernel_read"
+    },
+    {
+      "evidence": {
+        "name": "use_host_ptr_alias_visible",
+        "pass": true
+      },
+      "group": "phase9_memory_object_flags_gate_checks",
+      "hit": true,
+      "name": "use_host_ptr_alias_visible"
+    },
+    {
+      "evidence": {
+        "name": "map_unmap_positive_and_negative",
+        "pass": true
+      },
+      "group": "phase9_memory_object_flags_gate_checks",
+      "hit": true,
+      "name": "map_unmap_positive_and_negative"
+    },
+    {
+      "evidence": {
+        "name": "sub_buffer_positive_and_negative",
+        "pass": true
+      },
+      "group": "phase9_memory_object_flags_gate_checks",
+      "hit": true,
+      "name": "sub_buffer_positive_and_negative"
+    },
+    {
+      "evidence": {
+        "name": "bounds_negative_tests_present",
+        "pass": true
+      },
+      "group": "phase9_memory_object_flags_gate_checks",
+      "hit": true,
+      "name": "bounds_negative_tests_present"
+    },
+    {
+      "evidence": {
+        "name": "negative_cases_all_expected",
+        "pass": true
+      },
+      "group": "phase9_memory_object_flags_gate_checks",
+      "hit": true,
+      "name": "negative_cases_all_expected"
+    },
+    {
+      "evidence": {},
+      "group": "runtime_queue_semantics_gate",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "schema": "celviz.gpgpu.runtime_commands.v1"
+      },
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "runtime_commands_schema"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "opencl_subset_evidence_pass"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "linux_runtime_evidence_pass"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "driver_submission_evidence_pass"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "phase9_driver_os_input_pass"
+    },
+    {
+      "evidence": {
+        "dispatch_count": 4,
+        "queue_count": 1,
+        "queue_ids": [
+          0
+        ]
+      },
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "in_order_single_queue_sequences"
+    },
+    {
+      "evidence": {
+        "fence_waits": 2,
+        "readable_events": 4
+      },
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "linux_events_and_fences_observed"
+    },
+    {
+      "evidence": {},
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "out_of_order_rejection_present"
+    },
+    {
+      "evidence": {},
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "barrier_marker_user_event_gap_present"
+    },
+    {
+      "evidence": {},
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "callbacks_profiling_wait_list_gap_present"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "opencl_gap_map_pass"
+    },
+    {
+      "evidence": {},
+      "group": "runtime_queue_semantics_gate_checks",
+      "hit": true,
+      "name": "clean_room_no_conformance_claim"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_rtl_cts_cross_check",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "api_call_count": 49,
+        "host_report_status": "pass",
+        "missing_required_apis": []
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "host_api_trace_present"
+    },
+    {
+      "evidence": {
+        "kernels": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "runtime_commands_have_opencl_kernels"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "runtime_proxy_metrics_pass"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "control_plane_metrics_pass"
+    },
+    {
+      "evidence": {
+        "functional_coverage_percent": 100.0,
+        "status": "pass"
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "verilator_functional_bins_pass"
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "opencl_readiness_scope_present"
+    },
+    {
+      "evidence": {
+        "structural_target_hit_count": 24,
+        "structural_target_percent": 100.0,
+        "structural_target_total": 24,
+        "total_commands": 295,
+        "total_completion_interrupts": 85,
+        "total_dma_alignment_errors": 1,
+        "total_dma_copies": 102,
+        "total_dma_fills": 103,
+        "total_error_interrupts": 7,
+        "total_kernel_dispatches": 10,
+        "total_mmu_faults": 2,
+        "total_scheduler_faults": 1
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "supplemental_structural_targets_recorded"
+    },
+    {
+      "evidence": {
+        "coverage_bins": {
+          "native_command_categories": true,
+          "pending_count_zero": true,
+          "queues": true
+        },
+        "host_apis": {
+          "clBuildProgram": true,
+          "clCreateKernel": true,
+          "clCreateProgramWithSource": true,
+          "clEnqueueNDRangeKernel": true,
+          "clFinish": true,
+          "clSetKernelArg": true
+        },
+        "notes": "Host program/kernel/NDRange lifecycle maps to runtime kernel_dispatch and control-plane command/kernel counters.",
+        "pass": true,
+        "path_id": "host_dispatch_to_kernel_dispatch",
+        "rtl_debug_counters": {
+          "apb_reads": true,
+          "apb_writes": true,
+          "commands_completed": true,
+          "commands_submitted": true,
+          "kernel_dispatches": true
+        },
+        "runtime_opcodes": {
+          "kernel_dispatch": true
+        }
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "dispatch_mapping_pass"
+    },
+    {
+      "evidence": {
+        "coverage_bins": {
+          "completion_interrupt": true,
+          "fence_signal": true,
+          "fence_wait": true,
+          "pending_count_zero": true
+        },
+        "host_apis": {
+          "clEnqueueNDRangeKernel": true,
+          "clEnqueueReadBuffer": true,
+          "clFinish": true,
+          "clWaitForEvents": true
+        },
+        "notes": "Host event wait/finish readiness maps to proxy completion interrupts, interrupt clear, and fence coverage.",
+        "pass": true,
+        "path_id": "host_events_to_interrupt_fence_paths",
+        "rtl_debug_counters": {
+          "completion_interrupts": true,
+          "fence_signals": true,
+          "fence_waits": true,
+          "interrupt_clears": true
+        },
+        "runtime_opcodes": {
+          "kernel_dispatch": true
+        }
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "event_mapping_pass"
+    },
+    {
+      "evidence": {
+        "coverage_bins": {
+          "dma_copy": true,
+          "dma_copy_d2h": true,
+          "dma_copy_h2d": true,
+          "dma_fill": true,
+          "native_command_categories": true
+        },
+        "host_apis": {
+          "clCreateBuffer": true,
+          "clEnqueueReadBuffer": true,
+          "clEnqueueWriteBuffer": true,
+          "clReleaseBuffer": true
+        },
+        "notes": "Host buffer create/write/read lifecycle maps to existing DMA/fill/copy/AXI evidence bins from the RTL/control-plane suite.",
+        "pass": true,
+        "path_id": "host_buffers_to_dma_and_axi_paths",
+        "rtl_debug_counters": {
+          "axi_read_transactions": true,
+          "axi_write_transactions": true,
+          "bytes_read": true,
+          "bytes_written": true,
+          "dma_copies": true,
+          "dma_fills": true
+        },
+        "runtime_opcodes": {
+          "kernel_dispatch": true
+        }
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "buffer_mapping_pass"
+    },
+    {
+      "evidence": {
+        "coverage_bins": {
+          "error_interrupt": true,
+          "mmu_fault": true,
+          "scheduler_fault": true
+        },
+        "host_apis": {
+          "clCreateBuffer": true,
+          "clCreateCommandQueueWithProperties": true,
+          "clCreateKernel": true,
+          "clGetDeviceInfo": true,
+          "clSetKernelArg": true
+        },
+        "notes": "Host API negative readiness is cross-checked against existing fault/interrupt structural bins; it is not CTS pass evidence.",
+        "pass": true,
+        "path_id": "host_negative_api_to_fault_bins",
+        "rtl_debug_counters": {
+          "commands_failed": true,
+          "error_interrupts": true,
+          "mmu_faults": true,
+          "scheduler_faults": true
+        },
+        "runtime_opcodes": {
+          "kernel_dispatch": true
+        }
+      },
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "negative_mapping_pass"
+    },
+    {
+      "evidence": {},
+      "group": "opencl_rtl_cts_cross_check_checks",
+      "hit": true,
+      "name": "no_cts_or_structural_overclaim"
     },
     {
       "evidence": {},
@@ -5278,7 +6214,7 @@
     },
     {
       "evidence": {
-        "api_call_count": 35
+        "api_call_count": 49
       },
       "group": "opencl_host_api_shim",
       "hit": true,
@@ -5312,6 +6248,888 @@
       "group": "opencl_host_api_shim",
       "hit": true,
       "name": "handles_released"
+    },
+    {
+      "evidence": {
+        "checks": [
+          {
+            "count": 16,
+            "name": "device_info_query_depth",
+            "pass": true
+          },
+          {
+            "items": [
+              {
+                "cts_relevance": "images intentionally unsupported and must not be advertised",
+                "name": "CL_DEVICE_IMAGE_SUPPORT",
+                "readiness": "ready",
+                "value": false
+              },
+              {
+                "cts_relevance": "SVM not advertised",
+                "name": "CL_DEVICE_SVM_CAPABILITIES",
+                "readiness": "ready",
+                "value": 0
+              },
+              {
+                "cts_relevance": "atomics not advertised",
+                "name": "CL_DEVICE_ATOMIC_MEMORY_CAPABILITIES",
+                "readiness": "ready",
+                "value": 0
+              }
+            ],
+            "name": "unsupported_features_not_advertised",
+            "pass": true
+          },
+          {
+            "name": "workgroup_limit_matches_subset",
+            "pass": true,
+            "value": 256
+          }
+        ],
+        "schema": "celviz.gpgpu.opencl_host_api_shim.device_info_matrix.v1",
+        "status": "pass",
+        "supported_queries": [
+          {
+            "cts_relevance": "core device discovery",
+            "name": "CL_DEVICE_TYPE",
+            "readiness": "proxy",
+            "value": "CL_DEVICE_TYPE_GPU"
+          },
+          {
+            "cts_relevance": "string query",
+            "name": "CL_DEVICE_VENDOR",
+            "readiness": "proxy",
+            "value": "Celviz clean-room"
+          },
+          {
+            "cts_relevance": "string query",
+            "name": "CL_DEVICE_NAME",
+            "readiness": "proxy",
+            "value": "Celviz GPGPU IP proxy"
+          },
+          {
+            "cts_relevance": "version/profile query; not conformance",
+            "name": "CL_DEVICE_VERSION",
+            "readiness": "partial",
+            "value": "OpenCL 1.2 Celviz-readiness subset"
+          },
+          {
+            "cts_relevance": "compiler language query",
+            "name": "CL_DEVICE_OPENCL_C_VERSION",
+            "readiness": "partial",
+            "value": "OpenCL C subset"
+          },
+          {
+            "cts_relevance": "profile query",
+            "name": "CL_DEVICE_PROFILE",
+            "readiness": "proxy",
+            "value": "EMBEDDED_PROFILE_PROXY"
+          },
+          {
+            "cts_relevance": "no extensions advertised until implemented",
+            "name": "CL_DEVICE_EXTENSIONS",
+            "readiness": "ready",
+            "value": ""
+          },
+          {
+            "cts_relevance": "NDRange validation",
+            "name": "CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS",
+            "readiness": "proxy",
+            "value": 3
+          },
+          {
+            "cts_relevance": "work-group limit validation",
+            "name": "CL_DEVICE_MAX_WORK_GROUP_SIZE",
+            "readiness": "proxy",
+            "value": 256
+          },
+          {
+            "cts_relevance": "per-dimension limit validation",
+            "name": "CL_DEVICE_MAX_WORK_ITEM_SIZES",
+            "readiness": "proxy",
+            "value": [
+              256,
+              256,
+              64
+            ]
+          },
+          {
+            "cts_relevance": "memory object addressing",
+            "name": "CL_DEVICE_ADDRESS_BITS",
+            "readiness": "proxy",
+            "value": 40
+          },
+          {
+            "cts_relevance": "memory allocation limits",
+            "name": "CL_DEVICE_GLOBAL_MEM_SIZE",
+            "readiness": "proxy",
+            "value": 268435456
+          },
+          {
+            "cts_relevance": "local memory limits",
+            "name": "CL_DEVICE_LOCAL_MEM_SIZE",
+            "readiness": "proxy",
+            "value": 32768
+          },
+          {
+            "cts_relevance": "images intentionally unsupported and must not be advertised",
+            "name": "CL_DEVICE_IMAGE_SUPPORT",
+            "readiness": "ready",
+            "value": false
+          },
+          {
+            "cts_relevance": "SVM not advertised",
+            "name": "CL_DEVICE_SVM_CAPABILITIES",
+            "readiness": "ready",
+            "value": 0
+          },
+          {
+            "cts_relevance": "atomics not advertised",
+            "name": "CL_DEVICE_ATOMIC_MEMORY_CAPABILITIES",
+            "readiness": "ready",
+            "value": 0
+          }
+        ]
+      },
+      "group": "opencl_host_api_shim",
+      "hit": true,
+      "name": "device_info_matrix_depth"
+    },
+    {
+      "evidence": {
+        "case_count": 3,
+        "cases": [
+          {
+            "api": "clBuildProgram",
+            "build_log": "unsupported OpenCL feature token: double",
+            "build_status": "failed",
+            "expected_error": "CL_BUILD_PROGRAM_FAILURE",
+            "name": "build_rejects_double",
+            "observed_error": "CL_BUILD_PROGRAM_FAILURE",
+            "pass": true
+          },
+          {
+            "api": "clCreateKernel",
+            "expected_error": "CL_INVALID_KERNEL_NAME",
+            "name": "kernel_name_error_code",
+            "observed_error": "CL_INVALID_KERNEL_NAME",
+            "pass": true
+          },
+          {
+            "api": "clSetKernelArg",
+            "expected_error": "CL_INVALID_ARG_INDEX",
+            "name": "negative_arg_index_error_code",
+            "observed_error": "CL_INVALID_ARG_INDEX",
+            "pass": true
+          }
+        ],
+        "schema": "celviz.gpgpu.opencl_host_api_shim.build_log_error_matrix.v1",
+        "status": "pass"
+      },
+      "group": "opencl_host_api_shim",
+      "hit": true,
+      "name": "build_log_matrix_depth"
+    },
+    {
+      "evidence": {
+        "checks": [
+          {
+            "name": "event_8_monotonic_profile",
+            "pass": true,
+            "profiling": {
+              "duration": 7,
+              "end": 121,
+              "queued": 100,
+              "start": 114,
+              "submit": 107
+            }
+          },
+          {
+            "name": "event_8_wait_list_resolved",
+            "pass": true,
+            "wait_for": []
+          },
+          {
+            "name": "event_9_monotonic_profile",
+            "pass": true,
+            "profiling": {
+              "duration": 7,
+              "end": 149,
+              "queued": 128,
+              "start": 142,
+              "submit": 135
+            }
+          },
+          {
+            "name": "event_9_wait_list_resolved",
+            "pass": true,
+            "wait_for": []
+          },
+          {
+            "name": "event_12_monotonic_profile",
+            "pass": true,
+            "profiling": {
+              "duration": 7,
+              "end": 177,
+              "queued": 156,
+              "start": 170,
+              "submit": 163
+            }
+          },
+          {
+            "name": "event_12_wait_list_resolved",
+            "pass": true,
+            "wait_for": []
+          },
+          {
+            "name": "event_13_monotonic_profile",
+            "pass": true,
+            "profiling": {
+              "duration": 7,
+              "end": 205,
+              "queued": 184,
+              "start": 198,
+              "submit": 191
+            }
+          },
+          {
+            "name": "event_13_wait_list_resolved",
+            "pass": true,
+            "wait_for": [
+              "event_12"
+            ]
+          },
+          {
+            "name": "readback_depends_on_kernel_event",
+            "pass": true,
+            "read_events": [
+              {
+                "buffer": "buffer_7",
+                "command": "read_buffer",
+                "event": "event_13",
+                "profiling": {
+                  "duration": 7,
+                  "end": 205,
+                  "queued": 184,
+                  "start": 198,
+                  "submit": 191
+                },
+                "queue": "queue_4",
+                "status": "complete",
+                "wait_for": [
+                  "event_12"
+                ]
+              }
+            ]
+          }
+        ],
+        "events": [
+          {
+            "buffer": "buffer_5",
+            "command": "write_buffer",
+            "event": "event_8",
+            "profiling": {
+              "duration": 7,
+              "end": 121,
+              "queued": 100,
+              "start": 114,
+              "submit": 107
+            },
+            "queue": "queue_4",
+            "size_bytes": 4096,
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "buffer": "buffer_6",
+            "command": "write_buffer",
+            "event": "event_9",
+            "profiling": {
+              "duration": 7,
+              "end": 149,
+              "queued": 128,
+              "start": 142,
+              "submit": 135
+            },
+            "queue": "queue_4",
+            "size_bytes": 4096,
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "command": "ndrange_kernel",
+            "event": "event_12",
+            "kernel": "kernel_11",
+            "profiling": {
+              "duration": 7,
+              "end": 177,
+              "queued": 156,
+              "start": 170,
+              "submit": 163
+            },
+            "queue": "queue_4",
+            "runtime_status": "pass",
+            "status": "complete",
+            "wait_for": []
+          },
+          {
+            "buffer": "buffer_7",
+            "command": "read_buffer",
+            "event": "event_13",
+            "profiling": {
+              "duration": 7,
+              "end": 205,
+              "queued": 184,
+              "start": 198,
+              "submit": 191
+            },
+            "queue": "queue_4",
+            "status": "complete",
+            "wait_for": [
+              "event_12"
+            ]
+          }
+        ],
+        "schema": "celviz.gpgpu.opencl_host_api_shim.event_profiling_matrix.v1",
+        "status": "pass"
+      },
+      "group": "opencl_host_api_shim",
+      "hit": true,
+      "name": "event_profiling_matrix_depth"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table",
+      "hit": true,
+      "name": "query_depth"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table_rows",
+      "hit": true,
+      "name": "CL_DEVICE_PROFILE"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table_rows",
+      "hit": true,
+      "name": "CL_DEVICE_VERSION"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table_rows",
+      "hit": true,
+      "name": "CL_DEVICE_EXTENSIONS"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table_rows",
+      "hit": true,
+      "name": "CL_DEVICE_MAX_COMPUTE_UNITS"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table_rows",
+      "hit": true,
+      "name": "CL_DEVICE_GLOBAL_MEM_SIZE"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table_rows",
+      "hit": true,
+      "name": "CL_DEVICE_IMAGE_SUPPORT"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table_rows",
+      "hit": true,
+      "name": "CL_DEVICE_ATOMIC_MEMORY_CAPABILITIES"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table_rows",
+      "hit": true,
+      "name": "CL_DEVICE_SVM_CAPABILITIES"
+    },
+    {
+      "evidence": {
+        "query_count": 57
+      },
+      "group": "opencl_device_info_table",
+      "hit": true,
+      "name": "claim_boundary"
+    },
+    {
+      "evidence": {
+        "case_count": 22
+      },
+      "group": "opencl_build_error_code_matrix",
+      "hit": true,
+      "name": "case_depth"
+    },
+    {
+      "evidence": {
+        "apis": [
+          "clBuildProgram"
+        ],
+        "error_codes": [
+          "CL_BUILD_PROGRAM_FAILURE",
+          "CL_INVALID_BUILD_OPTIONS",
+          "CL_INVALID_PROGRAM",
+          "CL_SUCCESS"
+        ],
+        "passed": 5,
+        "status": "pass",
+        "total": 5
+      },
+      "group": "opencl_build_error_code_matrix_categories",
+      "hit": true,
+      "name": "clBuildProgram"
+    },
+    {
+      "evidence": {
+        "apis": [
+          "clCreateKernel"
+        ],
+        "error_codes": [
+          "CL_INVALID_KERNEL_NAME",
+          "CL_INVALID_PROGRAM_EXECUTABLE",
+          "CL_SUCCESS"
+        ],
+        "passed": 3,
+        "status": "pass",
+        "total": 3
+      },
+      "group": "opencl_build_error_code_matrix_categories",
+      "hit": true,
+      "name": "clCreateKernel"
+    },
+    {
+      "evidence": {
+        "apis": [
+          "clSetKernelArg"
+        ],
+        "error_codes": [
+          "CL_INVALID_ARG_INDEX",
+          "CL_INVALID_ARG_SIZE",
+          "CL_INVALID_ARG_VALUE",
+          "CL_INVALID_MEM_OBJECT",
+          "CL_SUCCESS"
+        ],
+        "passed": 5,
+        "status": "pass",
+        "total": 5
+      },
+      "group": "opencl_build_error_code_matrix_categories",
+      "hit": true,
+      "name": "clSetKernelArg"
+    },
+    {
+      "evidence": {
+        "apis": [
+          "clEnqueueNDRangeKernel"
+        ],
+        "error_codes": [
+          "CL_INVALID_GLOBAL_WORK_SIZE",
+          "CL_INVALID_VALUE",
+          "CL_INVALID_WORK_DIMENSION",
+          "CL_INVALID_WORK_GROUP_SIZE",
+          "CL_SUCCESS"
+        ],
+        "passed": 6,
+        "status": "pass",
+        "total": 6
+      },
+      "group": "opencl_build_error_code_matrix_categories",
+      "hit": true,
+      "name": "NDRange geometry"
+    },
+    {
+      "evidence": {
+        "apis": [
+          "clCreateBuffer"
+        ],
+        "error_codes": [
+          "CL_INVALID_VALUE",
+          "CL_SUCCESS"
+        ],
+        "passed": 3,
+        "status": "pass",
+        "total": 3
+      },
+      "group": "opencl_build_error_code_matrix_categories",
+      "hit": true,
+      "name": "buffer errors"
+    },
+    {
+      "evidence": {
+        "case_count": 22
+      },
+      "group": "opencl_build_error_code_matrix",
+      "hit": true,
+      "name": "all_cases_pass"
+    },
+    {
+      "evidence": {
+        "clean_room_scope": "clean-room OpenCL-style build log/error-code matrix for Celviz GPGPU IP subset evidence only; not Khronos CTS, not official OpenCL conformance, not libOpenCL/ICD, and not proprietary Vivante compiler/SDK/firmware/driver/command-stream compatibility"
+      },
+      "group": "opencl_build_error_code_matrix",
+      "hit": true,
+      "name": "claim_boundary"
+    },
+    {
+      "evidence": {
+        "completed_events": 5,
+        "edges": 7,
+        "events": 7,
+        "failed_events": 2,
+        "profiling_records": 7,
+        "validation_rejections": 3
+      },
+      "group": "opencl_event_waitlist_profiling",
+      "hit": true,
+      "name": "dag_and_profiling_depth"
+    },
+    {
+      "evidence": {
+        "completed_events": 5,
+        "edges": 7,
+        "events": 7,
+        "failed_events": 2,
+        "profiling_records": 7,
+        "validation_rejections": 3
+      },
+      "group": "opencl_event_waitlist_profiling",
+      "hit": true,
+      "name": "negative_wait_list_validation"
+    },
+    {
+      "evidence": {
+        "cts_evidence": false,
+        "khronos_conformance": false,
+        "linux_kernel_driver": false,
+        "official_opencl_icd": false,
+        "vivante_compatibility": false
+      },
+      "group": "opencl_event_waitlist_profiling_boundaries",
+      "hit": true,
+      "name": "official_opencl_icd"
+    },
+    {
+      "evidence": {
+        "cts_evidence": false,
+        "khronos_conformance": false,
+        "linux_kernel_driver": false,
+        "official_opencl_icd": false,
+        "vivante_compatibility": false
+      },
+      "group": "opencl_event_waitlist_profiling_boundaries",
+      "hit": true,
+      "name": "khronos_conformance"
+    },
+    {
+      "evidence": {
+        "cts_evidence": false,
+        "khronos_conformance": false,
+        "linux_kernel_driver": false,
+        "official_opencl_icd": false,
+        "vivante_compatibility": false
+      },
+      "group": "opencl_event_waitlist_profiling_boundaries",
+      "hit": true,
+      "name": "cts_evidence"
+    },
+    {
+      "evidence": {
+        "event_count": 24,
+        "flag_count": 5,
+        "negative_case_count": 9,
+        "official_conformance_claim": false,
+        "operation_gate_count": 3,
+        "status": "pass"
+      },
+      "group": "phase9_memory_object_flags_gate",
+      "hit": true,
+      "name": "flag_and_operation_depth"
+    },
+    {
+      "evidence": {
+        "flag_count": 5
+      },
+      "group": "phase9_memory_object_flags",
+      "hit": true,
+      "name": "CL_MEM_READ_WRITE"
+    },
+    {
+      "evidence": {
+        "flag_count": 5
+      },
+      "group": "phase9_memory_object_flags",
+      "hit": true,
+      "name": "CL_MEM_READ_ONLY"
+    },
+    {
+      "evidence": {
+        "flag_count": 5
+      },
+      "group": "phase9_memory_object_flags",
+      "hit": true,
+      "name": "CL_MEM_WRITE_ONLY"
+    },
+    {
+      "evidence": {
+        "flag_count": 5
+      },
+      "group": "phase9_memory_object_flags",
+      "hit": true,
+      "name": "CL_MEM_COPY_HOST_PTR"
+    },
+    {
+      "evidence": {
+        "flag_count": 5
+      },
+      "group": "phase9_memory_object_flags",
+      "hit": true,
+      "name": "CL_MEM_USE_HOST_PTR"
+    },
+    {
+      "evidence": {
+        "operation_gate_count": 3
+      },
+      "group": "phase9_memory_object_operations",
+      "hit": true,
+      "name": "map/unmap"
+    },
+    {
+      "evidence": {
+        "operation_gate_count": 3
+      },
+      "group": "phase9_memory_object_operations",
+      "hit": true,
+      "name": "sub-buffer"
+    },
+    {
+      "evidence": {
+        "operation_gate_count": 3
+      },
+      "group": "phase9_memory_object_operations",
+      "hit": true,
+      "name": "bounds negative tests"
+    },
+    {
+      "evidence": {
+        "row_count": 8
+      },
+      "group": "phase9_memory_object_flags_completion",
+      "hit": true,
+      "name": "row_depth"
+    },
+    {
+      "evidence": {
+        "evidence": [
+          "queue_count=1",
+          "queue_ids=[0]",
+          "ordered_sequences=True",
+          "driver_pending=0"
+        ],
+        "gap": [
+          "multi-queue in-order ordering is not covered",
+          "cross-queue dependencies require future wait-list or timeline semantics"
+        ],
+        "id": "in_order_queue",
+        "status": "covered"
+      },
+      "group": "runtime_queue_semantics_rows",
+      "hit": true,
+      "name": "in_order_queue"
+    },
+    {
+      "evidence": {
+        "evidence": [
+          "reject_out_of_order_queue test row has ENOTSUP"
+        ],
+        "gap": [
+          "out-of-order scheduling, dependency graph execution, and command reordering are not implemented"
+        ],
+        "id": "unsupported_out_of_order_rejection",
+        "status": "rejected"
+      },
+      "group": "runtime_queue_semantics_rows",
+      "hit": true,
+      "name": "unsupported_out_of_order_rejection"
+    },
+    {
+      "evidence": {
+        "evidence": [
+          "reject_marker_barrier_user_event test row has ENOTSUP"
+        ],
+        "gap": [
+          "OpenCL marker objects are not modeled",
+          "OpenCL barrier wait-list semantics are not modeled",
+          "OpenCL user-created events are not modeled"
+        ],
+        "id": "barrier_marker_user_event_gap",
+        "status": "gap_recorded"
+      },
+      "group": "runtime_queue_semantics_rows",
+      "hit": true,
+      "name": "barrier_marker_user_event_gap"
+    },
+    {
+      "evidence": {
+        "evidence": [
+          "reject_callback_registration test row has ENOTSUP",
+          "reject_profiling_timestamps test row has ENOTSUP",
+          "reject_event_wait_list_dependency test row has ENOTSUP"
+        ],
+        "gap": [
+          "event callbacks are not implemented",
+          "profiling timestamps are not productized",
+          "explicit wait-list dependencies are not implemented"
+        ],
+        "id": "callbacks_profiling_wait_list_gap",
+        "status": "gap_recorded"
+      },
+      "group": "runtime_queue_semantics_rows",
+      "hit": true,
+      "name": "callbacks_profiling_wait_list_gap"
+    },
+    {
+      "evidence": {
+        "gap_rows": 4,
+        "kernel_dispatches": 4,
+        "linux_events_readable": 4,
+        "linux_fence_waits": 2,
+        "queue_count": 1,
+        "queue_ids": [
+          0
+        ],
+        "semantics_rows": 4,
+        "unsupported_rejections": 1
+      },
+      "group": "runtime_queue_semantics_gate",
+      "hit": true,
+      "name": "gap_boundaries_recorded"
+    },
+    {
+      "evidence": {
+        "cts_ready": false,
+        "structural_coverage_closed": false
+      },
+      "group": "opencl_rtl_cts_cross_check",
+      "hit": true,
+      "name": "status_without_overclaim"
+    },
+    {
+      "evidence": {
+        "mapping_count": 4
+      },
+      "group": "opencl_rtl_cts_cross_check_paths",
+      "hit": true,
+      "name": "host_dispatch_to_kernel_dispatch"
+    },
+    {
+      "evidence": {
+        "mapping_count": 4
+      },
+      "group": "opencl_rtl_cts_cross_check_paths",
+      "hit": true,
+      "name": "host_events_to_interrupt_fence_paths"
+    },
+    {
+      "evidence": {
+        "mapping_count": 4
+      },
+      "group": "opencl_rtl_cts_cross_check_paths",
+      "hit": true,
+      "name": "host_buffers_to_dma_and_axi_paths"
+    },
+    {
+      "evidence": {
+        "mapping_count": 4
+      },
+      "group": "opencl_rtl_cts_cross_check_paths",
+      "hit": true,
+      "name": "host_negative_api_to_fault_bins"
+    },
+    {
+      "evidence": {
+        "khronos_cts_pass": false,
+        "official_opencl_conformance": false,
+        "product_icd": false,
+        "rtl_structural_coverage_100": false,
+        "silicon_signoff": false
+      },
+      "group": "opencl_rtl_cts_cross_check_boundaries",
+      "hit": true,
+      "name": "khronos_cts_pass"
+    },
+    {
+      "evidence": {
+        "khronos_cts_pass": false,
+        "official_opencl_conformance": false,
+        "product_icd": false,
+        "rtl_structural_coverage_100": false,
+        "silicon_signoff": false
+      },
+      "group": "opencl_rtl_cts_cross_check_boundaries",
+      "hit": true,
+      "name": "official_opencl_conformance"
+    },
+    {
+      "evidence": {
+        "khronos_cts_pass": false,
+        "official_opencl_conformance": false,
+        "product_icd": false,
+        "rtl_structural_coverage_100": false,
+        "silicon_signoff": false
+      },
+      "group": "opencl_rtl_cts_cross_check_boundaries",
+      "hit": true,
+      "name": "product_icd"
+    },
+    {
+      "evidence": {
+        "khronos_cts_pass": false,
+        "official_opencl_conformance": false,
+        "product_icd": false,
+        "rtl_structural_coverage_100": false,
+        "silicon_signoff": false
+      },
+      "group": "opencl_rtl_cts_cross_check_boundaries",
+      "hit": true,
+      "name": "rtl_structural_coverage_100"
+    },
+    {
+      "evidence": {
+        "khronos_cts_pass": false,
+        "official_opencl_conformance": false,
+        "product_icd": false,
+        "rtl_structural_coverage_100": false,
+        "silicon_signoff": false
+      },
+      "group": "opencl_rtl_cts_cross_check_boundaries",
+      "hit": true,
+      "name": "silicon_signoff"
     },
     {
       "evidence": {
@@ -5754,13 +7572,13 @@
   "clean_room_scope": "clean-room functional and acceptance verification coverage for the Ventus-based Celviz GPGPU IP proxy only; no proprietary Vivante compatibility, proprietary command stream/driver/firmware/SDK claim, official OpenCL/OpenCV conformance claim, RTL timing closure, PPA, safety certification, silicon signoff, or production-readiness claim",
   "coverage_kind": "functional_acceptance_verification_bins",
   "coverage_percent": 100.0,
-  "generated_at": "2026-05-03T05:37:48+00:00",
+  "generated_at": "2026-05-03T05:51:17+00:00",
   "groups": {
     "artifacts": {
       "coverage_percent": 100.0,
-      "hit": 54,
+      "hit": 61,
       "missed_bins": [],
-      "total": 54
+      "total": 61
     },
     "celviz_eda_methodology": {
       "coverage_percent": 100.0,
@@ -5948,23 +7766,101 @@
       "missed_bins": [],
       "total": 4
     },
+    "opencl_build_error_code_matrix": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
+    "opencl_build_error_code_matrix_categories": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "opencl_build_error_code_matrix_checks": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
     "opencl_conformance_gap_map": {
       "coverage_percent": 100.0,
       "hit": 1,
       "missed_bins": [],
       "total": 1
     },
-    "opencl_host_api_shim": {
+    "opencl_device_info_table": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "opencl_device_info_table_checks": {
       "coverage_percent": 100.0,
       "hit": 6,
       "missed_bins": [],
       "total": 6
     },
-    "opencl_host_api_shim_checks": {
+    "opencl_device_info_table_rows": {
       "coverage_percent": 100.0,
       "hit": 8,
       "missed_bins": [],
       "total": 8
+    },
+    "opencl_event_waitlist_profiling": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "opencl_event_waitlist_profiling_boundaries": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "opencl_event_waitlist_profiling_checks": {
+      "coverage_percent": 100.0,
+      "hit": 9,
+      "missed_bins": [],
+      "total": 9
+    },
+    "opencl_host_api_shim": {
+      "coverage_percent": 100.0,
+      "hit": 9,
+      "missed_bins": [],
+      "total": 9
+    },
+    "opencl_host_api_shim_checks": {
+      "coverage_percent": 100.0,
+      "hit": 11,
+      "missed_bins": [],
+      "total": 11
+    },
+    "opencl_rtl_cts_cross_check": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "opencl_rtl_cts_cross_check_boundaries": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "opencl_rtl_cts_cross_check_checks": {
+      "coverage_percent": 100.0,
+      "hit": 12,
+      "missed_bins": [],
+      "total": 12
+    },
+    "opencl_rtl_cts_cross_check_paths": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
     },
     "phase2_integration": {
       "coverage_percent": 100.0,
@@ -6206,6 +8102,36 @@
       "missed_bins": [],
       "total": 6
     },
+    "phase9_memory_object_flags": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "phase9_memory_object_flags_completion": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase9_memory_object_flags_gate": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "phase9_memory_object_flags_gate_checks": {
+      "coverage_percent": 100.0,
+      "hit": 9,
+      "missed_bins": [],
+      "total": 9
+    },
+    "phase9_memory_object_operations": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
     "phase9_opencl_conformance_readiness": {
       "coverage_percent": 100.0,
       "hit": 5,
@@ -6266,6 +8192,24 @@
       "missed_bins": [],
       "total": 2
     },
+    "runtime_queue_semantics_gate": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "runtime_queue_semantics_gate_checks": {
+      "coverage_percent": 100.0,
+      "hit": 12,
+      "missed_bins": [],
+      "total": 12
+    },
+    "runtime_queue_semantics_rows": {
+      "coverage_percent": 100.0,
+      "hit": 4,
+      "missed_bins": [],
+      "total": 4
+    },
     "verification_harness": {
       "coverage_percent": 100.0,
       "hit": 1,
@@ -6273,7 +8217,7 @@
       "total": 1
     }
   },
-  "hit_bins": 446,
+  "hit_bins": 566,
   "missed_bins": [],
   "rtl_structural_coverage_observation": {
     "lcov_info": {
@@ -6321,5 +8265,5 @@
   },
   "schema": "celviz.gpgpu.verification_coverage_100.v1",
   "status": "pass",
-  "total_bins": 446
+  "total_bins": 566
 }

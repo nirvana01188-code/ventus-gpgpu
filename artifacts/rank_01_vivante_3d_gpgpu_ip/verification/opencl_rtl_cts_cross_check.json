@@ -1,0 +1,475 @@
+{
+  "artifacts": {
+    "control_plane_metrics": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_metrics.json",
+      "size_bytes": 27533
+    },
+    "host_api_shim_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_host_api_shim_report.json",
+      "size_bytes": 24614
+    },
+    "opencl_cts_matrix": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_cts_readiness_matrix.json",
+      "size_bytes": 10962
+    },
+    "opencl_cts_readiness": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_conformance_readiness_report.json",
+      "size_bytes": 14446
+    },
+    "runtime_commands": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json",
+      "size_bytes": 7941
+    },
+    "runtime_metrics": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_proxy/runtime_metrics.json",
+      "size_bytes": 27614
+    },
+    "supplemental_phase1": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/phase1_supplemental_evidence.json",
+      "size_bytes": 15651
+    },
+    "verilator_coverage_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json",
+      "size_bytes": 4905
+    }
+  },
+  "checks": [
+    {
+      "evidence": {
+        "api_call_count": 49,
+        "host_report_status": "pass",
+        "missing_required_apis": []
+      },
+      "name": "host_api_trace_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "kernels": [
+          "conv2d",
+          "gemm",
+          "image_filter",
+          "vector_add"
+        ]
+      },
+      "name": "runtime_commands_have_opencl_kernels",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "runtime_proxy_metrics_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "control_plane_metrics_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "functional_coverage_percent": 100.0,
+        "status": "pass"
+      },
+      "name": "verilator_functional_bins_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "status": "pass"
+      },
+      "name": "opencl_readiness_scope_present",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "structural_target_hit_count": 24,
+        "structural_target_percent": 100.0,
+        "structural_target_total": 24,
+        "total_commands": 295,
+        "total_completion_interrupts": 85,
+        "total_dma_alignment_errors": 1,
+        "total_dma_copies": 102,
+        "total_dma_fills": 103,
+        "total_error_interrupts": 7,
+        "total_kernel_dispatches": 10,
+        "total_mmu_faults": 2,
+        "total_scheduler_faults": 1
+      },
+      "name": "supplemental_structural_targets_recorded",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "coverage_bins": {
+          "native_command_categories": true,
+          "pending_count_zero": true,
+          "queues": true
+        },
+        "host_apis": {
+          "clBuildProgram": true,
+          "clCreateKernel": true,
+          "clCreateProgramWithSource": true,
+          "clEnqueueNDRangeKernel": true,
+          "clFinish": true,
+          "clSetKernelArg": true
+        },
+        "notes": "Host program/kernel/NDRange lifecycle maps to runtime kernel_dispatch and control-plane command/kernel counters.",
+        "pass": true,
+        "path_id": "host_dispatch_to_kernel_dispatch",
+        "rtl_debug_counters": {
+          "apb_reads": true,
+          "apb_writes": true,
+          "commands_completed": true,
+          "commands_submitted": true,
+          "kernel_dispatches": true
+        },
+        "runtime_opcodes": {
+          "kernel_dispatch": true
+        }
+      },
+      "name": "dispatch_mapping_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "coverage_bins": {
+          "completion_interrupt": true,
+          "fence_signal": true,
+          "fence_wait": true,
+          "pending_count_zero": true
+        },
+        "host_apis": {
+          "clEnqueueNDRangeKernel": true,
+          "clEnqueueReadBuffer": true,
+          "clFinish": true,
+          "clWaitForEvents": true
+        },
+        "notes": "Host event wait/finish readiness maps to proxy completion interrupts, interrupt clear, and fence coverage.",
+        "pass": true,
+        "path_id": "host_events_to_interrupt_fence_paths",
+        "rtl_debug_counters": {
+          "completion_interrupts": true,
+          "fence_signals": true,
+          "fence_waits": true,
+          "interrupt_clears": true
+        },
+        "runtime_opcodes": {
+          "kernel_dispatch": true
+        }
+      },
+      "name": "event_mapping_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "coverage_bins": {
+          "dma_copy": true,
+          "dma_copy_d2h": true,
+          "dma_copy_h2d": true,
+          "dma_fill": true,
+          "native_command_categories": true
+        },
+        "host_apis": {
+          "clCreateBuffer": true,
+          "clEnqueueReadBuffer": true,
+          "clEnqueueWriteBuffer": true,
+          "clReleaseBuffer": true
+        },
+        "notes": "Host buffer create/write/read lifecycle maps to existing DMA/fill/copy/AXI evidence bins from the RTL/control-plane suite.",
+        "pass": true,
+        "path_id": "host_buffers_to_dma_and_axi_paths",
+        "rtl_debug_counters": {
+          "axi_read_transactions": true,
+          "axi_write_transactions": true,
+          "bytes_read": true,
+          "bytes_written": true,
+          "dma_copies": true,
+          "dma_fills": true
+        },
+        "runtime_opcodes": {
+          "kernel_dispatch": true
+        }
+      },
+      "name": "buffer_mapping_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "coverage_bins": {
+          "error_interrupt": true,
+          "mmu_fault": true,
+          "scheduler_fault": true
+        },
+        "host_apis": {
+          "clCreateBuffer": true,
+          "clCreateCommandQueueWithProperties": true,
+          "clCreateKernel": true,
+          "clGetDeviceInfo": true,
+          "clSetKernelArg": true
+        },
+        "notes": "Host API negative readiness is cross-checked against existing fault/interrupt structural bins; it is not CTS pass evidence.",
+        "pass": true,
+        "path_id": "host_negative_api_to_fault_bins",
+        "rtl_debug_counters": {
+          "commands_failed": true,
+          "error_interrupts": true,
+          "mmu_faults": true,
+          "scheduler_faults": true
+        },
+        "runtime_opcodes": {
+          "kernel_dispatch": true
+        }
+      },
+      "name": "negative_mapping_pass",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "no_cts_or_structural_overclaim",
+      "pass": true
+    }
+  ],
+  "claim_boundaries": {
+    "khronos_cts_pass": false,
+    "official_opencl_conformance": false,
+    "product_icd": false,
+    "rtl_structural_coverage_100": false,
+    "silicon_signoff": false
+  },
+  "clean_room_scope": "OpenCL host API shim to RTL/coverage cross-check for Celviz GPGPU IP readiness. This maps local clean-room dispatch/event/buffer paths to existing RTL debug counters and Verilator functional coverage bins. It is not Khronos CTS, not official OpenCL conformance, not a product ICD, not RTL structural coverage 100%, and not silicon signoff.",
+  "cts_ready": false,
+  "generated_at": "2026-05-03T05:51:17+00:00",
+  "observed": {
+    "control_command_count": 19,
+    "control_counters": {
+      "apb_reads": 19,
+      "apb_writes": 38,
+      "axi_read_beats": 46,
+      "axi_read_transactions": 5,
+      "axi_write_beats": 142,
+      "axi_write_transactions": 16,
+      "bytes_moved": 3008,
+      "bytes_read": 736,
+      "bytes_written": 2272,
+      "command_submission_errors": 1,
+      "commands_completed": 19,
+      "commands_failed": 3,
+      "commands_submitted": 19,
+      "completion_interrupts": 13,
+      "dma_alignment_errors": 0,
+      "dma_bounds_errors": 1,
+      "dma_copies": 2,
+      "dma_fills": 2,
+      "error_interrupts": 3,
+      "fence_signals": 2,
+      "fence_waits": 3,
+      "interrupt_clears": 16,
+      "invalid_descriptors": 0,
+      "kernel_dispatches": 2,
+      "mmu_faults": 1,
+      "queue_errors": 3,
+      "reset_recoveries": 1,
+      "resets": 1,
+      "scheduler_faults": 1
+    },
+    "host_api_count": 49,
+    "host_event_commands": [
+      "ndrange_kernel",
+      "read_buffer",
+      "write_buffer"
+    ],
+    "opencl_runtime_kernels": [
+      "conv2d",
+      "gemm",
+      "image_filter",
+      "vector_add"
+    ],
+    "structural_metrics": {
+      "branch": {
+        "found": 2134626,
+        "hit": 614495,
+        "percent": 28.787,
+        "status": "available"
+      },
+      "line": {
+        "found": 97500,
+        "hit": 77108,
+        "percent": 79.085,
+        "status": "available"
+      },
+      "status": "reported_separately_not_a_closure_claim",
+      "toggle": {
+        "found": null,
+        "hit": null,
+        "percent": null,
+        "reason": "toggle counts were not present in coverage info",
+        "status": "unavailable"
+      }
+    },
+    "supplemental_structural_metrics": {
+      "structural_target_hit_count": 24,
+      "structural_target_percent": 100.0,
+      "structural_target_total": 24,
+      "total_commands": 295,
+      "total_completion_interrupts": 85,
+      "total_dma_alignment_errors": 1,
+      "total_dma_copies": 102,
+      "total_dma_fills": 103,
+      "total_error_interrupts": 7,
+      "total_kernel_dispatches": 10,
+      "total_mmu_faults": 2,
+      "total_scheduler_faults": 1
+    },
+    "verilator_feature_bins_hit": [
+      "abi_symbol_coverage",
+      "completion_interrupt",
+      "dma_copy",
+      "dma_copy_d2h",
+      "dma_copy_h2d",
+      "dma_fill",
+      "error_interrupt",
+      "fence_signal",
+      "fence_wait",
+      "mmu_fault",
+      "native_command_categories",
+      "pending_count_zero",
+      "queues",
+      "reset",
+      "scheduler_fault"
+    ]
+  },
+  "path_mappings": [
+    {
+      "coverage_bins": {
+        "native_command_categories": true,
+        "pending_count_zero": true,
+        "queues": true
+      },
+      "host_apis": {
+        "clBuildProgram": true,
+        "clCreateKernel": true,
+        "clCreateProgramWithSource": true,
+        "clEnqueueNDRangeKernel": true,
+        "clFinish": true,
+        "clSetKernelArg": true
+      },
+      "notes": "Host program/kernel/NDRange lifecycle maps to runtime kernel_dispatch and control-plane command/kernel counters.",
+      "pass": true,
+      "path_id": "host_dispatch_to_kernel_dispatch",
+      "rtl_debug_counters": {
+        "apb_reads": true,
+        "apb_writes": true,
+        "commands_completed": true,
+        "commands_submitted": true,
+        "kernel_dispatches": true
+      },
+      "runtime_opcodes": {
+        "kernel_dispatch": true
+      }
+    },
+    {
+      "coverage_bins": {
+        "completion_interrupt": true,
+        "fence_signal": true,
+        "fence_wait": true,
+        "pending_count_zero": true
+      },
+      "host_apis": {
+        "clEnqueueNDRangeKernel": true,
+        "clEnqueueReadBuffer": true,
+        "clFinish": true,
+        "clWaitForEvents": true
+      },
+      "notes": "Host event wait/finish readiness maps to proxy completion interrupts, interrupt clear, and fence coverage.",
+      "pass": true,
+      "path_id": "host_events_to_interrupt_fence_paths",
+      "rtl_debug_counters": {
+        "completion_interrupts": true,
+        "fence_signals": true,
+        "fence_waits": true,
+        "interrupt_clears": true
+      },
+      "runtime_opcodes": {
+        "kernel_dispatch": true
+      }
+    },
+    {
+      "coverage_bins": {
+        "dma_copy": true,
+        "dma_copy_d2h": true,
+        "dma_copy_h2d": true,
+        "dma_fill": true,
+        "native_command_categories": true
+      },
+      "host_apis": {
+        "clCreateBuffer": true,
+        "clEnqueueReadBuffer": true,
+        "clEnqueueWriteBuffer": true,
+        "clReleaseBuffer": true
+      },
+      "notes": "Host buffer create/write/read lifecycle maps to existing DMA/fill/copy/AXI evidence bins from the RTL/control-plane suite.",
+      "pass": true,
+      "path_id": "host_buffers_to_dma_and_axi_paths",
+      "rtl_debug_counters": {
+        "axi_read_transactions": true,
+        "axi_write_transactions": true,
+        "bytes_read": true,
+        "bytes_written": true,
+        "dma_copies": true,
+        "dma_fills": true
+      },
+      "runtime_opcodes": {
+        "kernel_dispatch": true
+      }
+    },
+    {
+      "coverage_bins": {
+        "error_interrupt": true,
+        "mmu_fault": true,
+        "scheduler_fault": true
+      },
+      "host_apis": {
+        "clCreateBuffer": true,
+        "clCreateCommandQueueWithProperties": true,
+        "clCreateKernel": true,
+        "clGetDeviceInfo": true,
+        "clSetKernelArg": true
+      },
+      "notes": "Host API negative readiness is cross-checked against existing fault/interrupt structural bins; it is not CTS pass evidence.",
+      "pass": true,
+      "path_id": "host_negative_api_to_fault_bins",
+      "rtl_debug_counters": {
+        "commands_failed": true,
+        "error_interrupts": true,
+        "mmu_faults": true,
+        "scheduler_faults": true
+      },
+      "runtime_opcodes": {
+        "kernel_dispatch": true
+      }
+    }
+  ],
+  "schema": "celviz.gpgpu.opencl_rtl_cts_cross_check.v1",
+  "status": "pass",
+  "structural_coverage_closed": false
+}

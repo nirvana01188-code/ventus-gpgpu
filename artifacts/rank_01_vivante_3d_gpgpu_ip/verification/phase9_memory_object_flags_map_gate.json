@@ -1,0 +1,482 @@
+{
+  "checks": [
+    {
+      "name": "all_requested_flags_covered",
+      "pass": true
+    },
+    {
+      "name": "read_write_kernel_roundtrip",
+      "pass": true
+    },
+    {
+      "name": "read_only_copy_host_ptr_snapshot",
+      "pass": true
+    },
+    {
+      "name": "write_only_rejects_kernel_read",
+      "pass": true
+    },
+    {
+      "name": "use_host_ptr_alias_visible",
+      "pass": true
+    },
+    {
+      "name": "map_unmap_positive_and_negative",
+      "pass": true
+    },
+    {
+      "name": "sub_buffer_positive_and_negative",
+      "pass": true
+    },
+    {
+      "name": "bounds_negative_tests_present",
+      "pass": true
+    },
+    {
+      "name": "negative_cases_all_expected",
+      "pass": true
+    }
+  ],
+  "claim_boundary": "Proxy readiness evidence only; not official OpenCL memory-object conformance.",
+  "clean_room_scope": "Phase 9 clean-room memory-object flags/map/unmap/sub-buffer readiness gate; not official OpenCL conformance, not Khronos CTS, not a production ICD, not a stable UAPI, not proprietary Vivante compatibility, and not driver or silicon signoff",
+  "events": [
+    {
+      "event_id": 0,
+      "flags": [
+        "CL_MEM_READ_WRITE"
+      ],
+      "host_semantics": "device_allocation",
+      "object_id": "buf_rw",
+      "operation": "create_buffer",
+      "scenario": "create_buffer",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 64,
+      "status": "ok",
+      "storage_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b"
+    },
+    {
+      "event_id": 1,
+      "flags": [
+        "CL_MEM_COPY_HOST_PTR",
+        "CL_MEM_READ_ONLY"
+      ],
+      "host_semantics": "host_copy_snapshot",
+      "object_id": "buf_ro_copy",
+      "operation": "create_buffer",
+      "scenario": "create_buffer",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 64,
+      "status": "ok",
+      "storage_sha256": "c851af79e3d9e21a740988b41f9f4f46c67f471fa9521ee40adda2a261308ab7"
+    },
+    {
+      "event_id": 2,
+      "flags": [
+        "CL_MEM_WRITE_ONLY"
+      ],
+      "host_semantics": "device_allocation",
+      "object_id": "buf_wo",
+      "operation": "create_buffer",
+      "scenario": "create_buffer",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 64,
+      "status": "ok",
+      "storage_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b"
+    },
+    {
+      "event_id": 3,
+      "flags": [
+        "CL_MEM_READ_WRITE",
+        "CL_MEM_USE_HOST_PTR"
+      ],
+      "host_semantics": "host_alias",
+      "object_id": "buf_use_host",
+      "operation": "create_buffer",
+      "scenario": "create_buffer",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 64,
+      "status": "ok",
+      "storage_sha256": "7d9b4bc2fe04f797bfd7ed63d67f4aa7174d25126ed08d66f8c6c16c1893529d"
+    },
+    {
+      "event_id": 4,
+      "object_id": "buf_rw",
+      "offset": 0,
+      "operation": "kernel_write",
+      "payload_sha256": "7e371d765d318ab4cf9fb2381a686b393830c4446907874e3765ee39bef414c0",
+      "scenario": "kernel_write",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 4,
+      "status": "ok"
+    },
+    {
+      "event_id": 5,
+      "object_id": "buf_rw",
+      "offset": 0,
+      "operation": "kernel_read",
+      "payload_sha256": "7e371d765d318ab4cf9fb2381a686b393830c4446907874e3765ee39bef414c0",
+      "scenario": "kernel_read",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 4,
+      "status": "ok"
+    },
+    {
+      "event_id": 6,
+      "object_id": "buf_ro_copy",
+      "offset": 0,
+      "operation": "kernel_read",
+      "payload_sha256": "2017074cb16c7ca7481c1a85250f90c57d8319de7c82ccb74fda4a7e5203b812",
+      "scenario": "kernel_read",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 8,
+      "status": "ok"
+    },
+    {
+      "event_id": 7,
+      "object_id": "buf_ro_copy",
+      "offset": 0,
+      "operation": "kernel_read",
+      "payload_sha256": "694b91661fbb5bd58e0a4453a8a233cbba8671686b6abfb1e5fd5b39016c65c2",
+      "scenario": "kernel_read",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 4,
+      "status": "ok"
+    },
+    {
+      "event_id": 8,
+      "object_id": "buf_wo",
+      "offset": 0,
+      "operation": "kernel_write",
+      "payload_sha256": "33b848221a7469c39d9f88705457e6cb4223d8b0e8a5134e8da740c79e720472",
+      "scenario": "kernel_write",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 4,
+      "status": "ok"
+    },
+    {
+      "event_id": 9,
+      "object_id": "buf_use_host",
+      "offset": 0,
+      "operation": "kernel_read",
+      "payload_sha256": "ee68fa580e1ab322a01763c2369dbb76b45e88528614ce89d0e6af64f1780279",
+      "scenario": "kernel_read",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 4,
+      "status": "ok"
+    },
+    {
+      "access": "read_write",
+      "event_id": 10,
+      "map_id": "map0",
+      "object_id": "buf_rw",
+      "offset": 8,
+      "operation": "map",
+      "scenario": "map_buffer",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 16,
+      "status": "ok"
+    },
+    {
+      "access": "read_write",
+      "event_id": 11,
+      "map_id": "map0",
+      "object_id": "buf_rw",
+      "offset": 8,
+      "operation": "unmap",
+      "scenario": "unmap_buffer",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 16,
+      "status": "ok"
+    },
+    {
+      "event_id": 12,
+      "flags": [
+        "CL_MEM_READ_WRITE"
+      ],
+      "object_id": "buf_rw_sub",
+      "operation": "create_sub_buffer",
+      "origin": 16,
+      "parent_id": "buf_rw",
+      "scenario": "create_sub_buffer",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 16,
+      "status": "ok"
+    },
+    {
+      "event_id": 13,
+      "object_id": "buf_rw_sub",
+      "offset": 0,
+      "operation": "kernel_write",
+      "payload_sha256": "0e274ea1ca4f8fae7b657cfd57f9112a72fc60ed1ce444dca6e41fd299f1691a",
+      "scenario": "kernel_write",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 4,
+      "status": "ok"
+    },
+    {
+      "event_id": 14,
+      "object_id": "buf_rw_sub",
+      "offset": 0,
+      "operation": "kernel_read",
+      "payload_sha256": "0e274ea1ca4f8fae7b657cfd57f9112a72fc60ed1ce444dca6e41fd299f1691a",
+      "scenario": "kernel_read",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "size": 4,
+      "status": "ok"
+    },
+    {
+      "detail": "exactly one access flag is required",
+      "event_id": 15,
+      "expected_error": "exactly one access flag",
+      "operation": "create_buffer",
+      "passed": true,
+      "scenario": "negative_read_write_missing_access_flag",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "status": "expected_error"
+    },
+    {
+      "detail": "COPY_HOST_PTR and USE_HOST_PTR are mutually exclusive in this proxy gate",
+      "event_id": 16,
+      "expected_error": "mutually exclusive",
+      "operation": "create_buffer",
+      "passed": true,
+      "scenario": "negative_copy_and_use_host_ptr",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "status": "expected_error"
+    },
+    {
+      "detail": "host pointer flag requires host_ptr",
+      "event_id": 17,
+      "expected_error": "host pointer flag requires host_ptr",
+      "operation": "create_buffer",
+      "passed": true,
+      "scenario": "negative_copy_host_ptr_missing_ptr",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "status": "expected_error"
+    },
+    {
+      "detail": "device write violates CL_MEM_READ_ONLY",
+      "event_id": 18,
+      "expected_error": "CL_MEM_READ_ONLY",
+      "object_id": "buf_ro_copy",
+      "operation": "kernel_write",
+      "passed": true,
+      "scenario": "negative_read_only_kernel_write",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "status": "expected_error"
+    },
+    {
+      "detail": "device read violates CL_MEM_WRITE_ONLY",
+      "event_id": 19,
+      "expected_error": "CL_MEM_WRITE_ONLY",
+      "object_id": "buf_wo",
+      "operation": "kernel_read",
+      "passed": true,
+      "scenario": "negative_write_only_kernel_read",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "status": "expected_error"
+    },
+    {
+      "detail": "bounds violation object=buf_rw offset=60 size=8",
+      "event_id": 20,
+      "expected_error": "bounds",
+      "object_id": "buf_rw",
+      "operation": "map",
+      "passed": true,
+      "scenario": "negative_map_bounds",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "status": "expected_error"
+    },
+    {
+      "detail": "unknown map id",
+      "event_id": 21,
+      "expected_error": "unknown map id",
+      "object_id": "buf_rw",
+      "operation": "unmap",
+      "passed": true,
+      "scenario": "negative_unmap_unknown",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "status": "expected_error"
+    },
+    {
+      "detail": "bounds violation object=buf_rw offset=60 size=8",
+      "event_id": 22,
+      "expected_error": "bounds",
+      "object_id": "buf_rw",
+      "operation": "create_sub_buffer",
+      "passed": true,
+      "scenario": "negative_sub_buffer_bounds",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "status": "expected_error"
+    },
+    {
+      "detail": "sub-buffer flags cannot broaden parent access",
+      "event_id": 23,
+      "expected_error": "broaden",
+      "object_id": "buf_ro_copy",
+      "operation": "create_sub_buffer",
+      "passed": true,
+      "scenario": "negative_sub_buffer_broaden_flags",
+      "schema": "celviz.gpgpu.memory_object_event.v1",
+      "status": "expected_error"
+    }
+  ],
+  "flag_gates": [
+    {
+      "boundary": "OpenCL-like proxy flag semantics only; not CTS or production ICD behavior",
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        0,
+        3,
+        12
+      ],
+      "flag": "CL_MEM_READ_WRITE",
+      "readiness": "ready_proxy"
+    },
+    {
+      "boundary": "OpenCL-like proxy flag semantics only; not CTS or production ICD behavior",
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        1
+      ],
+      "flag": "CL_MEM_READ_ONLY",
+      "readiness": "ready_proxy"
+    },
+    {
+      "boundary": "OpenCL-like proxy flag semantics only; not CTS or production ICD behavior",
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        2
+      ],
+      "flag": "CL_MEM_WRITE_ONLY",
+      "readiness": "ready_proxy"
+    },
+    {
+      "boundary": "OpenCL-like proxy flag semantics only; not CTS or production ICD behavior",
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        1
+      ],
+      "flag": "CL_MEM_COPY_HOST_PTR",
+      "readiness": "ready_proxy"
+    },
+    {
+      "boundary": "OpenCL-like proxy flag semantics only; not CTS or production ICD behavior",
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        3
+      ],
+      "flag": "CL_MEM_USE_HOST_PTR",
+      "readiness": "ready_proxy"
+    }
+  ],
+  "generated_at": "2026-05-03T05:51:17+00:00",
+  "object_summary": {
+    "buf_ro_copy": {
+      "flags": [
+        "CL_MEM_COPY_HOST_PTR",
+        "CL_MEM_READ_ONLY"
+      ],
+      "host_alias": false,
+      "origin": 0,
+      "parent": null,
+      "size": 64,
+      "storage_sha256": "c851af79e3d9e21a740988b41f9f4f46c67f471fa9521ee40adda2a261308ab7"
+    },
+    "buf_rw": {
+      "flags": [
+        "CL_MEM_READ_WRITE"
+      ],
+      "host_alias": false,
+      "origin": 0,
+      "parent": null,
+      "size": 64,
+      "storage_sha256": "4111fac6348f0a9d0b1eb9aa88ede44c7a46676d58269ef9fa82a080c4ff6853"
+    },
+    "buf_rw_sub": {
+      "flags": [
+        "CL_MEM_READ_WRITE"
+      ],
+      "host_alias": false,
+      "origin": 16,
+      "parent": "buf_rw",
+      "size": 16,
+      "storage_sha256": "03aa20a692304ef84d251e5ee11f7bc53270cd323b5b4a50e978ee4344dbd5b6"
+    },
+    "buf_use_host": {
+      "flags": [
+        "CL_MEM_READ_WRITE",
+        "CL_MEM_USE_HOST_PTR"
+      ],
+      "host_alias": true,
+      "origin": 0,
+      "parent": null,
+      "size": 64,
+      "storage_sha256": "6415e3f9473e3a7c2fa89f12cc7cec3999a9c74bb43bfa897b625e08fe72e97a"
+    },
+    "buf_wo": {
+      "flags": [
+        "CL_MEM_WRITE_ONLY"
+      ],
+      "host_alias": false,
+      "origin": 0,
+      "parent": null,
+      "size": 64,
+      "storage_sha256": "2bfaea12d569e7497f9f604e38b485f9e8609d3dad7f0fab392fe3367f365ad6"
+    }
+  },
+  "operation_gates": [
+    {
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        10,
+        11,
+        20,
+        21
+      ],
+      "negative_cases": [
+        "negative_map_bounds",
+        "negative_unmap_unknown"
+      ],
+      "operation": "map/unmap",
+      "readiness": "ready_proxy"
+    },
+    {
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        12,
+        22,
+        23
+      ],
+      "negative_cases": [
+        "negative_sub_buffer_bounds",
+        "negative_sub_buffer_broaden_flags"
+      ],
+      "operation": "sub-buffer",
+      "readiness": "ready_proxy"
+    },
+    {
+      "completion": "complete_for_proxy_gate",
+      "covered_by": [
+        20,
+        22
+      ],
+      "negative_cases": [
+        "negative_map_bounds",
+        "negative_sub_buffer_bounds"
+      ],
+      "operation": "bounds negative tests",
+      "readiness": "ready_proxy"
+    }
+  ],
+  "schema": "celviz.gpgpu.phase9_memory_object_flags_gate.v1",
+  "status": "pass",
+  "summary": {
+    "event_count": 24,
+    "flag_count": 5,
+    "negative_case_count": 9,
+    "official_conformance_claim": false,
+    "operation_gate_count": 3,
+    "status": "pass"
+  }
+}
