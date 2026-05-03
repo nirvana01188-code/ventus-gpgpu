@@ -1,0 +1,209 @@
+{
+  "columns": [
+    "surface",
+    "readiness",
+    "completion",
+    "unified_access_model",
+    "current_evidence",
+    "productization_gate",
+    "blockers",
+    "next_actions"
+  ],
+  "generated_at": "2026-05-03T05:05:48+00:00",
+  "rows": [
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase6_memory_trace_integration_report.json"
+      ],
+      "next_actions": [
+        "extend from proxy traces to RTL LSU/cache traces before conformance claim"
+      ],
+      "productization_gate": "H2D/D2H/DMA fill plus kernel load/store visibility must pass through unified access events",
+      "readiness": "ready_proxy",
+      "surface": "global",
+      "unified_access_model": "DMA-visible mutable global memory with kernel load/store and negative bounds/alignment coverage"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json"
+      ],
+      "next_actions": [
+        "bind local allocation limits to compiler/runtime metadata"
+      ],
+      "productization_gate": "local store/load roundtrip must pass and remain separated from host DMA-visible memory",
+      "readiness": "ready_proxy",
+      "surface": "local",
+      "unified_access_model": "per-workgroup local memory represented as scratchpad access events"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json"
+      ],
+      "next_actions": [
+        "add compiler ABI rows for constant argument placement"
+      ],
+      "productization_gate": "constant reads must be repeatable, cacheable in proxy, and reject stores",
+      "readiness": "ready_proxy",
+      "surface": "constant",
+      "unified_access_model": "read-only constant memory with kernel load events and cache-proxy evidence"
+    },
+    {
+      "blockers": [
+        "no dedicated private-memory/spill evidence in current memory model"
+      ],
+      "completion": "listed_gap_not_complete",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json"
+      ],
+      "next_actions": [
+        "add private memory fixture with per-lane isolation and spill/load/store negative tests"
+      ],
+      "productization_gate": "private address-space accesses, spills, lifetime, and isolation need explicit clean-room traces",
+      "readiness": "readiness_gap",
+      "surface": "private",
+      "unified_access_model": "per-work-item private memory/spills must be modeled as non-shared access records"
+    },
+    {
+      "blockers": [
+        "current image_filter evidence is buffer/kernel proxy, not full image object conformance"
+      ],
+      "completion": "listed_gap_not_complete",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/image_filter.json"
+      ],
+      "next_actions": [
+        "add image object fixture for formats, bounds, coordinates, and row pitch"
+      ],
+      "productization_gate": "image reads/writes need explicit image-object semantics beyond buffer-backed image_filter proxy",
+      "readiness": "partial_proxy",
+      "surface": "image",
+      "unified_access_model": "image object access must use typed coordinates, format, bounds, and sampler linkage records"
+    },
+    {
+      "blockers": [
+        "no sampler-state evidence in current memory model"
+      ],
+      "completion": "listed_gap_not_complete",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json"
+      ],
+      "next_actions": [
+        "add sampler fixture covering clamp/repeat/filter mode declarations and unsupported-mode rejection"
+      ],
+      "productization_gate": "sampler addressing/filter/normalized-coordinate modes require explicit positive and negative tests",
+      "readiness": "readiness_gap",
+      "surface": "sampler",
+      "unified_access_model": "sampler state must be attached to image access records for addressing/filtering modes"
+    },
+    {
+      "blockers": [
+        "no atomic memory operation evidence in current memory model"
+      ],
+      "completion": "listed_gap_not_complete",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json"
+      ],
+      "next_actions": [
+        "add global/local atomic fixtures, race-group ordering, and unsupported-width negative cases"
+      ],
+      "productization_gate": "atomic add/cmpxchg/min/max and conflict serialization need deterministic proxy traces",
+      "readiness": "readiness_gap",
+      "surface": "atomics",
+      "unified_access_model": "atomic read-modify-write events must record ordering scope, old value, new value, and conflict group"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_coalescing_score_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase6_memory_trace_integration_report.json"
+      ],
+      "next_actions": [
+        "link coalescing groups to RTL memory issue events before performance claims"
+      ],
+      "productization_gate": "coalesced transaction count must be lower than naive lane transaction count for aligned groups",
+      "readiness": "ready_proxy",
+      "surface": "coalescing",
+      "unified_access_model": "lane accesses are grouped by address-space segment into coalesced proxy transactions"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json"
+      ],
+      "next_actions": [
+        "separate L1/L2/TLB RTL cache evidence before cache microarchitecture claims"
+      ],
+      "productization_gate": "cache proxy must record line size, hit/miss state, and claim boundary",
+      "readiness": "ready_proxy",
+      "surface": "cache",
+      "unified_access_model": "functional line-presence cache proxy records hits/misses without microarchitecture claims"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json"
+      ],
+      "next_actions": [
+        "add multi-workgroup isolation and capacity sweep evidence"
+      ],
+      "productization_gate": "scratchpad lane roundtrip and group isolation assumptions must be explicit",
+      "readiness": "ready_proxy",
+      "surface": "scratchpad",
+      "unified_access_model": "scratchpad is the concrete local-memory backing model for per-workgroup access"
+    },
+    {
+      "blockers": [],
+      "completion": "complete_for_proxy_gate",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_system_phase1_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_memory_streaming_report.json"
+      ],
+      "next_actions": [
+        "attach DMA descriptors to driver submission and RTL AXI monitor evidence"
+      ],
+      "productization_gate": "H2D, D2H, copy/fill, bounds, and alignment behavior must be represented in ordered events",
+      "readiness": "ready_proxy",
+      "surface": "DMA",
+      "unified_access_model": "DMA copy/fill uses the same event schema as kernel memory access records"
+    }
+  ],
+  "schema": "celviz.gpgpu.phase9_memory_completion_columns.v1",
+  "status": "pass",
+  "summary": {
+    "complete_for_proxy_gate": 7,
+    "gap_or_partial": 4,
+    "gap_or_partial_surfaces": [
+      "private",
+      "image",
+      "sampler",
+      "atomics"
+    ],
+    "official_conformance_claim": false,
+    "ready_proxy_surfaces": [
+      "global",
+      "local",
+      "constant",
+      "coalescing",
+      "cache",
+      "scratchpad",
+      "DMA"
+    ],
+    "surface_count": 11
+  }
+}

@@ -66,6 +66,10 @@ fail() {
 [[ -x scripts/verify_celviz_gpgpu_opencl_conformance_gap_map.sh || -f scripts/verify_celviz_gpgpu_opencl_conformance_gap_map.sh ]] || fail "missing OpenCL conformance gap map verification script"
 [[ -x scripts/verify_celviz_gpgpu_phase8_claim_closure.sh || -f scripts/verify_celviz_gpgpu_phase8_claim_closure.sh ]] || fail "missing phase-8 claim closure verification script"
 [[ -x scripts/verify_celviz_gpgpu_phase8_work_packages.sh || -f scripts/verify_celviz_gpgpu_phase8_work_packages.sh ]] || fail "missing phase-8 work package verification script"
+[[ -x scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh || -f scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh ]] || fail "missing phase-9 OpenCL conformance-readiness verification script"
+[[ -x scripts/verify_celviz_gpgpu_phase9_memory_conformance.sh || -f scripts/verify_celviz_gpgpu_phase9_memory_conformance.sh ]] || fail "missing phase-9 memory conformance-readiness verification script"
+[[ -x scripts/verify_celviz_gpgpu_phase9_driver_os.sh || -f scripts/verify_celviz_gpgpu_phase9_driver_os.sh ]] || fail "missing phase-9 driver/OS conformance-readiness verification script"
+[[ -x scripts/verify_celviz_gpgpu_phase9_productization.sh || -f scripts/verify_celviz_gpgpu_phase9_productization.sh ]] || fail "missing phase-9 productization gate verification script"
 [[ -x scripts/verify_celviz_eda_methodology.sh || -f scripts/verify_celviz_eda_methodology.sh ]] || fail "missing Celviz EDA methodology verification script"
 [[ -x scripts/verify_celviz_gpgpu_coverage_100.sh || -f scripts/verify_celviz_gpgpu_coverage_100.sh ]] || fail "missing 100% verification coverage script"
 
@@ -127,6 +131,18 @@ bash scripts/verify_celviz_gpgpu_phase8_claim_closure.sh
 
 log "gate: verify phase-8 work package artifacts"
 bash scripts/verify_celviz_gpgpu_phase8_work_packages.sh
+
+log "gate: verify phase-9 OpenCL conformance-readiness artifacts"
+bash scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh
+
+log "gate: verify phase-9 memory conformance-readiness artifacts"
+bash scripts/verify_celviz_gpgpu_phase9_memory_conformance.sh
+
+log "gate: verify phase-9 driver/OS conformance-readiness artifacts"
+bash scripts/verify_celviz_gpgpu_phase9_driver_os.sh
+
+log "gate: verify phase-9 productization/signoff blocker ledger"
+bash scripts/verify_celviz_gpgpu_phase9_productization.sh
 
 log "gate: verify reusable Celviz EDA methodology package"
 bash scripts/verify_celviz_eda_methodology.sh

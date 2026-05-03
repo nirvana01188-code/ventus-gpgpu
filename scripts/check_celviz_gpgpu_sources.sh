@@ -1229,6 +1229,44 @@ script_checks = {
             r"does not claim completion",
         ],
     ),
+    "phase9_opencl_conformance_readiness_script": (
+        root / "scripts/verify_celviz_gpgpu_phase9_opencl_conformance_readiness.sh",
+        [
+            r"phase9_opencl_conformance_readiness\.py",
+            r"CTS-oriented matrix",
+            r"OpenCL subset positive/negative tests",
+            r"ICD/runtime host API",
+            r"not claim Khronos CTS pass",
+            r"not official OpenCL conformance",
+        ],
+    ),
+    "phase9_memory_conformance_script": (
+        root / "scripts/verify_celviz_gpgpu_phase9_memory_conformance.sh",
+        [
+            r"phase9_memory_conformance_gate\.py",
+            r"phase9_memory_conformance_readiness_gate\.json",
+            r"Phase 9 Memory Conformance Gates",
+            r"Official conformance claim",
+            r"global",
+            r"atomics",
+        ],
+    ),
+    "phase9_driver_os_script": (
+        root / "scripts/verify_celviz_gpgpu_phase9_driver_os.sh",
+        [
+            r"phase9_driver_os_conformance\.py",
+            r"Phase-9 driver/OS",
+            r"DRM-like submission",
+            r"OpenCL-like queue semantics",
+        ],
+    ),
+    "phase9_productization_script": (
+        root / "scripts/verify_celviz_gpgpu_phase9_productization.sh",
+        [
+            r"phase9_productization_gates\.py",
+            r"PYTHONDONTWRITEBYTECODE=1",
+        ],
+    ),
     "eda_methodology_script": (
         root / "scripts/verify_celviz_eda_methodology.sh",
         [

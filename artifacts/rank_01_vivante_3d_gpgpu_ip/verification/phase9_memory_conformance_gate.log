@@ -1,0 +1,9 @@
+Celviz GPGPU IP Phase9 memory conformance-readiness gate
+schema=celviz.gpgpu.phase9_memory_conformance_gate.v1
+status=pass
+surface_count=11
+complete_for_proxy_gate=7
+gap_or_partial=4
+ready_proxy_surfaces=global,local,constant,coalescing,cache,scratchpad,DMA
+gap_or_partial_surfaces=private,image,sampler,atomics
+official_conformance_claim=false

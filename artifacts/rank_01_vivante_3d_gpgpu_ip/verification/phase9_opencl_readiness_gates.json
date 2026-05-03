@@ -1,0 +1,83 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "gate_count": 6
+      },
+      "name": "gate_count",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "all_gates_have_next_action",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "signoff_boundary_kept",
+      "pass": true
+    }
+  ],
+  "claim_boundary": "productization readiness gates only; not product signoff or official OpenCL conformance",
+  "gates": [
+    {
+      "domain": "memory",
+      "id": "memory_model_global_local_constant",
+      "next_action": "add barrier/local lifetime and constant read-only violation directed tests",
+      "pass_condition": "global/local/constant fixtures compile and unsupported image/sampler/atomic cases reject deterministically",
+      "required_artifacts": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+      ]
+    },
+    {
+      "domain": "memory_performance",
+      "id": "cache_scratchpad_coalescing",
+      "next_action": "add cache/scratchpad hit/miss and coalesced transaction counters",
+      "pass_condition": "coalescing evidence remains proxy-labeled and ties to memory event traces",
+      "required_artifacts": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase7_coalescing_score_report.json"
+      ]
+    },
+    {
+      "domain": "runtime_memory",
+      "id": "dma_kernel_access_unification",
+      "next_action": "create shared memory-region validator for DMA and NDRange dispatch paths",
+      "pass_condition": "DMA copy/fill and kernel memory access share region bounds and fault handling",
+      "required_artifacts": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/control_plane_demo.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/runtime_commands.json"
+      ]
+    },
+    {
+      "domain": "driver_runtime",
+      "id": "queue_fence_event_semantics",
+      "next_action": "add OpenCL wait-list DAG and callback/profiling placeholders",
+      "pass_condition": "queue drain, fence wait, event status, and fault paths are observed",
+      "required_artifacts": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/fence_event_lifecycle.json"
+      ]
+    },
+    {
+      "domain": "rtl_verification",
+      "id": "rtl_structural_uplift",
+      "next_action": "add directed reset/IRQ/scoreboard/LSU/branch tests and random/fault/stress seeds",
+      "pass_condition": "structural metrics are reported separately from 100% functional acceptance coverage",
+      "required_artifacts": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json"
+      ]
+    },
+    {
+      "domain": "signoff",
+      "id": "synthesis_sta_power_dft_physical",
+      "next_action": "attach target library/SDC/SAIF/DFT/floorplan inputs when a technology target exists",
+      "pass_condition": "signoff inputs are named and proxy PPA remains separated from signed-off PPA",
+      "required_artifacts": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json"
+      ]
+    }
+  ],
+  "schema": "celviz.gpgpu.phase9_productization_gates.v1",
+  "status": "pass"
+}

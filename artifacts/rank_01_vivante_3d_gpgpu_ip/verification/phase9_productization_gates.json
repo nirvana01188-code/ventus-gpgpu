@@ -1,0 +1,609 @@
+{
+  "blocked_gates": [
+    "phase9_sta_gate",
+    "phase9_power_gate",
+    "phase9_dft_gate",
+    "phase9_physical_implementation_gate",
+    "phase9_silicon_signoff_gate"
+  ],
+  "clean_room_scope": "Phase-9 productization gate checklist for the Ventus-based Celviz GPGPU IP proxy. It records RTL structural-coverage uplift evidence and synthesis-readiness probes, but it is not target-library synthesis, not STA, not power signoff, not DFT, not physical implementation, not silicon signoff, and not proprietary Vivante compatibility.",
+  "gates": [
+    {
+      "category": "rtl_structural_coverage_uplift",
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "supplemental_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "hit": 24,
+            "percent": 100.0,
+            "total": 24
+          },
+          "name": "structural_targets_all_hit",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "exists": true,
+            "non_empty": true,
+            "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/directed.json",
+            "size_bytes": 5821
+          },
+          "name": "directed_fixture_present",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "exists": true,
+            "non_empty": true,
+            "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/random.json",
+            "size_bytes": 13859
+          },
+          "name": "random_fixture_present",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "exists": true,
+            "non_empty": true,
+            "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/fault.json",
+            "size_bytes": 4408
+          },
+          "name": "fault_fixture_present",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "exists": true,
+            "non_empty": true,
+            "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/stress.json",
+            "size_bytes": 56737
+          },
+          "name": "stress_fixture_present",
+          "pass": true
+        }
+      ],
+      "claim_boundary": "Pass means local clean-room supplemental fixtures are generated and fast-gated; it does not mean RTL structural coverage is closed.",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/phase1_supplemental_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/directed.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/random.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/fault.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/stress.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/directed.metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/random.metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/fault.metrics.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/stress.metrics.json"
+      ],
+      "current_state": "pass",
+      "id": "phase9_rtl_supplemental_fixtures",
+      "next_actions": [
+        "Replay these fixtures through the coverage-enabled Verilator runtime lane.",
+        "Track per-fixture LCOV deltas for line, branch, and toggle metrics."
+      ],
+      "required_for_productization": [
+        "All four fixture classes exist and are replayable.",
+        "Fast gate metrics close queues and record expected negative paths.",
+        "Fixture hashes are recorded so slow coverage reruns can prove input stability."
+      ],
+      "status": "pass",
+      "title": "Directed/random/fault/stress supplemental fixtures"
+    },
+    {
+      "category": "rtl_structural_coverage_uplift",
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "e8_report_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "exists": true,
+            "non_empty": true,
+            "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.dat",
+            "size_bytes": 162881227
+          },
+          "name": "coverage_dat_non_empty",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "exists": true,
+            "non_empty": true,
+            "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.info",
+            "size_bytes": 20589006
+          },
+          "name": "coverage_info_non_empty",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "found": 97500,
+            "hit": 77108,
+            "percent": 79.085,
+            "status": "available"
+          },
+          "name": "line_metric_recorded",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "found": 2134626,
+            "hit": 614495,
+            "percent": 28.787,
+            "status": "available"
+          },
+          "name": "branch_metric_recorded",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "found": null,
+            "hit": null,
+            "percent": null,
+            "reason": "toggle counts were not present in coverage info",
+            "status": "unavailable"
+          },
+          "name": "toggle_metric_recorded_or_reasoned",
+          "pass": true
+        }
+      ],
+      "claim_boundary": "Partial means Verilator structural metrics are present as observations; productization still requires closure targets, deltas, and waivers.",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.dat",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.info",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/run.log",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/index.html",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json"
+      ],
+      "current_state": "partial",
+      "id": "phase9_verilator_line_branch_toggle_observation",
+      "next_actions": [
+        "Define minimum line/branch/toggle thresholds per source module.",
+        "Add waiver file for unreachable generated RTL and black-box paths.",
+        "Require a delta report before marking this gate pass for productization."
+      ],
+      "required_for_productization": [
+        "coverage.dat and coverage.info are non-empty.",
+        "LCOV line and branch metrics are available.",
+        "Toggle metrics are available or explicitly reported unavailable with reason.",
+        "RTL structural metrics remain separate from functional 100% coverage."
+      ],
+      "status": "partial",
+      "title": "Verilator line/branch/toggle observation"
+    },
+    {
+      "category": "synthesis",
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "synthesis_readiness_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "classification": "synthesis_probe_blocked_by_generated_verilog",
+            "status": "pass"
+          },
+          "name": "yosys_probe_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "ppa_proxy_status_pass",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "no_signoff_overclaim",
+          "pass": true
+        }
+      ],
+      "claim_boundary": "Partial means source/probe/PPA proxy readiness exists; it is not target-library logic synthesis.",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/yosys_synthesis_probe_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v"
+      ],
+      "current_state": "partial",
+      "id": "phase9_synthesis_probe_readiness",
+      "next_actions": [
+        "Generate clean synthesis Verilog independent of Verilator coverage annotation.",
+        "Add technology-library-independent lint and hierarchy reports.",
+        "Add target-library synthesis only after Liberty, RAM macros, and constraints are provided."
+      ],
+      "required_for_productization": [
+        "Source scope and synthesis-readiness checks pass.",
+        "Yosys probe records either bounded synthesis stats or explicit generated-Verilog blocker.",
+        "Target-library synthesis remains blocked until standard-cell and macro libraries exist."
+      ],
+      "status": "partial",
+      "title": "Synthesis readiness and bounded Yosys probe"
+    },
+    {
+      "category": "signoff",
+      "checks": [
+        {
+          "evidence": {},
+          "name": "phase8_names_sta_requirement",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "reason": "no STA reports, corner list, or constraints are present"
+          },
+          "name": "sta_reports_present",
+          "pass": false
+        }
+      ],
+      "claim_boundary": "Blocked until real STA inputs and reports exist; proxy timing estimates cannot close this gate.",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/signoff_requirements.json"
+      ],
+      "current_state": "blocked",
+      "id": "phase9_sta_gate",
+      "next_actions": [
+        "Create constraints checklist and SDC draft.",
+        "Select timing corners after target library is known."
+      ],
+      "required_for_productization": [
+        "SDC clocks, resets, IO delays, false/multicycle paths.",
+        "Target PVT/corner list.",
+        "STA reports with WNS/TNS, unconstrained path checks, and constraint lint."
+      ],
+      "status": "blocked",
+      "title": "Static timing analysis gate"
+    },
+    {
+      "category": "signoff",
+      "checks": [
+        {
+          "evidence": {},
+          "name": "phase8_names_power_requirement",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "proxy_ppa_present",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "reason": "proxy PPA is present, but no power signoff reports are present"
+          },
+          "name": "power_reports_present",
+          "pass": false
+        }
+      ],
+      "claim_boundary": "Blocked until activity, voltage, and real power reports exist; proxy PPA does not close power signoff.",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/signoff_requirements.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json"
+      ],
+      "current_state": "blocked",
+      "id": "phase9_power_gate",
+      "next_actions": [
+        "Emit workload VCD/SAIF for representative kernels.",
+        "Define voltage/frequency assumptions only after target technology is selected."
+      ],
+      "required_for_productization": [
+        "SAIF/VCD activity from representative workloads.",
+        "Voltage domains and power intent if used.",
+        "Dynamic/leakage/IR inputs and power reports."
+      ],
+      "status": "blocked",
+      "title": "Power signoff gate"
+    },
+    {
+      "category": "signoff",
+      "checks": [
+        {
+          "evidence": {},
+          "name": "phase8_names_dft_requirement",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "reason": "no scan, ATPG, MBIST, or DFT coverage reports are present"
+          },
+          "name": "dft_reports_present",
+          "pass": false
+        }
+      ],
+      "claim_boundary": "Blocked until DFT insertion strategy and coverage reports exist.",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/signoff_requirements.json"
+      ],
+      "current_state": "blocked",
+      "id": "phase9_dft_gate",
+      "next_actions": [
+        "Inventory inferred/register-file/memory structures that need test strategy.",
+        "Draft scan clock/reset controllability requirements."
+      ],
+      "required_for_productization": [
+        "Scan architecture and test clock plan.",
+        "ATPG or equivalent test coverage reports.",
+        "MBIST/LBIST strategy for memories and logic if required."
+      ],
+      "status": "blocked",
+      "title": "DFT and test coverage gate"
+    },
+    {
+      "category": "signoff",
+      "checks": [
+        {
+          "evidence": {},
+          "name": "phase8_names_physical_requirement",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "reason": "no floorplan, P&R, DRC, LVS, antenna, or extraction reports are present"
+          },
+          "name": "physical_reports_present",
+          "pass": false
+        }
+      ],
+      "claim_boundary": "Blocked until real physical implementation evidence exists.",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/signoff_requirements.json"
+      ],
+      "current_state": "blocked",
+      "id": "phase9_physical_implementation_gate",
+      "next_actions": [
+        "Define top-level physical boundary and macro strategy after synthesizable RTL is selected.",
+        "Add physical-report schema before any productization claim."
+      ],
+      "required_for_productization": [
+        "Floorplan, placement, CTS, routing, and extraction reports.",
+        "DRC/LVS/antenna reports.",
+        "Macro placement and power-grid evidence."
+      ],
+      "status": "blocked",
+      "title": "Physical implementation gate"
+    },
+    {
+      "category": "signoff",
+      "checks": [
+        {
+          "evidence": {},
+          "name": "phase8_names_silicon_requirement",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "reason": "no tapeout, bring-up, validation, measured PPA, or certification evidence is present"
+          },
+          "name": "silicon_evidence_present",
+          "pass": false
+        }
+      ],
+      "claim_boundary": "Blocked until real silicon evidence exists; current project remains a clean-room proxy package.",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/signoff_requirements.json"
+      ],
+      "current_state": "blocked",
+      "id": "phase9_silicon_signoff_gate",
+      "next_actions": [
+        "Keep all silicon-readiness language blocked in active acceptance until measured evidence exists.",
+        "Require independent signoff owner approval before changing this gate from blocked."
+      ],
+      "required_for_productization": [
+        "Tapeout checklist, waiver signoff, bring-up plan, validation logs, and measured silicon PPA.",
+        "Security/safety/certification evidence if claimed."
+      ],
+      "status": "blocked",
+      "title": "Silicon signoff gate"
+    }
+  ],
+  "generated_at": "2026-05-03T05:05:49+00:00",
+  "input_artifacts": {
+    "e8_verilator": {
+      "annotated_dut": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/dut.v",
+        "size_bytes": 22598129
+      },
+      "coverage_dat": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.dat",
+        "size_bytes": 162881227
+      },
+      "coverage_info": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/coverage.info",
+        "size_bytes": 20589006
+      },
+      "report_index": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/report/index.html",
+        "size_bytes": 394
+      },
+      "report_json": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json",
+        "size_bytes": 4905
+      },
+      "run_log": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/run.log",
+        "size_bytes": 156439
+      }
+    },
+    "phase8_signoff_requirements": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/signoff_requirements.json",
+      "size_bytes": 1876
+    },
+    "phase8_structural_coverage_uplift_plan": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/structural_coverage_uplift_plan.json",
+      "size_bytes": 1275
+    },
+    "supplemental_verilator_phase1": {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/phase1_supplemental_evidence.json",
+        "size_bytes": 15651
+      },
+      "fixtures": {
+        "directed": {
+          "exists": true,
+          "non_empty": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/directed.json",
+          "size_bytes": 5821
+        },
+        "fault": {
+          "exists": true,
+          "non_empty": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/fault.json",
+          "size_bytes": 4408
+        },
+        "random": {
+          "exists": true,
+          "non_empty": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/random.json",
+          "size_bytes": 13859
+        },
+        "stress": {
+          "exists": true,
+          "non_empty": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/fixtures/stress.json",
+          "size_bytes": 56737
+        }
+      },
+      "runs": {
+        "directed": {
+          "exists": true,
+          "non_empty": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/directed.metrics.json",
+          "size_bytes": 23178
+        },
+        "fault": {
+          "exists": true,
+          "non_empty": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/fault.metrics.json",
+          "size_bytes": 16959
+        },
+        "random": {
+          "exists": true,
+          "non_empty": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/random.metrics.json",
+          "size_bytes": 49240
+        },
+        "stress": {
+          "exists": true,
+          "non_empty": true,
+          "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_supplemental_phase1/runs/stress.metrics.json",
+          "size_bytes": 121108
+        }
+      }
+    },
+    "synthesis": {
+      "ppa_proxy": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/ppa/ppa_proxy_report.json",
+        "size_bytes": 53593
+      },
+      "sanitized_dut": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/dut.coverage_sanitized.v",
+        "size_bytes": 20678938
+      },
+      "synthesis_readiness": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json",
+        "size_bytes": 2123
+      },
+      "yosys_probe": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/yosys_synthesis_probe_report.json",
+        "size_bytes": 3635
+      }
+    }
+  },
+  "observed_metrics": {
+    "ppa_proxy_status": "pass",
+    "supplemental_structural_targets": {
+      "structural_target_hit_count": 24,
+      "structural_target_percent": 100.0,
+      "structural_target_total": 24,
+      "total_commands": 295,
+      "total_completion_interrupts": 85,
+      "total_dma_alignment_errors": 1,
+      "total_dma_copies": 102,
+      "total_dma_fills": 103,
+      "total_error_interrupts": 7,
+      "total_kernel_dispatches": 10,
+      "total_mmu_faults": 2,
+      "total_scheduler_faults": 1
+    },
+    "verilator_branch_metrics": {
+      "found": 2134626,
+      "hit": 614495,
+      "percent": 28.787,
+      "status": "available"
+    },
+    "verilator_line_metrics": {
+      "found": 97500,
+      "hit": 77108,
+      "percent": 79.085,
+      "status": "available"
+    },
+    "verilator_toggle_metrics": {
+      "found": null,
+      "hit": null,
+      "percent": null,
+      "reason": "toggle counts were not present in coverage info",
+      "status": "unavailable"
+    },
+    "yosys_classification": "synthesis_probe_blocked_by_generated_verilog"
+  },
+  "partial_gates": [
+    "phase9_verilator_line_branch_toggle_observation",
+    "phase9_synthesis_probe_readiness"
+  ],
+  "passed_gates": [
+    "phase9_rtl_supplemental_fixtures"
+  ],
+  "productization_ready": false,
+  "schema": "celviz.gpgpu.phase9_productization_gates.v1",
+  "signoff_boundary": {
+    "dft_complete": false,
+    "physical_implementation_complete": false,
+    "power_signoff_complete": false,
+    "silicon_signoff_complete": false,
+    "sta_complete": false,
+    "synthesis_target_library_complete": false
+  },
+  "status": "blocked_for_productization"
+}

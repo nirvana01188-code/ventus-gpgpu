@@ -1,0 +1,408 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "lane_status": {
+          "drm_like_submission": "pass",
+          "executable_test_matrix": "pass",
+          "fault_error_paths": "pass",
+          "opencl_queue_semantics_gap": "pass",
+          "queue_fence_event_lifecycle": "pass"
+        }
+      },
+      "name": "all_lanes_pass",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "clean_room_non_driver_scope",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "drm_like_submission_covered",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "queue_fence_event_covered",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "fault_error_paths_covered",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "opencl_queue_semantics_gap_recorded",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "executable_tests_listed",
+      "pass": true
+    }
+  ],
+  "claim_boundary": {
+    "current_claim": "driver/OS queue/fence/event conformance-readiness proxy evidence",
+    "not_claimed": [
+      "production Linux kernel DRM driver",
+      "stable kernel UAPI",
+      "GEM/syncobj ABI compatibility",
+      "official OpenCL conformance",
+      "proprietary Vivante compatibility",
+      "silicon or product signoff"
+    ]
+  },
+  "clean_room_scope": "Phase-9 driver/OS queue-fence-event conformance-readiness gate; DRM-like submission and OpenCL-like queue semantics are clean-room readiness evidence only. Not a production Linux kernel DRM driver, not a stable kernel UAPI, not GEM/syncobj ABI compatibility, not official OpenCL conformance, not proprietary Vivante compatibility, and not silicon or product signoff.",
+  "generated_at": "2026-05-03T05:05:48+00:00",
+  "inputs": {
+    "driver_submission_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_evidence.json",
+    "driver_submission_report": "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+    "linux_runtime_evidence": "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+    "opencl_conformance_gap_map": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
+    "phase8_drm_uapi_contract": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/drm_uapi_contract.json"
+  },
+  "lanes": [
+    {
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "driver_submission_evidence_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "driver_submission_report_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "missing": []
+          },
+          "name": "driver_checks_present",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "dispatches": 4
+          },
+          "name": "kernel_dispatch_alignment_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "drm_compatibility_claim": false,
+            "firmware_abi_claim": false,
+            "gem_syncobj_abi_claim": false,
+            "ioctl_abi_claim": false,
+            "kernel_driver_claim": false,
+            "mode": "userspace_drm_like_submission_proxy",
+            "proprietary_vivante_compatibility_claim": false
+          },
+          "name": "boundary_no_kernel_or_uapi_claim",
+          "pass": true
+        }
+      ],
+      "claim_status": "readiness_proxy_not_productized",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/drm_uapi_contract.json"
+      ],
+      "executable_tests": [
+        "bash scripts/verify_celviz_gpgpu_driver_submission.sh",
+        "PYTHONDONTWRITEBYTECODE=1 python3 tools/celviz_gpgpu_ip/verify_linux_runtime_proxy.py --reuse-existing"
+      ],
+      "id": "drm_like_submission",
+      "productization_gap": [
+        "No Linux kernel module, ioctl number allocation, or stable UAPI is present.",
+        "No copy_from_user validation, command parser hardening, scheduler entity, preemption, hang recovery, or security review exists.",
+        "Current submit descriptors are clean-room proxy evidence, not kernel ABI compatibility."
+      ],
+      "status": "pass",
+      "title": "DRM-like Submission"
+    },
+    {
+      "checks": [
+        {
+          "evidence": {
+            "context_id": 7,
+            "errors": 0,
+            "pending": 0,
+            "priority": 3,
+            "queue_id": 0,
+            "retired": 4,
+            "ring_base": "0x10000000",
+            "ring_size_bytes": 4096,
+            "states": [
+              {
+                "kernel": "vector_add",
+                "pending_after": 1,
+                "sequence": 1,
+                "state": "submitted"
+              },
+              {
+                "kernel": "vector_add",
+                "pending_after": 0,
+                "sequence": 1,
+                "state": "retired"
+              },
+              {
+                "kernel": "gemm",
+                "pending_after": 1,
+                "sequence": 2,
+                "state": "submitted"
+              },
+              {
+                "kernel": "gemm",
+                "pending_after": 0,
+                "sequence": 2,
+                "state": "retired"
+              },
+              {
+                "kernel": "conv2d",
+                "pending_after": 1,
+                "sequence": 3,
+                "state": "submitted"
+              },
+              {
+                "kernel": "conv2d",
+                "pending_after": 0,
+                "sequence": 3,
+                "state": "retired"
+              },
+              {
+                "kernel": "image_filter",
+                "pending_after": 1,
+                "sequence": 4,
+                "state": "submitted"
+              },
+              {
+                "kernel": "image_filter",
+                "pending_after": 0,
+                "sequence": 4,
+                "state": "retired"
+              }
+            ],
+            "submitted": 4
+          },
+          "name": "queue_no_pending",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "fence_count": 4
+          },
+          "name": "fences_all_signaled",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "readable_events": 5
+          },
+          "name": "completion_events_readable",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "events_polled": 4
+          },
+          "name": "linux_events_polled",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "missing": []
+          },
+          "name": "linux_checks_present",
+          "pass": true
+        }
+      ],
+      "claim_status": "readiness_proxy_not_productized",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json"
+      ],
+      "executable_tests": [
+        "bash scripts/verify_celviz_gpgpu_driver_submission.sh",
+        "PYTHONDONTWRITEBYTECODE=1 python3 tools/celviz_gpgpu_ip/verify_linux_runtime_proxy.py --reuse-existing"
+      ],
+      "id": "queue_fence_event_lifecycle",
+      "productization_gap": [
+        "No real eventfd/epoll wakeup, syncobj/timeline semaphore, or cross-process sharing ABI is present.",
+        "Queue priority and retirement are modeled but not tied to a kernel scheduler entity.",
+        "Current evidence exercises one proxy queue; multi-queue and out-of-order semantics remain open."
+      ],
+      "status": "pass",
+      "title": "Queue/Fence/Event Lifecycle"
+    },
+    {
+      "checks": [
+        {
+          "evidence": {
+            "error_path_count": 4
+          },
+          "name": "driver_error_paths_present",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "error_events": 2,
+            "submit_errors": 1
+          },
+          "name": "linux_error_events_present",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "error_path_count": 4
+          },
+          "name": "invalid_queue_and_eacces_observed",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "drm_contract_pass",
+          "pass": true
+        }
+      ],
+      "claim_status": "readiness_proxy_not_productized",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/drm_uapi_contract.json"
+      ],
+      "executable_tests": [
+        "bash scripts/verify_celviz_gpgpu_driver_submission.sh",
+        "PYTHONDONTWRITEBYTECODE=1 python3 tools/celviz_gpgpu_ip/verify_linux_runtime_proxy.py --reuse-existing"
+      ],
+      "id": "fault_error_paths",
+      "productization_gap": [
+        "No real GPU MMU fault interrupt, guilty-context accounting, reset recovery, or hangcheck is present.",
+        "No kernel command parser rejects user pointers or malformed submit packets.",
+        "Current errno mapping is readiness vocabulary, not a frozen UAPI."
+      ],
+      "status": "pass",
+      "title": "Fault/Error Paths"
+    },
+    {
+      "checks": [
+        {
+          "evidence": {
+            "status": "pass"
+          },
+          "name": "opencl_gap_map_pass",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "gap_count": 4
+          },
+          "name": "official_conformance_gap_declared",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "kernel_count": 4
+          },
+          "name": "current_kernel_subset_ge_4",
+          "pass": true
+        },
+        {
+          "evidence": {
+            "device_node_model": "/dev/dri/renderD128",
+            "ioctl_claim": "mock descriptor only",
+            "kernel_driver_claim": false,
+            "mode": "userspace_proxy"
+          },
+          "name": "linux_boundary_no_driver_claim",
+          "pass": true
+        }
+      ],
+      "claim_status": "readiness_proxy_not_productized",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/drm_uapi_contract.json"
+      ],
+      "executable_tests": [
+        "bash scripts/verify_celviz_gpgpu_opencl_conformance_gap_map.sh",
+        "PYTHONDONTWRITEBYTECODE=1 python3 tools/celviz_gpgpu_ip/verify_linux_runtime_proxy.py --reuse-existing"
+      ],
+      "id": "opencl_queue_semantics_gap",
+      "productization_gap": [
+        "OpenCL in-order queue behavior is modeled, but out-of-order queues, event wait lists, callbacks, profiling timestamps, user events, command barriers, and multi-queue synchronization are not complete.",
+        "OpenCL memory object lifetime, map/unmap blocking modes, SVM, images, samplers, atomics, and local-memory semantics remain outside current readiness evidence.",
+        "No official OpenCL ICD/runtime stack or Khronos CTS package is present."
+      ],
+      "status": "pass",
+      "title": "Linux Runtime To OpenCL Queue Semantics Gap"
+    },
+    {
+      "checks": [
+        {
+          "evidence": {},
+          "name": "driver_input_pass",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "linux_input_pass",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "opencl_gap_input_pass",
+          "pass": true
+        },
+        {
+          "evidence": {},
+          "name": "drm_contract_input_pass",
+          "pass": true
+        }
+      ],
+      "claim_status": "readiness_proxy_not_productized",
+      "current_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_conformance_gap_map.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/drm_uapi_contract.json"
+      ],
+      "executable_tests": [
+        "bash scripts/verify_celviz_gpgpu_driver_submission.sh",
+        "PYTHONDONTWRITEBYTECODE=1 python3 tools/celviz_gpgpu_ip/verify_linux_runtime_proxy.py --reuse-existing",
+        "bash scripts/verify_celviz_gpgpu_opencl_conformance_gap_map.sh",
+        "bash scripts/verify_celviz_gpgpu_phase8_work_packages.sh",
+        "bash scripts/verify_celviz_gpgpu_phase9_driver_os.sh"
+      ],
+      "id": "executable_test_matrix",
+      "productization_gap": [
+        "Focused readiness gates are not full product CI.",
+        "Kernel selftests, KUnit, CTS, fuzzing, long-run stress, and security review are not present."
+      ],
+      "status": "pass",
+      "title": "Executable Test Matrix"
+    }
+  ],
+  "schema": "celviz.gpgpu.phase9_driver_os_conformance_readiness.v1",
+  "status": "pass",
+  "summary": {
+    "driver_completion_events": 4,
+    "driver_error_paths": 4,
+    "driver_runtime_kernel_dispatches": 4,
+    "lane_count": 5,
+    "linux_events_polled": 4,
+    "linux_submit_errors": 1,
+    "linux_submits": 2,
+    "opencl_current_kernel_count": 4,
+    "passing_lanes": 5
+  }
+}

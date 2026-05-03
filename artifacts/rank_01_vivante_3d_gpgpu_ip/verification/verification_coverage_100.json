@@ -246,6 +246,60 @@
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_packages.json",
       "size_bytes": 2130
     },
+    "phase9_driver_os_conformance": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_driver_os_conformance_readiness.json",
+      "size_bytes": 13947
+    },
+    "phase9_memory_completion_columns": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_conformance_completion_columns.json",
+      "size_bytes": 8753
+    },
+    "phase9_memory_conformance_gate": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_conformance_readiness_gate.json",
+      "size_bytes": 10751
+    },
+    "phase9_opencl_conformance_readiness_report": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_conformance_readiness_report.json",
+      "size_bytes": 14446
+    },
+    "phase9_opencl_cts_readiness_matrix": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_cts_readiness_matrix.json",
+      "size_bytes": 10962
+    },
+    "phase9_opencl_icd_runtime_contract": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json",
+      "size_bytes": 9070
+    },
+    "phase9_opencl_readiness_gates": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_readiness_gates.json",
+      "size_bytes": 3342
+    },
+    "phase9_opencl_subset_conformance_tests": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json",
+      "size_bytes": 6344
+    },
+    "phase9_productization_gates": {
+      "exists": true,
+      "non_empty": true,
+      "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_productization_gates.json",
+      "size_bytes": 22562
+    },
     "synthesis_readiness_report": {
       "exists": true,
       "non_empty": true,
@@ -262,7 +316,7 @@
       "exists": true,
       "non_empty": true,
       "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/yosys_synthesis_probe_report.json",
-      "size_bytes": 3634
+      "size_bytes": 3635
     }
   },
   "bins": [
@@ -612,7 +666,7 @@
         "exists": true,
         "non_empty": true,
         "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/yosys_synthesis_probe_report.json",
-        "size_bytes": 3634
+        "size_bytes": 3635
       },
       "group": "artifacts",
       "hit": true,
@@ -727,6 +781,105 @@
       "group": "artifacts",
       "hit": true,
       "name": "phase8_work_package_artifacts_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_conformance_readiness_report.json",
+        "size_bytes": 14446
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_opencl_conformance_readiness_report"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json",
+        "size_bytes": 6344
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_opencl_subset_conformance_tests"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json",
+        "size_bytes": 9070
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_opencl_icd_runtime_contract"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_readiness_gates.json",
+        "size_bytes": 3342
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_opencl_readiness_gates"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_conformance_readiness_gate.json",
+        "size_bytes": 10751
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_memory_conformance_gate"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_memory_conformance_completion_columns.json",
+        "size_bytes": 8753
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_memory_completion_columns"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_driver_os_conformance_readiness.json",
+        "size_bytes": 13947
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_driver_os_conformance"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_productization_gates.json",
+        "size_bytes": 22562
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_productization_gates"
+    },
+    {
+      "evidence": {
+        "exists": true,
+        "non_empty": true,
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_cts_readiness_matrix.json",
+        "size_bytes": 10962
+      },
+      "group": "artifacts",
+      "hit": true,
+      "name": "phase9_opencl_cts_readiness_matrix"
     },
     {
       "evidence": {
@@ -2857,7 +3010,7 @@
         "memory_event_count": 96,
         "oracle_workload": "vector_add",
         "result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
-        "sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+        "sha256": "964c5c443453e825385d5d9eea6542dd6df890e5f9c27212ff4d1378f4db8200",
         "status": "pass",
         "uops_executed": 13
       },
@@ -2871,7 +3024,7 @@
         "memory_event_count": 260,
         "oracle_workload": "gemm_proxy",
         "result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
-        "sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+        "sha256": "1ac4cd6d42c5c2623d98d1da149b71d62e7d78226c6c2d593eb625ce0b0b6904",
         "status": "pass",
         "uops_executed": 18
       },
@@ -2885,7 +3038,7 @@
         "memory_event_count": 475,
         "oracle_workload": "convolution_proxy",
         "result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
-        "sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+        "sha256": "dcc7bc058224b88f87ec042e0c7471a5911375b20467bfc70ae871f00e87daef",
         "status": "pass",
         "uops_executed": 17
       },
@@ -2899,7 +3052,7 @@
         "memory_event_count": 548,
         "oracle_workload": "image_filter",
         "result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
-        "sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+        "sha256": "63fcac34bfd5ee4b8a4d026d32a284d774b48f9a60d7f94f17dd09723920b8e8",
         "status": "pass",
         "uops_executed": 15
       },
@@ -3588,27 +3741,27 @@
     {
       "evidence": {
         "conv2d": {
-          "aggregate_report_sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+          "aggregate_report_sha256": "dcc7bc058224b88f87ec042e0c7471a5911375b20467bfc70ae871f00e87daef",
           "aggregate_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a",
-          "per_kernel_report_sha256": "4aeee2d960a79d1928e056398b42c8fc33a4cd5eda50b3f9c7bff8e04d3aa577",
+          "per_kernel_report_sha256": "dcc7bc058224b88f87ec042e0c7471a5911375b20467bfc70ae871f00e87daef",
           "per_kernel_result_sha256": "d5fe2b065e3f25a6a540877c8d003fede5cd93e5d509c6996ef19e823a03269a"
         },
         "gemm": {
-          "aggregate_report_sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+          "aggregate_report_sha256": "1ac4cd6d42c5c2623d98d1da149b71d62e7d78226c6c2d593eb625ce0b0b6904",
           "aggregate_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0",
-          "per_kernel_report_sha256": "abcf8a65b69a74b9643f21ff45d75b4847efb1ee7b8b417d6f34d27abc5e0c32",
+          "per_kernel_report_sha256": "1ac4cd6d42c5c2623d98d1da149b71d62e7d78226c6c2d593eb625ce0b0b6904",
           "per_kernel_result_sha256": "911fceed2dd17b761f3fe702cee560796989ffd71475700af0a6a6e6472913d0"
         },
         "image_filter": {
-          "aggregate_report_sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+          "aggregate_report_sha256": "63fcac34bfd5ee4b8a4d026d32a284d774b48f9a60d7f94f17dd09723920b8e8",
           "aggregate_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101",
-          "per_kernel_report_sha256": "ba78002a1e28332c14ea50b861f31b279836a865ecf788f802ff9d0dc2031c18",
+          "per_kernel_report_sha256": "63fcac34bfd5ee4b8a4d026d32a284d774b48f9a60d7f94f17dd09723920b8e8",
           "per_kernel_result_sha256": "eafdb0707431eda4992fb4663356d0b62f91f78ec9e78f7744e5712ffecf4101"
         },
         "vector_add": {
-          "aggregate_report_sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+          "aggregate_report_sha256": "964c5c443453e825385d5d9eea6542dd6df890e5f9c27212ff4d1378f4db8200",
           "aggregate_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f",
-          "per_kernel_report_sha256": "d1c40673396f434ab0813fe65487c0dfb8ab2226faf5219ade5ebe6ca9461792",
+          "per_kernel_report_sha256": "964c5c443453e825385d5d9eea6542dd6df890e5f9c27212ff4d1378f4db8200",
           "per_kernel_result_sha256": "f998298c240cb303e059fb12398fc974eaf700bcfae021c2bdea45b3fac8ae3f"
         }
       },
@@ -4413,6 +4566,322 @@
     },
     {
       "evidence": {},
+      "group": "phase9_opencl_conformance_readiness",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+      },
+      "group": "phase9_opencl_conformance_readiness_checks",
+      "hit": true,
+      "name": "subset_conformance_tests_pass"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      },
+      "group": "phase9_opencl_conformance_readiness_checks",
+      "hit": true,
+      "name": "icd_runtime_contract_pass"
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_readiness_gates.json"
+      },
+      "group": "phase9_opencl_conformance_readiness_checks",
+      "hit": true,
+      "name": "productization_gates_pass"
+    },
+    {
+      "evidence": {
+        "observed": [
+          "atomics_memory_order",
+          "builtins_math_precision",
+          "context_queue_program_kernel_mem_api",
+          "driver_os_integration",
+          "error_negative_behavior",
+          "events_fences_queue_semantics",
+          "icd_runtime_integration",
+          "images_samplers",
+          "memory_address_spaces",
+          "opencl_c_language_subset",
+          "platform_device_info",
+          "rtl_structural_coverage_signoff"
+        ]
+      },
+      "group": "phase9_opencl_conformance_readiness_checks",
+      "hit": true,
+      "name": "required_categories_present"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_opencl_conformance_readiness_checks",
+      "hit": true,
+      "name": "all_requirements_have_blocker"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_opencl_conformance_readiness_checks",
+      "hit": true,
+      "name": "all_requirements_have_next_test"
+    },
+    {
+      "evidence": {
+        "references": [
+          {
+            "name": "Khronos OpenCL Registry",
+            "url": "https://registry.khronos.org/OpenCL/",
+            "use": "authoritative OpenCL API/C/extension specification index"
+          },
+          {
+            "name": "OpenCL 3.0 unified API specification",
+            "url": "https://registry.khronos.org/OpenCL/specs/3.0-unified/html/OpenCL_API.html",
+            "use": "platform, execution, memory, synchronization, host API, and device query semantics"
+          },
+          {
+            "name": "OpenCL 3.0 unified C specification",
+            "url": "https://registry.khronos.org/OpenCL/specs/3.0-unified/html/OpenCL_C.html",
+            "use": "OpenCL C language, address spaces, types, builtins, atomics, and barriers"
+          },
+          {
+            "name": "Khronos OpenCL-CTS",
+            "url": "https://github.com/KhronosGroup/OpenCL-CTS",
+            "use": "official open-source conformance test suite repository"
+          },
+          {
+            "name": "Khronos conformant products/adopters",
+            "url": "https://www.khronos.org/conformance/adopters/conformant-products/opencl",
+            "use": "public adopter/product conformance publication path"
+          }
+        ]
+      },
+      "group": "phase9_opencl_conformance_readiness_checks",
+      "hit": true,
+      "name": "official_references_present"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_opencl_conformance_readiness_checks",
+      "hit": true,
+      "name": "no_official_conformance_overclaim"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_opencl_subset_conformance_tests",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "count": 9,
+        "name": "positive_subset_cases_pass",
+        "pass": true
+      },
+      "group": "phase9_opencl_subset_conformance_tests_checks",
+      "hit": true,
+      "name": "positive_subset_cases_pass"
+    },
+    {
+      "evidence": {
+        "count": 12,
+        "name": "negative_subset_cases_rejected",
+        "pass": true
+      },
+      "group": "phase9_opencl_subset_conformance_tests_checks",
+      "hit": true,
+      "name": "negative_subset_cases_rejected"
+    },
+    {
+      "evidence": {
+        "name": "cts_boundary_declared",
+        "pass": true,
+        "scope": "CTS-shaped OpenCL C subset readiness tests for the clean-room Celviz GPGPU IP compiler/ABI path only; not Khronos CTS, not official OpenCL conformance, not a complete OpenCL C implementation, and not a production ICD/runtime claim"
+      },
+      "group": "phase9_opencl_subset_conformance_tests_checks",
+      "hit": true,
+      "name": "cts_boundary_declared"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_opencl_icd_runtime_contract",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "count": 16,
+        "name": "api_surface_depth",
+        "pass": true
+      },
+      "group": "phase9_opencl_icd_runtime_contract_checks",
+      "hit": true,
+      "name": "api_surface_depth"
+    },
+    {
+      "evidence": {
+        "name": "all_entries_have_executable_next_test",
+        "pass": true
+      },
+      "group": "phase9_opencl_icd_runtime_contract_checks",
+      "hit": true,
+      "name": "all_entries_have_executable_next_test"
+    },
+    {
+      "evidence": {
+        "name": "no_official_icd_overclaim",
+        "pass": true,
+        "scope": "clean-room OpenCL host API contract for Celviz proxy/runtime alignment; not a Khronos ICD loader integration, not an official OpenCL conformance claim, not a production Linux driver, and not a stable public ABI"
+      },
+      "group": "phase9_opencl_icd_runtime_contract_checks",
+      "hit": true,
+      "name": "no_official_icd_overclaim"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_opencl_readiness_gates",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "gate_count": 6
+      },
+      "group": "phase9_opencl_readiness_gates_checks",
+      "hit": true,
+      "name": "gate_count"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_opencl_readiness_gates_checks",
+      "hit": true,
+      "name": "all_gates_have_next_action"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_opencl_readiness_gates_checks",
+      "hit": true,
+      "name": "signoff_boundary_kept"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_memory_conformance_gate",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "name": "memory_phase1_evidence_pass",
+        "pass": true
+      },
+      "group": "phase9_memory_conformance_gate_checks",
+      "hit": true,
+      "name": "memory_phase1_evidence_pass"
+    },
+    {
+      "evidence": {
+        "name": "phase6_memory_trace_link_pass",
+        "pass": true
+      },
+      "group": "phase9_memory_conformance_gate_checks",
+      "hit": true,
+      "name": "phase6_memory_trace_link_pass"
+    },
+    {
+      "evidence": {
+        "name": "phase7_streaming_or_coalescing_evidence_present",
+        "pass": true
+      },
+      "group": "phase9_memory_conformance_gate_checks",
+      "hit": true,
+      "name": "phase7_streaming_or_coalescing_evidence_present"
+    },
+    {
+      "evidence": {
+        "name": "all_required_surfaces_listed",
+        "pass": true
+      },
+      "group": "phase9_memory_conformance_gate_checks",
+      "hit": true,
+      "name": "all_required_surfaces_listed"
+    },
+    {
+      "evidence": {
+        "name": "gap_rows_do_not_claim_conformance",
+        "pass": true
+      },
+      "group": "phase9_memory_conformance_gate_checks",
+      "hit": true,
+      "name": "gap_rows_do_not_claim_conformance"
+    },
+    {
+      "evidence": {
+        "name": "unified_access_model_declared",
+        "pass": true
+      },
+      "group": "phase9_memory_conformance_gate_checks",
+      "hit": true,
+      "name": "unified_access_model_declared"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_driver_os_conformance",
+      "hit": true,
+      "name": "status_pass"
+    },
+    {
+      "evidence": {
+        "lane_status": {
+          "drm_like_submission": "pass",
+          "executable_test_matrix": "pass",
+          "fault_error_paths": "pass",
+          "opencl_queue_semantics_gap": "pass",
+          "queue_fence_event_lifecycle": "pass"
+        }
+      },
+      "group": "phase9_driver_os_conformance_checks",
+      "hit": true,
+      "name": "all_lanes_pass"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_driver_os_conformance_checks",
+      "hit": true,
+      "name": "clean_room_non_driver_scope"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_driver_os_conformance_checks",
+      "hit": true,
+      "name": "drm_like_submission_covered"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_driver_os_conformance_checks",
+      "hit": true,
+      "name": "queue_fence_event_covered"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_driver_os_conformance_checks",
+      "hit": true,
+      "name": "fault_error_paths_covered"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_driver_os_conformance_checks",
+      "hit": true,
+      "name": "opencl_queue_semantics_gap_recorded"
+    },
+    {
+      "evidence": {},
+      "group": "phase9_driver_os_conformance_checks",
+      "hit": true,
+      "name": "executable_tests_listed"
+    },
+    {
+      "evidence": {},
       "group": "celviz_eda_methodology",
       "hit": true,
       "name": "status_pass"
@@ -4643,6 +5112,167 @@
       "group": "phase8_work_package_artifacts",
       "hit": true,
       "name": "artifact_path_count"
+    },
+    {
+      "evidence": {
+        "schema": "celviz.gpgpu.phase9_opencl_conformance_readiness.v1"
+      },
+      "group": "phase9_opencl_conformance_readiness",
+      "hit": true,
+      "name": "schema"
+    },
+    {
+      "evidence": {
+        "artifact_count": 4
+      },
+      "group": "phase9_opencl_conformance_readiness",
+      "hit": true,
+      "name": "artifact_path_count"
+    },
+    {
+      "evidence": {
+        "requirement_count": 12
+      },
+      "group": "phase9_opencl_conformance_readiness",
+      "hit": true,
+      "name": "requirement_depth"
+    },
+    {
+      "evidence": {
+        "clean_room_scope": "Phase-9 OpenCL conformance-readiness for a clean-room Ventus-based Celviz GPGPU IP proxy. This is CTS-oriented gap and local readiness evidence only: not Khronos CTS, not official OpenCL conformance, not a product ICD, not a production Linux kernel/DRM driver, not RTL structural coverage 100%, and not synthesis/STA/power/DFT/physical/silicon signoff."
+      },
+      "group": "phase9_opencl_conformance_readiness",
+      "hit": true,
+      "name": "no_official_conformance_overclaim"
+    },
+    {
+      "evidence": {
+        "positive_count": 9
+      },
+      "group": "phase9_opencl_subset_conformance_tests",
+      "hit": true,
+      "name": "positive_depth"
+    },
+    {
+      "evidence": {
+        "negative_count": 12
+      },
+      "group": "phase9_opencl_subset_conformance_tests",
+      "hit": true,
+      "name": "negative_depth"
+    },
+    {
+      "evidence": {
+        "api_count": 16
+      },
+      "group": "phase9_opencl_icd_runtime_contract",
+      "hit": true,
+      "name": "api_surface_depth"
+    },
+    {
+      "evidence": {
+        "gate_count": 6
+      },
+      "group": "phase9_opencl_readiness_gates",
+      "hit": true,
+      "name": "gate_depth"
+    },
+    {
+      "evidence": {
+        "requirement_count": 12
+      },
+      "group": "phase9_opencl_cts_readiness_matrix",
+      "hit": true,
+      "name": "matrix_depth"
+    },
+    {
+      "evidence": {
+        "surface_count": 11
+      },
+      "group": "phase9_memory_conformance_gate",
+      "hit": true,
+      "name": "surface_depth"
+    },
+    {
+      "evidence": {
+        "complete_for_proxy_gate": 7,
+        "gap_or_partial": 4,
+        "gap_or_partial_surfaces": [
+          "private",
+          "image",
+          "sampler",
+          "atomics"
+        ],
+        "official_conformance_claim": false,
+        "ready_proxy_surfaces": [
+          "global",
+          "local",
+          "constant",
+          "coalescing",
+          "cache",
+          "scratchpad",
+          "DMA"
+        ],
+        "surface_count": 11
+      },
+      "group": "phase9_memory_conformance_gate",
+      "hit": true,
+      "name": "official_conformance_claim_false"
+    },
+    {
+      "evidence": {
+        "row_count": 11
+      },
+      "group": "phase9_memory_completion_columns",
+      "hit": true,
+      "name": "row_depth"
+    },
+    {
+      "evidence": {
+        "driver_completion_events": 4,
+        "driver_error_paths": 4,
+        "driver_runtime_kernel_dispatches": 4,
+        "lane_count": 5,
+        "linux_events_polled": 4,
+        "linux_submit_errors": 1,
+        "linux_submits": 2,
+        "opencl_current_kernel_count": 4,
+        "passing_lanes": 5
+      },
+      "group": "phase9_driver_os_conformance",
+      "hit": true,
+      "name": "lane_depth"
+    },
+    {
+      "evidence": {
+        "clean_room_scope": "Phase-9 driver/OS queue-fence-event conformance-readiness gate; DRM-like submission and OpenCL-like queue semantics are clean-room readiness evidence only. Not a production Linux kernel DRM driver, not a stable kernel UAPI, not GEM/syncobj ABI compatibility, not official OpenCL conformance, not proprietary Vivante compatibility, and not silicon or product signoff."
+      },
+      "group": "phase9_driver_os_conformance",
+      "hit": true,
+      "name": "no_kernel_driver_claim"
+    },
+    {
+      "evidence": {
+        "blocked_gates": [
+          "phase9_sta_gate",
+          "phase9_power_gate",
+          "phase9_dft_gate",
+          "phase9_physical_implementation_gate",
+          "phase9_silicon_signoff_gate"
+        ],
+        "status": "blocked_for_productization"
+      },
+      "group": "phase9_productization_gates",
+      "hit": true,
+      "name": "status_boundary"
+    },
+    {
+      "evidence": {
+        "gate_count": 8
+      },
+      "group": "phase9_productization_gates",
+      "hit": true,
+      "name": "gate_depth"
     },
     {
       "evidence": {
@@ -4924,13 +5554,13 @@
   "clean_room_scope": "clean-room functional and acceptance verification coverage for the Ventus-based Celviz GPGPU IP proxy only; no proprietary Vivante compatibility, proprietary command stream/driver/firmware/SDK claim, official OpenCL/OpenCV conformance claim, RTL timing closure, PPA, safety certification, silicon signoff, or production-readiness claim",
   "coverage_kind": "functional_acceptance_verification_bins",
   "coverage_percent": 100.0,
-  "generated_at": "2026-05-03T03:22:52+00:00",
+  "generated_at": "2026-05-03T05:05:49+00:00",
   "groups": {
     "artifacts": {
       "coverage_percent": 100.0,
-      "hit": 44,
+      "hit": 53,
       "missed_bins": [],
-      "total": 44
+      "total": 53
     },
     "celviz_eda_methodology": {
       "coverage_percent": 100.0,
@@ -5334,6 +5964,96 @@
       "missed_bins": [],
       "total": 3
     },
+    "phase9_driver_os_conformance": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "phase9_driver_os_conformance_checks": {
+      "coverage_percent": 100.0,
+      "hit": 7,
+      "missed_bins": [],
+      "total": 7
+    },
+    "phase9_memory_completion_columns": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase9_memory_conformance_gate": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "phase9_memory_conformance_gate_checks": {
+      "coverage_percent": 100.0,
+      "hit": 6,
+      "missed_bins": [],
+      "total": 6
+    },
+    "phase9_opencl_conformance_readiness": {
+      "coverage_percent": 100.0,
+      "hit": 5,
+      "missed_bins": [],
+      "total": 5
+    },
+    "phase9_opencl_conformance_readiness_checks": {
+      "coverage_percent": 100.0,
+      "hit": 8,
+      "missed_bins": [],
+      "total": 8
+    },
+    "phase9_opencl_cts_readiness_matrix": {
+      "coverage_percent": 100.0,
+      "hit": 1,
+      "missed_bins": [],
+      "total": 1
+    },
+    "phase9_opencl_icd_runtime_contract": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "phase9_opencl_icd_runtime_contract_checks": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "phase9_opencl_readiness_gates": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
+    "phase9_opencl_readiness_gates_checks": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "phase9_opencl_subset_conformance_tests": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "phase9_opencl_subset_conformance_tests_checks": {
+      "coverage_percent": 100.0,
+      "hit": 3,
+      "missed_bins": [],
+      "total": 3
+    },
+    "phase9_productization_gates": {
+      "coverage_percent": 100.0,
+      "hit": 2,
+      "missed_bins": [],
+      "total": 2
+    },
     "verification_harness": {
       "coverage_percent": 100.0,
       "hit": 1,
@@ -5341,7 +6061,7 @@
       "total": 1
     }
   },
-  "hit_bins": 370,
+  "hit_bins": 431,
   "missed_bins": [],
   "rtl_structural_coverage_observation": {
     "lcov_info": {
@@ -5389,5 +6109,5 @@
   },
   "schema": "celviz.gpgpu.verification_coverage_100.v1",
   "status": "pass",
-  "total_bins": 370
+  "total_bins": 431
 }

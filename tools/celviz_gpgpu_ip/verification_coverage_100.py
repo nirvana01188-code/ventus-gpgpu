@@ -223,6 +223,15 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "phase8_claim_closure_report": verification_dir / "phase8_claim_closure_report.json",
         "phase8_work_packages": verification_dir / "phase8_work_packages.json",
         "phase8_work_package_artifacts_report": verification_dir / "phase8_work_package_artifacts" / "phase8_work_package_artifacts_report.json",
+        "phase9_opencl_conformance_readiness_report": verification_dir / "phase9_opencl_conformance_readiness_report.json",
+        "phase9_opencl_subset_conformance_tests": verification_dir / "opencl_subset_conformance_tests.json",
+        "phase9_opencl_icd_runtime_contract": verification_dir / "opencl_icd_runtime_contract.json",
+        "phase9_opencl_readiness_gates": verification_dir / "phase9_opencl_readiness_gates.json",
+        "phase9_memory_conformance_gate": verification_dir / "phase9_memory_conformance_readiness_gate.json",
+        "phase9_memory_completion_columns": verification_dir / "phase9_memory_conformance_completion_columns.json",
+        "phase9_driver_os_conformance": verification_dir / "phase9_driver_os_conformance_readiness.json",
+        "phase9_productization_gates": verification_dir / "phase9_productization_gates.json",
+        "phase9_opencl_cts_readiness_matrix": verification_dir / "opencl_cts_readiness_matrix.json",
         "eda_methodology_report": artifact_root.parent / "celviz-methodology" / "methodology_verification_report.json",
         "eda_methodology_bootstrap_matrix": artifact_root.parent / "celviz-methodology" / "bootstrap_acceptance_matrix.json",
     }
@@ -266,6 +275,15 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
     phase8_claim_closure = load_json(files["phase8_claim_closure_report"])
     phase8_work_packages = load_json(files["phase8_work_packages"])
     phase8_work_package_artifacts = load_json(files["phase8_work_package_artifacts_report"])
+    phase9_opencl = load_json(files["phase9_opencl_conformance_readiness_report"])
+    phase9_subset_tests = load_json(files["phase9_opencl_subset_conformance_tests"])
+    phase9_icd_contract = load_json(files["phase9_opencl_icd_runtime_contract"])
+    phase9_opencl_gates = load_json(files["phase9_opencl_readiness_gates"])
+    phase9_memory = load_json(files["phase9_memory_conformance_gate"])
+    phase9_memory_completion = load_json(files["phase9_memory_completion_columns"])
+    phase9_driver_os = load_json(files["phase9_driver_os_conformance"])
+    phase9_productization = load_json(files["phase9_productization_gates"])
+    phase9_cts_matrix = load_json(files["phase9_opencl_cts_readiness_matrix"])
     eda_methodology = load_json(files["eda_methodology_report"])
     eda_methodology_bootstrap = load_json(files["eda_methodology_bootstrap_matrix"])
     e7_log = files["e7_one_key_acceptance_log"].read_text(encoding="utf-8", errors="replace")
@@ -481,6 +499,12 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "opencl_conformance_gap_map": opencl_conformance_gap_map,
         "phase8_claim_closure": phase8_claim_closure,
         "phase8_work_package_artifacts": phase8_work_package_artifacts,
+        "phase9_opencl_conformance_readiness": phase9_opencl,
+        "phase9_opencl_subset_conformance_tests": phase9_subset_tests,
+        "phase9_opencl_icd_runtime_contract": phase9_icd_contract,
+        "phase9_opencl_readiness_gates": phase9_opencl_gates,
+        "phase9_memory_conformance_gate": phase9_memory,
+        "phase9_driver_os_conformance": phase9_driver_os,
         "celviz_eda_methodology": eda_methodology,
     }
     for group, report in phase6_reports.items():
@@ -518,6 +542,105 @@ def collect_report(artifact_root: Path) -> dict[str, Any]:
         "artifact_path_count",
         isinstance(artifact_paths, dict) and len(artifact_paths) >= 6,
         {"artifact_count": len(artifact_paths) if isinstance(artifact_paths, dict) else 0},
+    )
+
+    builder.add(
+        "phase9_opencl_conformance_readiness",
+        "schema",
+        phase9_opencl.get("schema") == "celviz.gpgpu.phase9_opencl_conformance_readiness.v1",
+        {"schema": phase9_opencl.get("schema")},
+    )
+    phase9_paths = phase9_opencl.get("artifact_paths", {})
+    builder.add(
+        "phase9_opencl_conformance_readiness",
+        "artifact_path_count",
+        isinstance(phase9_paths, dict) and len(phase9_paths) == 4,
+        {"artifact_count": len(phase9_paths) if isinstance(phase9_paths, dict) else 0},
+    )
+    builder.add(
+        "phase9_opencl_conformance_readiness",
+        "requirement_depth",
+        as_int(phase9_opencl.get("requirement_count")) >= 12,
+        {"requirement_count": phase9_opencl.get("requirement_count")},
+    )
+    builder.add(
+        "phase9_opencl_conformance_readiness",
+        "no_official_conformance_overclaim",
+        "not official OpenCL conformance" in str(phase9_opencl.get("clean_room_scope", "")),
+        {"clean_room_scope": phase9_opencl.get("clean_room_scope")},
+    )
+    builder.add(
+        "phase9_opencl_subset_conformance_tests",
+        "positive_depth",
+        as_int(phase9_subset_tests.get("positive_count")) >= 9,
+        {"positive_count": phase9_subset_tests.get("positive_count")},
+    )
+    builder.add(
+        "phase9_opencl_subset_conformance_tests",
+        "negative_depth",
+        as_int(phase9_subset_tests.get("negative_count")) >= 12,
+        {"negative_count": phase9_subset_tests.get("negative_count")},
+    )
+    builder.add(
+        "phase9_opencl_icd_runtime_contract",
+        "api_surface_depth",
+        len(phase9_icd_contract.get("host_api_contract", [])) >= 16,
+        {"api_count": len(phase9_icd_contract.get("host_api_contract", []))},
+    )
+    builder.add(
+        "phase9_opencl_readiness_gates",
+        "gate_depth",
+        len(phase9_opencl_gates.get("gates", [])) >= 6,
+        {"gate_count": len(phase9_opencl_gates.get("gates", []))},
+    )
+    builder.add(
+        "phase9_opencl_cts_readiness_matrix",
+        "matrix_depth",
+        len(phase9_cts_matrix.get("requirements", [])) >= 12,
+        {"requirement_count": len(phase9_cts_matrix.get("requirements", []))},
+    )
+    memory_summary = phase9_memory.get("completion_summary", {})
+    builder.add(
+        "phase9_memory_conformance_gate",
+        "surface_depth",
+        len(phase9_memory.get("surfaces", [])) >= 11,
+        {"surface_count": len(phase9_memory.get("surfaces", []))},
+    )
+    builder.add(
+        "phase9_memory_conformance_gate",
+        "official_conformance_claim_false",
+        memory_summary.get("official_conformance_claim") is False,
+        memory_summary if isinstance(memory_summary, dict) else {},
+    )
+    builder.add(
+        "phase9_memory_completion_columns",
+        "row_depth",
+        len(phase9_memory_completion.get("rows", [])) >= 11,
+        {"row_count": len(phase9_memory_completion.get("rows", []))},
+    )
+    builder.add(
+        "phase9_driver_os_conformance",
+        "lane_depth",
+        phase9_driver_os.get("summary", {}).get("lane_count") == 5,
+        phase9_driver_os.get("summary", {}),
+    )
+    builder.add(
+        "phase9_driver_os_conformance",
+        "no_kernel_driver_claim",
+        "not a production linux kernel drm driver" in str(phase9_driver_os.get("clean_room_scope", "")).lower(),
+        {"clean_room_scope": phase9_driver_os.get("clean_room_scope")},
+    )
+    builder.add(
+        "phase9_productization_gates",
+        "status_boundary",
+        phase9_productization.get("status") == "blocked_for_productization",
+        {"status": phase9_productization.get("status"), "blocked_gates": phase9_productization.get("blocked_gates", [])},
+    )
+    builder.add(
+        "phase9_productization_gates",
+        "gate_depth",
+        len(phase9_productization.get("gates", [])) >= 6,
+        {"gate_count": len(phase9_productization.get("gates", []))},
     )
 
     builder.add(

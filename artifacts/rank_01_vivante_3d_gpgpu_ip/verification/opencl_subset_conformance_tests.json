@@ -1,0 +1,229 @@
+{
+  "checks": [
+    {
+      "count": 9,
+      "name": "positive_subset_cases_pass",
+      "pass": true
+    },
+    {
+      "count": 12,
+      "name": "negative_subset_cases_rejected",
+      "pass": true
+    },
+    {
+      "name": "cts_boundary_declared",
+      "pass": true,
+      "scope": "CTS-shaped OpenCL C subset readiness tests for the clean-room Celviz GPGPU IP compiler/ABI path only; not Khronos CTS, not official OpenCL conformance, not a complete OpenCL C implementation, and not a production ICD/runtime claim"
+    }
+  ],
+  "clean_room_scope": "CTS-shaped OpenCL C subset readiness tests for the clean-room Celviz GPGPU IP compiler/ABI path only; not Khronos CTS, not official OpenCL conformance, not a complete OpenCL C implementation, and not a production ICD/runtime claim",
+  "generated_at": "2026-05-03T05:05:48+00:00",
+  "negative_count": 12,
+  "negative_tests": [
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_image_object",
+      "observed_error": "unsupported OpenCL feature token: image2d_t",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_sampler_object",
+      "observed_error": "unsupported OpenCL feature token: sampler_t",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_atomic_builtin",
+      "observed_error": "unsupported OpenCL feature token: atomic_",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_double_precision",
+      "observed_error": "unsupported OpenCL feature token: double",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_subgroup_builtin",
+      "observed_error": "unsupported OpenCL feature token: sub_group",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_device_side_enqueue",
+      "observed_error": "unsupported OpenCL feature token: queue_t",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_printf",
+      "observed_error": "unsupported OpenCL feature token: printf",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "unsupported OpenCL feature token",
+      "name": "reject_pipes",
+      "observed_error": "unsupported OpenCL feature token: pipe",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "exactly one kernel",
+      "name": "reject_multiple_kernels",
+      "observed_error": "exactly one kernel per source is supported",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "must declare an address space",
+      "name": "reject_pointer_missing_address_space",
+      "observed_error": "pointer argument p must declare an address space",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "global_size must be divisible by local_size",
+      "name": "reject_bad_launch_geometry",
+      "observed_error": "bad: global_size must be divisible by local_size",
+      "status": "pass"
+    },
+    {
+      "expected_rejection": "local workgroup size exceeds",
+      "name": "reject_local_workgroup_too_large",
+      "observed_error": "bad: local workgroup size exceeds first-stage limit 256",
+      "status": "pass"
+    }
+  ],
+  "positive_count": 9,
+  "positive_tests": [
+    {
+      "address_spaces": [
+        "global",
+        "private"
+      ],
+      "arg_count": 4,
+      "claim": "local subset compile/ABI pass only",
+      "name": "scalar_arg_layout",
+      "status": "pass",
+      "used_builtins": [
+        "get_global_id"
+      ],
+      "work_items": 64
+    },
+    {
+      "address_spaces": [
+        "global"
+      ],
+      "arg_count": 2,
+      "claim": "local subset compile/ABI pass only",
+      "name": "vector_type_float2",
+      "status": "pass",
+      "used_builtins": [
+        "get_global_id"
+      ],
+      "work_items": 64
+    },
+    {
+      "address_spaces": [
+        "global"
+      ],
+      "arg_count": 2,
+      "claim": "local subset compile/ABI pass only",
+      "name": "vector_type_float4",
+      "status": "pass",
+      "used_builtins": [
+        "get_global_id"
+      ],
+      "work_items": 64
+    },
+    {
+      "address_spaces": [
+        "global"
+      ],
+      "arg_count": 2,
+      "claim": "local subset compile/ABI pass only",
+      "name": "vector_type_float8",
+      "status": "pass",
+      "used_builtins": [
+        "get_global_id"
+      ],
+      "work_items": 64
+    },
+    {
+      "address_spaces": [
+        "global"
+      ],
+      "arg_count": 2,
+      "claim": "local subset compile/ABI pass only",
+      "name": "vector_type_float16",
+      "status": "pass",
+      "used_builtins": [
+        "get_global_id"
+      ],
+      "work_items": 64
+    },
+    {
+      "address_spaces": [
+        "global"
+      ],
+      "arg_count": 2,
+      "claim": "local subset compile/ABI pass only",
+      "name": "vector_type_uchar4",
+      "status": "pass",
+      "used_builtins": [
+        "get_global_id"
+      ],
+      "work_items": 64
+    },
+    {
+      "address_spaces": [
+        "constant",
+        "global",
+        "local",
+        "private"
+      ],
+      "arg_count": 4,
+      "claim": "local subset compile/ABI pass only",
+      "name": "address_spaces_global_local_constant",
+      "status": "pass",
+      "used_builtins": [
+        "barrier",
+        "get_global_id",
+        "get_local_id"
+      ],
+      "work_items": 64
+    },
+    {
+      "address_spaces": [
+        "global"
+      ],
+      "arg_count": 1,
+      "claim": "local subset compile/ABI pass only",
+      "name": "builtins_geometry",
+      "status": "pass",
+      "used_builtins": [
+        "get_global_id",
+        "get_global_size",
+        "get_group_id",
+        "get_local_id",
+        "get_local_size"
+      ],
+      "work_items": 128
+    },
+    {
+      "address_spaces": [
+        "global",
+        "private"
+      ],
+      "arg_count": 2,
+      "claim": "local subset compile/ABI pass only",
+      "name": "launch_geometry_2d",
+      "status": "pass",
+      "used_builtins": [
+        "get_global_id"
+      ],
+      "work_items": 256
+    }
+  ],
+  "schema": "celviz.gpgpu.opencl_subset_conformance_tests.v1",
+  "status": "pass"
+}

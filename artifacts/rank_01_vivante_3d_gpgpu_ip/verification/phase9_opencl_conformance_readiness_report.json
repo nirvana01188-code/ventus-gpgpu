@@ -1,0 +1,290 @@
+{
+  "artifact_paths": {
+    "opencl_cts_readiness_matrix": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_cts_readiness_matrix.json",
+    "opencl_icd_runtime_contract": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json",
+    "opencl_subset_conformance_tests": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json",
+    "phase9_opencl_readiness_gates": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_readiness_gates.json"
+  },
+  "checks": [
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+      },
+      "name": "subset_conformance_tests_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      },
+      "name": "icd_runtime_contract_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "path": "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase9_opencl_readiness_gates.json"
+      },
+      "name": "productization_gates_pass",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "observed": [
+          "atomics_memory_order",
+          "builtins_math_precision",
+          "context_queue_program_kernel_mem_api",
+          "driver_os_integration",
+          "error_negative_behavior",
+          "events_fences_queue_semantics",
+          "icd_runtime_integration",
+          "images_samplers",
+          "memory_address_spaces",
+          "opencl_c_language_subset",
+          "platform_device_info",
+          "rtl_structural_coverage_signoff"
+        ]
+      },
+      "name": "required_categories_present",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "all_requirements_have_blocker",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "all_requirements_have_next_test",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "references": [
+          {
+            "name": "Khronos OpenCL Registry",
+            "url": "https://registry.khronos.org/OpenCL/",
+            "use": "authoritative OpenCL API/C/extension specification index"
+          },
+          {
+            "name": "OpenCL 3.0 unified API specification",
+            "url": "https://registry.khronos.org/OpenCL/specs/3.0-unified/html/OpenCL_API.html",
+            "use": "platform, execution, memory, synchronization, host API, and device query semantics"
+          },
+          {
+            "name": "OpenCL 3.0 unified C specification",
+            "url": "https://registry.khronos.org/OpenCL/specs/3.0-unified/html/OpenCL_C.html",
+            "use": "OpenCL C language, address spaces, types, builtins, atomics, and barriers"
+          },
+          {
+            "name": "Khronos OpenCL-CTS",
+            "url": "https://github.com/KhronosGroup/OpenCL-CTS",
+            "use": "official open-source conformance test suite repository"
+          },
+          {
+            "name": "Khronos conformant products/adopters",
+            "url": "https://www.khronos.org/conformance/adopters/conformant-products/opencl",
+            "use": "public adopter/product conformance publication path"
+          }
+        ]
+      },
+      "name": "official_references_present",
+      "pass": true
+    },
+    {
+      "evidence": {},
+      "name": "no_official_conformance_overclaim",
+      "pass": true
+    }
+  ],
+  "clean_room_scope": "Phase-9 OpenCL conformance-readiness for a clean-room Ventus-based Celviz GPGPU IP proxy. This is CTS-oriented gap and local readiness evidence only: not Khronos CTS, not official OpenCL conformance, not a product ICD, not a production Linux kernel/DRM driver, not RTL structural coverage 100%, and not synthesis/STA/power/DFT/physical/silicon signoff.",
+  "generated_at": "2026-05-03T05:05:48+00:00",
+  "official_references": [
+    {
+      "name": "Khronos OpenCL Registry",
+      "url": "https://registry.khronos.org/OpenCL/",
+      "use": "authoritative OpenCL API/C/extension specification index"
+    },
+    {
+      "name": "OpenCL 3.0 unified API specification",
+      "url": "https://registry.khronos.org/OpenCL/specs/3.0-unified/html/OpenCL_API.html",
+      "use": "platform, execution, memory, synchronization, host API, and device query semantics"
+    },
+    {
+      "name": "OpenCL 3.0 unified C specification",
+      "url": "https://registry.khronos.org/OpenCL/specs/3.0-unified/html/OpenCL_C.html",
+      "use": "OpenCL C language, address spaces, types, builtins, atomics, and barriers"
+    },
+    {
+      "name": "Khronos OpenCL-CTS",
+      "url": "https://github.com/KhronosGroup/OpenCL-CTS",
+      "use": "official open-source conformance test suite repository"
+    },
+    {
+      "name": "Khronos conformant products/adopters",
+      "url": "https://www.khronos.org/conformance/adopters/conformant-products/opencl",
+      "use": "public adopter/product conformance publication path"
+    }
+  ],
+  "readiness_status_vocabulary": [
+    "absent",
+    "proxy",
+    "partial",
+    "ready"
+  ],
+  "requirement_count": 12,
+  "requirements": [
+    {
+      "blocker_to_official_conformance": "OpenCL 3.0 profile/version/extensions/device-info tables and optional-feature queries are incomplete.",
+      "category": "platform_device_info",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "api/test_cl_get_device_info style coverage",
+      "current_status": "partial",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/device_tiers.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/outputs/kernel_metrics.json"
+      ],
+      "next_executable_test": "Generate device-info golden table and reject unsupported CL_DEVICE_* queries deterministically.",
+      "title": "Platform and device enumeration/info"
+    },
+    {
+      "blocker_to_official_conformance": "No stable ICD handles, reference counts, object ownership, or complete OpenCL error-code mapping.",
+      "category": "context_queue_program_kernel_mem_api",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "api object lifecycle CTS groups",
+      "current_status": "partial",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      ],
+      "next_executable_test": "Run host API lifecycle contract tests for context/queue/buffer/program/kernel/event create/release.",
+      "title": "Core host object API lifecycle"
+    },
+    {
+      "blocker_to_official_conformance": "The compiler accepts a first-stage subset only: one kernel per source and limited grammar/types/builtins.",
+      "category": "opencl_c_language_subset",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "compiler and kernel language CTS groups",
+      "current_status": "partial",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/demo/opencl_subset/opencl_subset_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+      ],
+      "next_executable_test": "Extend parser/lowering case by case from vector add, GEMM, conv2d, image filter to CTS-shaped fixtures.",
+      "title": "OpenCL C subset compilation"
+    },
+    {
+      "blocker_to_official_conformance": "Math builtins, transcendental precision, denorm/rounding behavior, and conformance tolerances are not implemented.",
+      "category": "builtins_math_precision",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "math_brute_force and builtin coverage families",
+      "current_status": "absent",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+      ],
+      "next_executable_test": "Add integer/float builtin fixture families plus ULP/tolerance golden checks before enabling math CTS lanes.",
+      "title": "Builtins, math, and numerical precision"
+    },
+    {
+      "blocker_to_official_conformance": "Atomic operations are intentionally rejected in the current subset; memory-order scopes are not modeled.",
+      "category": "atomics_memory_order",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "atomics and memory model CTS groups",
+      "current_status": "absent",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+      ],
+      "next_executable_test": "Add local/global atomic op micro-tests behind an explicit feature flag, then map to scoreboard/LSU semantics.",
+      "title": "Atomics and memory ordering"
+    },
+    {
+      "blocker_to_official_conformance": "image*_t and sampler_t are rejected; no image object storage, formats, addressing, or filtering semantics.",
+      "category": "images_samplers",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "image read/write/sampler CTS groups",
+      "current_status": "absent",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json"
+      ],
+      "next_executable_test": "Keep image/sampler negative tests green; only open implementation after memory object model supports images.",
+      "title": "Images and samplers"
+    },
+    {
+      "blocker_to_official_conformance": "Address spaces are parsed and traced but cache/scratchpad/coherency/local lifetime rules are not spec-complete.",
+      "category": "memory_address_spaces",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "memory object, buffer, local memory, and barrier CTS groups",
+      "current_status": "partial",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/memory/memory_event_trace.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase6_memory_trace_integration_report.json"
+      ],
+      "next_executable_test": "Add local memory lifetime/barrier tests and constant memory read-only violation tests.",
+      "title": "Global/local/constant/private memory semantics"
+    },
+    {
+      "blocker_to_official_conformance": "Proxy fence/event semantics exist; OpenCL event wait lists, callbacks, profiling, and out-of-order queues are incomplete.",
+      "category": "events_fences_queue_semantics",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "event, queue, and synchronization CTS groups",
+      "current_status": "partial",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/fence_event_lifecycle.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/driver_submission/driver_submission_report.json"
+      ],
+      "next_executable_test": "Add event dependency DAG tests with success/fault propagation and queue drain checks.",
+      "title": "Events, fences, and queue ordering"
+    },
+    {
+      "blocker_to_official_conformance": "Local subset rejects known unsupported features but does not yet map all failures to OpenCL error codes.",
+      "category": "error_negative_behavior",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "api negative tests",
+      "current_status": "partial",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_subset_conformance_tests.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/rtl/e5_outputs/negative_boundary_evidence.json"
+      ],
+      "next_executable_test": "Create an OpenCL-style error code matrix for bad args, bad objects, bad geometry, and unsupported features.",
+      "title": "Error and negative behavior"
+    },
+    {
+      "blocker_to_official_conformance": "Current runtime is a CLI/proxy bridge, not a Khronos ICD vendor library.",
+      "category": "icd_runtime_integration",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "ICD loader and CTS harness integration",
+      "current_status": "proxy",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/opencl_icd_runtime_contract.json"
+      ],
+      "next_executable_test": "Build a mock libOpenCL vendor shim once host API contract tests are stable.",
+      "title": "ICD/runtime integration"
+    },
+    {
+      "blocker_to_official_conformance": "No production kernel DRM driver, GEM BO model, ioctl ABI, syncobj, scheduler, or hang recovery.",
+      "category": "driver_os_integration",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "runtime/driver behavior under CTS process model",
+      "current_status": "proxy",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/os_runtime/linux_runtime_evidence.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/phase8_work_package_artifacts/drm_uapi_contract.json"
+      ],
+      "next_executable_test": "Promote DRM-like submission proxy tests to ioctl-shaped fixtures before kernel-driver implementation.",
+      "title": "Linux driver and OS integration"
+    },
+    {
+      "blocker_to_official_conformance": "Functional/acceptance coverage is 100%, but structural RTL line/branch/toggle and signoff closure are not 100%.",
+      "category": "rtl_structural_coverage_signoff",
+      "claim_boundary": "readiness/gap evidence only; not official OpenCL conformance",
+      "cts_orientation": "implementation-quality prerequisite before official submission",
+      "current_status": "partial",
+      "local_evidence": [
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/verification/verilator_coverage/verilator_coverage_report.json",
+        "artifacts/rank_01_vivante_3d_gpgpu_ip/synthesis/synthesis_readiness_report.json"
+      ],
+      "next_executable_test": "Add directed/random/fault/stress RTL structural coverage gates and signoff input checks without redefining functional coverage.",
+      "title": "RTL structural coverage and product signoff"
+    }
+  ],
+  "schema": "celviz.gpgpu.phase9_opencl_conformance_readiness.v1",
+  "status": "pass"
+}
