@@ -59,12 +59,13 @@ else
 CXXFLAGS += -g -O0
 endif
 CXXFLAGS += -std=c++20 -MMD -MP
+CXXFLAGS += $(SPDLOG_FMT_CFLAGS)
 
 ifeq ($(RELEASE),1)
 LDFLAGS += -fuse-ld=mold
 endif
 # shared library & link path
-LDFLAGS += -lspdlog -lfmt
+LDFLAGS += $(SPDLOG_FMT_LIBS)
 LDFLAGS += -L$(VLIB_TARGET_PATH) -l$(VLIB_TARGET_NAME) -Wl,-rpath=$(abspath $(VLIB_TARGET_PATH))
 
 #=====================================================================

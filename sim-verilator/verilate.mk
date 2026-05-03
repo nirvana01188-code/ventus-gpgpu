@@ -6,6 +6,7 @@ export MAKEFLAGS += +r
 
 RELEASE ?= 0
 PREFIX ?= $(CURDIR)/install
+VLIB_COVERAGE ?= 0
 
 export RTL_GVM_ENABLED = false
 
@@ -43,6 +44,14 @@ CC  = ccache gcc
 CXX = ccache g++
 endif
 MOLD = $(shell which mold)
+PKG_CONFIG ?= pkg-config
+SPDLOG_FMT_CFLAGS = $(shell $(PKG_CONFIG) --cflags spdlog fmt 2>/dev/null || echo -I/opt/homebrew/include -I/usr/local/include)
+SPDLOG_FMT_LIBS = $(shell $(PKG_CONFIG) --libs spdlog fmt 2>/dev/null || echo -L/opt/homebrew/lib -L/usr/local/lib -lspdlog -lfmt)
+UNAME_S = $(shell uname -s)
+VLIB_ATOMIC_LIBS =
+ifneq ($(UNAME_S),Darwin)
+VLIB_ATOMIC_LIBS += -latomic
+endif
 
 #=====================================================================
 # Source file list and build directories
@@ -66,6 +75,10 @@ VLIB_SRC_CXX_ABSPATH = $(abspath $(VLIB_SRC_CXX))
 VLIB_VERILATOR_INPUT = $(VLIB_SRC_V) $(VLIB_SRC_CXX_ABSPATH)
 VLIB_VERILATOR_OUTPUT = $(VLIB_DIR_BUILDOBJ)/libVdut.a
 #VLIB_VERILATOR_OUTPUT = $(VLIB_DIR_BUILDOBJ)/libVdut.a $(VLIB_DIR_BUILDOBJ)/libverilated.a
+VLIB_VERILATED_RUNTIME_LIBS = $(VLIB_DIR_BUILDOBJ)/libverilated.a
+ifeq ($(VLIB_COVERAGE),1)
+VLIB_VERILATED_RUNTIME_LIBS += $(wildcard $(VLIB_DIR_BUILDOBJ)/libverilated_cov.a $(VLIB_DIR_BUILDOBJ)/verilated_cov.o)
+endif
 
 VLIB_TARGET_NAME = VentusRTL
 VLIB_TARGET_PATH = $(VLIB_DIR_BUILDOBJ)
@@ -79,7 +92,7 @@ VLIB_OBJ_EXPORT = $(VLIB_SRC_CXX_EXPORT:%.cpp=$(VLIB_DIR_BUILDOBJ)/%.o)
 #=====================================================================
 
 # Verilated model parallelism config
-VLIB_NPROC_CPU = $(shell nproc)
+VLIB_NPROC_CPU = $(shell nproc 2>/dev/null || getconf _NPROCESSORS_ONLN 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 1)
 VLIB_NPROC_DUT = 8 # Depends on RTL circuit size, just try and find a verilator-allowed largest number
 VLIB_NPROC_SIM = $(call MIN_FUNC, $(VLIB_NPROC_CPU), $(VLIB_NPROC_DUT))
 VLIB_NPROC_TRACE_FST = $(call MIN_FUNC, $(VLIB_NPROC_SIM), 2)
@@ -98,6 +111,7 @@ endif
 #VLIB_VERILATOR_FLAGS += -Wall
 VLIB_VERILATOR_FLAGS += -Wno-WIDTHEXPAND
 VLIB_VERILATOR_FLAGS += -Wno-WIDTHTRUNC
+VLIB_VERILATOR_FLAGS += -Wno-DEPRECATED
 # Define macros for Verilog
 # random init
 VLIB_VERILATOR_FLAGS += -DPRINTF_COND=1
@@ -109,7 +123,9 @@ VLIB_VERILATOR_FLAGS += --trace-fst
 # Check SystemVerilog assertions
 VLIB_VERILATOR_FLAGS += --assert
 # Generate coverage analysis
-#VLIB_VERILATOR_FLAGS += --coverage
+ifeq ($(VLIB_COVERAGE),1)
+VLIB_VERILATOR_FLAGS += --coverage
+endif
 # Run Verilator in debug mode
 #VLIB_VERILATOR_FLAGS += --debug
 # Add this trace to get a backtrace in gdb
@@ -124,7 +140,9 @@ VLIB_CFLAGS += -fPIC
 VLIB_CXXFLAGS += $(VLIB_CFLAGS)
 VLIB_CXXFLAGS += -std=c++20
 VLIB_CXXFLAGS += -DSPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE
+VLIB_CXXFLAGS += $(SPDLOG_FMT_CFLAGS)
 VLIB_LDFLAGS += -lc
+VLIB_LDFLAGS += $(SPDLOG_FMT_LIBS)
 ifeq ($(MOLD),1)
 VLIB_LDFLAGS += -fuse-ld=mold
 endif
@@ -161,8 +179,8 @@ $(VLIB_VERILATOR_OUTPUT): $(VLIB_SRC_V) $(VLIB_SRC_CXX)
 $(VLIB_TARGET): $(VLIB_VERILATOR_OUTPUT)
 	$(CXX) $(VLIB_CXXFLAGS) $(VLIB_LDFLAGS) -shared -o $@ \
 	  $(VLIB_OBJ_EXPORT) \
-	  $(VLIB_DIR_BUILDOBJ)/libVdut.a $(VLIB_DIR_BUILDOBJ)/libverilated.a \
-	  -lspdlog -lfmt -pthread -lpthread -lz -latomic  
+	  $(VLIB_DIR_BUILDOBJ)/libVdut.a $(VLIB_VERILATED_RUNTIME_LIBS) \
+	  $(SPDLOG_FMT_LIBS) -pthread -lpthread -lz $(VLIB_ATOMIC_LIBS)
 	ln -sf $(abspath $(VLIB_TARGET)) $(VLIB_DIR_BUILD)/libVentusRTL.so
 
 lib: $(VLIB_TARGET)

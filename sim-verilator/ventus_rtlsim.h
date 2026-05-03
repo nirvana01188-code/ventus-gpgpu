@@ -41,6 +41,8 @@ typedef struct ventus_kernel_metadata_t { // 这个metadata是供驱动使用的
     uint64_t* buffer_allocsize; // 各buffer的size，以Bytes为单位。分配的大小
 } ventus_kernel_metadata_t;
 
+#define VENTUS_RTLSIM_TYPES_DEFINED 1
+
 typedef struct {
     uint64_t sim_time_max; // 最大仿真时间限制
     struct {               // These log sinks can be enabled simultaneously
@@ -173,6 +175,9 @@ DLL_PUBLIC int fw_vt_copy_to_dev(uint64_t dev_vaddr,const void *src_addr, uint64
 DLL_PUBLIC int fw_vt_start(void* metaData, uint64_t taskID);
 DLL_PUBLIC int fw_vt_upload_kernel_file(const char* filename, int taskID);
 #endif // ENABLE_GVM
+
+#define VENTUS_RTLSIM_API_INCLUDED 1
+#include "celviz_gpgpu_runtime_proxy.h"
 
 #undef DLL_PUBLIC
 #undef DLL_LOCAL

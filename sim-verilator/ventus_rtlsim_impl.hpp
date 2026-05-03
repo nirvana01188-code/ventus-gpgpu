@@ -13,6 +13,8 @@ extern const std::unordered_map<std::string, int> rtl_parameters;
 #include "gvm.hpp"
 #endif // ENABLE_GVM
 
+struct celviz_gpgpu_runtime_state_t;
+
 #define SNAPSHOT_WAKEUP_SIGNAL SIGRTMIN
 typedef struct {
     bool is_child;
@@ -34,7 +36,9 @@ extern "C" struct ventus_rtlsim_t {
     gvm_t gvm;
 #endif // ENABLE_GVM
     bool need_icache_invalidate = false;
+    std::unique_ptr<celviz_gpgpu_runtime_state_t> celviz_gpgpu_runtime;
 
+    ~ventus_rtlsim_t();
     void constructor(const ventus_rtlsim_config_t* config);
     void dut_reset() const;
     const ventus_rtlsim_step_result_t* step();

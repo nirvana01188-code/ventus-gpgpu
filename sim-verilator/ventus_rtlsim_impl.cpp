@@ -2,6 +2,9 @@
 #include "Vdut.h"
 #include "ventus_rtlsim.h"
 #include "verilated.h"
+#if defined(VM_COVERAGE) && VM_COVERAGE
+#include "verilated_cov.h"
+#endif
 #include <algorithm>
 #include <csignal>
 #include <cstdint>
@@ -16,13 +19,21 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <string>
-#include <sys/prctl.h>
 #include <sys/wait.h>
+#include <unistd.h>
 #include <utility>
+
+#ifdef __linux__
+#include <sys/prctl.h>
+#endif
 
 #include "gvm.hpp"
 
 constexpr uint64_t HALF_CYCLE_TIME = 5;
+
+// Verilator may reference the legacy global timestamp hook while this runtime
+// drives time through each VerilatedContext instance.
+double sc_time_stamp() { return 0; }
 
 //
 // cleanup at exit
@@ -42,6 +53,15 @@ static void cleanup() {
         sim->tfp = nullptr;
     }
     g_instances.clear();
+}
+
+static void celviz_write_verilator_coverage() {
+#if defined(VM_COVERAGE) && VM_COVERAGE
+    const char* coverage_file = std::getenv("CELVIZ_GPGPU_COVERAGE_FILE");
+    if (coverage_file != nullptr && coverage_file[0] != '\0') {
+        VerilatedCov::write(coverage_file);
+    }
+#endif
 }
 
 // register cleanup function after g_instances is constructed
@@ -383,6 +403,7 @@ void ventus_rtlsim_t::destructor(bool snapshot_rollback_forcing) {
         tfp->close();
     dut->final();                  // Final model cleanup
     contextp->statsPrintSummary(); // Final simulation summary
+    celviz_write_verilator_coverage();
 
     // invoke snapshot if needed
     if (config.snapshot.enable && !snapshots.is_child && snapshots.children_pid.size() != 0 && need_rollback) {
@@ -410,6 +431,11 @@ void ventus_rtlsim_t::destructor(bool snapshot_rollback_forcing) {
 void ventus_rtlsim_t::snapshot_fork() {
     if (!config.snapshot.enable || snapshots.is_child)
         return;
+#ifndef __linux__
+    logger->warn("SNAPSHOT: process snapshots require Linux realtime signals; disabling snapshots on this platform");
+    config.snapshot.enable = false;
+    return;
+#else
     assert(dut && contextp);
 
     // delete oldest snapshot if needed
@@ -434,11 +460,14 @@ void ventus_rtlsim_t::snapshot_fork() {
         logger->info("SNAPSHOT created, pid={}", child_pid);
     } else { // for the fork-child snapshot process
         snapshots.is_child = true;
-        // child process should exit when parent process exits
+        // child process should exit when parent process exits where the OS
+        // exposes the Linux parent-death signal hook.
+#ifdef __linux__
         if (prctl(PR_SET_PDEATHSIG, SIGKILL) == -1) {
             perror("prctl(PR_SET_PDEATHSIG)");
             std::exit(EXIT_FAILURE);
         }
+#endif
         if (getppid() == 1) { // parent process already exited
             std::exit(EXIT_FAILURE);
         }
@@ -470,11 +499,17 @@ void ventus_rtlsim_t::snapshot_fork() {
         }
         tfp->open(config.snapshot.filename);
     }
+#endif
 }
 
 void ventus_rtlsim_t::snapshot_rollback(uint64_t time) {
     if (!config.snapshot.enable || snapshots.is_child)
         return;
+#ifndef __linux__
+    logger->warn("SNAPSHOT: rollback requires Linux realtime signals; disabling snapshots on this platform");
+    config.snapshot.enable = false;
+    return;
+#else
     if (snapshots.children_pid.empty()) {
         logger->error("No snapshot for rolling back. Where is the initial snapshot?");
         return;
@@ -494,6 +529,7 @@ void ventus_rtlsim_t::snapshot_rollback(uint64_t time) {
     sigqueue(child, SNAPSHOT_WAKEUP_SIGNAL, sigval); // Activate the snapshot
     waitpid(child, NULL, 0);                         // Wait for snapshot finished
     snapshots.children_pid.pop_back();
+#endif
 }
 
 void ventus_rtlsim_t::snapshot_kill_all() {
